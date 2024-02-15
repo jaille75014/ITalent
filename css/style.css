@@ -1,5 +1,10 @@
 /* CSS GLOBALE */
 
+html {
+    font-size : 25px;
+    font-family : 'Montserrat';
+}
+
 body {
     margin: 0;
 }
@@ -9,4 +14,28 @@ body {
 
 header {
     background-color: #1F68AE;
+    color : #FEE715 ;
 }
+
+header ul {
+    list-style : none;
+    display : flex;
+    margin : 0;
+    padding : 0;
+}
+
+header li {
+    padding-left : 2rem;
+    padding-right : 2rem;
+    font-weight: bold;
+}
+
+.header_div {
+    width : 80%;
+    height : 120px;
+    margin : auto;
+    display : flex ;
+    justify-content : space-between;
+    align-items: center;
+}
+
