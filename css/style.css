@@ -108,8 +108,25 @@ header li a:hover {
     color: #F9F9FF;
 }
 
-.btn-text {
-    font-size: 24px;
+.bouton_emploi {
+    margin: 20px;
+    text-align: flex-start;
+}
+
+.bouton_emploi a {
+    display: inline-block;
+    border-radius: 25px;
+    padding: 10px 20px;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: #1F68AE;
+    border-color: #1F68AE;
+    color: #FEE715;
+    text-decoration: none;
+}
+
+.bouton_emploi a:hover {
+    background-color: #FEE715;
+    color: #1F68AE;
 }
 
 .container {
