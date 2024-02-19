@@ -30,15 +30,16 @@
             Donnes nous juste ton CV, prouves tes compétences avec des tests et on se charge du reste ! <br>
             </p>
 
-            <div class="d-grid gap-2">
-                <a href="inscription.php" class="btn btn-lg btn-primary" role="button">
-                    <span style="color: #FEE715;" class="btn-text">Viens décrocher ton prochain emploi !</span>
+            <div class="bouton_emploi">
+                <a href="inscription.php" class="btn btn-primary">
+                    Viens décrocher ton prochain emploi !
                 </a>
             </div>
 
 
         </div>
     </div>
+
 
 
     <div class="container">
