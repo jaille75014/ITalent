@@ -30,8 +30,12 @@
             </p>
 
             <div class="d-grid gap-2">
-            <button class="btn btn-lg btn-primary" type="button"><span style="color: #FEE715">Viens décrocher ton prochain emploi !</span></button>
+                <a href="inscription.php" class="btn btn-lg btn-primary" role="button">
+                    <span style="color: #FEE715;" class="btn-text">Viens décrocher ton prochain emploi !</span>
+                </a>
             </div>
+
+
         </div>
     </div>
 
