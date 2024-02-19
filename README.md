@@ -21,8 +21,8 @@ Structure du projet :
 - /js : Contient les fichiers JavaScript pour les fonctionnalités interactives.
 - /assets : Contient les images utilisées sur le site.
 - /includes : Contient les fichiers PHP inclus dans plusieurs pages pour la réutilisabilité du code.
-- bdd : Contient le fichier SQL de la base de données.
-- logs : Contient les logs de connexions des utilisateurs.
+- /bdd : Contient le fichier SQL de la base de données.
+- /logs : Contient les logs de connexions des utilisateurs.
 
 Comment utiliser :
 1. Assurez-vous d'avoir un serveur web configuré avec PHP et MySQL.
