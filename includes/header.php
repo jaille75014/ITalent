@@ -18,9 +18,6 @@
             <img alt="Icône Mode Sombre" src="assets/dark.svg" width="40px">
         </div>
 
-        <div class="log-out_icon">
-            <img alt="Icône Log-Out" src="assets/log-out.svg" width="40px">
-        </div>
 
     </div>
     
