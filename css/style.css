@@ -9,6 +9,7 @@ body {
     margin: 0;
 }
 
+
 /* CSS Header */
 
 header {
@@ -30,7 +31,8 @@ header {
 .nav_links {
     flex: 1;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
+    align-items: center;
 }
 
 .dark_icon {
@@ -49,14 +51,19 @@ header ul {
 }
 
 header li {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    margin: 0 2rem; 
     font-weight: bold;
 }
 
 header li a {
-    text-decoration: none;
+    text-decoration: none !important; 
     color: inherit;
+    transition: color 0.3s, font-size 0.3s; 
+}
+
+header li a:hover {
+    color: #dbba00; 
+    font-size: 110%; 
 }
 
 .header_div {
@@ -65,6 +72,8 @@ header li a {
     display: flex;
     align-items: center;
 }
+
+
 
 /* CSS index.php */
 
@@ -97,4 +106,39 @@ header li a {
 
 .banner_content h2, .banner_content p {
     color: #F9F9FF;
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.student,
+.recruiter {
+    flex: 1;
+    padding: 10px;
+    text-align: left; 
+    margin: auto;
+    margin-left: 100px;
+    margin-right: 20px;
+}
+
+.student ul,
+.recruiter ul {
+    list-style: none;
+    padding: 0;
+}
+
+.student li,
+.recruiter li {
+    list-style: none;
+    font-size: 20px;
+    padding-top: 10px;
+}
+
+.student h3,
+.recruiter h3 {
+    margin-top: 30px;
+    margin-bottom: 50px;
 }
