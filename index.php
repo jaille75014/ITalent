@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="CSS/style.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/litera/bootstrap.min.css" integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" crossorigin="anonymous">
     <title>ITalent | Accueil</title>
@@ -30,16 +33,15 @@
             Donnes nous juste ton CV, prouves tes compétences avec des tests et on se charge du reste ! <br>
             </p>
 
-            <div class="bouton_emploi">
-                <a href="inscription.php" class="btn btn-primary">
-                    Viens décrocher ton prochain emploi !
+            <div class="d-grid gap-2">
+                <a href="inscription.php" class="btn btn-lg btn-primary" role="button">
+                    <span style="color: #FEE715;" class="btn-text">Viens décrocher ton prochain emploi !</span>
                 </a>
             </div>
 
 
         </div>
     </div>
-
 
 
     <div class="container">
