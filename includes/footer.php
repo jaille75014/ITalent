@@ -1,6 +1,6 @@
 <div class="container-fluid">
 
-<footer class="bg-primary text-center text-lg-start text-white">
+<footer class=" text-center text-lg-start text-white">
     <!-- Grid container -->
 <div class="container-fluid p-4">
     <!-- Grid row -->
@@ -33,7 +33,7 @@
     <!-- Grid column -->
 
     <!-- Une autre colonne -->
-    <div class="col-lg-4 col-md-5 mb-4 mb-md-0">
+    <div class="col-lg-2 col-md-5 mb-4 mb-md-0">
         <h5 class="text-uppercase mb-4">Italent</h5>
         <ul class="list-unstyled">
             <li class="mb-1">
@@ -50,7 +50,7 @@
     <!-- Grid column -->
     
     <!-- Grid column -->
-    <div class="col-lg-4 col-md-5 mb-4 mb-md-0">
+    <div class="col-lg-2 col-md-5 mb-4 mb-md-0">
         <h5 class="text-uppercase mb-4">Informations légales</h5>
         <ul class="list-unstyled">
             <li class="mb-2">
@@ -67,7 +67,7 @@
     <!-- Grid column -->
 
     <!-- Grid column -->
-    <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+    <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
         <h5 class="text-uppercase mb-4">Nous contacter</h5>
         <ul class="list-unstyled">
             <li class="mb-2">
@@ -78,9 +78,8 @@
             </li>
             <li class="mb-2">
             <form>
-                <div class="form-group">
                     <label for="">Envoyez nous un mail</label>
-                    <input type="email" class="form-control" name="email" placeholder="Enter email">
+                    <input type="email" name="email" placeholder="Enter email">
                     <small id="emailHelp" class="form-text text-muted">Nous ne partagerons votre e-mail avec personne d'autre !</small>
                 </div>
             </form>

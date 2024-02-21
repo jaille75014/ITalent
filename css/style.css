@@ -162,3 +162,13 @@ header li a:hover {
     margin-top: 30px;
     margin-bottom: 50px;
 }
+
+footer * {
+    font-size: 13px;
+}
+footer h5 {
+    font-size: 20px;
+}
+footer {
+    background-color: #1F68AE;
+}

@@ -6,12 +6,11 @@
     <meta name="Description" content="ITalent, la révolution de la recherche d'emplois pour les étudiants en Informatique.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="CSS/style.css">
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/litera/bootstrap.min.css" integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="CSS/style.css">
     <title>ITalent | Accueil</title>
 </head>
 
@@ -19,7 +18,7 @@
 
     <?php include('includes/header.php');?>
 
-    <div class="banner">
+    <div class="banner container-fluid">
         <div class="banner_content">
             <h2>Prouve tes compétences, <br> 
             Discute, <br>
