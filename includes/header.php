@@ -3,7 +3,7 @@
     <div class="header_div">
 
         <div class="logo">
-            <img alt="Logo ITalent" src="assets/logo_blanc.png" width="100px">
+            <a href="index.php"><img alt="Logo ITalent" src="assets/logo_blanc.png" width="100px"></a>
         </div>
 
         <nav class="nav_links">
