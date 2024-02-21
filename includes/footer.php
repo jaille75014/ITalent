@@ -77,11 +77,15 @@
               <a href="#!" class="text-white"><i class='bx bxs-phone'></i>+33 1 23 45 67 89</a>
             </li>
             <li class="mb-2">
-            <form>
-                    <label for="">Envoyez nous un mail</label>
-                    <input type="email" name="email" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">Nous ne partagerons votre e-mail avec personne d'autre !</small>
-                </div>
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="staticEmail2" class="sr-only">Email</label>
+              </div>
+              <div class="form-group mb-2">
+                <label for="inputPassword2" class="sr-only">Password</label>
+                <input type="email" class="form-control" name="email" placeholder="email">
+              </div>
+              <button type="submit" class="btn btn-primary mb-2">Demander de l'aide</button>
             </form>
               
             </li>
@@ -98,4 +102,4 @@
 
 </footer>
 
-</div>
+</div>  
