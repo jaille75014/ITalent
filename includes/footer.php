@@ -67,7 +67,7 @@
     <!-- Grid column -->
 
     <!-- Grid column -->
-    <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+    <div class="col-lg-2 col-md-6 mb-4 mb-md-0 offset-md-2">
         <h5 class="text-uppercase mb-4">Nous contacter</h5>
         <ul class="list-unstyled">
             <li class="mb-2">
@@ -77,15 +77,9 @@
               <a href="#!" class="text-white"><i class='bx bxs-phone'></i>+33 1 23 45 67 89</a>
             </li>
             <li class="mb-2">
-            <form class="form-inline">
-              <div class="form-group">
-                <label for="staticEmail2" class="sr-only">Email</label>
+            <form method="POST" action="">
+                <input type="email" name="email" placeholder="email">
               </div>
-              <div class="form-group mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
-                <input type="email" class="form-control" name="email" placeholder="email">
-              </div>
-              <button type="submit" class="btn btn-primary mb-2">Demander de l'aide</button>
             </form>
               
             </li>
