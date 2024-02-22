@@ -107,26 +107,16 @@ header li a:hover {
     color: #F9F9FF;
 }
 
-.bouton_emploi {
-    margin: 20px;
+.bouton_inscription {
+    margin: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 28px;
     text-align: flex-start;
-}
-
-.bouton_emploi a {
-    display: inline-block;
-    border-radius: 25px;
-    padding: 10px 20px;
-    transition: background-color 0.3s, color 0.3s;
     background-color: #1F68AE;
-    border-color: #1F68AE;
-    color: #FEE715;
-    text-decoration: none;
+    border-radius: 50px;
 }
 
-.bouton_emploi a:hover {
-    background-color: #FEE715;
-    color: #1F68AE;
-}
 
 .container {
     display: flex;
