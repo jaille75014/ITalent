@@ -17,6 +17,7 @@ header {
     color: #FEE715;
     width: 100%;
     margin: 0;
+    font-size: 18px;
 }
 
 .logo {
@@ -25,7 +26,7 @@ header {
 }
 
 .logo img {
-    width:100px;
+    width:70px;
 }
 
 .nav_links {
@@ -63,12 +64,12 @@ header li a {
 
 header li a:hover {
     color: #dbba00; 
-    font-size: 110%; 
+    font-size: 100%; 
 }
 
 .header_div {
     width: 100%;
-    height: 120px;
+    height: 100%;
     display: flex;
     align-items: center;
 }
@@ -88,8 +89,16 @@ header li a:hover {
 
 .banner_content {
     max-width: 650px; 
-    padding: 20px;
-    text-align: left;
+    padding: 60px;  
+}
+.index {
+    padding-top: 40px;
+}
+.col-md-6 {
+    padding: 0;
+}
+.col-md-12 {
+    padding: 0;
 }
 
 .banner_content h2 {
@@ -108,10 +117,9 @@ header li a:hover {
 }
 
 .bouton_inscription {
-    margin: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
+    margin: 0px;
     font-size: 24px;
+    padding: 12px;
     text-align: flex-start;
     background-color: #1F68AE;
     border-radius: 50px;
@@ -167,3 +175,4 @@ footer input {
 footer .form-group{
     width: 10%;
 }
+
