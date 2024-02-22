@@ -17,7 +17,7 @@
 <body>
 
     <?php include('includes/header.php');?>
-
+    <main>
     <div class="banner container-fluid">
         <div class="banner_content">
             <h2>Prouve tes compétences, <br> 
@@ -66,7 +66,7 @@
         </div>
     </div>
 
-
+    </main>
 
 
 
