@@ -160,19 +160,56 @@ header li a:hover {
     margin-bottom: 50px;
 }
 
-footer * {
+footer {
+    width: 100%;
+    position: absolute;
+    background: linear-gradient(to right, #0E3D69, #2482DC);
+    color: #F9F9FF;
+    padding: 20px 10px 30px;
+    text-align: center;
+    border-top-left-radius: 125px;
     font-size: 13px;
+    line-height: 20px;
 }
 footer h5 {
-    font-size: 20px;
+    padding-top: 30px;
+    font-size: 15px;
 }
-footer {
-    background-color: #1F68AE;
+footer form {
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 50px;
 }
-footer input {
-    width: 100%;
-}
-footer .form-group{
-    width: 10%;
-}
+footer form .bx.bxs-envelope{
+    font-size: 18px;
+    margin-right: 10px;
 
+}
+footer form input {
+    width: 100%;
+    background: transparent;
+    color: #F9F9FF;
+    border: 0;
+    outline: none;
+}
+footer form button {
+    background: transparent;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+footer form .bx.bx-right-arrow-alt {
+    font-size: 16px;
+    color: #F9F9FF;
+}
+footer hr {
+    width: 90%;
+    border: 0;
+    border-bottom: 1px solid #F9F9FF;
+}
+.copyright {
+    text-align: center;
+}
