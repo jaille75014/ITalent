@@ -26,6 +26,7 @@ footer {
     border-top-left-radius: 125px;
     font-size: 13px;
     line-height: 20px;
+    overflow-x: hidden;
 }
 footer h5 {
     padding-top: 30px;
