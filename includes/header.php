@@ -1,7 +1,7 @@
 <header>
         <nav class="navbar navbar-expand-md fixed-top bg-light">
             <div class="container">
-            <a class="nav-link" href="index.html"><img alt="Logo ITalent" height="90px" src="assets/LOGO_version_minimalisé.png"></a>
+            <a class="nav-link" href="index.php"><img alt="Logo ITalent" height="90px" src="assets/LOGO_version_minimalisé.png"></a>
               <div class="justify-content-end" id="navbarNav">
 
                 <ul class="navbar-nav">
