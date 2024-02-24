@@ -1,164 +1,20 @@
 /* CSS GLOBALE */
 
 html {
-    font-size: 25px;
     font-family: 'Montserrat';
 }
 
-body {
-    margin: 0;
-}
 
-
-/* CSS Header */
+/* CSS Header */ 
 
 header {
-    background-color: #1F68AE;
-    color: #FEE715;
-    width: 100%;
-    margin: 0;
-    font-size: 18px;
+    opacity: 97%;
 }
-
-.logo {
-    flex: 0 0 auto;
-    margin-left: 0.5rem;
-}
-
-.logo img {
-    width:70px;
-}
-
-.nav_links {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.dark_icon {
-    flex: 0 0 auto;
-}
-
-.log-out_icon {
-    flex: 0 0 auto;
-}
-
-header ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-}
-
-header li {
-    margin: 0 2rem; 
-    font-weight: bold;
-}
-
-header li a {
-    text-decoration: none !important; 
-    color: inherit;
-    transition: color 0.3s, font-size 0.3s; 
-}
-
-header li a:hover {
-    color: #dbba00; 
-    font-size: 100%; 
-}
-
-.header_div {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
 
 
 /* CSS index.php */
 
-.banner {
-    background-image: url('../assets/banniere_accueil.jpg'); 
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    display: flex;
-    height: 700px;
-}
 
-.banner_content {
-    max-width: 650px; 
-    padding: 60px;  
-}
-.index {
-    padding-top: 40px;
-}
-.col-md-6 {
-    padding: 0;
-}
-.col-md-12 {
-    padding: 0;
-}
-
-.banner_content h2 {
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.banner_content p {
-    font-size: 20px;
-    margin-top: 0; 
-}
-
-.banner_content h2, .banner_content p {
-    color: #F9F9FF;
-}
-
-.bouton_inscription {
-    margin: 0px;
-    font-size: 24px;
-    padding: 12px;
-    text-align: flex-start;
-    background-color: #1F68AE;
-    border-radius: 50px;
-}
-
-
-.container {
-    display: flex;
-    justify-content: center;
-}
-
-.student,
-.recruiter {
-    flex: 1;
-    padding: 10px;
-    text-align: left; 
-    margin: auto;
-    margin-left: 100px;
-    margin-right: 20px;
-}
-
-.student ul,
-.recruiter ul {
-    list-style: none;
-    padding: 0;
-}
-
-.student li,
-.recruiter li {
-    list-style: none;
-    font-size: 20px;
-    padding-top: 10px;
-}
-
-.student h3,
-.recruiter h3 {
-    margin-top: 30px;
-    margin-bottom: 50px;
-}
 
 footer {
     width: 100%;
@@ -217,4 +73,4 @@ footer hr {
     footer form {
         padding: 30px;
     }
-}
+} 

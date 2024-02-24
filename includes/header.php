@@ -1,24 +1,17 @@
 <header>
+        <nav class="navbar navbar-expand-md fixed-top bg-light">
+            <div class="container">
+            <a class="nav-link" href="index.html"><img alt="Logo ITalent" height="90px" src="assets/LOGO_version_minimalisé.png"></a>
+              <div class="justify-content-end" id="navbarNav">
 
-    <div class="header_div">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link text-primary" href="inscription.php">Inscription</a></li>
+                    <li class="nav-item"><a class="nav-link text-primary" href="index.php">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link text-primary" href="connexion.php">Connexion</a></li>
+                </ul> 
 
-        <div class="logo">
-            <a href="index.php"><img alt="Logo ITalent" src="assets/logo_blanc.png" width="100px"></a>
-        </div>
+                 </div>
+            </div>
+          </nav>
 
-        <nav class="nav_links">
-            <ul>
-                <li><a href="inscription.php">Inscription</a></li>
-                <li><a href="index.php">Accueil</a></li>
-                <li><a href="connexion.php">Connexion</a></li>
-            </ul>
-        </nav>
-
-        <div class="dark_icon">
-            <img alt="Icône Mode Sombre" src="assets/dark.svg" width="40px">
-        </div>
-
-
-    </div>
-    
-</header>
+    </header>
