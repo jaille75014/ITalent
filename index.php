@@ -20,7 +20,7 @@
 
 </head>
 
-    <body>
+    <body class="bg-light">
 
         <?php include('includes/header.php');?>
 
