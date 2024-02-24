@@ -4,7 +4,7 @@
       <img src="assets/man_working.png" class="logo" height="120px">
       <p>Le treisième travail d'Hercule : Trouver un emploi.</p>
     </div>
-      <div class="col-md-12">
+      <div class=" col">
         <h5 class="text-uppercase mb-4">Nous contacter</h5>
         <ul class="list-unstyled">
             <li class="mb-2">
@@ -20,7 +20,7 @@
         </div>
 
 
-        <div class="col-md-12">
+        <div class="col">
         <h5 class="text-uppercase mb-4">Liens</h5>
         <ul class="list-unstyled">
             <li class="mb-2">
@@ -35,7 +35,7 @@
           </ul>
     </div>
 
-    <div class="col-md-12">
+    <div class="col">
         <h5 class="text-uppercase mb-4">Informations légales</h5>
         <ul class="list-unstyled">
             <li class="mb-2">
@@ -49,7 +49,7 @@
             </li>
           </ul>
     </div>
-      <div class="col-md-12">
+      <div class="col">
       <h5 class="text-uppercase mb-4">Newsletter</h5>
       <form action="" method="POST">
       <i class='bx bxs-envelope'></i>
