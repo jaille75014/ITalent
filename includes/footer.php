@@ -5,7 +5,7 @@
       <p>Le treisième travail d'Hercule : Trouver un emploi.</p>
     </div>
       <div class="col">
-        <h5 class="text-uppercase mb-4">Nous contacter</h5>
+        <h5 class="text-uppercase mb-4">Nous contacter <div class="underline"><span></span></div> </h5>
         <ul class="list-unstyled">
             <li class="mb-2">
               <a href="#!" class="text-white"><i class='bx bxs-map'></i>21 rue Erard, 75012 Paris</a>
@@ -21,7 +21,7 @@
 
 
         <div class="col">
-        <h5 class="text-uppercase mb-4">Liens</h5>
+        <h5 class="text-uppercase mb-4">Liens <div class="underline"><span></span></h5>
         <ul class="list-unstyled">
             <li class="mb-2">
               <a href="#!" class="text-white">Se connecter</a>
@@ -36,7 +36,7 @@
     </div>
 
     <div class="col">
-        <h5 class="text-uppercase mb-4">Informations légales</h5>
+        <h5 class="text-uppercase mb-4">Informations légales <div class="underline"><span></span></h5>
         <ul class="list-unstyled">
             <li class="mb-2">
               <a href="#!" class="text-white">Conditions générales</a>
@@ -50,7 +50,7 @@
           </ul>
     </div>
       <div class="col">
-      <h5 class="text-uppercase mb-4">Newsletter</h5>
+      <h5 class="text-uppercase mb-4">Newsletter <div class="underline"><span></span></h5>
       <form action="" method="POST">
       <i class='bx bxs-envelope'></i>
       <input type="email" name="email" placeholder="Entrez votre e-mail" required>
