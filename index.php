@@ -25,6 +25,7 @@
         <?php include('includes/header.php');?>
 
         <main class="bg-light">
+            <div class="container">
         <section class="pt-5" id="Top"></section>
         <div class="container py-5 pt-5">
             <div class="row align-items-center my-5 gy-4">
@@ -43,18 +44,45 @@
 
            <div class="row py-5 gy-4">
                 <h1 class="text-center"> Nos avantages</h1>
-                <div class="col-12 col-md-5 my-5 text-center ">
-                    <h2>Étudiant</h2>
-                    <ul class="list-group mt-4">
+                </div>  
+                <div class="row g-3">
+                    <div class="col-12 col-lg-6">
+                        <div class="card">
+                            <img src="assets/student_picture.jpg" alt="etudiant passant un entretien" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title text-uppercase">Etudiants</h5>
+                                <p class="card-text">Fatigués de vous inscrire sur tous les sites pour que des recruteurs vous remarquent ? <br>
+                                    Venez découvrir les nombreux avantages de vous inscrire chez ITalent !
+                                </p>
+                                <a href="#!" class="btn btn-primary">Découvrir les avantages</a>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="col-12 col-lg-6">
+                        <div class="card">
+                            <img src="assets/banniere_accueil.jpg" alt="Recruteur en entretien avec une personne" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title text-uppercase">Recruteurs</h5>
+                                <p class="card-text">N'attendez plus, inscrivez vous pour recruter vos futurs alternants et stagiaires ! <br>
+                                    Inscription simple et rapide !
+                                </p>
+                                <a href="#!" class="btn btn-primary">Découvrir les avantages</a>
+                            </div>
+                        </div>
+                        </div>
+                    <!-- <ul class="list-group mt-4">
                         <li class="list-group-item">Certification de vos compétences</li>
                         <li class="list-group-item">Création de CV sur mesure en 1 clic</li>
                         <li class="list-group-item">Interaction avec les recruteurs</li>
                         <li class="list-group-item">Posts et storys pour mettre en avant vos expériences </li>
                         <li class="list-group-item">Inscription simple et rapide</li>
-                    </ul>
+                    </ul> -->
+                    </div>
                 </div>
 
-                <div class="col-12 col-md-5 offset-md-2 my-5 text-center ">
+                <!-- <div class="row">
+                    <div class="col-6">
                     <h2>Recruteur</h2>
                     <ul class="list-group mt-4">
                         <li class="list-group-item">Recherche efficiente de talents</li>
@@ -64,15 +92,16 @@
                         <li class="list-group-item">Recommendations de talents</li>
                     </ul>
                 </div>
+                </div> -->
 
 
-           </div>
+           
 
         </div>
             
                 
 
-            
+        </div>
   
     </main>
 
