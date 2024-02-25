@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>ITalent | Accueil</title>
+    <title>Accueil | ITalent</title>
     <meta name="Description" content="ITalent, la révolution de la recherche d'emplois pour les étudiants en Informatique.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
