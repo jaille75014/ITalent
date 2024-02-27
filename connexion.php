@@ -46,11 +46,15 @@ include('includes/bd.php');
                 Vous revoila !
             </h1>
 
-            <p style="color: hsl(217, 10%, 50.8%)">
+            <p class="text-secondary">
             Reseignez vos identifiants pour vous connecter et accéder à tous vos services
             <br>
             Pas encore de compte ? cliquez ci-dessous
             </p>
+
+            <button onclick="window.location.href = 'inscription.php';" class="btn btn-primary btn-block mb-4">Inscription</button>
+
+            
 
             </div>
 
@@ -65,7 +69,7 @@ include('includes/bd.php');
                     </div>
 
                     <div class="form-outline mb-4">
-                        <label class="form-label" for="email">Adresse Email</label>
+                        <label class="form-label" for="email">Mot de passe</label>
                         <input type="password" name="password" class="form-control" placeholder="Mot de passe : ">
                     </div>
 
