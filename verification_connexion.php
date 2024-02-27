@@ -15,7 +15,7 @@ if(!isset($_POST['email'])
     exit;
 }
 
-// Vérifier ssi l'email est valide
+// Vérifier si l'email est valide
 if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
     header('location: connexion.php?message=Email invalide');
     exit;
@@ -28,9 +28,6 @@ if(isset($_POST['email'])
     && $_POST ['password'] == 'admin'
 ) {
     header('location: admin.php?message=Bonjour Admin ! ');
-    exit;
-}else {
-    header('location: connexion.php?message=Identifiants inconnus');
     exit;
 }
 

@@ -46,7 +46,7 @@
              </div>  
 
             
-                <div class="row g-3">
+                <div class="row my-5 g-3">
                     <div class="col-12 col-lg-6">
                         <div class="card">
                             <img src="assets/student_picture.jpg" alt="etudiant passant un entretien" class="card-img-top">
@@ -68,7 +68,7 @@
                                     <p class="card-text">N'attendez plus, inscrivez vous pour recruter vos futurs alternants et stagiaires ! <br>
                                         Inscription simple et rapide !
                                     </p>
-                                    <a href="#!" class="btn btn-primary mt-lg-4">Découvrir les avantages</a>
+                                    <a href="#!" class="btn btn-primary ">Découvrir les avantages</a>
                                 </div>
                             </div>
                         </div>
