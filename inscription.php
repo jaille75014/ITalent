@@ -16,7 +16,7 @@
     <?php include('includes/header.php');?>
     <main class="inscription">
     <div class="container" id="container">
-        <div class="form-container sign-in">
+        <div class="form-container sign-up">
             <form action="verification_inscription.php" method="POST">
                 <h1>Créer un compte étudiant</h1>
                 <input type="text" name="lastname" placeholder="Nom">
@@ -31,7 +31,7 @@
             </form>
         </div>
 
-        <div class="form-container sign-up">
+        <div class="form-container sign-in">
             <form action="verification_inscription.php" method="POST">
                 <h1>Créer un compte recruteur</h1>
                 <input type="text" name="lastname" placeholder="Nom">
@@ -48,14 +48,14 @@
     
     <div class="toggle-container">
         <div class="toggle">
-            <div class="toggle-panel toggle-right">
+            <div class="toggle-panel toggle-left">
                 <h1>Bienvenue !</h1>
                 <p>Remplissez ces champs pour continuer</p>
                 <p>Vous êtes un recruteur ? cliquez sur RECRUTEUR</p>
                 <button class="hidden"
                 id="login">RECRUTEUR</button>
             </div>
-            <div class="toggle-panel toggle-left">
+            <div class="toggle-panel toggle-right">
                 <h1>Bienvenue !</h1>
                 <p>Remplissez ces champs pour continuer</p>
                 <p>Vous êtes un étudiant ? cliquez sur ÉTUDIANT</p>
