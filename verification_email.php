@@ -7,7 +7,7 @@ $rand_verification_email = rand(100000, 999999);
 
 
 echo $rand_verification_email;
-$to = $GET['mail'];
+$to = $_GET['mail'];
 $subject = "Confirmation de votre inscription";
 $message = 'Bonjour, nous vous remercions de faire confiance à Italent pour la recherche de votre prochain emploi !
 Nous avons juste besoin d\'une petite vérification de votre part pour que vous puissiez vous connecter. 
