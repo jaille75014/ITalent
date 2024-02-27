@@ -43,25 +43,28 @@ $mdp_salt = $_POST['password'] . $salt;
 
 // Hashage du mot de passe
 $password = hash('sha512', $mdp_salt); 
-$verification_identifiants = $bdd->prepare('SELECT COUNT(*) FROM users WHERE email = :email AND password = :password');
-$verification_identifiants->bindParam(':email', $email);
-$verification_identifiants->bindParam(':password', $password);
-$verification_identifiants->execute();
-$verification_count = $verification_identifiants->fetchAll();
+$req = $bdd->prepare('SELECT id FROM users WHERE email = :email AND password = :password');
+$req->execute([
+    'email'=>$_POST['email'], 
+    'password'=>$password
+]
+);
+$result = $req->fetchAll();
 
-if ($verification_count > 0) {
-    // Ouverture ou création d'une session utilisateur
-    session_start();
-    $_SESSION['email'] = $email; // Ajout d'une clé email et d'une valeur
-
-    header('location: index.php');
-    exit;
-} else {
+if (empty($result)) {
     // Les identifiants sont incorrects > enregistrons la tentative dans le log et redirigeons vers le formulaire avec un message d'erreur
     writeLogLine(false, $_POST['email']);
     header('location: connexion.php?message=Identifiants incorrects'); 
     exit;
-}
+} 
+
+
+// Ouverture ou création d'une session utilisateur
+session_start();
+$_SESSION['email'] = $email; // Ajout d'une clé email et d'une valeur
+
+header('location: index.php');
+exit;
 
 // Fonction qui écrit une ligne dans le fichier log.txt
 function writeLogLine($success, $email){
