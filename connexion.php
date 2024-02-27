@@ -31,22 +31,65 @@ if (isset($_SESSION['email'])) {
 <body class="bg-light">
 
     <?php include('includes/header.php'); ?>
-    <main class="admin">
-        <div class="container">
-            <?php 
-            if(isset($_GET['message'])){
-                echo '<p>'.htmlspecialchars($_GET['message']).'</p>'; 
-            }
-            ?>
-            <form action="verification_connexion.php" method="post">
-                <input type="email" name="email" placeholder="Votre email : " 
-                    value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : '' ?>">
-                <input type="password" name="password" placeholder="Votre mot de passe : ">
-                <input type="submit" value="Connexion">
-            </form>
-        </div>
 
-    </main>
+
+
+    <section class="">
+
+    <?php 
+    if(isset($_GET['message'])){
+    echo '<p>'.htmlspecialchars($_GET['message']).'</p>'; 
+    }
+    ?>
+
+
+    <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+        <div class="container">
+        <div class="row gx-lg-5 align-items-center">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+            <h1 class="my-5 display-3 fw-bold ls-tight">
+                <span class="text-primary">ITalent</span>
+                <br>
+                Vous revoila !
+            </h1>
+
+            <p style="color: hsl(217, 10%, 50.8%)">
+            Reseignez vos identifiants pour vous connecter et accéder à tous vos services
+            <br>
+            Pas encore de compte ? cliquez ci-dessous
+            </p>
+
+            </div>
+
+            <div class="col-lg-6 mb-5 mb-lg-0">
+            <div class="card">
+                <div class="card-body py-5 px-md-5">
+                <form>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="email">Adresse Email</label>
+                        <input type="email" name="email" class="form-control" placeholder="Votre email : " 
+                        value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : '' ?>">
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="email">Adresse Email</label>
+                        <input type="password" name="password" class="form-control" placeholder="Mot de passe : ">
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary btn-block mb-4" value="Connexion">
+                    Connexion
+                    </button>
+
+                </form>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    </section>
 
     <?php include('includes/footer.php');?>
 
