@@ -27,10 +27,7 @@ header{
 
 /* CSS page inscription */
 .inscription {
-    background: url('../assets/inscription.jpeg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    background: #ccc;
 }
 
 
