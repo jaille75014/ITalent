@@ -45,7 +45,6 @@
                     <h1 class="text-center"> Nos avantages</h1>
              </div>  
 
-            
                 <div class="row my-5 g-3">
                     <div class="col-12 col-lg-6">
                         <div class="card">
@@ -55,46 +54,57 @@
                                 <p class="card-text">Fatigués de vous inscrire sur tous les sites pour que des recruteurs vous remarquent ? <br>
                                     Venez découvrir les nombreux avantages de vous inscrire chez ITalent !
                                 </p>
-                                <a href="#!" class="btn btn-primary">Découvrir les avantages</a>
+
+                                <button class="btn btn-primary" onclick="openForm()">Découvrir les avantages</button>
+
+                                <div class="login-popup">
+                                    <div class="form-popup" id="popupForm">
+                                        <ul class="list-group mt-4">
+                                            <li class="list-group-item">Certification de vos compétences</li>
+                                            <li class="list-group-item">Création de CV sur mesure en 1 clic</li>
+                                            <li class="list-group-item">Interaction avec les recruteurs</li>
+                                            <li class="list-group-item">Posts et storys pour mettre en avant vos expériences</li>
+                                            <li class="list-group-item">Inscription simple et rapide</li>
+                                        </ul>
+                                        <button type="button" class="btn btn-primary" onclick="closeForm()">Fermer</button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
 
-                        <div class="col-12 col-lg-6">
-                            <div class="card">
-                                <img src="assets/banniere_accueil.jpg" alt="Recruteur en entretien avec une personne" class="card-img-top">
-                                <div class="card-body">
-                                    <h5 class="card-title text-uppercase">Recruteurs</h5>
-                                    <p class="card-text">N'attendez plus, inscrivez vous pour recruter vos futurs alternants et stagiaires ! <br>
-                                        Inscription simple et rapide !
-                                    </p>
-                                    <a href="#!" class="btn btn-primary ">Découvrir les avantages</a>
+
+                    <div class="col-12 col-lg-6">
+                        <div class="card">
+                            <img src="assets/banniere_accueil.jpg" alt="Recruteur en entretien avec une personne" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title text-uppercase">Recruteurs</h5>
+                                <p class="card-text">N'attendez plus, inscrivez vous pour recruter vos futurs alternants et stagiaires ! <br>
+                                    Inscription simple et rapide !
+                                </p>
+
+                                <button class="btn btn-primary" onclick="openForm2()">Découvrir les avantages</button>
+
+                                <div class="login-popup">
+                                    <div class="form-popup" id="popupForm2">
+                                        <ul class="list-group mt-4">
+                                            <li class="list-group-item">Recherche efficiente de talents</li>
+                                            <li class="list-group-item">Engage la discussion avec les étudiants</li>
+                                            <li class="list-group-item">Création rapide de compte</li>
+                                            <li class="list-group-item">Suivre les talents repérés</li>
+                                            <li class="list-group-item">Recommendations de talents</li>
+                                        </ul>
+                                        <button type="button" class="btn btn-primary" onclick="closeForm2()">Fermer</button>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
-                        <!-- <ul class="list-group mt-4">
-                            <li class="list-group-item">Certification de vos compétences</li>
-                            <li class="list-group-item">Création de CV sur mesure en 1 clic</li>
-                            <li class="list-group-item">Interaction avec les recruteurs</li>
-                            <li class="list-group-item">Posts et storys pour mettre en avant vos expériences </li>
-                            <li class="list-group-item">Inscription simple et rapide</li>
-                        </ul> -->
+                    </div>
+
                 </div>
             </div>
-
-                <!-- <div class="row">
-                    <div class="col-6">
-                    <h2>Recruteur</h2>
-                    <ul class="list-group mt-4">
-                        <li class="list-group-item">Recherche efficiente de talents</li>
-                        <li class="list-group-item">Engage la discussion avec les étudiants</li>
-                        <li class="list-group-item">Création rapide de compte</li>
-                        <li class="list-group-item">Suivre les talents repérés</li>
-                        <li class="list-group-item">Recommendations de talents</li>
-                    </ul>
-                </div>
-                </div> -->
-
 
            
 
@@ -102,10 +112,12 @@
             
                 
 
-       
+        <script src="js/script.js"></script>
+
   
     </main>
 
+    
         <?php include('includes/footer.php');?>
     
     </body>

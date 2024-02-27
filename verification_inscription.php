@@ -5,14 +5,14 @@ if (isset($_POST['email'])&& !empty($_POST['email'])){
     
 }
 
-if(!isset($_POST['email_pro']) || empty($_POST['email_pro'])
-    || !isset($_POST['email']) || empty($_POST['email'])){
-        header("location: inscription.php?message=Woah, tentez au moins de vous inscrire honêtement !" ); // Redirection vers connexion.php
-        exit; //Interrompt le code
-    }
+// if(!isset($_POST['email_pro']) || empty($_POST['email_pro'])
+//     || !isset($_POST['email']) || empty($_POST['email'])){
+//         header("location: inscription.php?message=Woah, tentez au moins de vous inscrire honêtement !" ); // Redirection vers connexion.php
+//         exit; //Interrompt le code
+//     }
 
 
-if(isset($_POST['email']) && !empty($_POST['email'])){
+if(isset($_POST['email'])){
 
     
 
@@ -47,7 +47,7 @@ if(isset($_POST['email']) && !empty($_POST['email'])){
     }
 
     include('includes/bd.php');
-    $q= 'SELECT id FROM users WHERE email=:email';
+    $q= 'SELECT user_id FROM users WHERE email=:email';
     $req=$bdd->prepare($q);
         $req->execute([
         'email'=>$_POST['email'], 
@@ -63,16 +63,18 @@ if(isset($_POST['email']) && !empty($_POST['email'])){
     // Hashage du mot de passe
     $password = hash('sha512', $mdp_salt); 
 
-    $q= 'INSERT INTO users (lastname,firstname,email,password,tel,zip,city) VALUES (:lastname,:firstname,:email,:password,:tel,:zip,:city)';
+    $q= 'INSERT INTO users (lastname,firstname,email,password,tel,zip,city,statut,email_check) VALUES (:lastname,:firstname,:email,:password,:tel,:zip,:city,:statut,:email_check)';
     $req=$bdd->prepare($q);
     $result=$req->execute([
         'lastname'=>$_POST['lastname'], 
         'firstname'=>$_POST['firstname'], 
         'email'=>$_POST['email'], 
         'password'=>$password,
-        'tel'=>$_POST['tel'], 
+        'tel'=>$_POST['phone'], 
         'zip'=>$_POST['zip'], 
-        'city'=>$_POST['city']
+        'city'=>$_POST['city'],
+        'statut' => 1,
+        'email_check' => False
         ]);    
 
     if ($result){
@@ -86,7 +88,7 @@ if(isset($_POST['email']) && !empty($_POST['email'])){
 
 
 
-} else if(isset($_POST['email_pro']) && !empty($_POST['email_pro'])){
+} else if(isset($_POST['email_pro']) ){
 
     
 
@@ -122,7 +124,7 @@ if(isset($_POST['email']) && !empty($_POST['email'])){
     }
 
     include('includes/bd.php');
-    $q= 'SELECT id FROM users WHERE email=:email';
+    $q= 'SELECT user_id FROM users WHERE email=:email';
     $req=$bdd->prepare($q);
         $req->execute([
         'email'=>$_POST['email'], 
@@ -133,6 +135,32 @@ if(isset($_POST['email']) && !empty($_POST['email'])){
         exit;
     }
 
+    $salt = 'SANANESL3PLUSBEAUDUMONDEETDELESGIJEPENSEQUILA49ANS';
+    $mdp_salt = $_POST['password'] . $salt;
+    // Hashage du mot de passe
+    $password = hash('sha512', $mdp_salt); 
+
+    $q= 'INSERT INTO users (lastname,firstname,email,password,zip,city,name_factory,statut,email_check) VALUES (:lastname,:firstname,:email,:password,:zip,:city,:name_factory,:statut,:email_check)';
+    $req=$bdd->prepare($q);
+    $result=$req->execute([
+        'lastname'=>$_POST['lastname'], 
+        'firstname'=>$_POST['firstname'], 
+        'email'=>$_POST['email'], 
+        'password'=>$password, 
+        'zip'=>$_POST['zip'], 
+        'city'=>$_POST['city'],
+        'name_factory'=>$_POST['name_factory'],
+        'statut' => 2,
+        'email_check' => False
+        ]);    
+
+    if ($result){
+        header('location: verification_email.php?message=Votre compte a bien été créé, veuillez vous connecter.');
+        exit;
+    } else {
+        header('location: inscription.php?message=Erreur lors de la création du compte, veuillez recommencer.');
+        exit;
+    }
 
 } 
 
