@@ -5,26 +5,23 @@ html {
 }
 
 
-/* CSS Header */ 
+/* Changer la couleur des placeholders */ 
 
-
-
-/*A changer*/
-
-.admin{
-    padding-top: 140px;
+input::placeholder{
+    color:white;
 }
-.admin input {
-    width: 50%;
-    padding: 7px;
-    margin: 30px;
+
+/* CSS du header  */
+ 
+header{
+    position : sticky ;
+    top : 0 ;
+    width:100%;
+    z-index:10;
+    opacity:97%;
 }
-.admin form {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 30px;
-}
+
+
 
 /* CSS index.php */
 
