@@ -74,11 +74,11 @@ if(isset($_POST['email'])){
         'zip'=>$_POST['zip'], 
         'city'=>$_POST['city'],
         'statut' => 1,
-        'email_check' => False
+        'email_check' => 0
         ]);    
 
     if ($result){
-        header('location: verification_email.php?message=Votre compte a bien été créé, veuillez vous connecter.');
+        header('location: verification_email.php?mail:'.$_POST['email']);
         exit;
     } else {
         header('location: inscription.php?message=Erreur lors de la création du compte, veuillez recommencer.');
@@ -151,11 +151,11 @@ if(isset($_POST['email'])){
         'city'=>$_POST['city'],
         'name_factory'=>$_POST['name_factory'],
         'statut' => 2,
-        'email_check' => False
+        'email_check' => 0
         ]);    
 
     if ($result){
-        header('location: verification_email.php?message=Votre compte a bien été créé, veuillez vous connecter.');
+        header('location: verification_email.php?mail:'.$_POST['email']);
         exit;
     } else {
         header('location: inscription.php?message=Erreur lors de la création du compte, veuillez recommencer.');
