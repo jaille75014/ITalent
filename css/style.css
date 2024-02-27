@@ -28,7 +28,13 @@ html {
 
 /* CSS index.php */
 
-
+/* CSS page inscription */
+.inscription {
+    background: url('../assets/inscription.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
 
 
 footer {
