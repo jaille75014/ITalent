@@ -17,7 +17,7 @@
 </head>
 <body class="bg-light">
     <?php include('includes/header.php'); ?>
-    <main class="admin">
+    <main >
         <div class="container">
             <?php 
             if(isset($_GET['message'])){
