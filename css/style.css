@@ -25,7 +25,10 @@ header{
 
 /* CSS index.php */
 
-
+/* CSS page inscription */
+.inscription {
+    background: #ccc;
+}
 
 
 footer {
