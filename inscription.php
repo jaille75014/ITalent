@@ -15,18 +15,25 @@
         
     <?php include('includes/header.php');?>
     <main class="inscription">
+
+
+    <?php 
+        if(isset($_GET['message'])){
+        echo '<p>'.htmlspecialchars($_GET['message']).'</p>'; 
+        }
+    ?>
     <div class="container" id="container">
         <div class="form-container sign-up">
             <form action="verification_inscription.php" method="POST">
                 <h1>Créer un compte étudiant</h1>
                 <input type="text" name="lastname" placeholder="Nom">
                 <input type="text" name="firstname" placeholder="Prénom">
-                <input type="email" name="email" placeholder="Votre email">
-                <input type="tel" name="phone" pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}" placeholder="n° de téléphone">
+                <input type="email" name="email" placeholder="Votre email" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : '' ?>">
+                <input type="tel" name="phone" pattern="[0-9]{10}" placeholder="N° de téléphone">
                 <input type="password" name="password" placeholder="Mot de passe">
                 <input type="text" name="city" placeholder="Ville">
                 <input type="text" name="zip"  inputmode="numeric" placeholder="Code postal">
-                <input type="submit" class="send" value="S'inscrire">
+                <input type="submit" class="send" value="S'inscrire" name="Student">
 
             </form>
         </div>
@@ -41,7 +48,7 @@
                 <input type="password" name="password" placeholder="Mot de passe">
                 <input type="text" name="city" placeholder="Ville">
                 <input type="text" name="zip"  inputmode="numeric" placeholder="Code postal">
-                <input type="submit" class="send" value="S'inscrire">
+                <input type="submit" class="send" value="S'inscrire" name="Recruiter">
             </form>
         </div>
     
