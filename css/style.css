@@ -5,9 +5,9 @@ html {
 }
 
 
-/* Changer la couleur des placeholders */ 
+/* Changer la couleur du placeholder du footer */ 
 
-input::placeholder{
+footer input::placeholder{
     color:white;
 }
 
