@@ -10,7 +10,7 @@
         <title>Inscription | ITalent</title>
     </head>
 
-    <body>
+    <body class="inscription">
         <script src="js/script.js"></script>
     <?php include('includes/header.php');?>
     <main>
