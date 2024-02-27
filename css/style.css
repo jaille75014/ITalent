@@ -9,7 +9,16 @@ html {
 
 header {
     opacity: 97%;
+    z-index:100;
 }
+
+/* Pour changer le z-index*/
+
+.card{
+    z-index: 1;
+}
+
+/*A changer*/
 
 .admin{
     padding-top: 140px;
@@ -25,6 +34,7 @@ header {
     justify-content: center;
     padding: 30px;
 }
+
 /* CSS index.php */
 
 
