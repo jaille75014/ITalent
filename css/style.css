@@ -61,7 +61,7 @@ header{
 }
 
 .inscription .container button, .send {
-    background-color: #2482DC;
+    background-color: linear-gradient(to right, #0E3D69, #2482DC);
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -201,6 +201,9 @@ header{
 .container.active .toggle-right {
     transform: translateX(200%);
 }
+
+
+
 
 footer {
     width: 100%;
