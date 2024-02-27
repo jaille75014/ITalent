@@ -25,10 +25,10 @@
         <h5 class="text-uppercase mb-4">Liens</h5>
         <ul class="list-unstyled">
             <li class="mb-2">
-              <a href="#!" class="text-white">Se connecter</a>
+              <a href="connexion.php" class="text-white">Se connecter</a>
             </li>
             <li class="mb-2">
-              <a href="#!" class="text-white">S'enregistrer</a>
+              <a href="inscription.php" class="text-white">S'enregistrer</a>
             </li>
             <li class="mb-2">
               <a href="#!" class="text-white">A propos de nous</a>
