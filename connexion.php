@@ -61,7 +61,7 @@ include('includes/bd.php');
             <div class="col-lg-6 mb-5 mb-lg-0">
             <div class="card">
                 <div class="card-body py-5 px-md-5">
-                <form>
+                <form action="verification_connexion.php" method="POST">
                     <div class="form-outline mb-4">
                         <label class="form-label" for="email">Adresse Email</label>
                         <input type="email" name="email" class="form-control" placeholder="Votre email : " 

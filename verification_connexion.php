@@ -21,16 +21,6 @@ if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-// Vérifier si c'est un compte admin
-if(isset($_POST['email'])
-    && $_POST['email'] == 'admin.italent@gmail.com'
-    && isset ($_POST['password'])
-    && $_POST ['password'] == 'admin'
-) {
-    header('location: admin.php?message=Bonjour Admin ! ');
-    exit;
-}
-
 // Connexion à la DB
 include("includes/bd.php");
 
@@ -43,7 +33,7 @@ $mdp_salt = $_POST['password'] . $salt;
 
 // Hashage du mot de passe
 $password = hash('sha512', $mdp_salt); 
-$req = $bdd->prepare('SELECT id FROM users WHERE email = :email AND password = :password');
+$req = $bdd->prepare('SELECT user_id FROM users WHERE email = :email AND password = :password');
 $req->execute([
     'email'=>$_POST['email'], 
     'password'=>$password
