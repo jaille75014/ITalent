@@ -44,7 +44,9 @@
 
            <div class="row py-5 gy-4">
                 <h1 class="text-center"> Nos avantages</h1>
-                </div>  
+            </div>  
+
+            
                 <div class="row g-3">
                     <div class="col-12 col-lg-6">
                         <div class="card">
