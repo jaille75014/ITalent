@@ -31,9 +31,7 @@ if (isset($_SESSION['email'])) {
 <body class="bg-light">
 
     <?php include('includes/header.php'); ?>
-
     <main class="admin">
-
         <div class="container">
             <?php 
             if(isset($_GET['message'])){

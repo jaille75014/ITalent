@@ -1,4 +1,5 @@
 <footer>
+  
   <div class="row">
     <div class="col-12 col-lg-3">
       <img src="assets/man_working.png" class="logo" height="120px">
@@ -52,7 +53,9 @@
             </li>
           </ul>
     </div>
-      <div class="col-12 col-lg-3 offset-lg-5">
+  </div>
+  <div class="row">
+      <div class="col-8 offset-2 col-lg-4 offset-lg-4">
       <h5 class="text-uppercase mb-4">Newsletter</h5>
       <form action="" method="POST">
       <i class='bx bxs-envelope'></i>
@@ -61,6 +64,8 @@
     </form>
       </div>
   </div>
+  </div>
   <hr>
   <p class="copyright">Tous droits réservés @ 2024 - ITalent </p>
+
 </footer>
