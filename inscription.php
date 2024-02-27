@@ -11,37 +11,22 @@
     </head>
 
     <body>
+        <script src="js/script.js"></script>
     <?php include('includes/header.php');?>
     <main>
-        <div class="container">
-            <div class="card">
-            <div class="form-group col-6">
-                <form>
-                   <input type="text" class="form-control" name="nom" placeholder="Entrez votre nom :">
-                 </div>
-                 <div class="form-group col-6">
-                <form>
-                   <input type="text" class="form-control" name="prenom" placeholder="Entrez votre Prénom :">
-                 </div>
-                 <div class="form-group col">
-                   <input type="email" class="form-control" name="email" placeholder="Entrez votre E-mail :">
-                 </div>
-                 <div class="form-group col">
-                <form>
-                   <input type="password" class="form-control" name="password" placeholder="Entrez un mot de passe :">
-                 </div>
-                 <div class="form-group">
-                     <label for="fichier">Ajoutez une photo de profil</label>
-                     <input type="file" class="form-control-file" id="fichier">
-                 </div>
-             </form>
-         </div>
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form action="verification_inscription.php" method="POST">
+                <h1>Créer un compte étudiant</h1>
+            </form>
         </div>
+    </div>
+    
     </main>
     <footer>
-
-    </footer>        
-    </body>
+        <?php include('includes/footer.php'); ?>
+    </footer>
+</body>
 
 
 </html>
