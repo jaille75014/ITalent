@@ -7,16 +7,7 @@ html {
 
 /* CSS Header */ 
 
-header {
-    opacity: 97%;
-    z-index:100;
-}
 
-/* Pour changer le z-index*/
-
-.card{
-    z-index: 1;
-}
 
 /*A changer*/
 
