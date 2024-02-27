@@ -12,3 +12,12 @@ loginBtn.addEventListener('click', () => {
     container.classList.remove("active");
 });
 
+
+// Pop Up Index.php
+function openForm() {
+    document.getElementById("popupForm").style.display = "block";
+  }
+
+  function closeForm() {
+    document.getElementById("popupForm").style.display = "none";
+  }

@@ -68,7 +68,24 @@
                                     <p class="card-text">N'attendez plus, inscrivez vous pour recruter vos futurs alternants et stagiaires ! <br>
                                         Inscription simple et rapide !
                                     </p>
-                                    <a href="#!" class="btn btn-primary ">Découvrir les avantages</a>
+                                    <a href="#!" class="btn btn-primary">Découvrir les avantages</a>
+                                    <div class="btn btn-primary">
+                                        <button class="btn btn-primary" onclick="openForm()"><strong>Decouvrir les avantages</strong></button>
+                                        </div>
+                                        <div class="login-popup">
+                                        <div class="form-popup" id="popupForm">
+                                            <form action="/action_page.php" class="form-container">
+                                            <ul class="list-group mt-4">
+                                                <li class="list-group-item">Certification de vos compétences</li>
+                                                <li class="list-group-item">Création de CV sur mesure en 1 clic</li>
+                                                <li class="list-group-item">Interaction avec les recruteurs</li>
+                                                <li class="list-group-item">Posts et storys pour mettre en avant vos expériences </li>
+                                                <li class="list-group-item">Inscription simple et rapide</li>
+                                            </ul> 
+                                            <button type="button" class="btn cancel" onclick="closeForm()">Fermer</button>
+                                            </form>
+                                        </div>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -106,6 +123,7 @@
   
     </main>
 
+    <script src="js/include.js"></script>
         <?php include('includes/footer.php');?>
     
     </body>
