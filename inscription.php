@@ -11,7 +11,7 @@
         <title>Inscription | ITalent</title>
     </head>
 
-    <body>
+    <body class="bg-light">
         
     <?php include('includes/header.php');?>
     <main class="inscription">
@@ -71,9 +71,9 @@
     <script src="js/script.js"></script>
 
     </main>
-    <footer>
-        <?php include('includes/footer.php'); ?>
-    </footer>
+    
+    
+    
 </body>
 
 
