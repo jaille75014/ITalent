@@ -9,13 +9,13 @@
         <h5 class="text-uppercase mb-4">Nous contacter</h5>
         <ul class="list-unstyled">
             <li class="mb-2">
-              <a href="#!" class="text-white"><i class='bx bxs-map'></i>21 rue Erard, 75012 Paris</a>
+              <a href="https://maps.app.goo.gl/qd5XGyCC3ew7SA596" target="_blank" class="text-white"><i class='bx bxs-map'></i>21 rue Erard, 75012 Paris</a>
             </li>
             <li class="mb-2">
-              <a href="#!" class="text-white"><i class='bx bxs-phone'></i>+33 1 23 45 67 89</a>
+              <a href="tel:0602081047" class="text-white"><i class='bx bxs-phone'></i>+33 6 02 08 10 47</a>
             </li>
             <li class="mb-2">
-              <a href="#!" class="text-white"><i class='bx bxs-mail'></i>email.email@exemple.fr</a>
+              <a href="mailto:contact@italent.com" class="text-white"><i class='bx bxs-mail'>contact@italent.com</i></a>
             </li>
           </ul>
         </div>
