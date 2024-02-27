@@ -1,3 +1,14 @@
+<?php
+include('includes/bd.php');
+
+session_start();
+
+if (isset($_SESSION['email'])) {
+    header('location:index.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,22 +26,31 @@
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <title>Connexion | ITalent</title>
 </head>
+
+
 <body class="bg-light">
+
     <?php include('includes/header.php'); ?>
+
     <main class="admin">
+
         <div class="container">
             <?php 
             if(isset($_GET['message'])){
                 echo '<p>'.htmlspecialchars($_GET['message']).'</p>'; 
             }
             ?>
-        <form action="verification_connexion.php" method="POST">
-            <input type="email" name="email" class="form-control" placeholder="votre email" value="<?= isset($_COOKIE['email']) ? $_COOKIE['email']:''; ?> ">
-            <input type="password" name="password" class="form-control" placeholder="votre mot de passe">
-            <input type="submit">
-        </form>
+            <form action="verification_connexion.php" method="post">
+                <input type="email" name="email" placeholder="Votre email : " 
+                    value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : '' ?>">
+                <input type="password" name="password" placeholder="Votre mot de passe : ">
+                <input type="submit" value="Connexion">
+            </form>
         </div>
+
     </main>
+
     <?php include('includes/footer.php');?>
+
 </body>
 </html>
