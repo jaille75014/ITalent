@@ -5,15 +5,16 @@ if (isset($_POST['email'])&& !empty($_POST['email'])){
     
 }
 
-if(!isset($_POST['student']) || empty($_POST['student'])
-    || !isset($_POST['recruiter']) || empty($_POST['recruiter'])){
+if(!isset($_POST['email_pro']) || empty($_POST['email_pro'])
+    || !isset($_POST['email']) || empty($_POST['email'])){
         header("location: inscription.php?message=Woah, tentez au moins de vous inscrire honêtement !" ); // Redirection vers connexion.php
         exit; //Interrompt le code
     }
 
 
-if(isset($_POST['student']) && !empty($_POST['student'])){
+if(isset($_POST['email']) && !empty($_POST['email'])){
 
+    
 
 
     if(!isset($_POST['lastname'])
@@ -34,7 +35,106 @@ if(isset($_POST['student']) && !empty($_POST['student'])){
             header("location: inscription.php?message=Vous devez remplir tous les champs !" ); // Redirection vers connexion.php
             exit; //Interrompt le code
     }
-}
+
+    if (!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
+        header('location: inscription.php?message=Votre email est invalide :('); 
+        exit;
+    }
+
+    if (strlen($_POST['password'])<8){
+        header('location: inscription.php?message=Votre mot de passe doit être d\'au moins 8 caractères.'); 
+        exit;
+    }
+
+    include('includes/bd.php');
+    $q= 'SELECT id FROM users WHERE email=:email';
+    $req=$bdd->prepare($q);
+        $req->execute([
+        'email'=>$_POST['email'], 
+        ]);
+    $results=$req->fetchAll();
+    if (!empty($results)){
+        header('location: inscription.php?message=Email déjà utilisé :((('); 
+        exit;
+    }
+
+    $salt = 'SANANESL3PLUSBEAUDUMONDEETDELESGIJEPENSEQUILA49ANS';
+    $mdp_salt = $_POST['password'] . $salt;
+    // Hashage du mot de passe
+    $password = hash('sha512', $mdp_salt); 
+
+    $q= 'INSERT INTO users (lastname,firstname,email,password,tel,zip,city) VALUES (:lastname,:firstname,:email,:password,:tel,:zip,:city)';
+    $req=$bdd->prepare($q);
+    $result=$req->execute([
+        'lastname'=>$_POST['lastname'], 
+        'firstname'=>$_POST['firstname'], 
+        'email'=>$_POST['email'], 
+        'password'=>$password,
+        'tel'=>$_POST['tel'], 
+        'zip'=>$_POST['zip'], 
+        'city'=>$_POST['city']
+        ]);    
+
+    if ($result){
+        header('location: verification_email.php?message=Votre compte a bien été créé, veuillez vous connecter.');
+        exit;
+    } else {
+        header('location: inscription.php?message=Erreur lors de la création du compte, veuillez recommencer.');
+        exit;
+    }
+
+
+
+
+} else if(isset($_POST['email_pro']) && !empty($_POST['email_pro'])){
+
+    
+
+
+    if(!isset($_POST['lastname'])
+        || empty($_POST['lastname'])
+        || !isset($_POST['firstname'])
+        || empty ($_POST['firstname'])
+        || !isset($_POST['email_pro'])
+        || empty ($_POST['email_pro'])
+        || !isset($_POST['name_factory'])
+        || empty ($_POST['name_factory'])
+        || !isset($_POST['password'])
+        || empty ($_POST['password'])
+        || !isset($_POST['city'])
+        || empty ($_POST['city'])
+        || !isset($_POST['zip'])
+        || empty ($_POST['zip'])){
+
+            header("location: inscription.php?message=Vous devez remplir tous les champs !" ); // Redirection vers connexion.php
+            exit; //Interrompt le code
+    }
+
+
+    if (!filter_var($_POST['email_pro'],FILTER_VALIDATE_EMAIL)){
+        header('location: inscription.php?message=Votre email est invalide :('); 
+        exit;
+    }
+
+    if (strlen($_POST['password'])<8){
+        header('location: inscription.php?message=Votre mot de passe doit être d\'au moins 8 caractères.'); 
+        exit;
+    }
+
+    include('includes/bd.php');
+    $q= 'SELECT id FROM users WHERE email=:email';
+    $req=$bdd->prepare($q);
+        $req->execute([
+        'email'=>$_POST['email'], 
+        ]);
+    $results=$req->fetchAll();
+    if (!empty($results)){
+        header('location: inscription.php?message=Email déjà utilisé :((('); 
+        exit;
+    }
+
+
+} 
 
 
 
