@@ -47,7 +47,7 @@ if(isset($_POST['email'])){
     }
 
     include('includes/bd.php');
-    $q= 'SELECT user_id FROM users WHERE email=:email';
+    $q= 'SELECT user_id FROM USERS WHERE email=:email';
     $req=$bdd->prepare($q);
         $req->execute([
         'email'=>$_POST['email'], 
@@ -63,7 +63,7 @@ if(isset($_POST['email'])){
     // Hashage du mot de passe
     $password = hash('sha512', $mdp_salt); 
 
-    $q= 'INSERT INTO users (lastname,firstname,email,password,tel,zip,city,statut,email_check) VALUES (:lastname,:firstname,:email,:password,:tel,:zip,:city,:statut,:email_check)';
+    $q= 'INSERT INTO USERS (lastname,firstname,email,password,tel,zip,city,statut,email_check) VALUES (:lastname,:firstname,:email,:password,:tel,:zip,:city,:statut,:email_check)';
     $req=$bdd->prepare($q);
     $result=$req->execute([
         'lastname'=>$_POST['lastname'], 
@@ -124,7 +124,7 @@ if(isset($_POST['email'])){
     }
 
     include('includes/bd.php');
-    $q= 'SELECT user_id FROM users WHERE email=:email';
+    $q= 'SELECT user_id FROM USERS WHERE email=:email';
     $req=$bdd->prepare($q);
         $req->execute([
         'email'=>$_POST['email'], 
@@ -140,7 +140,7 @@ if(isset($_POST['email'])){
     // Hashage du mot de passe
     $password = hash('sha512', $mdp_salt); 
 
-    $q= 'INSERT INTO users (lastname,firstname,email,password,zip,city,name_factory,statut,email_check) VALUES (:lastname,:firstname,:email,:password,:zip,:city,:name_factory,:statut,:email_check)';
+    $q= 'INSERT INTO USERS (lastname,firstname,email,password,zip,city,name_factory,statut,email_check) VALUES (:lastname,:firstname,:email,:password,:zip,:city,:name_factory,:statut,:email_check)';
     $req=$bdd->prepare($q);
     $result=$req->execute([
         'lastname'=>$_POST['lastname'], 

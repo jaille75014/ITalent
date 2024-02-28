@@ -33,7 +33,7 @@ $mdp_salt = $_POST['password'] . $salt;
 
 // Hashage du mot de passe
 $password = hash('sha512', $mdp_salt); 
-$req = $bdd->prepare('SELECT user_id FROM users WHERE email = :email AND password = :password');
+$req = $bdd->prepare('SELECT user_id FROM USERS WHERE email = :email AND password = :password');
 $req->execute([
     'email'=>$_POST['email'], 
     'password'=>$password
