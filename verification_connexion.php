@@ -58,6 +58,9 @@ exit;
 
 // Fonction qui écrit une ligne dans le fichier log.txt
 function writeLogLine($success, $email){
+    // Fuseau horaire Français
+    date_default_timezone_set('Europe/Paris');
+
     // Ouverture du flux log.txt
     $log = fopen($success ? 'log_reussies.txt' : 'log_echouées.txt', 'a+');
 
@@ -71,5 +74,6 @@ function writeLogLine($success, $email){
     // Fermeture du flux
     fclose($log);
 }
+
 
 ?>
