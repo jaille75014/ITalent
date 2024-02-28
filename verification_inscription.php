@@ -145,7 +145,7 @@ if(isset($_POST['email'])){
     $result=$req->execute([
         'lastname'=>$_POST['lastname'], 
         'firstname'=>$_POST['firstname'], 
-        'email'=>$_POST['email'], 
+        'email'=>$_POST['email_pro'], 
         'password'=>$password, 
         'zip'=>$_POST['zip'], 
         'city'=>$_POST['city'],
