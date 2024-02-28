@@ -31,7 +31,7 @@ include('includes/bd.php');
 
     <?php 
     if(isset($_GET['message'])){
-    echo '<p>'.htmlspecialchars($_GET['message']).'</p>'; 
+    echo '<div class="alert alert-danger" role="alert">'.htmlspecialchars($_GET['message']).'</div>'; 
     }
     ?>
 
