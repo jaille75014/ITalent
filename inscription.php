@@ -19,7 +19,7 @@
 
     <?php 
         if(isset($_GET['message'])){
-        echo '<p>'.htmlspecialchars($_GET['message']).'</p>'; 
+        echo '<div class="alert alert-danger" role="alert">'.htmlspecialchars($_GET['message']).'</div>'; 
         }
     ?>
     <div class="container" id="container">
@@ -33,7 +33,7 @@
                 <input type="password" name="password" placeholder="Mot de passe">
                 <input type="text" name="city" placeholder="Ville" >
                 <input type="text" name="zip"  pattern="[0-9]{5}" placeholder="Code postal, exemple : 77144">
-                <input type="submit" class="send" value="S'inscrire" name="Student">
+                <input type="submit" class="btn btn-primary send" value="S'inscrire" name="Student">
 
             </form>
         </div>
@@ -48,7 +48,7 @@
                 <input type="password" name="password" placeholder="Mot de passe">
                 <input type="text" name="city" placeholder="Ville">
                 <input type="text" name="zip"  pattern="[0-9]{5}" placeholder="Code postal, exemple : 77144">
-                <input type="submit" class="send" value="S'inscrire" name="Recruiter">
+                <input type="submit" class="btn btn-primary send" value="S'inscrire" name="Recruiter">
             </form>
         </div>
     
