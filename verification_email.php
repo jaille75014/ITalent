@@ -47,7 +47,7 @@ try {
 
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    header('location :inscription.php?message=L\'email n\'a pas pu être envoyé, vérifiez que vous avez bien écrit votre adresse email.');
+    header('location: inscription.php?message=L\'email n\'a pas pu être envoyé, vérifiez que vous avez bien écrit votre adresse email.');
     exit;
 }
 
@@ -77,10 +77,11 @@ try {
         if(isset($_POST['code']) && $_POST['code'] == $q){
             // Si c'est le cas, on valide l'email
             $q = 'INSERT INTO USERS (email_check) VALUES (1) WHERE email =' . $_GET['message'];
-            header('location :connexion.php?message=Inscription valide, veuillez vous connecter');
+            header('location: connexion.php?message=Inscription valide, veuillez vous connecter');
             exit;
         } else {
-            echo 'Ce n\'est pas le bon code, réessaye';
+            header('location: inscription.php?message=reessaye!');
+            exit;
         }
         ?>
     </main>
