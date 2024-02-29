@@ -13,7 +13,7 @@ require 'vendor/autoload.php';
 $mail = new PHPMailer(true);
 
 $rand_verification_email = rand(100000, 999999);
-$q = 'INSERT INTO USERS(email_number) VALUES ($rand_verification_email)';
+$q = 'INSERT INTO USERS(email_number) VALUES ($rand_verification_email) WHERE email = '. $_GET['message'];
 
 try {
     //Server settings
@@ -45,8 +45,6 @@ try {
     $mail->AltBody = strip_tags($body);
     $mail->send();
 
-    echo 'Message has been sent';
-    header('location :code_verification.php?message=' . $_GET['message']);
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     header('locaction : inscription.php?message=L\'email n\'a pas pu être envoyé, vérifiez que vous avez bien écrit votre adresse email.');
@@ -54,3 +52,35 @@ try {
 }
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification | Italent</title>
+</head>
+<body>
+    <?php include('includes/header.php') ?>
+    <main>
+        <h1>Vous y êtes presque !</h1>
+        <p>Nous vous avons envoyé un mail de confirmation à l'adresse mail que vous avez indiqué dans le formulaire
+            consultez la et revenez ici le plus vite possible !
+        </p>
+        <p>Renseignez le code à 6 chiffres :</p>
+        <input type="text" name="code" placeholder="Entrez le code :">
+        <input type="submit" value="Vérifier le code">
+        <?php 
+        $q = 'SELECT email_number FROM USERS WHERE email = ' . $_GET['message']; 
+        // Vérifie si le code correspond à celui inscrit dans la bdd
+        if(isset($_POST['code']) && $_POST['code'] == $q){
+            // Si c'est le cas, on valide l'email
+            $q = 'INSERT INTO USERS (email_check) VALUES (1) WHERE email =' . $_GET['message'];
+            header('location :connexion.php?message=Inscription valide, veuillez vous connecter');
+            exit;
+        } else {
+            echo 'Ce n\'est pas le bon code, réessaye';
+        }
+        ?>
+    </main>
+</body>
+</html>
