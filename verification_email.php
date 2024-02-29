@@ -67,8 +67,10 @@ try {
             consultez la et revenez ici le plus vite possible !
         </p>
         <p>Renseignez le code à 6 chiffres :</p>
+        <form action="verification_email.php" method="POST">
         <input type="text" name="code" placeholder="Entrez le code :">
         <input type="submit" value="Vérifier le code">
+        </form>
         <?php 
         $q = 'SELECT email_number FROM USERS WHERE email = ' . $_GET['message']; 
         // Vérifie si le code correspond à celui inscrit dans la bdd
