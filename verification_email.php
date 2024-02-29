@@ -23,7 +23,7 @@ include('includes/bd.php');
 <body>
     <?php include('includes/header.php') ?>
     <main>
-    
+    <?php
 //Load Composer's autoloader
 require 'vendor/autoload.php';
 
