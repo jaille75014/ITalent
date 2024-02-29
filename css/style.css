@@ -53,6 +53,73 @@ header{
 }
 
 
+/* CSS index_recruteur.php */
+.banner-recruiter {
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+.banner-recruiter img {
+    width: 100%;
+}
+
+.banner-recruiter h1 {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; 
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.banner-recruiter p {
+    max-width: 30%;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; 
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.search-container {
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; 
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.search-container form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-container form .form-row {
+    width: 100%;
+}
+
+.search-container form .form-group {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.search-container form button {
+    margin-left: 10px;
+}
+
+
 /* CSS page inscription */
 .inscription {
     display: flex;
