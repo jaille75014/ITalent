@@ -31,9 +31,9 @@ try {
     $mail->setFrom('italent.contact.site@gmail.com', 'Italent');
     $mail->addAddress($_GET['message']); // Destinataire
 
-$body = '<p>Bonjour, nous vous remercions de faire confiance à Italent pour la recherche de votre prochain emploi !
-Nous avons juste besoin d\'une petite vérification de votre part pour que vous puissiez vous connecter. 
-Copiez ce code pour vérifier votre identité et retournez sur Italent !<br>Votre code de vérification :' . $rand_verification_email . '</p>';
+$body = '<p>Bonjour, nous vous remercions de faire confiance à Italent pour la recherche de votre prochain emploi ! <br><br>
+Nous avons juste besoin d\'une petite vérification de votre part pour que vous puissiez vous connecter. <br>
+Copiez ce code pour vérifier votre identité et retournez sur Italent !<br>Votre code de vérification : <b>' . $rand_verification_email . '</b></p>';
 
 
     //Content
