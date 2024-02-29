@@ -13,8 +13,7 @@ require 'vendor/autoload.php';
 $mail = new PHPMailer(true);
 
 $rand_verification_email = rand(100000, 999999);
-echo $_GET['message'];
-
+$q = 'INSERT INTO USERS(email_number) VALUES ($rand_verification_email)';
 
 try {
     //Server settings
@@ -31,28 +30,27 @@ try {
     $mail->setFrom('italent.contact.site@gmail.com', 'Italent');
     $mail->addAddress($_GET['message']); // Destinataire
 
-$body = '<p>Bonjour, nous vous remercions de faire confiance à Italent pour la recherche de votre prochain emploi ! <br><br>
-Nous avons juste besoin d\'une petite vérification de votre part pour que vous puissiez vous connecter. <br>
-Copiez ce code pour vérifier votre identité et retournez sur Italent !<br>Votre code de vérification : <b>' . $rand_verification_email . '</b></p>';
+    $body = '<p>Bonjour, nous vous remercions de faire confiance à Italent pour la recherche de votre prochain emploi ! <br><br>
+    Nous avons juste besoin d\'une petite vérification de votre part pour que vous puissiez vous connecter. <br>
+    Copiez ce code pour vérifier votre identité et retournez sur Italent !<br>Votre code de vérification : <b>' . $rand_verification_email . '</b></p>';
 
+
+    //Attachments :
+    $mail->addAttachment('assets/LOGO_version_complète.png', "LOGO_version_complète.png");
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Confirmation de votre inscription';
     $mail->Body    = $body;
     $mail->AltBody = strip_tags($body);
-
     $mail->send();
+
     echo 'Message has been sent';
+    header('location :code_verification.php?message=' . $_GET['message']);
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    header('locaction : inscription.php?message=L\'email n\'a pas pu être envoyé, vérifiez que vous avez bien écrit votre adresse email.');
+    exit;
 }
 
-$message = '
-Code de vérification :'  . $rand_verification_email;
-
-
-
-
-    
 ?>

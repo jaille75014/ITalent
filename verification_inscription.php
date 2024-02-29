@@ -78,7 +78,7 @@ if(isset($_POST['email'])){
         ]);    
 
     if ($result){
-        header('location: verification_email.php?message='.$_POST['email']);
+        header('location: verification_email.php?message=' . $_POST['email']);
         exit;
     } else {
         header('location: inscription.php?message=Erreur lors de la création du compte, veuillez recommencer.');
