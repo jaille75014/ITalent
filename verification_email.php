@@ -47,7 +47,7 @@ try {
 
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    header('locaction : inscription.php?message=L\'email n\'a pas pu être envoyé, vérifiez que vous avez bien écrit votre adresse email.');
+    header('location : inscription.php?message=L\'email n\'a pas pu être envoyé, vérifiez que vous avez bien écrit votre adresse email.');
     exit;
 }
 
