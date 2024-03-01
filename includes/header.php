@@ -17,7 +17,7 @@ if (isset($_SESSION['email']) &&  $_SESSION['statut']==1) {
   ];
 } else if (isset($_SESSION['email']) &&  $_SESSION['statut']==3) {
   $links = [
-      "Accueil" => "index_admin.php",
+      "Accueil" => "admin.php",
       "Recherche" => "recherche.php",
       "Base de données" => "bdd.php",
       "Deconnexion" => "deconnexion.php"
