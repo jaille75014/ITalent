@@ -48,21 +48,7 @@ try {
 
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-}
-
-?>
-        <h1>Vous y êtes presque !</h1>
-        <p>Nous vous avons envoyé un mail de confirmation à l'adresse mail que vous avez indiqué dans le formulaire
-            consultez la et revenez ici le plus vite possible !
-        </p>
-        <p>Renseignez le code à 6 chiffres :</p>
-        <form action="verification_email.php" method="POST">
-        <input type="text" name="code" placeholder="Entrez le code :">
-        <input type="submit" value="Vérifier le code">
-        </form>
-
-
-        <?php 
+} 
         $q = 'SELECT email_number FROM USERS WHERE email = ' . htmlspecialchars($_GET['mail']); 
         // Vérifie si le code correspond à celui inscrit dans la bdd
         if(isset($_POST['code']) && $_POST['code'] == $q){
