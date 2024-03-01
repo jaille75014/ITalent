@@ -1,12 +1,27 @@
 <?php 
-if (isset($_SESSION['email'])) {
+if (isset($_SESSION['email']) &&  $_SESSION['statut']==1) {
     $links = [
-        "Accueil" => "index.php",
+        "Accueil" => "index_etudiant.php",
         "Profil" => "profil.php",
         "Entretien" => "entretien.php",
         "Messages" => "messages.php",
         "Deconnexion" => "deconnexion.php"
     ];
+}  else if (isset($_SESSION['email']) &&  $_SESSION['statut']==2) {
+  $links = [
+      "Accueil" => "index_recruteur.php",
+      "Profil" => "profil.php",
+      "Entretien" => "entretien.php",
+      "Messages" => "messages.php",
+      "Deconnexion" => "deconnexion.php"
+  ];
+} else if (isset($_SESSION['email']) &&  $_SESSION['statut']==3) {
+  $links = [
+      "Accueil" => "index_admin.php",
+      "Recherche" => "recherche.php",
+      "Base de données" => "bdd.php",
+      "Deconnexion" => "deconnexion.php"
+  ];
 } else {
     $links = [
         "Accueil" => "index.php", 
