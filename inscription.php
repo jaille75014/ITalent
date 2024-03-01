@@ -24,7 +24,7 @@
     ?>
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form action="verification_inscription.php" method="POST">
+            <form action="verification_inscription.php" method="POST" enctype="multipart/form-data">
                 <h1>Créer un compte étudiant</h1>
                 <input type="text" name="lastname" placeholder="Nom">
                 <input type="text" name="firstname" placeholder="Prénom">
@@ -39,7 +39,7 @@
         </div>
 
         <div class="form-container sign-in">
-            <form action="verification_inscription.php" method="POST">
+            <form action="verification_inscription.php" method="POST" enctype="multipart/form-data">
                 <h1>Créer un compte recruteur</h1>
                 <input type="text" name="lastname" placeholder="Nom">
                 <input type="text" name="firstname" placeholder="Prénom">
