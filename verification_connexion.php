@@ -35,7 +35,7 @@ $mdp_salt = $_POST['password'] . $salt;
 $password = hash('sha512', $mdp_salt); 
 $req = $bdd->prepare('SELECT user_id FROM USERS WHERE email = :email AND password = :password');
 $req->execute([
-    'email'=>$_POST['email'], 
+    'email'=>$email, 
     'password'=>$password
 ]
 );
@@ -48,13 +48,38 @@ if (empty($result)) {
     exit;
 } 
 
+// On récupére le statut de l'utilisateur
 
-// Ouverture ou création d'une session utilisateur
-session_start();
-$_SESSION['email'] = $email; // Ajout d'une clé email et d'une valeur
+$req = $bdd->prepare('SELECT statut FROM USERS WHERE email = :email');
+$req->execute([
+    'email'=>$email
+]
+);
+$result = $req->fetch(PDO::FETCH_ASSOC);
 
-header('location: index.php');
-exit;
+if($result['statut']==1){
+    // Ouverture ou création d'une session utilisateur
+    session_start();
+    $_SESSION['email'] = $email; // Ajout d'une clé email et d'une valeur
+    $_SESSION['statut'] = $result['statut'];
+    header('location: index.php');
+    exit;
+
+} else if($result['statut']==2) {
+    session_start();
+    $_SESSION['email'] = $email; 
+    $_SESSION['statut'] = $result['statut'];
+    header('location: index.php');
+    exit;
+}else if($result['statut']==3) {
+    session_start();
+    $_SESSION['email'] = $email; 
+    $_SESSION['statut'] = $result['statut'];
+    header('location: admin.php');
+    exit;
+}
+
+
 
 // Fonction qui écrit une ligne dans le fichier log.txt
 function writeLogLine($success, $email){
