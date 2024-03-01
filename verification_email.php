@@ -33,7 +33,7 @@ $mail = new PHPMailer(true);
 $rand_verification_email = rand(100000, 999999);
 $q = 'UPDATE USERS
 SET email_number = $rand_verification_email
-WHERE email = '. htmlspecialchars($_POST['email']);
+WHERE email = '. htmlspecialchars($_GET['mail']);
 
 try {
     //Server settings
@@ -48,7 +48,7 @@ try {
 
     //Recipients
     $mail->setFrom('italent.contact.site@gmail.com', 'Italent');
-    $mail->addAddress(htmlspecialchars($_POST['email'])); // Destinataire
+    $mail->addAddress(htmlspecialchars($_GET['mail'])); // Destinataire
 
     $body = '<p>Bonjour, nous vous remercions de faire confiance à Italent pour la recherche de votre prochain emploi ! <br><br>
     Nous avons juste besoin d\'une petite vérification de votre part pour que vous puissiez vous connecter. <br>
@@ -80,11 +80,11 @@ try {
         <input type="submit" value="Vérifier le code">
         </form>
         <?php 
-        $q = 'SELECT email_number FROM USERS WHERE email = ' . htmlspecialchars($_POST['email']); 
+        $q = 'SELECT email_number FROM USERS WHERE email = ' . htmlspecialchars($_GET['mail']); 
         // Vérifie si le code correspond à celui inscrit dans la bdd
         if(isset($_POST['code']) && $_POST['code'] == $q){
             // Si c'est le cas, on valide l'email
-            $q = 'INSERT INTO USERS (email_check) VALUES (1) WHERE email =' . htmlspecialchars($_POST['email']);
+            $q = 'INSERT INTO USERS (email_check) VALUES (1) WHERE email =' . htmlspecialchars($_GET['mail']);
             header('location: connexion.php?messageSuccess=Inscription valide, veuillez vous connecter');
             exit;
         } else {
