@@ -154,76 +154,26 @@ if(isset($_POST['email'])){
         'email_check' => 0
         ]);    
 
-        if ($result) {
-            // Import PHPMailer classes
-            use PHPMailer\PHPMailer\PHPMailer;
-            use PHPMailer\PHPMailer\SMTP;
-            use PHPMailer\PHPMailer\Exception;
-            // Load Composer's autoloader
-            require 'vendor/autoload.php';
-        
-            // Create an instance; passing `true` enables exceptions
-            $mail = new PHPMailer(true);
-        
-            $rand_verification_email = rand(100000, 999999);
-            $email = htmlspecialchars($_POST['email']);
-            
-            $q = "UPDATE USERS SET email_number = '$rand_verification_email' WHERE email = '$email'";
-        
-            try {
-                // SMTP configuration
-                $mail->SMTPDebug = 1; 
-                $mail->isSMTP();
-                $mail->Host       = 'smtp.gmail.com';
-                $mail->SMTPAuth   = true;
-                $mail->Username   = 'italent.contact.site@gmail.com';
-                $mail->Password   = 'amlgyldqoziafkuu';
-                $mail->SMTPSecure = 'tls';
-                $mail->Port       = 587;
-        
-                // Email content
-                $mail->setFrom('italent.contact.site@gmail.com', 'Italent');
-                $mail->addAddress($email);
-                $body = '<p>Bonjour, ...'; // Email body content
-                $mail->addAttachment('assets/LOGO_version_complète.png', "LOGO_version_complète.png");
-                $mail->isHTML(true);
-                $mail->Subject = 'Confirmation de votre inscription';
-                $mail->Body = $body;
-                $mail->AltBody = strip_tags($body);
-                $mail->send();
-        
-                // Display verification form
-                ?>
-                <h1>Vous y êtes presque !</h1>
-                <p>Nous vous avons envoyé un mail de confirmation...</p>
-                <p>Renseignez le code à 6 chiffres :</p>
-                <form method="POST">
-                    <input type="text" name="code" placeholder="Entrez le code :">
-                    <input type="submit" value="Vérifier le code">
-                </form>
-                <?php
-        
-                if (isset($_POST['code'])) {
-                    $q = "SELECT email_number FROM USERS WHERE email = '$email'";
-                    // Fetch email_number from database
-                    // Execute query and compare the code
-                    if ($code == $email_number) {
-                        // Update email_check field in the database
-                        $q = "UPDATE USERS SET email_check = 1 WHERE email = '$email'";
-                        header('location: connexion.php?messageSuccess=Inscription valide, veuillez vous connecter');
-                        exit;
-                    } else {
-                        header('location: inscription.php?messageFailure=Réessayez !');
-                        exit;
-                    } 
-                }
-            } catch (Exception $e) {
-                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-                exit;
-            }
-        } else {
-            header('location: inscription.php?message=Erreur lors de la création du compte, veuillez recommencer.');
-            exit;
-        }
+    if ($result){
+        header('location: verification_email.php?mail:'.$_POST['email']);
+        exit;
+    } else {
+        header('location: inscription.php?messageFailure=Erreur lors de la création du compte, veuillez recommencer.');
+        exit;
+    }
+
+} 
+
+
+
+
+
+
+
+
+
+
+
+
 
 ?>
