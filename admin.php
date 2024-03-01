@@ -1,3 +1,11 @@
+<?php 
+    session_start(); 
+    if (!isset($_SESSION['statut']) || $_SESSION['statut']!=3){
+        header('location:index.php');
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -27,22 +35,9 @@
         <main class="bg-light">
             <div class="container">
 
-            <!-- La suite de section est un code moche temporaire afin que le footer ne passe pas au-dessus du header (comme sorti du flux), à virer quand la page sera complète -->
-
-            <section class="pt-5" id="Top">
-                <section class="pt-5" id="Top">
-                    <section class="pt-5" id="Top">
-                    </section>
-                </section>
-            </section>
+                <h1> Coucou Admin ! </h1>            
 
 
-
-                <?php 
-                    if(isset($_GET['message'])){
-                        echo '<p>'.htmlspecialchars($_GET['message']).'</p>'; 
-                    }
-                ?>
             </div>
         </main>
 
