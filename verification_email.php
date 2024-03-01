@@ -1,10 +1,10 @@
 <?php
-session_start();
+include('includes/bd.php');
 //Import PHPMailer classes 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-include('includes/bd.php');
+
 //Load Composer's autoloader
 require 'vendor/autoload.php';
 
@@ -49,15 +49,9 @@ try {
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 } 
-        $q = 'SELECT email_number FROM USERS WHERE email = ' . htmlspecialchars($_GET['mail']); 
-        // Vérifie si le code correspond à celui inscrit dans la bdd
-        if(isset($_POST['code']) && $_POST['code'] == $q){
-            // Si c'est le cas, on valide l'email
-            $q = 'INSERT INTO USERS (email_check) VALUES (1) WHERE email =' . htmlspecialchars($_GET['mail']);
-            header('location: connexion.php?messageSuccess=Inscription valide, veuillez vous connecter');
-            exit;
-        } else {
-            header('location: inscription.php?messageFailure=Reessaye !');
-            exit;
-        }
 ?>
+<form action="codes_verification.php" method="POST">
+<input type="email" name="verif_email" value="<?= htmlspecialchars($_GET['mail'])?>" onFocus="this.value='';">
+<input type="text" name="code">
+<input type="submit" value="Vérifier mon code">
+</form>
