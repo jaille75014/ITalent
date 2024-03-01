@@ -55,7 +55,7 @@ include('includes/bd.php');
             Pas encore de compte ? cliquez ci-dessous
             </p>
 
-            <button onclick="window.location.href = 'inscription.php';" class="btn btn-primary btn-block mb-4">Inscription</button>
+            <a href="inscription.php"><button class="btn btn-primary btn-block mb-4">Inscription</button></a>
 
             
 
