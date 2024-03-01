@@ -1,4 +1,5 @@
 <?php
+include("includes/bd.php");
     if(!isset($_POST['code'])
     || empty($_POST['code'])){
         header('location: verification_email.php?message=Vous vous êtes trompé dans l\'écriture du code ou de votre email');
