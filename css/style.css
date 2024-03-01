@@ -100,11 +100,7 @@ header{
     padding: 0;
 }
 
-.search-container form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 .search-container form .form-row {
     width: 100%;
