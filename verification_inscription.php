@@ -32,17 +32,17 @@ if(isset($_POST['email'])){
         || !isset($_POST['zip'])
         || empty ($_POST['zip'])){
 
-            header("location: inscription.php?message=Vous devez remplir tous les champs !" ); // Redirection vers connexion.php
+            header("location: inscription.php?messageFailure=Vous devez remplir tous les champs !" ); // Redirection vers connexion.php
             exit; //Interrompt le code
     }
 
     if (!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
-        header('location: inscription.php?message=Votre email est invalide :('); 
+        header('location: inscription.php?messageFailure=Votre email est invalide :('); 
         exit;
     }
 
     if (strlen($_POST['password'])<8){
-        header('location: inscription.php?message=Votre mot de passe doit être d\'au moins 8 caractères.'); 
+        header('location: inscription.php?messageFailure=Votre mot de passe doit être d\'au moins 8 caractères.'); 
         exit;
     }
 
@@ -54,7 +54,7 @@ if(isset($_POST['email'])){
         ]);
     $results=$req->fetchAll();
     if (!empty($results)){
-        header('location: inscription.php?message=Email déjà utilisé :((('); 
+        header('location: inscription.php?messageFailure=Email déjà utilisé :((('); 
         exit;
     }
 
@@ -78,10 +78,10 @@ if(isset($_POST['email'])){
         ]);    
 
     if ($result){
-        header('location: verification_email.php?message=' . $_POST['email']);
+        header('location: verification_email.php?mail=' . $_POST['email']);
         exit;
     } else {
-        header('location: inscription.php?message=Erreur lors de la création du compte, veuillez recommencer.');
+        header('location: inscription.php?messageFailure=Erreur lors de la création du compte, veuillez recommencer.');
         exit;
     }
 
@@ -108,18 +108,18 @@ if(isset($_POST['email'])){
         || !isset($_POST['zip'])
         || empty ($_POST['zip'])){
 
-            header("location: inscription.php?message=Vous devez remplir tous les champs !" ); // Redirection vers connexion.php
+            header("location: inscription.php?messageFailure=Vous devez remplir tous les champs !" ); // Redirection vers connexion.php
             exit; //Interrompt le code
     }
 
 
     if (!filter_var($_POST['email_pro'],FILTER_VALIDATE_EMAIL)){
-        header('location: inscription.php?message=Votre email est invalide :('); 
+        header('location: inscription.php?messageFailure=Votre email est invalide :('); 
         exit;
     }
 
     if (strlen($_POST['password'])<8){
-        header('location: inscription.php?message=Votre mot de passe doit être d\'au moins 8 caractères.'); 
+        header('location: inscription.php?messageFailure=Votre mot de passe doit être d\'au moins 8 caractères.'); 
         exit;
     }
 
@@ -131,7 +131,7 @@ if(isset($_POST['email'])){
         ]);
     $results=$req->fetchAll();
     if (!empty($results)){
-        header('location: inscription.php?message=Email déjà utilisé :((('); 
+        header('location: inscription.php?messageFailure=Email déjà utilisé :((('); 
         exit;
     }
 
@@ -158,7 +158,7 @@ if(isset($_POST['email'])){
         header('location: verification_email.php?mail:'.$_POST['email']);
         exit;
     } else {
-        header('location: inscription.php?message=Erreur lors de la création du compte, veuillez recommencer.');
+        header('location: inscription.php?messageFailure=Erreur lors de la création du compte, veuillez recommencer.');
         exit;
     }
 

@@ -18,8 +18,8 @@
 
 
     <?php 
-        if(isset($_GET['message'])){
-        echo '<div class="alert alert-danger" role="alert">'.htmlspecialchars($_GET['message']).'</div>'; 
+        if(isset($_GET['messageFailure'])){
+            echo '<div class="alert alert-danger" role="alert">'.htmlspecialchars($_GET['messageFailure']).'</div>'; 
         }
     ?>
     <div class="container" id="container">

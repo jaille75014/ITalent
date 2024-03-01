@@ -11,13 +11,13 @@ if(!isset($_POST['email'])
     || !isset($_POST['password'])
     || empty($_POST['password'])
 ){
-    header('location: connexion.php?message=Vous devez remplir les deux champs !');
+    header('location: connexion.php?messageFailure=Vous devez remplir les deux champs !');
     exit;
 }
 
 // Vérifier si l'email est valide
 if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-    header('location: connexion.php?message=Email invalide');
+    header('location: connexion.php?messageFailure=Email invalide');
     exit;
 }
 
@@ -44,7 +44,7 @@ $result = $req->fetchAll();
 if (empty($result)) {
     // Les identifiants sont incorrects > enregistrons la tentative dans le log et redirigeons vers le formulaire avec un message d'erreur
     writeLogLine(false, $_POST['email']);
-    header('location: connexion.php?message=Identifiants incorrects'); 
+    header('location: connexion.php?messageFailure=Identifiants incorrects'); 
     exit;
 } 
 
