@@ -14,9 +14,11 @@ include("includes/bd.php");
             header('location: connexion.php?messageSuccess=Inscription valide, veuillez vous connecter');
             exit;
         } else {
+            echo 'Erreur else ' .$q;
             /*
             header('location: inscription.php?messageFailure=Reessaye !');
             exit;
+            */
         }
-        */
+        
 ?>
