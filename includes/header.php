@@ -23,7 +23,7 @@ function writeNavLine($name, $url){
 
 
 <header>
-  <nav class="navbar navbar-expand bg-light">
+  <nav class="navbar navbar-lg-expand bg-light">
     <div class="container">
 
       <a class="nav-link" href="index.php"><img alt="Logo ITalent" height="90px" src="assets/LOGO_version_minimalisé.png"></a>
