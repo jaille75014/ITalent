@@ -6,7 +6,7 @@ include("includes/bd.php");
         exit;
     }
         $q = 'SELECT email_number FROM USERS WHERE email = \'' . htmlspecialchars($_POST['email']). '\''; 
-        echo $q;
+        echo $q .'\n';
         // Vérifie si le code correspond à celui inscrit dans la bdd
         if($_POST['code'] == $q){
             // Si c'est le cas, on valide l'email
@@ -14,7 +14,7 @@ include("includes/bd.php");
             header('location: connexion.php?messageSuccess=Inscription valide, veuillez vous connecter');
             exit;
         } else {
-            echo 'Erreur else ' .$q;
+            echo 'Erreur else ' .$q . '\n';
             /*
             header('location: inscription.php?messageFailure=Reessaye !');
             exit;

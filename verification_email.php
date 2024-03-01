@@ -15,6 +15,7 @@ $rand_verification_email = rand(100000, 999999);
 $q = 'UPDATE USERS
 SET email_number = '. $rand_verification_email .';
 WHERE email = \''. htmlspecialchars($_GET['message']).'\'';
+echo 'REQUETE1' . $q . '\n';
 
 try {
     //Server settings
