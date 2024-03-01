@@ -12,7 +12,9 @@ require 'vendor/autoload.php';
 $mail = new PHPMailer(true);
 
 $rand_verification_email = rand(100000, 999999);
-$q = 'INSERT INTO USERS email_number VALUES $rand_verification WHERE email = \''. htmlspecialchars($_GET['message']).'\'';
+$q = 'UPDATE USERS
+SET email_number = $rand_verification_email
+WHERE email = \''. htmlspecialchars($_GET['message']).'\'';
 
 try {
     //Server settings
