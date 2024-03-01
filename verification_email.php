@@ -19,9 +19,9 @@ include('includes/bd.php');
     <!-- Intégration de notre CSS -->
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <title>Verification | Italent</title>
-</head>
+</head> 
 <body>
-    <?php include('includes/header.php') ?>
+    <?php include('includes/header.php'); ?>
     <main>
     <?php
 //Load Composer's autoloader
@@ -79,6 +79,10 @@ try {
         <input type="text" name="code" placeholder="Entrez le code :">
         <input type="submit" value="Vérifier le code">
         </form>
+    </main>
+</body>
+</html>
+
         <?php 
         $q = 'SELECT email_number FROM USERS WHERE email = ' . htmlspecialchars($_GET['mail']); 
         // Vérifie si le code correspond à celui inscrit dans la bdd
@@ -92,6 +96,3 @@ try {
             exit;
         }
         ?>
-    </main>
-</body>
-</html>
