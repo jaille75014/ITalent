@@ -13,9 +13,12 @@ $mail = new PHPMailer(true);
 
 $rand_verification_email = rand(100000, 999999);
 $q = 'UPDATE USERS
-SET email_number = '. $rand_verification_email .'
+SET email_number = :email_number
 WHERE email = \''. htmlspecialchars($_GET['message']).'\'';
-echo $q;
+$req=$bdd->prepare($q);
+    $result=$req->execute([
+        'email_number' => $rand_verification_email
+        ]);   
 
 try {
     //Server settings
