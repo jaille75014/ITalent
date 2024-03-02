@@ -19,7 +19,6 @@ if (isset($_SESSION['email']) &&  $_SESSION['statut']==1) {
   $links = [
       "Accueil" => "admin.php",
       "Recherche" => "recherche.php",
-      "Base de données" => "bdd.php",
       "Deconnexion" => "deconnexion.php"
   ];
 } else {

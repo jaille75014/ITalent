@@ -62,7 +62,8 @@
     <main class="bg-light">
         <div class="container">
 
-            <h1> Coucou Admin ! </h1>
+            <h1>Base de données</h1>
+            <h3>Liste des utilisateurs :</h3>
 
             <div class="table-responsive">
                 <table class="table table-striped">
