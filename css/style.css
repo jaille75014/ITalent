@@ -292,8 +292,34 @@ header{
 }
 
 
+/* CSS Messagerie */
+.chat-container {
+    display: flex;
+    height: 100vh;
+    margin-top: 20px;
+}
+
+.user-list {
+    flex: 1;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.message-box {
+    flex: 3;
+    padding: 20px;
+}
+
+.message-form {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    padding: 0 20px;
+    background-color: #f8f9fa;
+}
 
 
+/* CSS Footer  */
 footer {
     width: 100%;
     background: linear-gradient(to right, #0E3D69, #2482DC);
