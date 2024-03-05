@@ -48,6 +48,18 @@ if (empty($result)) {
     exit;
 } 
 
+// Si l'utilisateur à vérifié son email
+$req = $bdd->prepare('SELECT email_check FROM USERS WHERE email = :email');
+$req->execute([
+    'email'=>$email
+]
+);
+$result = $req->fetch();
+if (empty($result)) {
+    writeLogLine(false, $_POST['email']);
+    header('location: connexion.php?messageFailure=Votre email n\'a pas été vérifié, veuillez consulter vos mails');
+}
+
 // On récupére le statut de l'utilisateur
 
 $req = $bdd->prepare('SELECT statut FROM USERS WHERE email = :email');
