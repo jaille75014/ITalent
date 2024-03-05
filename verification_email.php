@@ -19,7 +19,8 @@ $req=$bdd->prepare($q);
     $result=$req->execute([
         'email_number' => $rand_verification_email
         ]);   
-
+        $results=$req->fetchAll();
+        echo' Résultat : ' . $results . 'Autre choix : ' . $req ;
 try {
     //Server settings
     $mail->SMTPDebug = 1;                      //Enable verbose debug output
