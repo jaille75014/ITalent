@@ -21,11 +21,8 @@ if(!isset($_POST['code']) || empty($_POST['code']) || !isset($_POST['email']) ||
             header('location: connexion.php?messageSuccess=Inscription valide, veuillez vous connecter');
             exit;
         } else {
-            echo 'Erreur else ' . $q;
-            /*
-            header('location: inscription.php?messageFailure=Reessaye !');
+            header('location: verification_email.php?messageFailure=Erreur lors de l\'ecriture du code');
             exit;
-            */
         }
         
 ?>
