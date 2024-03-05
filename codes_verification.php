@@ -9,17 +9,16 @@ include("includes/bd.php");
         $req=$bdd->prepare($q);
             $result=$req->execute([
             'email' => '\'' . htmlspecialchars($_POST['email']). '\'',
-            $results=$req->fetchAll()
             ]);   
+            $results=$req->fetchAll();
             echo'Result :' . $results . 'OU :' . $req;
         // Vérifie si le code correspond à celui inscrit dans la bdd
-        if($_POST['code'] == $q){
-            
+        if($_POST['code'] === $results['email_number']){
             // Si c'est le cas, on valide l'email
-            $q = 'INSERT INTO USERS (email_check) VALUES (:email_check) WHERE email = \'' . htmlspecialchars($_POST['email']). '\'';
-            $req=$bdd->prepare($q);
-            $result=$req->execute([
-            'email_check' => 1
+            $q = 'UPDATE USERS SET email_check = 1 WHERE email = :email';
+            $req = $bdd->prepare($q);
+            $result = $req->execute([
+                'email' => '\'' . htmlspecialchars($_POST['email']). '\''
             ]);   
             header('location: connexion.php?messageSuccess=Inscription valide, veuillez vous connecter');
             exit;
