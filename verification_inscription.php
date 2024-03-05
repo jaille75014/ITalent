@@ -127,7 +127,7 @@ if(isset($_POST['email'])){
     $q= 'SELECT user_id FROM USERS WHERE email=:email';
     $req=$bdd->prepare($q);
         $req->execute([
-        'email'=>$_POST['email'], 
+        'email'=>$_POST['email_pro'], 
         ]);
     $results=$req->fetchAll();
     if (!empty($results)){
@@ -155,7 +155,7 @@ if(isset($_POST['email'])){
         ]);    
 
     if ($result){
-        header('location: verification_email.php?message='.$_POST['email']);
+        header('location: verification_email.php?message='.$_POST['email_pro']);
         exit;
     } else {
         header('location: inscription.php?messageFailure=Erreur lors de la création du compte, veuillez recommencer.');
