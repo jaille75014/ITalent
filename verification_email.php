@@ -19,7 +19,7 @@ $req=$bdd->prepare($q);
     $result=$req->execute([
         'email_number' => $rand_verification_email
         ]);
-try {
+
     //Server settings
     $mail->SMTPDebug = 1;                      //Enable verbose debug output
     $mail->isSMTP();                                            //Send using SMTP
@@ -47,7 +47,9 @@ try {
     $mail->Subject = 'Confirmation de votre inscription';
     $mail->Body    = $body;
     $mail->AltBody = strip_tags($body);
+    try {
     $mail->send();
+    echo'Code de vérification envoyé, Vérifiez votre boite mail';
 
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
