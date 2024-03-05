@@ -8,10 +8,10 @@ include("includes/bd.php");
         $q = 'SELECT email_number FROM USERS WHERE email = :email'; 
         $req=$bdd->prepare($q);
             $result=$req->execute([
-            'email' => '\'' . htmlspecialchars($_POST['email']). '\'';
-            $results=$req->fetchAll();
+            'email' => '\'' . htmlspecialchars($_POST['email']). '\'',
+            $results=$req->fetchAll()
             ]);   
-            echo 'Result : ' . $results . 'Ou :' . $req;
+            echo'Result :' . $results . 'OU :' . $req;
         // Vérifie si le code correspond à celui inscrit dans la bdd
         if($_POST['code'] == $q){
             
