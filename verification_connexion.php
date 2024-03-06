@@ -89,6 +89,9 @@ if($result['statut']==1){
     $_SESSION['statut'] = $result['statut'];
     header('location: admin.php');
     exit;
+} else {
+    header('location: connexion.php?messageFailure=Adresse mail ou mot de passe incorrect.');
+    exit;
 }
 
 
