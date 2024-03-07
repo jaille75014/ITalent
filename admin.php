@@ -76,6 +76,9 @@
 
 <body class="bg-light">
 
+    <?php include('includes/header.php');?>
+
+
     <div class="container">
 
         <h3>Rechercher un utilisateur :</h3>
