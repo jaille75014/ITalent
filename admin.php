@@ -66,15 +66,24 @@
             <h3>Liste des utilisateurs :</h3>
 
             <div class="d-flex justify-content-between mb-3">
-                <form method="get" class="form-inline">
-                    <label for="sort_by">Trier par :</label>
-                    <select name="sort_by" id="sort_by" class="form-select mx-2">
-                        <option value="user_id">ID</option>
-                        <option value="email">Email</option>
-                        <option value="lastname">Nom</option>
-                        <option value="firstname">Prénom</option>
-                    </select>
-                    <button type="submit" class="btn btn-primary">Trier</button>
+                <form method="post" class="form-inline">
+                    <div class="form-group mx-2">
+                        <label for="user_id">ID :</label>
+                        <input type="text" name="user_id" id="user_id" class="form-control">
+                    </div>
+                    <div class="form-group mx-2">
+                        <label for="email">Email :</label>
+                        <input type="text" name="email" id="email" class="form-control">
+                    </div>
+                    <div class="form-group mx-2">
+                        <label for="lastname">Nom :</label>
+                        <input type="text" name="lastname" id="lastname" class="form-control">
+                    </div>
+                    <div class="form-group mx-2">
+                        <label for="firstname">Prénom :</label>
+                        <input type="text" name="firstname" id="firstname" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
                 </form>
             </div>
 
