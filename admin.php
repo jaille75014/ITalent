@@ -4,10 +4,29 @@
         header('location:index.php');
         exit;
     }
-
+    
     include('includes/bd.php');
-
-    $query = "SELECT * FROM USERS";
+    
+    $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : '';
+    $email = isset($_POST['email']) ? $_POST['email'] : '';
+    $lastname = isset($_POST['lastname']) ? $_POST['lastname'] : '';
+    $firstname = isset($_POST['firstname']) ? $_POST['firstname'] : '';
+    
+    $query = "SELECT * FROM USERS WHERE 1";
+    
+    if (!empty($user_id)) {
+        $query .= " AND user_id = $user_id";
+    }
+    if (!empty($email)) {
+        $query .= " AND email = '$email'";
+    }
+    if (!empty($lastname)) {
+        $query .= " AND lastname = '$lastname'";
+    }
+    if (!empty($firstname)) {
+        $query .= " AND firstname = '$firstname'";
+    }
+    
     $users = $bdd->query($query)->fetchAll();
 
     if(isset($_POST['delete_user']) && isset($_POST['user_id'])) {
@@ -57,31 +76,27 @@
 
 <body class="bg-light">
 
-    <?php include('includes/header.php');?>
+    <div class="container">
 
-    <main class="bg-light">
-        <div class="container">
-
-            <h1>Base de données</h1>
-            <h3>Liste des utilisateurs :</h3>
-
+        <h3>Rechercher un utilisateur :</h3>
+        
             <div class="d-flex justify-content-between mb-3">
                 <form method="post" class="form-inline">
                     <div class="form-group mx-2">
                         <label for="user_id">ID :</label>
-                        <input type="text" name="user_id" id="user_id" class="form-control">
+                        <input type="text" name="user_id" id="user_id" class="form-control" value="<?php echo $user_id; ?>">
                     </div>
                     <div class="form-group mx-2">
                         <label for="email">Email :</label>
-                        <input type="text" name="email" id="email" class="form-control">
+                        <input type="text" name="email" id="email" class="form-control" value="<?php echo $email; ?>">
                     </div>
                     <div class="form-group mx-2">
                         <label for="lastname">Nom :</label>
-                        <input type="text" name="lastname" id="lastname" class="form-control">
+                        <input type="text" name="lastname" id="lastname" class="form-control" value="<?php echo $lastname; ?>">
                     </div>
                     <div class="form-group mx-2">
                         <label for="firstname">Prénom :</label>
-                        <input type="text" name="firstname" id="firstname" class="form-control">
+                        <input type="text" name="firstname" id="firstname" class="form-control" value="<?php echo $firstname; ?>">
                     </div>
                     <button type="submit" class="btn btn-primary">Rechercher</button>
                 </form>
