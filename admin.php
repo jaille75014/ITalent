@@ -65,6 +65,19 @@
             <h1>Base de données</h1>
             <h3>Liste des utilisateurs :</h3>
 
+            <div class="d-flex justify-content-between mb-3">
+                <form method="get" class="form-inline">
+                    <label for="sort_by">Trier par :</label>
+                    <select name="sort_by" id="sort_by" class="form-select mx-2">
+                        <option value="user_id">ID</option>
+                        <option value="email">Email</option>
+                        <option value="lastname">Nom</option>
+                        <option value="firstname">Prénom</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Trier</button>
+                </form>
+            </div>
+
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -108,7 +121,7 @@
                             <td class="text-center">
                                 <form method="post">
                                     <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
-                                    <button type="submit" class="btn btn-danger" name="delete_user">Supprimer</button>
+                                    <button type="submit" class="btn btn-danger" name="delete_user">Bannir</button>
                                 </form>
                             </td>
                             <td class="text-center">
@@ -122,7 +135,8 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-            </div>          
+            </div>
+    
 
         </div>
     </main>
