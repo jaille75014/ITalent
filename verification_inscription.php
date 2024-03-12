@@ -46,6 +46,25 @@ if(isset($_POST['email'])){
         exit;
     }
 
+
+
+    if($_FILES['image']['error']!=4){ // Si un fichier a été uploadé
+
+        // Vérification de son type
+        $acceptable=['image/png','image/jpeg','image/gif'];
+        if(!in_array($_FILES['image']['type'],$acceptable)){ // Permet de savoir si une valeur est dans un tableau, renvoie true si c'est le cas et non si ce n'est pas le cas
+            header('location: inscription.php?message=Le fichier doit être un jpeg, png ou gif, ne manipule pas mon code !'); 
+            exit;
+        }
+        $maxSize=2*1024*1024;
+        // Vérification de sa taille
+        if($_FILES['image']['size']>$maxSize){ //  On vérifie si la taille est supérieur à 2Mo
+            header('location: inscription.php?message=Le fichier doit être inférieur à 2Mo!'); 
+            exit;
+        }
+    
+    }
+
     include('includes/bd.php');
     $q= 'SELECT user_id FROM USERS WHERE email=:email';
     $req=$bdd->prepare($q);

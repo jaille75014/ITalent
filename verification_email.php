@@ -54,8 +54,23 @@ $req=$bdd->prepare($q);
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 } 
 ?>
-<form action="codes_verification.php" method="POST">
-<input type="email" name="email" value="<?= htmlspecialchars($_GET['message'])?>" onFocus="this.value='';">
-<input type="text" name="code">
-<input type="submit" value="Vérifier mon code">
+
+<!-- form card login -->
+<div class="card rounded-0">
+    <div class="card-header">
+    <h3 class="mb-0">Validation du code</h3>
+    </div>
+    <div class="card-body">
+<form id="form_code" action="codes_verification.php" method="POST">
+    <div class="form-group">
+        <label for="uname1">Username</label>
+        <input type="email" class="form-control form-control-lg rounded-0" id="code_email" name="email" value="<?= htmlspecialchars($_GET['message'])?>" onFocus="this.value='';">
+        </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input type="text" class="form-control form-control-lg rounded-0">
+    </div>
+        <input type="submit" class="btn btn-success btn-lg float-right" value="Vérifier mon code">
 </form>
+</div>
+</div>
