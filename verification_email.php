@@ -48,7 +48,6 @@ $req=$bdd->prepare($q);
     $mail->AltBody = strip_tags($body);
     try {
     $mail->send();
-    echo'Code de vérification envoyé, Vérifiez votre boite mail';
 
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
@@ -57,22 +56,36 @@ $req=$bdd->prepare($q);
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center text-white mb-4">Code de vérification envoyé, consultez votre boite mail !</h2>
+        <div class="row">
+        <div class="col-md-6 mx-auto">
+
+
 <!-- form card login -->
-<div class="card rounded-0">
-    <div class="card-header">
-    <h3 class="mb-0">Validation du code</h3>
+    <div class="card rounded-0">
+        <div class="card-header">
+        <h3 class="mb-0">Validation du code</h3>
+            </div>
+                <div class="card-body">
+                    <form id="form_code" action="codes_verification.php" method="POST">
+                        <div class="form-group">
+                            <label for="uname1">Username</label>
+                            <input type="email" class="form-control form-control-lg rounded-0" id="code_email" name="email" value="<?= htmlspecialchars($_GET['message'])?>" onFocus="this.value='';">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="text" class="form-control form-control-lg rounded-0">
+                        </div>
+                        <input type="submit" class="btn btn-success btn-lg float-right" value="Vérifier mon code">
+                    </form>
+                </div>
+            </div>
     </div>
-    <div class="card-body">
-<form id="form_code" action="codes_verification.php" method="POST">
-    <div class="form-group">
-        <label for="uname1">Username</label>
-        <input type="email" class="form-control form-control-lg rounded-0" id="code_email" name="email" value="<?= htmlspecialchars($_GET['message'])?>" onFocus="this.value='';">
-        </div>
-    <div class="form-group">
-        <label>Password</label>
-        <input type="text" class="form-control form-control-lg rounded-0">
     </div>
-        <input type="submit" class="btn btn-success btn-lg float-right" value="Vérifier mon code">
-</form>
-</div>
-</div>
+    </div>
+    </div>
+    </div>
