@@ -25,9 +25,9 @@ include('includes/bd.php');
 
     <?php include('includes/header.php'); ?>
 
+    <main class="bg-light">
 
-
-    <section class="">
+    <section >
 
     <?php 
     if(isset($_GET['messageFailure'])){
@@ -90,6 +90,7 @@ include('includes/bd.php');
     </div>
 
     </section>
+    </main>
 
     <?php include('includes/footer.php');?>
 
