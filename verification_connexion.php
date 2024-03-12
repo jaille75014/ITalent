@@ -69,6 +69,8 @@ $req->execute([
 );
 $result = $req->fetch(PDO::FETCH_ASSOC);
 
+
+
 if($result['statut']==1){
     // Ouverture ou création d'une session utilisateur
     session_start();
