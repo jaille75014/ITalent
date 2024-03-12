@@ -73,14 +73,14 @@ $req=$bdd->prepare($q);
                 <div class="card-body">
                     <form id="form_code" action="codes_verification.php" method="POST">
                         <div class="form-group">
-                            <label for="uname1">Username</label>
+                            <label for="uname1">email</label>
                             <input type="email" class="form-control form-control-lg rounded-0" id="code_email" name="email" value="<?= htmlspecialchars($_GET['message'])?>" onFocus="this.value='';">
                         </div>
                         <div class="form-group">
-                            <label>Password</label>
+                            <label>Code</label>
                             <input type="text" class="form-control form-control-lg rounded-0">
                         </div>
-                        <input type="submit" class="btn btn-success btn-lg float-right" value="Vérifier mon code">
+                        <input type="submit" class="btn btn-success btn-lg float-right my-1" value="Vérifier mon code">
                     </form>
                 </div>
             </div>
