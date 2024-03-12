@@ -36,23 +36,29 @@ function writeNavLine($name, $url){
 ?>
 
 
-<header>
-  <nav class="navbar navbar-expand-lg bg-light">
+<header class="bg-light">
+  
     <div class="container">
 
-      <a class="nav-link" href="index.php"><img alt="Logo ITalent" height="90px" src="assets/LOGO_version_minimalisé.png"></a>
-      <div class="justify-content-end" id="navbarNav">
-
-        <ul class="navbar-nav">
+      <a href="index.php"><img alt="Logo ITalent" height="90px" src="assets/LOGO_version_minimalisé.png"></a>
+      <nav class="bg-light" id="nav">
+        <ul>
           <?php 
           foreach($links as $name => $url){
               echo writeNavLine($name, $url);
           }
           ?>
-        </ul> 
-
-      </div>
-
+        </ul>
+      </nav>
+      <button class="nav-toggler" id="toggler" aria-label="toggler navigation menu" type="button">
+        <span class="line l1"></span>
+        <span class="line l2"></span>
+        <span class="line l3"></span>
+      </button>
     </div>
-  </nav>
+
+    
+  
+
+  <script src="js/header.js"></script>
 </header>

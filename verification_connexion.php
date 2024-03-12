@@ -44,11 +44,11 @@ $result = $req->fetchAll();
 if (empty($result)) {
     // Les identifiants sont incorrects > enregistrons la tentative dans le log et redirigeons vers le formulaire avec un message d'erreur
     writeLogLine(false, $_POST['email']);
-    header('location: connexion.php?messageFailure=Identifiants incorrects'); 
+    header('location: connexion.php?messageFailure=Identifiants ou mots de passe incorrects'); 
     exit;
 } 
 
-// Si l'utilisateur à vérifié son email
+// Si l'utilisateur a vérifié son email
 $req = $bdd->prepare('SELECT email_check FROM USERS WHERE email = :email');
 $req->execute([
     'email'=>$email
@@ -76,14 +76,14 @@ if($result['statut']==1){
     session_start();
     $_SESSION['email'] = $email; // Ajout d'une clé email et d'une valeur
     $_SESSION['statut'] = $result['statut'];
-    header('location: index.php');
+    header('location: index_etudiant.php');
     exit;
 
 } else if($result['statut']==2) {
     session_start();
     $_SESSION['email'] = $email; 
     $_SESSION['statut'] = $result['statut'];
-    header('location: index.php');
+    header('location: index_recruteur.php');
     exit;
 }else if($result['statut']==3) {
     session_start();
@@ -91,10 +91,7 @@ if($result['statut']==1){
     $_SESSION['statut'] = $result['statut'];
     header('location: admin.php');
     exit;
-} else {
-    header('location: connexion.php?messageFailure=Adresse mail ou mot de passe incorrect.');
-    exit;
-}
+} 
 
 
 
