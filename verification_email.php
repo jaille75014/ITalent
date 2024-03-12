@@ -78,7 +78,7 @@ $req=$bdd->prepare($q);
                         </div>
                         <div class="form-group">
                             <label>Code</label>
-                            <input type="text" class="form-control form-control-lg rounded-0">
+                            <input type="text" class="form-control form-control-lg rounded-0" name="code">
                         </div>
                         <input type="submit" class="btn btn-success btn-lg float-right my-1" value="Vérifier mon code">
                     </form>
