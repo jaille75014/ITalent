@@ -62,8 +62,23 @@ if(isset($_POST['email'])){
             header('location: inscription.php?message=Le fichier doit être inférieur à 2Mo!'); 
             exit;
         }
-    
-    }
+
+        if(!file_exists('assets/uploads')){  // Permet de savoir si un fichier / dossier existe, renvoie true si il existe
+            mkdir('<assets/uploads'); // Crée le fichier uploads là où on est
+        }
+        // Enregistrement du fichier sur le serveur
+        $from=$_FILES['image']['tmp_name']; // Enplacement temporaire du fichier
+
+
+        $array=explode('.',$_FILES['image']['name']); //Transformer une chaîne de caractère selon un séparateur, fonction implode() pour concaténer des éléments d'un tableau selon un séparateur
+        $ext=end($array); // Récupérer le dernier élément du tableau
+        $fileName='image-'.time().'.'.$ext;
+        // Risque de doublon si 2 personnes s'inscrit à la même seconde avec la même extension
+
+
+        $to='assets/uploads/'.$fileName; // Nom original du fichier
+        move_uploaded_file($from,$to);
+        }
 
     include('includes/bd.php');
     $q= 'SELECT user_id FROM USERS WHERE email=:email';
