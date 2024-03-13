@@ -25,7 +25,7 @@ if (isset($_SESSION['email']) &&  $_SESSION['statut']==1) {
     $links = [
         "Accueil" => "index.php", 
         "Connexion" => "connexion.php",
-        "Inscription" => "inscription.php",
+        "Inscription" => "inscription.php"
     ];
 }
 
@@ -50,15 +50,16 @@ function writeNavLine($name, $url){
           ?>
         </ul>
       </nav>
-      <button class="nav-toggler" id="toggler" aria-label="toggler navigation menu" type="button">
-        <span class="line l1"></span>
-        <span class="line l2"></span>
-        <span class="line l3"></span>
-      </button>
+      
     </div>
 
+    <button class="nav-toggler" id="toggler" aria-label="toggler navigation menu" type="button">
+      <span class="line l1"></span>
+      <span class="line l2"></span>
+      <span class="line l3"></span>
+    </button>
     
-  
+    
 
   <script src="js/header.js"></script>
 </header>

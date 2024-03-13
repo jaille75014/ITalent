@@ -13,6 +13,9 @@
     <meta name="Description" content="ITalent, la révolution de la recherche d'emplois pour les étudiants en Informatique.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="icon" type="image/png" href="assets/LOGO_icone.png">
+
+
     <!-- Intégration de la police d'écriture  -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <!-- Icône de Boxincons -->
