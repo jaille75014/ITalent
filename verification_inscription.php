@@ -64,7 +64,7 @@ if(isset($_POST['email'])){
         }
 
         if(!file_exists('assets/uploads')){  // Permet de savoir si un fichier / dossier existe, renvoie true si il existe
-            mkdir('<assets/uploads'); // Crée le fichier uploads là où on est
+            mkdir('assets/uploads'); // Crée le fichier uploads là où on est
         }
         // Enregistrement du fichier sur le serveur
         $from=$_FILES['image']['tmp_name']; // Enplacement temporaire du fichier
@@ -79,6 +79,13 @@ if(isset($_POST['email'])){
         $to='assets/uploads/'.$fileName; // Nom original du fichier
         move_uploaded_file($from,$to);
         }
+        $q = 'UPDATE USERS
+        SET image = :image
+        WHERE email = \''. htmlspecialchars($_POST['email']).'\'';
+        $req=$bdd->prepare($q);
+            $result=$req->execute([
+                'image' => $to
+                ]);
 
     include('includes/bd.php');
     $q= 'SELECT user_id FROM USERS WHERE email=:email';
