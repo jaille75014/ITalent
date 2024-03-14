@@ -1,118 +1,82 @@
-<?php 
+<?php
 
-if (isset($_POST['email'])&& !empty($_POST['email'])){
-    setcookie('email', $_POST['email'], time()+30*24*3600); // Cookie expire dans 30 jours
-    
-}
-
-// Vérifier si les 2 champs sont remplis
-if(!isset($_POST['email'])
-    || empty($_POST['email'])
-    || !isset($_POST['password'])
-    || empty($_POST['password'])
-){
-    header('location: connexion.php?messageFailure=Vous devez remplir les deux champs !');
+// Vérifier si les champs sont présents et non vides
+if (!isset($_POST['email']) || empty($_POST['email']) || !isset($_POST['password']) || empty($_POST['password'])) {
+    header('location: connexion.php?messageFailure=Veuillez remplir les deux champs !');
     exit;
 }
 
 // Vérifier si l'email est valide
-if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
     header('location: connexion.php?messageFailure=Email invalide');
     exit;
 }
 
-// Connexion à la DB
+// Connexion à la base de données
 include("includes/bd.php");
 
-// Requête pour vérifier les identifiants dans la BD
-$email = $_POST['email'];
-// Salage du mot de passe 
+// Salage du mot de passe
 $salt = 'SANANESL3PLUSBEAUDUMONDEETDELESGIJEPENSEQUILA49ANS';
 $mdp_salt = $_POST['password'] . $salt;
 
-
 // Hashage du mot de passe
-$password = hash('sha512', $mdp_salt); 
-$req = $bdd->prepare('SELECT user_id FROM USERS WHERE email = :email AND password = :password');
+$password = hash('sha512', $mdp_salt);
+
+// Requête pour vérifier les identifiants dans la base de données
+$req = $bdd->prepare('SELECT user_id, statut FROM USERS WHERE email = :email AND password = :password');
 $req->execute([
-    'email'=>$email, 
-    'password'=>$password
-]
-);
-$result = $req->fetchAll();
+    'email' => $_POST['email'],
+    'password' => $password
+]);
+$result = $req->fetch();
 
+// Inclure le fichier de fonctions de log
+include("includes/fonctions_logs.php");
+
+// Enregistrement de la tentative de connexion dans les logs
 if (empty($result)) {
-    // Les identifiants sont incorrects > enregistrons la tentative dans le log et redirigeons vers le formulaire avec un message d'erreur
     writeLogLine(false, $_POST['email']);
-    header('location: connexion.php?messageFailure=Identifiants ou mots de passe incorrects'); 
+    header('location: connexion.php?messageFailure=Identifiants ou mot de passe incorrects');
     exit;
-} 
+} else {
+    writeLogLine(true, $_POST['email']);
+}
 
-// Si l'utilisateur a vérifié son email
+// Vérification de l'état de l'email
 $req = $bdd->prepare('SELECT email_check FROM USERS WHERE email = :email');
 $req->execute([
-    'email'=>$email
-]
-);
-$result = $req->fetch();
-if (empty($result)) {
-    writeLogLine(false, $_POST['email']);
-    header('location: connexion.php?messageFailure=Votre email n\'a pas été vérifié, veuillez consulter vos mails');
+    'email' => $_POST['email']
+]);
+$email_check_result = $req->fetch();
+
+if (empty($email_check_result) || !$email_check_result['email_check']) {
+    // L'email n'est pas vérifié > rediriger vers le formulaire de connexion avec un message d'erreur
+    header('location: connexion.php?messageFailure=Votre email n\'a pas été vérifié. Veuillez consulter vos emails pour confirmer votre adresse.');
+    exit;
 }
 
-// On récupére le statut de l'utilisateur
+// La connexion a réussi > démarrer la session
+session_start();
+$_SESSION['user_id'] = $result['user_id'];
+$_SESSION['statut'] = $result['statut'];
 
-$req = $bdd->prepare('SELECT statut FROM USERS WHERE email = :email');
-$req->execute([
-    'email'=>$email
-]
-);
-$result = $req->fetch(PDO::FETCH_ASSOC);
-
-
-
-if($result['statut']==1){
-    // Ouverture ou création d'une session utilisateur
-    session_start();
-    $_SESSION['email'] = $email; // Ajout d'une clé email et d'une valeur
-    $_SESSION['statut'] = $result['statut'];
-    header('location: index_etudiant.php');
-    exit;
-
-} else if($result['statut']==2) {
-    session_start();
-    $_SESSION['email'] = $email; 
-    $_SESSION['statut'] = $result['statut'];
-    header('location: index_recruteur.php');
-    exit;
-}else if($result['statut']==3) {
-    session_start();
-    $_SESSION['email'] = $email; 
-    $_SESSION['statut'] = $result['statut'];
-    header('location: admin.php');
-    exit;
-} 
-
-
-
-// Fonction qui écrit une ligne dans le fichier log.txt
-function writeLogLine($success, $email){
-    // Fuseau horaire Français
-    date_default_timezone_set('Europe/Paris');
-
-    // Ouverture du flux log.txt
-    $log = fopen($success ? 'log_reussies.txt' : 'log_echouées.txt', 'a+');
-
-    // Création de la ligne à ajouter
-    // AAAA/mm/jj - h/m/s - tentative de connexion échoué de email
-    $line = date("Y/m/d - H:i:s") . '- Tentative de connexion ' . ($success ? 'réussie' : 'échouée') . ' de : ' . $email . "\r";
-
-    // Ajouter la ligne au flux ouvert
-    fputs($log,$line);
-
-    // Fermeture du flux
-    fclose($log);
+// Redirection vers la page appropriée selon le statut de l'utilisateur
+// J'ai utilisé un switch pour faire du "clean-code", à voir si c'est opti
+switch ($_SESSION['statut']) {
+    case 1:
+        header('location: index_etudiant.php?messageSuccess=Connexion réussie');
+        break;
+    case 2:
+        header('location: index_recruteur.php?messageSuccess=Connexion réussie');
+        break;
+    case 3:
+        header('location: admin.php?messageSuccess=Connexion réussie');
+        break;
+    default:
+        // En cas d'erreur de statut, déconnecter l'utilisateur et rediriger vers la page de connexion
+        session_destroy();
+        header('location: connexion.php?messageFailure=Erreur lors de la connexion');
+        exit;
 }
-
 
 ?>
