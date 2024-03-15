@@ -1,6 +1,9 @@
 <?php 
     session_start(); 
     include('includes/bd.php');
+
+    include('includes/log_functions.php');
+    writeVisitLog('admin.php');
 ?>
 
 <!DOCTYPE html>

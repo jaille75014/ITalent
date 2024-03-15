@@ -1,9 +1,15 @@
-<?php 
+<?php  
     session_start(); 
+
+    
+
     if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
         header('location:index.php');
         exit;
     }
+    
+    include('includes/log_functions.php');
+    writeVisitLog('admin.php');
     
     include('includes/bd.php');
     
