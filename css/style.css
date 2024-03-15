@@ -244,6 +244,11 @@ nav ul {
     }
     
 }
+.input {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 
 .toggle-container {
     position: absolute;

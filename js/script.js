@@ -29,3 +29,15 @@ function openForm2() {
 function closeForm2() {
 document.getElementById("popupForm2").style.display = "none";
 }
+
+
+function togglePasswordVisibility(eye) {
+    const passwordInput = eye.previousElementSibling;
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eye.src = "assets/eye.svg"; // Change the image when password is visible
+    } else {
+        passwordInput.type = "password";
+        eye.src = "assets/eye-slash.svg"; // Change the image when password is hidden
+    }
+}

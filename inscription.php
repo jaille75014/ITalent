@@ -24,7 +24,10 @@ include('includes/head.php');?>
                 <input type="text" name="firstname" placeholder="Prénom">
                 <input type="email" name="email" placeholder="Votre email" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : '' ?>">
                 <input type="tel" name="phone" pattern="[0-9]{10}" placeholder="N° de téléphone">
-                <input type="password" name="password" placeholder="Mot de passe">
+                <div class="input">
+                <input type="password" name="password" class="pass" placeholder="Mot de passe">
+                <img src="assets/eye-slash.svg" alt="oeil" class="eye" onclick="change1()" /> 
+                </div>
                 <input type="text" name="city" placeholder="Ville" >
                 <input type="text" name="zip"  pattern="[0-9]{5}" placeholder="Code postal, exemple : 77144">
                 <input type="file" name="image" accept="image/jpeg, image/png, image/gif">
@@ -41,7 +44,10 @@ include('includes/head.php');?>
                 <input type="text" name="firstname" placeholder="Prénom">
                 <input type="email" name="email_pro" placeholder="Votre email">
                 <input type="text" name="name_factory" placeholder="Nom de l'entreprise">
-                <input type="password" name="password" placeholder="Mot de passe">
+                <div class="input">
+                <input type="password" name="password" class="pass" placeholder="Mot de passe">
+                <img src="assets/eye-slash.svg" alt="eye" class="eye" onclick="togglePasswordVisibility(this)" /> 
+                </div>
                 <input type="text" name="city" placeholder="Ville">
                 <input type="text" name="zip"  pattern="[0-9]{5}" placeholder="Code postal, exemple : 77144">
                 <input type="file" name="image" accept="image/jpeg, image/png, image/gif">
