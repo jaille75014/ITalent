@@ -18,7 +18,7 @@ if(!isset($_POST['code']) || empty($_POST['code']) || !isset($_POST['email']) ||
             $result = $req->execute([
                 'email' => htmlspecialchars($_POST['email'])
             ]);  
-            header('location: connexion.php?messageSuccess=Inscription valide, veuillez vous connecter');
+            header('location: ../connexion.php?messageSuccess=Inscription valide, veuillez vous connecter');
             exit;
         } else {
             header('location: verification_email.php?messageFailure=Erreur lors de l\'ecriture du code');

@@ -4,11 +4,4 @@
     
     header('location:index.php'); // Redirection vers l'accueil
     exit;
-    
-    
-    
-    
 ?>
-
-
-
