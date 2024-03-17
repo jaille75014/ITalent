@@ -1,5 +1,5 @@
 <?php
-include('includes/bd.php');
+include('../includes/bd.php');
 //Import PHPMailer classes 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -39,7 +39,7 @@ $req=$bdd->prepare($q);
 
 
     //Attachments :
-    $mail->addAttachment('assets/LOGO_version_complète.png', "LOGO_version_complète.png");
+    $mail->addAttachment('../assets/LOGO_version_complète.png', "LOGO_version_complète.png");
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
