@@ -32,17 +32,17 @@ if(isset($_POST['email'])){
         || !isset($_POST['zip'])
         || empty ($_POST['zip'])){
 
-            header("location: inscription.php?messageFailure=Vous devez remplir tous les champs !" ); // Redirection vers connexion.php
+            header("location: ../inscription.php?messageFailure=Vous devez remplir tous les champs !" ); // Redirection vers connexion.php
             exit; //Interrompt le code
     }
 
     if (!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
-        header('location: inscription.php?messageFailure=Votre email est invalide :('); 
+        header('location: ../inscription.php?messageFailure=Votre email est invalide :('); 
         exit;
     }
 
     if (strlen($_POST['password'])<8){
-        header('location: inscription.php?messageFailure=Votre mot de passe doit être d\'au moins 8 caractères.'); 
+        header('location: ../inscription.php?messageFailure=Votre mot de passe doit être d\'au moins 8 caractères.'); 
         exit;
     }
 
@@ -53,18 +53,18 @@ if(isset($_POST['email'])){
         // Vérification de son type
         $acceptable=['image/png','image/jpeg','image/gif'];
         if(!in_array($_FILES['image']['type'],$acceptable)){ // Permet de savoir si une valeur est dans un tableau, renvoie true si c'est le cas et non si ce n'est pas le cas
-            header('location: inscription.php?message=Le fichier doit être un jpeg, png ou gif, ne manipule pas mon code !'); 
+            header('location: ../inscription.php?message=Le fichier doit être un jpeg, png ou gif, ne manipule pas mon code !'); 
             exit;
         }
         $maxSize=2*1024*1024;
         // Vérification de sa taille
         if($_FILES['image']['size']>$maxSize){ //  On vérifie si la taille est supérieur à 2Mo
-            header('location: inscription.php?message=Le fichier doit être inférieur à 2Mo!'); 
+            header('location: ../inscription.php?message=Le fichier doit être inférieur à 2Mo!'); 
             exit;
         }
 
         if(!file_exists('assets/uploads')){  // Permet de savoir si un fichier / dossier existe, renvoie true si il existe
-            mkdir('assets/uploads'); // Crée le fichier uploads là où on est
+            mkdir('../assets/uploads'); // Crée le fichier uploads là où on est
         }
         // Enregistrement du fichier sur le serveur
         $from=$_FILES['image']['tmp_name']; // Enplacement temporaire du fichier
@@ -76,7 +76,7 @@ if(isset($_POST['email'])){
         // Risque de doublon si 2 personnes s'inscrit à la même seconde avec la même extension
 
 
-        $to='assets/uploads/'.$fileName; // Nom original du fichier
+        $to='../assets/uploads/'.$fileName; // Nom original du fichier
         move_uploaded_file($from,$to);
         }
         $q = 'UPDATE USERS
@@ -87,7 +87,7 @@ if(isset($_POST['email'])){
                 'image' => $to
                 ]);
 
-    include('includes/bd.php');
+    include('../includes/bd.php');
     $q= 'SELECT user_id FROM USERS WHERE email=:email';
     $req=$bdd->prepare($q);
         $req->execute([
@@ -95,7 +95,7 @@ if(isset($_POST['email'])){
         ]);
     $results=$req->fetchAll();
     if (!empty($results)){
-        header('location: inscription.php?messageFailure=Email déjà utilisé :((('); 
+        header('location: ../inscription.php?messageFailure=Email déjà utilisé :((('); 
         exit;
     }
 
@@ -119,10 +119,10 @@ if(isset($_POST['email'])){
         ]);    
 
     if ($result){
-        header('location: verification_email.php?message=' . $_POST['email']);
+        header('location: ../verification_email.php?message=' . $_POST['email']);
         exit;
     } else {
-        header('location: inscription.php?messageFailure=Erreur lors de la création du compte, veuillez recommencer.');
+        header('location: ../inscription.php?messageFailure=Erreur lors de la création du compte, veuillez recommencer.');
         exit;
     }
 

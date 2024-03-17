@@ -1,7 +1,7 @@
 <?php
 session_start();
-include("includes/bd.php"); 
-include('includes/fonctions_logs.php');
+include("../includes/bd.php"); 
+include('../includes/fonctions_logs.php');
 
 // if (!isset($_SESSION['email'])) {
 //     header("Location: login.php");
@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST['description']) && !empty($_FILES['image']['name'])) {
         $description = $_POST['description'];
         
-        $uploadDir = "assets/"; 
+        $uploadDir = "../assets/"; 
         $uploadFile = $uploadDir . basename($_FILES['image']['name']);
         
         if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
