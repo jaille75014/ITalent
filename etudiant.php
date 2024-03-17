@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("includes/bd.php");
-include("includes/log_functions.php");
+include("includes/fonctions_logs.php");
 
 writeVisitLog('etudiant.php');
 
