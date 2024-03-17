@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("includes/bd.php");
-include("includes/fonctions_logs.php");
+include("includes/log_functions.php");
 
 writeVisitLog('etudiant.php');
 
@@ -40,17 +40,20 @@ function afficherStorys($req_storys) {
 
             <!-- Affichage publications -->
             <div class="row" id="publications">
-                <?php while ($publication = $req_publications->fetch()) : ?>
+                <?php 
+                while ($publication = $req_publications->fetch()) {
+                ?>
                     <div class="col-md-4 mb-4">
                         <div class="card">
-                            <img src="<?= $publication['image'] ?>" class="card-img-top" alt="Publication">
+                            <img src="<?php echo $publication['image']; ?>" class="card-img-top" alt="Publication">
                             <div class="card-body">
-                                <p class="card-text"><?= $publication['description'] ?></p>
+                                <p class="card-text"><?php echo $publication['description']; ?></p>
                             </div>
                         </div>
                     </div>
-                <?php endwhile; ?>
+                <?php } ?>
             </div>
+
 
             <!-- Formulaire d'ajout publication -->
             <div class="row mt-4">
@@ -58,7 +61,7 @@ function afficherStorys($req_storys) {
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Ajouter une nouvelle publication</h5>
-                            <form action="ajouter_publication.php" method="POST" id="ajouterPublicationForm">
+                            <form action="back/ajouter_publication.php" method="POST" id="ajouterPublicationForm">
                                 <div class="mb-3">
                                     <label for="image" class="form-label">Image</label>
                                     <input type="file" class="form-control" id="image" name="image">
@@ -85,7 +88,7 @@ function afficherStorys($req_storys) {
 
                 // Requête AJAX pour ajouter publication
                 var ajt = new XMLHttpRequest();
-                ajt.open("POST", "ajouter_publication.php", true);
+                ajt.open("POST", "back/ajouter_publication.php", true);
                 ajt.onload = function () {
                     if (ajt.status === 200) {
                         // Réussie > recharger la page

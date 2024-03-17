@@ -2,18 +2,18 @@
 
 // Vérifier si les champs sont présents et non vides
 if (!isset($_POST['email']) || empty($_POST['email']) || !isset($_POST['password']) || empty($_POST['password'])) {
-    header('location: connexion.php?messageFailure=Veuillez remplir les deux champs !');
+    header('location: ../connexion.php?messageFailure=Veuillez remplir les deux champs !');
     exit;
 }
 
 // Vérifier si l'email est valide
 if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-    header('location: connexion.php?messageFailure=Email invalide');
+    header('location: ../connexion.php?messageFailure=Email invalide');
     exit;
 }
 
 // Connexion à la base de données
-include("includes/bd.php");
+include("../includes/bd.php");
 
 // Salage du mot de passe
 $salt = 'SANANESL3PLUSBEAUDUMONDEETDELESGIJEPENSEQUILA49ANS';
@@ -31,12 +31,12 @@ $req->execute([
 $result = $req->fetch();
 
 // Inclure le fichier de fonctions de log
-include("includes/fonctions_logs.php");
+include("../includes/fonctions_logs.php");
 
 // Enregistrement de la tentative de connexion dans les logs
 if (empty($result)) {
     writeLogLine(false, $_POST['email']);
-    header('location: connexion.php?messageFailure=Identifiants ou mot de passe incorrects');
+    header('location: ../connexion.php?messageFailure=Identifiants ou mot de passe incorrects');
     exit;
 } else {
     writeLogLine(true, $_POST['email']);
@@ -51,7 +51,7 @@ $email_check_result = $req->fetch();
 
 if (empty($email_check_result) || !$email_check_result['email_check']) {
     // L'email n'est pas vérifié > rediriger vers le formulaire de connexion avec un message d'erreur
-    header('location: connexion.php?messageFailure=Votre email n\'a pas été vérifié. Veuillez consulter vos emails pour confirmer votre adresse.');
+    header('location: ../connexion.php?messageFailure=Votre email n\'a pas été vérifié. Veuillez consulter vos emails pour confirmer votre adresse.');
     exit;
 }
 
@@ -64,18 +64,18 @@ $_SESSION['statut'] = $result['statut'];
 // J'ai utilisé un switch pour faire du "clean-code", à voir si c'est opti
 switch ($_SESSION['statut']) {
     case 1:
-        header('location: index_etudiant.php?messageSuccess=Connexion réussie');
+        header('location: ../etudiant.php?messageSuccess=Connexion réussie');
         break;
     case 2:
-        header('location: index_recruteur.php?messageSuccess=Connexion réussie');
+        header('location: ../index_recruteur.php?messageSuccess=Connexion réussie');
         break;
     case 3:
-        header('location: admin.php?messageSuccess=Connexion réussie');
+        header('location: ../admin.php?messageSuccess=Connexion réussie');
         break;
     default:
         // En cas d'erreur de statut, déconnecter l'utilisateur et rediriger vers la page de connexion
         session_destroy();
-        header('location: connexion.php?messageFailure=Erreur lors de la connexion');
+        header('location: ../connexion.php?messageFailure=Erreur lors de la connexion');
         exit;
 }
 
