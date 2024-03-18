@@ -1,6 +1,6 @@
 <?php 
     session_start(); 
-
+    
     include('includes/fonctions_logs.php');
     writeVisitLog('index.php');
 ?>

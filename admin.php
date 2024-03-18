@@ -1,6 +1,9 @@
 <?php  
     session_start(); 
-
+    if(!isset($_SESSION['captcha'])){
+        header('location:captcha.php?error=Chipeur arrête de chipper !');
+        exit;
+    }
     
 
     if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
