@@ -53,7 +53,7 @@
             file_put_contents($log_file, "Utilisateur supprimé (ID: $id) - Raison: $raison\n", FILE_APPEND);
         }
 
-        header('Location: admin.php');
+        header('location: admin.php');
         exit;
     }
 ?>
