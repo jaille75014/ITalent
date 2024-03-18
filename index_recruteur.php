@@ -3,6 +3,10 @@
     if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 2) {
         header('location:index.php');
         exit;
+    }
+    if(!isset($_SESSION['captcha'])){
+        header('location:captcha.php?error=Chipeur arrête de chipper !');
+        exit;
     } ?>
 
 <!DOCTYPE html>

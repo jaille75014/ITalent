@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(!isset($_SESSION['captcha'])){
+    header('location:captcha.php?error=Chipeur arrête de chipper !');
+    exit;
+}
 include('includes/fonctions_logs.php');
 include("includes/bd.php");
 writeVisitLog('messagerie.php');

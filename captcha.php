@@ -52,6 +52,7 @@ if(isset($_POST['answer'])&& !empty($_POST['answer'])){
                 exit;
                 break;
         }
+        $_SESSION['captcha']=1;
     } else {
         header('location:captcha.php?error=Veuillez réessayer !');
         exit;
