@@ -61,22 +61,17 @@ $_SESSION['user_id'] = $result['user_id'];
 $_SESSION['statut'] = $result['statut'];
 
 // Redirection vers la page appropriée selon le statut de l'utilisateur
-// J'ai utilisé un switch pour faire du "clean-code", à voir si c'est opti
-switch ($_SESSION['statut']) {
-    case 1:
-        header('location: ../etudiant.php?messageSuccess=Connexion réussie');
-        break;
-    case 2:
-        header('location: ../index_recruteur.php?messageSuccess=Connexion réussie');
-        break;
-    case 3:
-        header('location: ../admin.php?messageSuccess=Connexion réussie');
-        break;
-    default:
-        // En cas d'erreur de statut, déconnecter l'utilisateur et rediriger vers la page de connexion
-        session_destroy();
-        header('location: ../connexion.php?messageFailure=Erreur lors de la connexion');
-        exit;
+
+
+if(isset($_SESSION['statut'])){
+    header('location: ../captcha.php?messageSuccess=Connexion réussie, veuillez répondre au captcha suivant.');
+    exit;
+} else {
+    // En cas d'erreur de statut, déconnecter l'utilisateur et rediriger vers la page de connexion
+    session_destroy();
+    header('location: ../connexion.php?messageFailure=Erreur lors de la connexion');
+    exit;
 }
+
 
 ?>

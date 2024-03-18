@@ -8,7 +8,7 @@ if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
     exit;
 } 
 include('includes/fonctions_logs.php');
-writeVisitLog('admin.php');
+writeVisitLog('captcha_admin.php');
 
 include('includes/bd.php'); // Connexion à la base de données
 
