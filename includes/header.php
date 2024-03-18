@@ -5,7 +5,7 @@ if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==1) {
         "Profil" => "profil.php",
         "Entretien" => "entretien.php",
         "Messages" => "messages.php",
-        "Deconnexion" => "deconnexion.php"
+        "Déconnexion" => "deconnexion.php"
     ];
 }  else if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==2) {
   $links = [
@@ -13,13 +13,13 @@ if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==1) {
       "Profil" => "profil.php",
       "Entretien" => "entretien.php",
       "Messages" => "messages.php",
-      "Deconnexion" => "deconnexion.php"
+      "Déconnexion" => "deconnexion.php"
   ];
 } else if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==3) {
   $links = [
       "Accueil" => "admin.php",
       "Recherche" => "recherche.php",
-      "Deconnexion" => "deconnexion.php",
+      "Déconnexion" => "deconnexion.php",
       "Captcha" => "captcha_admin.php"
   ];
 } else {
