@@ -14,8 +14,6 @@ if (isset($_POST['email'])&& !empty($_POST['email'])){
 
 if(isset($_POST['email'])){
 
-    
-
 
     if(!isset($_POST['lastname'])
         || empty($_POST['lastname'])
@@ -75,6 +73,7 @@ if(isset($_POST['email'])){
         $fileName='image-'.time().'.'.$ext;
         // Risque de doublon si 2 personnes s'inscrit à la même seconde avec la même extension
 
+        include('includes/bd.php');
 
         $to='../assets/uploads/'.$fileName; // Nom original du fichier
         move_uploaded_file($from,$to);
@@ -87,7 +86,7 @@ if(isset($_POST['email'])){
                 'image' => $to
                 ]);
 
-    include('../includes/bd.php');
+   
     $q= 'SELECT user_id FROM USERS WHERE email=:email';
     $req=$bdd->prepare($q);
         $req->execute([
