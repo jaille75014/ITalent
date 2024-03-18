@@ -59,7 +59,7 @@
 <?php 
 
 if(isset($_GET["email"])) {
-  if( !empty($_POST['email']) AND $_GET['email']== 1){
+  if( !empty($_POST['email'])){
     if (!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
       header('location: ' . $url .'?messageFailure=Votre email est invalide :('); 
       exit;
@@ -109,7 +109,7 @@ if(isset($_GET["email"])) {
       <div class="col-8 offset-2 col-lg-4 offset-lg-4">
       <h5 class="text-uppercase mb-4">Newsletter</h5>
 
-      <form action="index.php?email=1" method="POST">
+      <form action="" method="POST">
       <i class='bx bxs-envelope'></i>
       <input type="email" name="email" placeholder="Entrez votre e-mail" required>
       <button type="submit"><i class='bx bx-right-arrow-alt'></i></button>
