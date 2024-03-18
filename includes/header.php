@@ -1,5 +1,5 @@
 <?php 
-if (isset($_SESSION['email']) &&  $_SESSION['statut']==1) {
+if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==1) {
     $links = [
         "Accueil" => "index_etudiant.php",
         "Profil" => "profil.php",
@@ -7,7 +7,7 @@ if (isset($_SESSION['email']) &&  $_SESSION['statut']==1) {
         "Messages" => "messages.php",
         "Deconnexion" => "deconnexion.php"
     ];
-}  else if (isset($_SESSION['email']) &&  $_SESSION['statut']==2) {
+}  else if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==2) {
   $links = [
       "Accueil" => "index_recruteur.php",
       "Profil" => "profil.php",
@@ -15,11 +15,12 @@ if (isset($_SESSION['email']) &&  $_SESSION['statut']==1) {
       "Messages" => "messages.php",
       "Deconnexion" => "deconnexion.php"
   ];
-} else if (isset($_SESSION['email']) &&  $_SESSION['statut']==3) {
+} else if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==3) {
   $links = [
       "Accueil" => "admin.php",
       "Recherche" => "recherche.php",
-      "Deconnexion" => "deconnexion.php"
+      "Deconnexion" => "deconnexion.php",
+      "Captcha" => "captcha_admin.php"
   ];
 } else {
     $links = [
