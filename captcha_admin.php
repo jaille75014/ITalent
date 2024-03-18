@@ -34,6 +34,23 @@ isset($_POST['answer'])&& !empty($_POST['answer']) ){
 } 
 
 
+// Si suppresion d'une question
+if(isset($_POST['delete'])){
+    $q='DELETE FROM captcha WHERE question=:question ;';
+    $req3=$bdd->prepare($q);
+    $req3->execute([
+        'question'=>$_POST['delete']
+    ]); 
+}
+
+
+// Requête pour le tableau de questions
+
+$q='SELECT question,answer,user_id FROM captcha ;';
+$req=$bdd->prepare($q);
+$req->execute();  
+
+
 ?>
 
 <!DOCTYPE html>
@@ -68,6 +85,58 @@ isset($_POST['answer'])&& !empty($_POST['answer']) ){
                     </form>
                 </div>
             </div>
+
+            <h3 class="text-center" >Table des questions</h3>
+
+            <table class="table table-striped my-5">
+                <tr>
+                    <th>Question</th>
+                    <th>Réponse</th>
+                    <th>Nom créateur</th>
+                    <th>Commande</th>
+                </tr>
+                <?php 
+                    while($result=$req->fetch(PDO::FETCH_ASSOC)){
+                       echo '<tr>';
+                        foreach($result as $index=>$value){
+                            if($index!='user_id'){
+                                echo '<td>'.$value.'</td>';
+                                if ($index=='question') $questKeep=$value;
+                                
+                            } else {
+                                echo '<td>';
+                                $q='SELECT lastname, firstname FROM users WHERE user_id='.$value;
+                                $req2=$bdd->prepare($q);
+                                $req2->execute(); 
+                                $result2=$req2->fetch(PDO::FETCH_ASSOC);
+        
+                                foreach($result2 as $index2=>$value2){
+                                    echo $value2.' ';
+                                }
+                                echo '</td>';
+                            }
+                            
+                        }
+                        echo '<td>
+
+                        <form method="post">
+                            <input type="hidden" name="delete" value="'.$questKeep.'">
+                            <button type="submit" class="btn btn-danger">
+                                Suppresion
+                            </button>
+                        </form>
+
+                            </td>';
+                        
+                        
+                        echo '</tr>';
+                    }
+                    
+                    
+                
+                
+                ?>
+            </table>
 
             
 

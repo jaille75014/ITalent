@@ -91,7 +91,7 @@ for ($i=1;$i<=$numberQuestion;$i++){
                 ?>
 
                 <div class="row">
-                    <div class="col-4 offset-4">
+                    <div class="col-8 offset-2 col-md-4 offset-md-4">
                         <div class="card my-5">
                             <div class="card-body">
                                 <form method="post">
@@ -105,6 +105,7 @@ for ($i=1;$i<=$numberQuestion;$i++){
                         </div>
                     </div>
                 </div>
+                
                 
 
 
