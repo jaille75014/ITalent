@@ -11,6 +11,7 @@
 
 <?php 
 $title='Accueil';
+$url = 'index.php';
 include('includes/head.php');?>
 
     <body class="bg-light">

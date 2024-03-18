@@ -98,6 +98,9 @@ function afficherStorys($req_storys) {
                 ajt.send(formData);
             });
         </script>
+        <?php 
+        include 'includes/footer.php';
+        ?>
 
     </body>
 

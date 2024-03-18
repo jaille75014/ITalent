@@ -6,6 +6,7 @@ include('includes/bd.php');
 <html lang="fr">
 <?php 
 $title='Connexion';
+$url = 'connexion.php';
 include('includes/head.php');?>
 
 
