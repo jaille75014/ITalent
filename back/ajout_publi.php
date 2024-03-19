@@ -3,47 +3,42 @@ session_start();
 include('../includes/bd.php');
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../login.php');
+    header('Location: ../connexion.php');
     exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['image_publication']) && isset($_POST['description'])) {
     $user_id = $_SESSION['user_id'];
     $description = htmlspecialchars($_POST['description']);
-    $image = $_FILES['image_publication'];
 
-    $target_directory = "../uploads/publications/";
-    $filename = time() . basename($image["name"]);
-    $target_file = $target_directory . $filename;
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    if ($_FILES['image_publication']['error'] != 4) { 
 
-    $check = getimagesize($image["tmp_name"]);
-    if ($check !== false) {
-        $uploadOk = 1;
-    } else {
-        echo "Le fichier n'est pas une image.";
-        $uploadOk = 0;
-    }
+        $acceptable = ['image/png', 'image/jpeg', 'image/gif'];
+        if (!in_array($_FILES['image_publication']['type'], $acceptable)) {
+            echo "Le fichier doit être un jpeg, png ou gif.";
+            exit;
+        }
 
-    if ($image["size"] > 2 * 1024 * 1024) { 
-        echo "Fichier est trop volumineux.";
-        $uploadOk = 0;
-    }
+        $maxSize = 2 * 1024 * 1024; // 2Mo
+        if ($_FILES['image_publication']['size'] > $maxSize) {
+            echo "Le fichier doit être inférieur à 2Mo!";
+            exit;
+        }
 
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
-        echo "Seuls les fichiers JPG, JPEG, PNG & GIF sont autorisés.";
-        $uploadOk = 0;
-    }
+        $target_directory = "../uploads/publications/";
+        if (!file_exists($target_directory)) {
+            mkdir($target_directory, 0755, true);
+        }
 
-    if ($uploadOk == 0) {
-        echo "Votre fichier n'a pas été téléchargé.";
-        exit; 
-    } else {
-        if (move_uploaded_file($image["tmp_name"], $target_file)) {
+        $from = $_FILES['image_publication']['tmp_name'];
+        $array = explode('.', $_FILES['image_publication']['name']);
+        $ext = end($array); 
+        $filename = 'publi-' . time() . '.' . $ext;
+        $target_file = $target_directory . $filename;
+
+        if (move_uploaded_file($from, $target_file)) {
             $stmt = $bdd->prepare("INSERT INTO PUBLICATIONS (image, description, user_id) VALUES (?, ?, ?)");
-            if ($stmt->execute([$filename, $description, $user_id])) { 
+            if ($stmt->execute([$filename, $description, $user_id])) {
                 header('Location: ../profil.php');
                 exit;
             } else {
@@ -52,8 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['image_publication']) 
         } else {
             echo "Erreur lors du téléchargement de votre fichier.";
         }
+    } else {
+        echo "Aucun fichier sélectionné ou formulaire invalide.";
     }
 } else {
-    echo "Aucun fichier sélectionné ou formulaire invalide.";
+    echo "Requête invalide.";
 }
 ?>

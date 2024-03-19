@@ -3,7 +3,7 @@ session_start();
 include("../includes/bd.php");
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: ../connexion.php');
     exit;
 }
 
