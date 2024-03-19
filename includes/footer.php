@@ -64,7 +64,7 @@ if(isset($_GET["email"])) {
       header('location: ' . $url .'?messageFailure=Votre email est invalide :('); 
       exit;
   }
-
+  $_SESSION['newsletter'] = 1;
   include 'phpmailer.php'; // Settings for phpmailer
 
   $email = htmlspecialchars($_POST['email']);
@@ -73,7 +73,8 @@ if(isset($_GET["email"])) {
   $mail->addAddress($email); // Destinataire
   
   $body = '<p>Vous touchez au but ! Pour valider votre inscription à notre newsletter, 
-  <a href="213.32.89.122/inscription_newsletter.php?tru=1&amp;email='.$email.'">cliquez ici</a></p>.';
+  <a href="213.32.89.122/inscription_newsletter.php?news=1&email=' . $email . '&url=' . $url . '">cliquez ici</a></p>.'; // tru = condition pour la page d'inscription à la newsletter; 
+                                                                                                                        //url=page sur laquelle il s'est inscrit pour le rediriger sur la meme page en cas de problemes
 
   //Attachments :
   $mail->addAttachment('../assets/LOGO_version_complète.png', "LOGO_version_complète.png");
