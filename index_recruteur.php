@@ -27,31 +27,25 @@ include('includes/head.php');?>
         <h1>ESPACE RECRUTEUR</h1>
         <p>Chercher des étudiants que vous souhaitez en filtrant vos recherches pour pouvoir discuter avec eux</p>
         <div class="search-container">
-            <form id="searchForm">
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <input type="text" class="form-control" id="competence" name="competence" placeholder="Compétences">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <select class="form-control" id="niveau" name="niveau">
-                            <option value="">Sélectionner le niveau</option>
-                            <option value="Débutant">Débutant</option>
-                            <option value="Intermédiaire">Intermédiaire</option>
-                            <option value="Avancé">Avancé</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <input type="text" class="form-control" id="poste" name="poste" placeholder="Poste">
-                    </div>
+            <form id="searchForm" class="d-flex justify-content-center align-items-end">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="competence" name="competence" placeholder="Compétence">
+                </div>
+                <div class="form-group">
+                    <select class="form-control" id="niveau" name="niveau">
+                        <option value="">Niveau</option>
+                        <option value="Débutant">Débutant</option>
+                        <option value="Intermédiaire">Intermédiaire</option>
+                        <option value="Avancé">Avancé</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="poste" name="poste" placeholder="Poste">
                 </div>
                 <button type="submit" class="btn btn-primary">Rechercher</button>
             </form>
         </div>
     </div>
-
-
-
-
    
 
 
