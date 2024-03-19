@@ -4,7 +4,7 @@ if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==1) {
         "Accueil" => "index_etudiant.php",
         "Profil" => "profil.php",
         "Entretien" => "entretien.php",
-        "Messages" => "messages.php",
+        "Messages" => "messagerie.php",
         "Déconnexion" => "deconnexion.php"
     ];
 }  else if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==2) {
@@ -12,13 +12,12 @@ if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==1) {
       "Accueil" => "index_recruteur.php",
       "Profil" => "profil.php",
       "Entretien" => "entretien.php",
-      "Messages" => "messages.php",
+      "Messages" => "messagerie.php",
       "Déconnexion" => "deconnexion.php"
   ];
 } else if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==3) {
   $links = [
       "Accueil" => "admin.php",
-      "Recherche" => "recherche.php",
       "Déconnexion" => "deconnexion.php",
       "Captcha" => "captcha_admin.php"
   ];

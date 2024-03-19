@@ -18,7 +18,7 @@ if (isset($_GET['user_id'])) {
     $user_id = $_GET['user_id'];
     $sql_messages = "SELECT * FROM message WHERE (user_id_source = ? AND user_id_target_id = ?) OR (user_id_source = ? AND user_id_target_id = ?) ORDER BY date ASC";
     $stmt_messages = $bdd->prepare($sql_messages);
-    $stmt_messages->execute(array($_SESSION['user_id'], $user_id, $user_id, $_SESSION['user_id']));
+    $stmt_messages->execute([$_SESSION['user_id'], $user_id, $user_id, $_SESSION['user_id']]);
     $result_messages = $stmt_messages->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
@@ -58,7 +58,16 @@ if (isset($_GET['user_id'])) {
 
     <body>
 
-        <?php include("includes/header.php"); ?>
+        <?php include("includes/header.php"); 
+        if (isset($_GET['messageFailure'])): ?>
+        <div class="alert alert-danger" role="alert">
+            <?= htmlspecialchars($_GET['messageFailure']) ?>
+            <?php if (isset($_GET['max_length'])): ?>
+                le nombre maximum de caractères est de <?= intval($_GET['max_length']) ?>.
+            <?php endif; ?>
+        </div>
+        <?php endif; ?>
+
 
         <div class="container mt-4">
             <div class="row">
@@ -92,9 +101,11 @@ if (isset($_GET['user_id'])) {
                         <div class="send-message">
                             <form action="back/envoie_message.php" method="post" class="d-flex">
                                 <textarea name="message_content" placeholder="Votre message" class="form-control mr-2"></textarea>
-                                <input type="hidden" name="user_id_target" value="<?= isset($user_id) ? $user_id : '' ?>">
+                                <input type="hidden" name="user_id_target_id" value="<?= isset($user_id) ? $user_id : '' ?>">
                                 <button type="submit" class="btn btn-primary">Envoyer</button>
                             </form>
+                        </div>
+
                         </div>
                     </div>
                 </div>
