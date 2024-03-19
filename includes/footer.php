@@ -65,13 +65,6 @@ if(isset($_GET["email"])) {
       exit;
   }
   $_SESSION['newsletter'] = 1;
-  //Import PHPMailer classes 
-  use PHPMailer\PHPMailer\PHPMailer;
-  use PHPMailer\PHPMailer\SMTP;
-  use PHPMailer\PHPMailer\Exception;
-
-  //Load Composer's autoloader
-  require '../vendor/autoload.php';
   include 'phpmailer.php'; // Settings for phpmailer
 
   $email = htmlspecialchars($_POST['email']);
@@ -94,12 +87,12 @@ if(isset($_GET["email"])) {
 
   try {
     $mail->send();
+    echo'Un email viens de vous être envoyé !';
 
   } catch (Exception $e) {
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
       header("location: connexion.php");
   } 
-
 
   } //if(!empty($_POST['email'])) 
   
