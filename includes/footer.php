@@ -87,7 +87,7 @@ if(isset($_GET["email"])) {
 
   try {
     $mail->send();
-    echo'Un email viens de vous être envoyé !';
+    echo'Un email viens de vous être envoyé';
 
   } catch (Exception $e) {
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";

@@ -1,12 +1,5 @@
 <?php
 include('../includes/bd.php');
-//Import PHPMailer classes 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
-//Load Composer's autoloader
-require 'vendor/autoload.php';
 
 include('../includes/phpmailer.php');
 
