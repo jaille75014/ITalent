@@ -74,7 +74,6 @@ if(isset($_POST['email'])){
         $fileName='image-'.time().'.'.$ext;
         // Risque de doublon si 2 personnes s'inscrit à la même seconde avec la même extension
 
-        
 
         $to='../assets/uploads/'.$fileName; // Nom original du fichier
         move_uploaded_file($from,$to);
@@ -83,14 +82,10 @@ if(isset($_POST['email'])){
         WHERE email = \''. htmlspecialchars($_POST['email']).'\'';
         $req=$bdd->prepare($image);
             $result=$req->execute([
-                'image' => $to
+                'image' => $fileName
                 ]);
-    } else {
-
     }
-        
 
-   
     $q= 'SELECT user_id FROM USERS WHERE email=:email';
     $req=$bdd->prepare($q);
         $req->execute([
@@ -130,11 +125,7 @@ if(isset($_POST['email'])){
     }
 
 
-
-
 } else if(isset($_POST['email_pro']) ){
-
-    
 
 
     if(!isset($_POST['lastname'])
@@ -168,6 +159,48 @@ if(isset($_POST['email'])){
     }
 
     include('../includes/bd.php');
+
+
+    if($_FILES['image']['error']!=4){ // Si un fichier a été uploadé
+
+        // Vérification de son type
+        $acceptable=['image/png','image/jpeg','image/gif'];
+        if(!in_array($_FILES['image']['type'],$acceptable)){ // Permet de savoir si une valeur est dans un tableau, renvoie true si c'est le cas et non si ce n'est pas le cas
+            header('location: ../inscription.php?message=Le fichier doit être un jpeg, png ou gif, ne manipule pas mon code !'); 
+            exit;
+        }
+        $maxSize=2*1024*1024;
+        // Vérification de sa taille
+        if($_FILES['image']['size']>$maxSize){ //  On vérifie si la taille est supérieur à 2Mo
+            header('location: ../inscription.php?message=Le fichier doit être inférieur à 2Mo!'); 
+            exit;
+        }
+
+        if(!file_exists('assets/uploads')){  // Permet de savoir si un fichier / dossier existe, renvoie true si il existe
+            mkdir('../assets/uploads'); // Crée le fichier uploads là où on est
+        }
+        // Enregistrement du fichier sur le serveur
+        $from=$_FILES['image']['tmp_name']; // Enplacement temporaire du fichier
+
+
+        $array=explode('.',$_FILES['image']['name']); //Transformer une chaîne de caractère selon un séparateur, fonction implode() pour concaténer des éléments d'un tableau selon un séparateur
+        $ext=end($array); // Récupérer le dernier élément du tableau
+        $fileName='image-'.time().'.'.$ext;
+        // Risque de doublon si 2 personnes s'inscrit à la même seconde avec la même extension
+
+
+        $to='../assets/uploads/'.$fileName; // Nom original du fichier
+        move_uploaded_file($from,$to);
+        $image = 'UPDATE USERS
+        SET image = :image
+        WHERE email = \''. htmlspecialchars($_POST['email_pro']).'\'';
+        $req=$bdd->prepare($image);
+            $result=$req->execute([
+                'image' => $fileName
+                ]);
+    }
+
+
     $q= 'SELECT user_id FROM USERS WHERE email=:email';
     $req=$bdd->prepare($q);
         $req->execute([
