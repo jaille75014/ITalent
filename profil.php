@@ -4,7 +4,7 @@ session_start();
 include('includes/bd.php'); 
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php'); 
+    header('Location: ../connexion.php'); 
     exit;
 }
 
@@ -85,10 +85,12 @@ include('includes/head.php');
                             </div>
                             <?php foreach ($storys as $story): ?>
                                 <div class="story-circle me-3 position-relative">
-                                    <img src="uploads/<?php echo htmlspecialchars($story['image']); ?>" alt="Image de story">
+                                    <img src="<?php echo htmlspecialchars('uploads/storys/' . $story['image']); ?>" alt="Image de story" style="width: 100px; height: 100px;"> 
                                     <a href="back/supp_story.php?story_id=<?php echo $story['story_id']; ?>" class="btn btn-danger btn-sm position-absolute top-0 end-0" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette story ?');">X</a>
                                 </div>
                             <?php endforeach; ?>
+
+
                         </div>
                     </div>
 
@@ -102,7 +104,7 @@ include('includes/head.php');
                                         <input type="file" name="image_publication" accept="image/*" required>
                                     </div>
                                     <div class="mb-3">
-                                        <textarea name="description" class="form-control" placeholder="Description" required></textarea>
+                                        <textarea name="description" class="form-control" placeholder="Description"></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Publier</button>
                                 </form>
@@ -111,7 +113,7 @@ include('includes/head.php');
                             <?php foreach ($publications as $publication): ?>
                                 <div class="col-md-4 mb-3">
                                     <div class="card h-100 position-relative">
-                                        <img src="uploads/<?php echo htmlspecialchars($publication['image']); ?>" class="card-img-top" alt="Image de publication">
+                                        <img src="<?php echo htmlspecialchars('uploads/publications/' . $publication['image']); ?>" class="card-img-top" alt="Image de publication">
                                         <div class="card-body">
                                             <p class="card-text"><?php echo htmlspecialchars($publication['description']); ?></p>
                                             <a href="back/supp_publi.php?publi_id=<?php echo $publication['publi_id']; ?>" class="btn btn-danger btn-sm position-absolute top-0 end-0" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette publication ?');">X</a>
@@ -119,6 +121,7 @@ include('includes/head.php');
                                     </div>
                                 </div>
                             <?php endforeach; ?>
+
                         </div>
                     </div>
 

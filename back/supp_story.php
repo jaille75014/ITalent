@@ -3,7 +3,7 @@ session_start();
 include("../includes/bd.php");
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: ../connexion.php');
     exit;
 }
 
@@ -16,7 +16,7 @@ if (isset($_GET['story_id'])) {
     if ($stmt->rowCount() > 0) {
         $stmt = $bdd->prepare("DELETE FROM STORYS WHERE story_id = ?");
         if ($stmt->execute([$story_id])) {
-            header('Location: profil.php?');
+            header('Location: ../profil.php?');
         } else {
             header('Location: ../profil.php');
         }
