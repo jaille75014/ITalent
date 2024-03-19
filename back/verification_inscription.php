@@ -1,8 +1,9 @@
 <?php 
 
 if (isset($_POST['email'])&& !empty($_POST['email'])){
-    setcookie('email', $_POST['email'], time()+30*24*3600); // Cookie expire dans 30 jours
-    
+    setcookie('email', $_POST['email'] , time()+30*24*3600); // Cookie expire dans 30 jours
+} else if (isset($_POST['email_pro']) && !empty($_POST['email_pro'])){
+    setcookie('email', $_POST['email_pro'], time()+ 30*24*3600);
 }
 
 // if(!isset($_POST['email_pro']) || empty($_POST['email_pro'])
@@ -73,18 +74,21 @@ if(isset($_POST['email'])){
         $fileName='image-'.time().'.'.$ext;
         // Risque de doublon si 2 personnes s'inscrit à la même seconde avec la même extension
 
-        include('includes/bd.php');
+        include('../includes/bd.php');
 
         $to='../assets/uploads/'.$fileName; // Nom original du fichier
         move_uploaded_file($from,$to);
-        }
-        $q = 'UPDATE USERS
+        $image = 'UPDATE USERS
         SET image = :image
         WHERE email = \''. htmlspecialchars($_POST['email']).'\'';
-        $req=$bdd->prepare($q);
+        $req=$bdd->prepare($image);
             $result=$req->execute([
                 'image' => $to
                 ]);
+    } else {
+
+    }
+        
 
    
     $q= 'SELECT user_id FROM USERS WHERE email=:email';
@@ -163,7 +167,7 @@ if(isset($_POST['email'])){
         exit;
     }
 
-    include('includes/bd.php');
+    include('../includes/bd.php');
     $q= 'SELECT user_id FROM USERS WHERE email=:email';
     $req=$bdd->prepare($q);
         $req->execute([

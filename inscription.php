@@ -26,7 +26,7 @@ include('includes/head.php');?>
                 <input type="tel" name="phone" pattern="[0-9]{10}" placeholder="N° de téléphone">
                 <div class="input">
                 <input type="password" name="password" class="pass" placeholder="Mot de passe">
-                <img src="assets/eye-slash.svg" alt="oeil" class="eye" onclick="change1()" /> 
+                <img src="assets/eye-slash.svg" alt="oeil" class="eye" onclick="togglePasswordVisibility(this)"/> 
                 </div>
                 <input type="text" name="city" placeholder="Ville" >
                 <input type="text" name="zip"  pattern="[0-9]{5}" placeholder="Code postal, exemple : 77144">
