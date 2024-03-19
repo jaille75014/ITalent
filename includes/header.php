@@ -18,8 +18,9 @@ if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==1) {
 } else if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==3) {
   $links = [
       "Accueil" => "admin.php",
-      "Déconnexion" => "deconnexion.php",
-      "Captcha" => "captcha_admin.php"
+      "Captcha" => "captcha_admin.php",
+      "Compétence" => "competence_admin.php",
+      "Déconnexion" => "deconnexion.php"
   ];
 } else {
     $links = [
