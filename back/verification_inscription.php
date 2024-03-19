@@ -45,7 +45,7 @@ if(isset($_POST['email'])){
         exit;
     }
 
-
+    include('../includes/bd.php');
 
     if($_FILES['image']['error']!=4){ // Si un fichier a été uploadé
 
@@ -74,7 +74,7 @@ if(isset($_POST['email'])){
         $fileName='image-'.time().'.'.$ext;
         // Risque de doublon si 2 personnes s'inscrit à la même seconde avec la même extension
 
-        include('../includes/bd.php');
+        
 
         $to='../assets/uploads/'.$fileName; // Nom original du fichier
         move_uploaded_file($from,$to);
