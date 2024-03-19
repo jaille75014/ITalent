@@ -19,7 +19,14 @@ include('includes/head.php');?>
         <?php include('includes/header.php');?>
 
         <main class="bg-light">
-            
+        <?php 
+    if(isset($_GET['messageFailure'])){
+    echo '<div class="alert alert-danger" role="alert">'.htmlspecialchars($_GET['messageFailure']).'</div>'; 
+    }
+    if(isset($_GET['messageSuccess'])){
+        echo '<div class="alert alert-success" role="alert">'.htmlspecialchars($_GET['messageSuccess']).'</div>'; 
+        }
+    ?>
             <div class="container  mt-5">
                 <div class="row align-items-center my-5 gy-4">
 

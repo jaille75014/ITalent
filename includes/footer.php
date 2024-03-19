@@ -65,6 +65,13 @@ if(isset($_GET["email"])) {
       exit;
   }
   $_SESSION['newsletter'] = 1;
+  //Import PHPMailer classes 
+  use PHPMailer\PHPMailer\PHPMailer;
+  use PHPMailer\PHPMailer\SMTP;
+  use PHPMailer\PHPMailer\Exception;
+
+  //Load Composer's autoloader
+  require '../vendor/autoload.php';
   include 'phpmailer.php'; // Settings for phpmailer
 
   $email = htmlspecialchars($_POST['email']);
