@@ -91,7 +91,7 @@ if(isset($_GET["email"])) {
 
   } catch (Exception $e) {
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-      header("location: connexion.php");
+      header("location: ../connexion.php");
   } 
 
   } //if(!empty($_POST['email'])) 
@@ -110,7 +110,7 @@ if(isset($_GET["email"])) {
       <div class="col-8 offset-2 col-lg-4 offset-lg-4">
       <h5 class="text-uppercase mb-4">Newsletter</h5>
 
-      <form action="" method="POST">
+      <form action="<?php echo '../' . $url ?>" method="POST">
       <i class='bx bxs-envelope'></i>
       <input type="email" name="email" placeholder="Entrez votre e-mail" required>
       <button type="submit"><i class='bx bx-right-arrow-alt'></i></button>
