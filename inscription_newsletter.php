@@ -97,7 +97,7 @@ include'includes/bd.php';
         }
             echo 'Inscription réussie, vous allez être redirigé';
             header('location: ' . htmlspecialchars($_GET['url']));
-            exit();
+            exit;
             }
             else {
                 echo 'Vous vous êtes trompé d\'email';

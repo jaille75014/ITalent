@@ -1,6 +1,5 @@
 <?php 
-session_start();
-
+session_start();  
 if(isset($_POST["email"])) {
   if( !empty($_POST['email'])){
     if (!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
@@ -24,7 +23,7 @@ if(isset($_POST["email"])) {
 
   //Content
   $mail->isHTML(true);                                  //Set email format to HTML
-  $mail->Subject = 'Inscription à la newsletter';
+  $mail->Subject = 'Inscription a la newsletter';
   $mail->Body    = $body;
   $mail->AltBody = strip_tags($body);
 
