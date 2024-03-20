@@ -58,7 +58,7 @@
 
 <?php 
 
-if(isset($_GET["email"])) {
+if(isset($_POST["email"])) {
   if( !empty($_POST['email'])){
     if (!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
       header('location: ' . $url .'?messageFailure=Votre email est invalide :('); 
