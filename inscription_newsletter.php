@@ -80,12 +80,14 @@ include'includes/bd.php';
                 $result = $req->execute([
                     'email' => htmlspecialchars($_GET['email'])
                 ]);
-                $results = $req->fetch();
-
+                $results = $req->fetch(PDO::FETCH_ASSOC);
+                foreach ($results as $index => $value) {
+                    echo $value;
+                }
                 $email_formulaire = $_POST['email'];
 
                 if($results == $email_formulaire) {
-                $pull_newsletter = 'UPDATE USERS SET newletter = :newsletter WHERE email = ' . $_GET['email']; 
+                $pull_newsletter = 'UPDATE USERS SET newletter = :newsletter WHERE email = '. htmlspecialchars($_GET['email']; 
                 $req=$bdd->prepare($pull_newsletter);
                 $result=$req->execute([
                 'newsletter' => 1
