@@ -229,7 +229,7 @@ $req6->execute();
                             $competenceName2=$value7;
                         }
 
-                        $q8='SELECT question,answerCorrect,answer1,answer2,answer3,answer4 FROM questions WHERE competence_id=:competence_id;';
+                        $q8='SELECT question,answer1,answer2,answer3,answer4,answerCorrect FROM questions WHERE competence_id=:competence_id;';
                         $req8=$bdd->prepare($q8);
                         $req8->execute([
                             'competence_id'=> $competenceName2

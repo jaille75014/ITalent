@@ -25,13 +25,19 @@ $stmtStorys = $bdd->prepare($queryStorys);
 $stmtStorys->execute([$user_id]);
 $storys = $stmtStorys->fetchAll();
 
-$title='Profil';
-$url = 'profil.php';
-include('includes/head.php');
+// LISTE DE COMPÉTENCES
+$q='SELECT name FROM competences ;';
+$req=$bdd->prepare($q);
+$req->execute(); 
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+    <?php
+    $title='Profil';
+    $url = 'profil.php';
+    include('includes/head.php');
+    ?>
     <body class="bg-light">
         <?php include('includes/header.php'); ?>
 
@@ -127,6 +133,26 @@ include('includes/head.php');
 
 
                 </div>
+
+                <h3 class="text-center" >Ajouter une compétence à votre CV</h3>
+
+                <form method="post" action="exam.php">
+                    <label class="form-label" for="selectCompetence">Compétence que vous voulez tester:</label>
+                    <select id="selectCompetence" class="form-select" name="competenceTest">
+                        <option selected>Sélectionner une compétence</option>
+                        <?php 
+                        while($result=$req->fetch(PDO::FETCH_ASSOC)){
+                            foreach($result as $index=>$value){
+                                echo '<option value="'. $value .'">'. $value.'</option>';                   
+                            }
+                        }
+
+                        ?>
+                    </select>
+                    <button type="submit" class="btn btn-primary my-4">Envoyer</button>
+                </form>
+
+
             </div>
         </main>
 
