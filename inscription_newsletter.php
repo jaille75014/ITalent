@@ -81,25 +81,24 @@ include'includes/bd.php';
                     'email' => htmlspecialchars($_GET['email'])
                 ]);
                 $results = $req->fetch(PDO::FETCH_ASSOC);
-                foreach ($results as $index => $value) {
-                    echo $value;
-                }
+
                 $email_formulaire = $_POST['email'];
 
-                if($results == $email_formulaire) {
-                $pull_newsletter = 'UPDATE USERS SET newletter = :newsletter WHERE email = '. htmlspecialchars($_GET['email']; 
+                foreach ($results as $index => $value) {
+                if($value == $email_formulaire) {
+                $pull_newsletter = 'UPDATE USERS SET newletter = :newsletter WHERE email = '. htmlspecialchars($_GET['email']); 
                 $req=$bdd->prepare($pull_newsletter);
                 $result=$req->execute([
                 'newsletter' => 1
                 ]);
+            }
+        }
             echo 'Inscription réussie, vous allez être redirigé';
 
             }
             else {
                 echo 'Vous vous êtes trompé d\'email';
             }
-        }
-        echo '<p>Une erreur est survenue</p>';
         }
         ?>
     </main>
