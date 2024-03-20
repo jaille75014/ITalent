@@ -43,7 +43,17 @@ $req->execute();
 
         <main class="bg-light pt-5">
 
+        
+
             <div class="container mt-5">
+            <?php 
+            if(isset($_GET['messageFailure'])){
+                echo '<div class="alert alert-danger" role="alert">'.htmlspecialchars($_GET['messageFailure']).'</div>'; 
+            }
+            if(isset($_GET['messageSuccess'])){
+                echo '<div class="alert alert-success" role="alert">'.htmlspecialchars($_GET['messageSuccess']).'</div>'; 
+            }
+    ?>
                 <div class="row">
 
                     <div class="col-12 mb-5">
