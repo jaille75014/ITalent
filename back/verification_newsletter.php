@@ -1,4 +1,5 @@
 <?php 
+session_start();
 
 if(isset($_POST["email"])) {
   if( !empty($_POST['email'])){
