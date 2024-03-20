@@ -64,16 +64,17 @@ include('includes/head.php');?>
 
                 <h1 class="text-center">Examen de : <span class="text-primary"><?= $_POST['competenceTest']?></span></h1>
 
-                <form>
+                <form method="post" action="back/verif_exam.php">
                 <?php 
+                $numberQuestion=1;
 
                 while($result2=$req2->fetch(PDO::FETCH_ASSOC)){
-                    $numberQuestion=1;
+                    
                     foreach($result2 as $index2=>$value2){
                         if($index2=='question'){
                             echo '
-                            <label class="form-label mt-4" for="answer1">'.$value2.'</label>
-                            <select id="answer'.$numberQuestion.'" class="form-select mb-4" name="answer1">
+                            <label class="form-label mt-4" for="answer">'.$value2.'</label>
+                            <select id="answer" name="answer'.$numberQuestion.'" class="form-select mb-4" >
                             <option selected>Sélectionnez la bonne réponse </option>';
                         } else if ($index2=='answerCorrect')  {
                             $correct=$value2;
@@ -88,7 +89,7 @@ include('includes/head.php');?>
                     $numberQuestion++;
                 }
                 ?>
-
+                <input type="hidden" value="<?=$_POST['competenceTest']?>" name="competenceTest" >
                 <button class="btn btn-primary mb-5">Soumettre</button>
                 </form>
 
