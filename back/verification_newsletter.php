@@ -7,7 +7,7 @@ if(isset($_POST["email"])) {
       exit;
   }
   $_SESSION['newsletter'] = 1;
-  include 'phpmailer.php'; // Settings for phpmailer
+  include '../includes/phpmailer.php'; // Settings for phpmailer
 
   $email = htmlspecialchars($_POST['email']);
   //Recipients
