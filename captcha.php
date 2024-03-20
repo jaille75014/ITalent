@@ -68,6 +68,7 @@ for ($i=1;$i<=$numberQuestion;$i++){
 <html>
     <?php 
     $title='Captcha';
+    $url = 'captcha.php'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php')
     ?>
 

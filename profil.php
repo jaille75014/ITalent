@@ -29,6 +29,8 @@ $storys = $stmtStorys->fetchAll();
 $q='SELECT name FROM competences ;';
 $req=$bdd->prepare($q);
 $req->execute(); 
+
+$url = 'profil.php'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
 ?>
 
 <!DOCTYPE html>

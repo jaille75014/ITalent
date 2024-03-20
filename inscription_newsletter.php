@@ -56,16 +56,18 @@ include'includes/bd.php';
                     </div>
                         <div class="card-body">
                             <form id="form_code" action="<?php echo 'inscription_newsletter.php?news=2&email=' . htmlspecialchars($_GET['email']) . '&url=' . htmlspecialchars($_GET['url']) ?>" method="POST">
-                                <div class="form-group">
+                                <div class="form-group my-4">
                                     <label for="uname1">email</label>
                                     <input type="email" class="form-control form-control-lg rounded-0" id="email" name="email" value="<?= htmlspecialchars($_GET['email'])?>" onFocus="this.value='';">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group my-4">
                                     <label>Vous pouvez encore changer d'avis !</label>
-                                    <input type="radio" name="yes" class="form-control form-control-lg rounded-0" value="0" />S''inscrire
-                                    <input type="radio" name="no" class="form-control form-control-lg rounded-0" value="1" />Ne pas s'inscrire<br/>
+                                    <input type="radio" class="btn-check" name="yes" id="success-outlined" autocomplete="off">
+                                    <label class="btn btn-outline-success" for="success-outlined">Je souhaite toujours m'inscrire</label>
+                                    <input type="radio" class="btn-check" name="no" id="danger-outlined" autocomplete="off">
+                                    <label class="btn btn-outline-danger" for="danger-outlined">J'ai changé d'avis</label>
                                 </div>
-                                <input type="submit" class="btn btn-success btn-lg float-right my-1" value="Valider">
+                                <input type="submit" class="btn btn-success btn-lg float-right my-4" value="Valider">
                             </form>
                         </div>
                     </div>
@@ -76,6 +78,10 @@ include'includes/bd.php';
             </div>
             <?php
             } else if ($_GET['news'] == 2) {
+                if(isset($_POST['no']) && !empty($_POST['no'])){
+                    header('location: ' . htmlspecialchars($_GET['url']) . '?messageSuccess=Vous avez décidé d\'annuler votre inscription... Si proche du but !');
+                    exit;
+                }
                 $email_db = 'SELECT email FROM USERS where email = :email';
                 $req = $bdd->prepare($email_db);
                 $result = $req->execute([
@@ -96,11 +102,12 @@ include'includes/bd.php';
             
         }
             echo 'Inscription réussie, vous allez être redirigé';
-            header('location: ' . htmlspecialchars($_GET['url']));
+            header('location: ' . htmlspecialchars($_GET['url']) . '?messageSuccess=Votre inscription à notre newsletter s\'est bien déroulée ! Merci');
             exit;
             }
             else {
-                echo 'Vous vous êtes trompé d\'email';
+                header('location: inscription_newsletter.php?messageFailure=Une erreure s\'est produite, vérifiez que vous avez bien écrit votre email&news=1&mail=' . htmlspecialchars($_GET['email']) . '&url=' . htmlspecialchars($_GET['url']));
+                exit;
             }
         }
         ?>

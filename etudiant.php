@@ -24,6 +24,7 @@ function afficherStorys($req_storys) {
 
     <?php
     $title = "Accueil étudiant";
+    $url = 'etudiant.php'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php');
     ?>
 

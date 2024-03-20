@@ -66,6 +66,7 @@
 
 <?php 
 $title='Admin';
+$url = 'admin.php'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
 include('includes/head.php');?>
 
 <body class="bg-light">

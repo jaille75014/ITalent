@@ -58,6 +58,7 @@ $req->execute();
 
 <?php 
     $title='Gestion Captcha';
+    $url = 'captcha_admin.php'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php');
 ?>
 

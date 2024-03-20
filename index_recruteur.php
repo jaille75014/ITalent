@@ -14,6 +14,7 @@
 
 <?php 
 $title='Recruteur';
+$url = 'index_recruteur.php'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
 include('includes/head.php');?>
 
     <body class="bg-light">

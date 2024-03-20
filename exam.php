@@ -40,6 +40,7 @@ $req2->execute([
     'competence_id'=> $competenceId
 ]);
 
+$url = 'exam.php'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
 
 
 ?>
