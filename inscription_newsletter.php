@@ -54,7 +54,7 @@ include'includes/bd.php';
                 <h3 class="mb-0">Validation de la neswletter</h3>
                     </div>
                         <div class="card-body">
-                            <form id="form_code" action="inscription_newsletter.php?news=2" method="POST">
+                            <form id="form_code" action="<?php echo 'inscription_newsletter.php?news=2&email=' . htmlspecialchars($_GET['email']) ?>" method="POST">
                                 <div class="form-group">
                                     <label for="uname1">email</label>
                                     <input type="email" class="form-control form-control-lg rounded-0" id="email" name="email" value="<?= htmlspecialchars($_GET['email'])?>" onFocus="this.value='';">
