@@ -11,9 +11,6 @@ include'includes/bd.php';
     include'includes/head.php';
 ?>
 <body>
-    <?php 
-    include'includes/header.php';
-    ?>
     <main>
         <?php 
 
@@ -22,7 +19,7 @@ include'includes/bd.php';
         $result = $req->execute([
             'email' => htmlspecialchars($_GET['email'])
         ]);
-        $results = $req->fetch();
+        $results = $req->fetch(PDO::FETCH_ASSOC);
 
         if (!isset($_SESSION["newsletter"]) && $_SESSION["newsletter"] != 1) {
             echo "<h1>Oh oh ! Si ce message apparaît, c'est que vous n'étiez pas sensé apparaître sur cette page ! 
@@ -30,10 +27,14 @@ include'includes/bd.php';
         } else {
             if($_GET['news'] == 1 ) {
                 setcookie("email", $_GET['email'], time()+60); // On crée un cookie qui expirera 25 secondes plus tard pour des raisons de sécurité.
-            } else if ($results == 1){ //Si le champ newsletter est déjà rempli
-                header('location: ' . $_GET['url'] . '?messageSuccess=Vous êtes déjà inscrit à notre newsletter!');
-                exit();
-            } 
+            } else 
+            foreach ($results as $index => $value) {
+                if ($value == 1){ //Si le champ newsletter est déjà rempli
+                    header('location: ' . $_GET['url'] . '?messageSuccess=Vous êtes déjà inscrit à notre newsletter!');
+                    exit();
+                }
+            }
+             
             
             if($_GET['news'] == 1) {
             ?>
@@ -51,7 +52,7 @@ include'includes/bd.php';
         <!-- form card login -->
             <div class="card rounded-0">
                 <div class="card-header">
-                <h3 class="mb-0">Validation de la neswletter</h3>
+                <h3 class="mb-0">Validation de la newsletter</h3>
                     </div>
                         <div class="card-body">
                             <form id="form_code" action="<?php echo 'inscription_newsletter.php?news=2&email=' . htmlspecialchars($_GET['email']) . '&url=' . htmlspecialchars($_GET['url']) ?>" method="POST">
@@ -96,7 +97,7 @@ include'includes/bd.php';
         }
             echo 'Inscription réussie, vous allez être redirigé';
             header('location: ' . htmlspecialchars($_GET['url']));
-
+            exit();
             }
             else {
                 echo 'Vous vous êtes trompé d\'email';
