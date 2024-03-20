@@ -85,6 +85,7 @@ include'includes/bd.php';
                 $email_formulaire = $_POST['email'];
 
                 foreach ($results as $index => $value) {
+                echo $value. 'Et' . $email_formulaire;
                 if($value == $email_formulaire) {
                 $pull_newsletter = 'UPDATE USERS SET newletter = :newsletter WHERE email = '. htmlspecialchars($_GET['email']); 
                 $req=$bdd->prepare($pull_newsletter);
@@ -92,7 +93,7 @@ include'includes/bd.php';
                 'newsletter' => 1
                 ]);
             }
-            echo $value. 'Et' . $email_formulaire;
+            
         }
             echo 'Inscription réussie, vous allez être redirigé';
 
