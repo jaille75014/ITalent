@@ -11,7 +11,6 @@
 
 <?php 
 $title='Accueil';
-$url = 'index.php';
 include('includes/head.php');?>
 
     <body class="bg-light">
@@ -20,6 +19,7 @@ include('includes/head.php');?>
 
         <main class="bg-light">
         <?php 
+        $url = 'index.php';
     if(isset($_GET['messageFailure'])){
     echo '<div class="alert alert-danger" role="alert">'.htmlspecialchars($_GET['messageFailure']).'</div>'; 
     }
