@@ -87,7 +87,7 @@ include'includes/bd.php';
 
                 foreach ($results as $index => $value) {
                 if($value == $email_formulaire) {
-                $pull_newsletter = 'UPDATE USERS SET newsletter = :newsletter WHERE email = '. $value; 
+                $pull_newsletter = 'UPDATE USERS SET newsletter = :newsletter WHERE email = \''. $value . '\''; 
                 $req=$bdd->prepare($pull_newsletter);
                 $result=$req->execute([
                 'newsletter' => 1
