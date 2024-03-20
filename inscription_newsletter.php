@@ -54,7 +54,7 @@ include'includes/bd.php';
                 <h3 class="mb-0">Validation de la neswletter</h3>
                     </div>
                         <div class="card-body">
-                            <form id="form_code" action="<?php echo 'inscription_newsletter.php?news=2&email=' . htmlspecialchars($_GET['email']) ?>" method="POST">
+                            <form id="form_code" action="<?php echo 'inscription_newsletter.php?news=2&email=' . htmlspecialchars($_GET['email']) . '&url=' . htmlspecialchars($_GET['url']) ?>" method="POST">
                                 <div class="form-group">
                                     <label for="uname1">email</label>
                                     <input type="email" class="form-control form-control-lg rounded-0" id="email" name="email" value="<?= htmlspecialchars($_GET['email'])?>" onFocus="this.value='';">
@@ -85,9 +85,8 @@ include'includes/bd.php';
                 $email_formulaire = $_POST['email'];
 
                 foreach ($results as $index => $value) {
-                echo $value. 'Et' . $email_formulaire;
                 if($value == $email_formulaire) {
-                $pull_newsletter = 'UPDATE USERS SET newletter = :newsletter WHERE email = '. htmlspecialchars($_GET['email']); 
+                $pull_newsletter = 'UPDATE USERS SET newsletter = :newsletter WHERE email = '. $value; 
                 $req=$bdd->prepare($pull_newsletter);
                 $result=$req->execute([
                 'newsletter' => 1
@@ -96,6 +95,7 @@ include'includes/bd.php';
             
         }
             echo 'Inscription réussie, vous allez être redirigé';
+            header('location: ' . htmlspecialchars($_GET['url']));
 
             }
             else {
