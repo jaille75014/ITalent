@@ -57,7 +57,7 @@ include('includes/head.php');?>
                     <div class="form-outline mb-4">
                         <label class="form-label" for="email">Adresse Email</label>
                         <input type="email" name="email" class="form-control" placeholder="Votre email : " 
-                        value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : isset($_COOKIE['email_pro']) ? $_COOKIE['email_pro'] : '' ?>">
+                        value="<?php echo (isset($_COOKIE['email']) ? $_COOKIE['email'] : isset($_COOKIE['email_pro'])) ? $_COOKIE['email_pro'] : '' ?>">
                     </div>
 
                     <div class="form-outline mb-4">
