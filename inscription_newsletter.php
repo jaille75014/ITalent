@@ -92,6 +92,7 @@ include'includes/bd.php';
                 'newsletter' => 1
                 ]);
             }
+            echo $value. 'Et' . $email_formulaire;
         }
             echo 'Inscription réussie, vous allez être redirigé';
 
