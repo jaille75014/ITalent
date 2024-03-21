@@ -61,7 +61,7 @@ include'includes/bd.php';
                                     <input type="email" class="form-control form-control-lg rounded-0" id="email" name="email" value="<?= htmlspecialchars($_GET['email'])?>" onFocus="this.value='';">
                                 </div>
                                 <div class="form-group my-4">
-                                    <label>Vous pouvez encore changer d'avis !</label>
+                                    <label>Vous pouvez encore changer d'avis !</label><br>
                                     <input type="radio" class="btn-check" name="yes" id="success-outlined" autocomplete="off">
                                     <label class="btn btn-outline-success" for="success-outlined">Je souhaite toujours m'inscrire</label>
                                     <input type="radio" class="btn-check" name="no" id="danger-outlined" autocomplete="off">
@@ -101,7 +101,6 @@ include'includes/bd.php';
             }
             
         }
-            echo 'Inscription réussie, vous allez être redirigé';
             header('location: ' . htmlspecialchars($_GET['url']) . '?messageSuccess=Votre inscription à notre newsletter s\'est bien déroulée ! Merci');
             exit;
             }
