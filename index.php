@@ -19,7 +19,7 @@ include('includes/head.php');?>
 
         <main class="bg-light">
         <?php 
-        $url = 'index.php';
+        $url = 'index.php'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
     if(isset($_GET['messageFailure'])){
     echo '<div class="alert alert-danger" role="alert">'.htmlspecialchars($_GET['messageFailure']).'</div>'; 
     }
