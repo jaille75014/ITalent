@@ -48,12 +48,15 @@ $req->execute([
     'email' => $_POST['email']
 ]);
 $email_check_result = $req->fetch();
-
-if (empty($email_check_result) || !$email_check_result['email_check']) {
-    // L'email n'est pas vérifié > rediriger vers le formulaire de connexion avec un message d'erreur
-    header('location: ../connexion.php?messageFailure=Votre email n\'a pas été vérifié. Veuillez consulter vos emails pour confirmer votre adresse.');
-    exit;
+foreach ($email_check_result as $index => $values) {
+    if (empty($values) || $values != 1) {
+        // L'email n'est pas vérifié > rediriger vers le formulaire de connexion avec un message d'erreur
+        header('location: ../connexion.php?messageFailure=Votre email n\'a pas été vérifié. Veuillez consulter vos emails pour confirmer votre adresse.');
+        exit;
+    }  
 }
+
+
 
 // La connexion a réussi > démarrer la session
 session_start();

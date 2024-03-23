@@ -19,6 +19,7 @@ if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==1) {
   $links = [
       "Accueil" => "admin.php",
       "Captcha" => "captcha_admin.php",
+      "Newsletter" => "newsletter_admin.php",
       "Compétence" => "competence_admin.php",
       "Déconnexion" => "deconnexion.php"
   ];
