@@ -58,8 +58,8 @@ if (isset($_GET['user_id'])) {
 
     <body>
 
-        <?php include("includes/header.php");
-        $url = 'messagerie.php'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter 
+        <?php include("includes/header.php"); 
+        $url = 'messagerie.php'; // Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter 
         if (isset($_GET['messageFailure'])): ?>
         <div class="alert alert-danger" role="alert">
             <?= htmlspecialchars($_GET['messageFailure']) ?>
@@ -69,10 +69,9 @@ if (isset($_GET['user_id'])) {
         </div>
         <?php endif; ?>
 
-
         <div class="container mt-4">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-12 col-sm-4 col-lg-3">
                     <div class="users-list">
                         <h2>Utilisateurs</h2>
                         <ul class="list-group">
@@ -85,7 +84,7 @@ if (isset($_GET['user_id'])) {
                     </div>
                 </div>
 
-                <div class="col-md-9">
+                <div class="col-12 col-sm-8 col-lg-9">
                     <div class="conversation">
                         <div class="message-box">
                             <?php if (!empty($result_messages)) : ?>
@@ -106,14 +105,13 @@ if (isset($_GET['user_id'])) {
                                 <button type="submit" class="btn btn-primary">Envoyer</button>
                             </form>
                         </div>
-
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <?php include("includes/footer.php"); ?>
+
     </body>
 
 
