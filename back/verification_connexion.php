@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 // Vérifier si les champs sont présents et non vides
 if (!isset($_POST['email']) || empty($_POST['email']) || !isset($_POST['password']) || empty($_POST['password'])) {
@@ -29,7 +28,7 @@ $req->execute([
     'email' => $_POST['email'],
     'password' => $password
 ]);
-$result = $req->fetch(PDO::FETCH_ASSOC);
+$result = $req->fetch();
 
 // Inclure le fichier de fonctions de log
 include("../includes/fonctions_logs.php");
@@ -48,7 +47,7 @@ $req = $bdd->prepare('SELECT email_check FROM USERS WHERE email = :email');
 $req->execute([
     'email' => $_POST['email']
 ]);
-$email_check_result = $req->fetch(PDO::FETCH_ASSOC);
+$email_check_result = $req->fetch();
 foreach ($email_check_result as $index => $values) {
     if (empty($values) || $values != 1) {
         // L'email n'est pas vérifié > rediriger vers le formulaire de connexion avec un message d'erreur
@@ -60,7 +59,7 @@ foreach ($email_check_result as $index => $values) {
 
 
 // La connexion a réussi > démarrer la session
-
+session_start();
 $_SESSION['user_id'] = $result['user_id'];
 $_SESSION['statut'] = $result['statut'];
 
