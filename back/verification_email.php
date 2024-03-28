@@ -3,10 +3,14 @@ include('../includes/bd.php');
 
 include('../includes/phpmailer.php');
 
-    $rand_verification_email = rand(100000, 999999);
-    $q = 'UPDATE USERS
-    SET email_number = :email_number
-    WHERE email = \''. htmlspecialchars($_GET['message']).'\'';
+    $rand_verification_email = rand(1000000, 9999999);
+    $select_id = 'SELECT id_user FROM USERS WHERE email = :email';
+    $req = $bdd->prepare($select_id);
+    $result = $req->execute([
+        'email' => htmlspecialchars($_GET['message'])
+    ]);
+    $result = 
+    $q = 'INSERT INTO TOKEN (id, value, date, user_id  ';
     $req=$bdd->prepare($q);
     $result=$req->execute([
         'email_number' => $rand_verification_email
