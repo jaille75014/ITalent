@@ -41,7 +41,7 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
 <?php
 
 } else {
-    $valid_token = 'SELECT value, hour FROM TOKEN WHERE id_user = :id';
+    $valid_token = 'SELECT value, hour FROM TOKEN WHERE user_id = :id';
     $req = $bdd->prepare($valid_token);
     $req->execute([
         'id'=> htmlspecialchars($_GET['id'])
@@ -52,14 +52,14 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
         if(($result['value'] == $_POST['code']) && ($result['hour'] >= $_GET['hour'])){
 
             // Supprimer le token une fois qu'il à été validé
-            $delete = 'DELETE FROM TOKEN WHERE id_user = :id';
+            $delete = 'DELETE FROM TOKEN WHERE user_id = :id';
             $req = $bdd->prepare($delete);
             $req->execute([
                 'id'=> htmlspecialchars($_GET['id'])
             ]);
 
             // Valider l'inscription dans la table USERS l'utilisateur
-            $check_code = 'UPDATE USERS SET email_check = 1 WHERE id_user = :id';
+            $check_code = 'UPDATE USERS SET email_check = 1 WHERE user_id = :id';
             $req = $bdd->prepare($delete);
             $req->execute([
                 'id'=> htmlspecialchars($_GET['id'])

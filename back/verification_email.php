@@ -5,7 +5,7 @@ include('../includes/bd.php');
 include('../includes/phpmailer.php');
 
     $rand_verification_email = rand(1000000, 9999999); // Genère une valeur à 7 chiffres
-    $select_id = 'SELECT id_user FROM USERS WHERE email = :email';
+    $select_id = 'SELECT user_id FROM USERS WHERE email = :email';
     $req = $bdd->prepare($select_id);
     $result = $req->execute([
         'email' => htmlspecialchars($_GET['message'])
