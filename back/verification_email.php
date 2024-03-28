@@ -1,19 +1,26 @@
 <?php
+session_start();
 include('../includes/bd.php');
 
 include('../includes/phpmailer.php');
 
-    $rand_verification_email = rand(1000000, 9999999);
+    $rand_verification_email = rand(1000000, 9999999); // Genère une valeur à 7 chiffres
     $select_id = 'SELECT id_user FROM USERS WHERE email = :email';
     $req = $bdd->prepare($select_id);
     $result = $req->execute([
         'email' => htmlspecialchars($_GET['message'])
     ]);
-    $result = 
-    $q = 'INSERT INTO TOKEN (id, value, date, user_id  ';
-    $req=$bdd->prepare($q);
+    $result = $req->fetch(PDO::FETCH_ASSOC);
+
+    $id_user = $result;
+    $date = date('Y-m-d H:i:s', strtotime('1 hour')); // Add one hour to the actual date
+
+    $token = 'INSERT INTO TOKEN (value, date, user_id) values (:value, :date, :user_id)';
+    $req=$bdd->prepare($token);
     $result=$req->execute([
-        'email_number' => $rand_verification_email
+        'value' => $rand_verification_email,
+        'date' => $date,
+        'user_id' => $id_user
         ]);
 
 
@@ -23,7 +30,8 @@ include('../includes/phpmailer.php');
 
     $body = '<p>Bonjour, nous vous remercions de faire confiance à Italent pour la recherche de votre prochain emploi ! <br><br>
     Nous avons juste besoin d\'une petite vérification de votre part pour que vous puissiez vous connecter. <br>
-    Copiez ce code pour vérifier votre identité et retournez sur Italent !<br>Votre code de vérification : <b>' . $rand_verification_email . '</b></p>';
+    Cliquez sur ce lien pour vérifier votre identitée : <a href="https://italent.site/back/codes_verification.php?id=' . $id_user . '&token=' . $rand_verification_email . '&check=0">Clique vite !</a><br>
+    <b>Attention !</b> Ce lien n\'est valable que pendant 1h! </p>';
 
 
     //Attachments :
@@ -50,31 +58,10 @@ include('../includes/phpmailer.php');
     <div class="row">
         <div class="col-md-12">
             <h2 class="text-center text-white mb-4">Code de vérification envoyé, consultez votre boite mail !</h2>
-        <div class="row">
-        <div class="col-md-6 mx-auto">
-
-
-<!-- form card login -->
-    <div class="card rounded-0">
-        <div class="card-header">
-        <h3 class="mb-0">Validation du code</h3>
-            </div>
-                <div class="card-body">
-                    <form id="form_code" action="codes_verification.php" method="POST">
-                        <div class="form-group">
-                            <label for="uname1">email</label>
-                            <input type="email" class="form-control form-control-lg rounded-0" id="code_email" name="email" value="<?= htmlspecialchars($_GET['message'])?>" onFocus="this.value='';">
-                        </div>
-                        <div class="form-group">
-                            <label>Code</label>
-                            <input type="text" class="form-control form-control-lg rounded-0" name="code">
-                        </div>
-                        <input type="submit" class="btn btn-success btn-lg float-right my-1" value="Vérifier mon code">
-                    </form>
+            <div class="row">
+                <div class="col-md-6 mx-auto">
                 </div>
             </div>
+        </div>
     </div>
-    </div>
-    </div>
-    </div>
-    </div>
+</div>
