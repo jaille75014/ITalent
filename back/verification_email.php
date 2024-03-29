@@ -13,7 +13,8 @@ include('../includes/phpmailer.php');
     ]);
     $result = $req->fetch(PDO::FETCH_ASSOC);
 
-    $id_user = $result;
+    $id_user = $result['user_id'];
+    
     $date = date('Y-m-d H:i:s', strtotime('1 hour')); // Add one hour to the actual date
 
     $token = 'INSERT INTO TOKEN (value, date, user_id) values (:value, :date, :user_id)';
