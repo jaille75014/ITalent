@@ -4,7 +4,7 @@ session_start();
     
 
 if (!isset($_SESSION['statut'])) {
-    header('location:index.php');
+    header('location: index.php');
     exit;
 } 
 
@@ -18,21 +18,21 @@ if(isset($_POST['answer'])&& !empty($_POST['answer'])){
         $_SESSION['captcha']=1;
         switch($_SESSION['statut']){
             case 1 : 
-                header('location:etudiant.php');
+                header('location: etudiant.php');
                 exit;
                 break;
             case 2 : 
-                header('location:index_recruteur.php');
+                header('location: index_recruteur.php');
                 exit;
                 break;
             case 3 : 
-                header('location:admin.php');
+                header('location: admin.php');
                 exit;
                 break;
         }
         
     } else {
-        header('location:captcha.php?error=Veuillez réessayer !');
+        header('location: captcha.php?error=Veuillez réessayer !');
         exit;
     }
 }
@@ -45,7 +45,7 @@ foreach($result as $index => $value) $numberMax=$value;
 
 $numberQuestion=rand(1, $numberMax);
 
-$q = 'SELECT question,answer FROM CAPTCHA;';
+$q = 'SELECT question, answer FROM CAPTCHA;';
 $req = $bdd->prepare($q);
 $req->execute();
 $result = $req->fetch(PDO::FETCH_ASSOC);
