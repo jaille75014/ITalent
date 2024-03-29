@@ -20,7 +20,7 @@ include('includes/bd.php'); // Connexion à la base de données
 if(isset($_POST['question']) && !empty($_POST['question']) &&
 isset($_POST['answer'])&& !empty($_POST['answer']) ){
     
-    $q='INSERT INTO captcha (question,answer,user_id) VALUES (:question,:answer,:user_id);';
+    $q='INSERT INTO CAPTCHA (question,answer,user_id) VALUES (:question,:answer,:user_id);';
     $req=$bdd->prepare($q);
     $result=$req->execute([
         'question'=> $_POST['question'],
@@ -29,7 +29,7 @@ isset($_POST['answer'])&& !empty($_POST['answer']) ){
         ]);  
 
 
-    header('location:captcha_admin.php');
+    header('location: captcha_admin.php');
     exit;
 } 
 
@@ -46,7 +46,7 @@ if(isset($_POST['delete'])){
 
 // Requête pour le tableau de questions
 
-$q='SELECT question,answer,user_id FROM CAPTCHA';
+$q='SELECT question,answer,user_id FROM CAPTCHA;';
 $req=$bdd->prepare($q);
 $req->execute();  
 
