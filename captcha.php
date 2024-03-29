@@ -50,7 +50,7 @@ $req = $bdd->prepare($q);
 $req->execute();
 $result = $req->fetch(PDO::FETCH_ASSOC);
 
-for ($i=1;$i<=$numberQuestion;$i++){
+for ($i=0;$i<=$numberQuestion;$i++){
     if ($i==$numberQuestion){
         $question=$result['question'];
         $answer=$result['answer'];
