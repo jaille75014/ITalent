@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['code'] = '1';
 include('../includes/bd.php');
 
 include('../includes/phpmailer.php');

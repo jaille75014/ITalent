@@ -1,5 +1,6 @@
 <?php
 include("../includes/bd.php");
+if(isset($_SESSION["code"])){
 
 if(!isset($_GET['token']) || empty($_GET['token'])){
     header('location: verification_email.php?messageFailure=Une erreure est survenue, veuillez réessayer ou regénérer un nouveau mail&again=1');
@@ -79,50 +80,9 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
         header('location: ../connexion.php?messageFailure=Aucun token trouvé à votre nom, il se peut que votre adresse mail soit déjà vérifiée, essayez de vous connecter');
         exit;
     }
+    }
+} else {
+    header('location: inscription.php?messageFailure=Oh ! Avez-vous essayer de gruger l\'inscription ?');
+    exit;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    $q = 'SELECT email_number FROM USERS WHERE email = :email';
-    $req = $bdd->prepare($q);
-    $result = $req->execute([
-        'email' => htmlspecialchars($_POST['email'])
-    ]);
-    $results = $req->fetch();
-        // Vérifie si le code correspond à celui inscrit dans la bdd
-        if ($_POST['code'] == $results['email_number']) {
-            // Si c'est le cas, on valide l'email
-            $q = 'UPDATE USERS SET email_check = 1 WHERE email = :email';
-            $req = $bdd->prepare($q);
-            $result = $req->execute([
-                'email' => htmlspecialchars($_POST['email'])
-            ]);  
-            header('location: ../connexion.php?messageSuccess=Inscription valide, veuillez vous connecter');
-            exit;
-        } else {
-            header('location: verification_email.php?messageFailure=Erreur lors de l\'ecriture du code');
-            exit;
-        }
-        
 ?>
