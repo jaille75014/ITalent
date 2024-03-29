@@ -3,8 +3,7 @@ session_start();
 $_SESSION['code'] = '1';
 include('../includes/bd.php');
 include('../includes/phpmailer.php');
-include('../includes/head.php');
-include('../includes/header.php');
+
 
 
     $rand_verification_email = rand(1000000, 9999999); // Genère une valeur à 7 chiffres
@@ -71,8 +70,10 @@ include('../includes/header.php');
         }
     }
 
-
+include('../includes/head.php');
+include('../includes/header.php');
 ?>
+
 <script>
     var timer = null;
     function auto_reload()
