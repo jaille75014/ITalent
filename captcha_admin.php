@@ -36,7 +36,7 @@ isset($_POST['answer'])&& !empty($_POST['answer']) ){
 
 // Si suppresion d'une question
 if(isset($_POST['delete'])){
-    $q='DELETE FROM captcha WHERE question=:question ;';
+    $q='DELETE FROM CAPTCHA WHERE question=:question ;';
     $req3=$bdd->prepare($q);
     $req3->execute([
         'question'=>$_POST['delete']
@@ -46,7 +46,7 @@ if(isset($_POST['delete'])){
 
 // Requête pour le tableau de questions
 
-$q='SELECT question,answer,user_id FROM captcha ;';
+$q='SELECT question,answer,user_id FROM CAPTCHA';
 $req=$bdd->prepare($q);
 $req->execute();  
 

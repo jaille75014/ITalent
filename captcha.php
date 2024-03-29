@@ -37,7 +37,7 @@ if(isset($_POST['answer'])&& !empty($_POST['answer'])){
     }
 }
 
-$q = 'SELECT COUNT(question_id) FROM captcha;';
+$q = 'SELECT COUNT(question_id) FROM CAPTCHA;';
 $req = $bdd->prepare($q);
 $req->execute();
 $result = $req->fetch(PDO::FETCH_ASSOC);
@@ -45,7 +45,7 @@ foreach($result as $index => $value) $numberMax=$value;
 
 $numberQuestion=rand(1, $numberMax);
 
-$q = 'SELECT question,answer FROM captcha;';
+$q = 'SELECT question,answer FROM CAPTCHA;';
 $req = $bdd->prepare($q);
 $req->execute();
 $result = $req->fetch(PDO::FETCH_ASSOC);
