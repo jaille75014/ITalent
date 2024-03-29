@@ -16,11 +16,12 @@ writeVisitLog('captcha_admin.php');
     include('includes/head.php');
 ?>
 
-<body class="bg-light">*
+<body class="bg-light">
 
     <?php include('includes/header.php');?>
+    <link type="text/css" rel="stylesheet" href="css/style.css">
 
-    <main class="container">
+    <main class="container newsletter_h1">
     <?php 
     if(isset($_GET['messageFailure'])){
     echo '<div class="alert alert-danger" role="alert">'.htmlspecialchars($_GET['messageFailure']).'</div>'; 
@@ -29,28 +30,32 @@ writeVisitLog('captcha_admin.php');
         echo '<div class="alert alert-success" role="alert">'.htmlspecialchars($_GET['messageSuccess']).'</div>'; 
     }
     ?>
-        <h1>Gestion de la newsletter</h1>
+        <h1 class="text-center">Gestion de la <span class="text-primary">Newsletter</span></h1>
 
         <form action="back/edition_newsletter.php" method="POST" enctype="multipart/form-data">
-            <h1>Envoyer un nouveau mail</h1>
-            <div class="col-6">
+            <div class="row">
+            <h1 class="col-12">Envoyer un nouveau mail</h1>
+            </div>
+            <div class="row">
+            <div class="col-6 my-4">
             <input type="text" name="header" class="form-control form-control-lg rounded-0" placeholder="Tapez le titre du mail :">
-            <input type="file" name="image" accept="image/jpeg, image/png, image/gif">
+            <input class="my-4" type="file" name="image" accept="image/jpeg, image/png, image/gif"><br>
+            <span>Entrez le corps de votre e-mail :</span>
+            <textarea name="body_newsletter" class="form-control form-control-lg rounded-0 my-4" cols="10" rows="5"></textarea>
             </div>
-            <div class="col-6">
-                <span>Entrez le corps de votre e-mail :</span>
-            <textarea name="body_newsletter" class="form-control form-control-lg rounded-0" cols="30" rows="10"></textarea>
+            
+            <div class="form-group my-4 checkbox_newsletter col-6">
+                <p>Cochez des cases si vous souhaitez envoyer un mail qu'aux étudiants, recruteurs ou aux autres admins ! Sinon ne cochez rien</p><br>
+                <input type="checkbox" name="etudiant">
+                <label>Etudiants</label>
+                <input type="checkbox" name="recruteur">
+                <label>Recruteurs</label>
+                <input type="checkbox" name="Admin">
+                <label >Admins</label>
+                <input class="col-12 my-4 btn btn-success" type="submit" value="Envoyer le mail"  class="btn btn-success btn-lg float-right my-1">
             </div>
-            <div class="form-group my-4">
-                <p>Cochez une des trois cases si vous souhaitez envoyer un mail qu'aux étudiants, recruteurs ou aux autres admins !</p><br>
-                <input type="radio" class="btn-check" name="etudiant" autocomplete="off">
-                <label class="btn btn-outline-success">Etudiants</label>
-                <input type="radio" class="btn-check" name="recruteur" autocomplete="off">
-                <label class="btn btn-outline-success">Recruteurs</label>
-                <input type="radio" class="btn-check" name="Admin" autocomplete="off">
-                <label class="btn btn-outline-success">Admins</label>
             </div>
-            <input class="col-12" type="submit" value="Envoyer le mail"  class="btn btn-success btn-lg float-right my-1">
+            
         </form>
     </main>
     <?php 

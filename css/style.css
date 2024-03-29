@@ -341,6 +341,19 @@ nav ul {
 }
 
 
+/* CSS page edition de la newsletter */
+.checkbox_newsletter label{
+    padding-right: 30px;
+}
+
+.newsletter_h1 h1.text-center{
+    padding-bottom: 30px;
+}
+
+
+
+
+
 /* CSS Footer  */
 footer {
     width: 100%;

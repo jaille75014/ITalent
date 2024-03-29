@@ -29,7 +29,8 @@ if(isset($_POST["email"])) {
 
   try {
     $mail->send();
-    echo'Un email viens de vous être envoyé';
+    echo'<p>Un email viens de vous être envoyé <br>
+          Revenez sur cette page une fois que vous aurez validé le code !</p>';
 
   } catch (Exception $e) {
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
