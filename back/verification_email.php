@@ -67,20 +67,34 @@ include('../includes/phpmailer.php');
         $result = $req->fetch(PDO::FETCH_ASSOC);
         if($result['email_check'] = 1){
             header('location: ../connexion.php?messageSuccess=Votre email a été vérifié, veuillez vous connecter');
+            exit;
         }
     }
 
 
 ?>
-<!-- Intégration de la police d'écriture  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Intégration de la police d'écriture  -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 <!-- Intégration Bootstrap 5  -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <!-- Intégration de notre CSS -->
 <link type="text/css" rel="stylesheet" href="../css/style.css">
-
-
+    <title>Verification</title>
+</head>
+<body onload="timer = setTimeout('auto_reload()',10000);">
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center mb-4">Code de vérification envoyé, consultez votre boite mail ! Lorsque votre email aura été vérifié, revenez sur cette page...</h2>
+        </div>
+    </div>
+</div>>
 <script>
     var timer = null;
     function auto_reload()
@@ -88,15 +102,7 @@ include('../includes/phpmailer.php');
         window.location = 'https://italent.site/back/verification_email.php?reload=1';  //your page location
     }
 
+// Recharge la page toutes les 10 seconds.
 </script> 
-
-
-<!-- Recharge la page toutes les 10 seconds. -->
-<body onload="timer = setTimeout('auto_reload()',10000);">
-<div class="container py-5">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="text-center text-white mb-4">Code de vérification envoyé, consultez votre boite mail ! Lorsque votre email aura été vérifié, revenez sur cette page...</h2>
-        </div>
-    </div>
-</div>
+</body>
+</html>
