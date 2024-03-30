@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("../includes/bd.php");
 if(isset($_SESSION["code"])){
 

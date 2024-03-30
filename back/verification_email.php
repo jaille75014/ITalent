@@ -14,7 +14,7 @@ include('../includes/phpmailer.php');
     ]);
     $result = $req->fetch(PDO::FETCH_ASSOC);
 
-    $id_user = $result['user_id'];
+    $id_user = $result;
     
     $date = date('Y-m-d H:i:s', strtotime('1 hour')); // Rajoute une heure pour stocker l'expiration
 
