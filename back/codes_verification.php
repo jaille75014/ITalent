@@ -64,7 +64,7 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
 
             // Valider l'inscription dans la table USERS l'utilisateur
             $check_code = 'UPDATE USERS SET email_check = 1 WHERE user_id = :id';
-            $req = $bdd->prepare($delete);
+            $req = $bdd->prepare($check_code);
             $req->execute([
                 'id'=> htmlspecialchars($_GET['id'])
             ]);
