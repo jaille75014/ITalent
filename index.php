@@ -1,10 +1,3 @@
-<?php 
-    session_start(); 
-    
-    include('includes/fonctions_logs.php');
-    writeVisitLog('index.php');
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -59,7 +52,7 @@
             .flip-card img {
                 max-width: 100%;
                 max-height: 200px;
-                border-radius: 5px; 
+                border-radius: 5px;
                 margin-bottom: 10px;
             }
 
@@ -102,6 +95,8 @@
 
 
             <div class="container mt-5">
+
+
                 <div class="d-flex justify-content-center">
                     <div class="row align-items-center my-5 gy-4">
                         <div class="col-12 col-md-6 text-center text-md-start my-5">
@@ -115,11 +110,15 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row py-5 gy-4">
                     <h1 class="text-center"> Nos avantages</h1>
                 </div>
-                <div class="d-flex justify-content-center"> 
+
+
+                <div class="d-flex justify-content-center">
                     <div class="row">
+
                         <div class="col-md-6 mb-4 pe-md-5">
                             <div class="flip-card">
                                 <div class="flip-card-inner">
@@ -143,6 +142,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-md-6 mb-4 ps-md-5">
                             <div class="flip-card">
                                 <div class="flip-card-inner">
@@ -164,9 +164,12 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
+
             </div>
+            
         </main>
 
         <?php include('includes/footer.php');?>
