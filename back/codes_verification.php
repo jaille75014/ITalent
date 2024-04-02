@@ -1,12 +1,14 @@
 <?php
 session_start();
 include("../includes/bd.php");
+include('../includes/header_location.php');
+
+
 if(isset($_SESSION["code"])){
 
 if(!isset($_GET['token']) || empty($_GET['token'])){
-    header('location: verification_email.php?messageFailure=Une erreure est survenue, veuillez réessayer ou regénérer un nouveau mail&again=1');
-    exit;
-    }
+    redirectFailure('verification_email.php', 'Une erreur est survenue, veuillez réessayer ou regénérer un nouveau mail&again=1');
+}
 
 if($_GET['check'] == 0){
 
@@ -67,23 +69,19 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
                 'id'=> htmlspecialchars($_GET['id'])
             ]);
 
-            header('location: ../connexion.php?messageSuccess=Votre email a été vérifié, veuillez vous connecter');
-            exit;  
+            redirectSuccess('../connexion.php', 'Votre email a été vérifié, veuillez vous connecter');  
         } else if(($result['value'] == $_POST['code']) && ($result['hour'] <= $_GET['hour'])){
-            header('location: verification_email.php?messageFailure=Vous êtes trop lent ! votre délais pour vérifier votre email a expiré');
-            exit;
+            redirectFailure('verification_email.php', 'Vous êtes trop lent ! votre délais pour vérifier votre email a expiré');
+
         } else if (($result['value'] != $_POST['code'])){
-            header('location: codes_vérification.php?messageFailure=Le code ne correspond pas, merci de réessayer&token=' . htmlspecialchars($_GET['token']) .'&id=' . htmlspecialchars($_GET['id']) . '&check=0');
-            exit;
+            redirectFailure('codes_vérification.php', 'Le code ne correspond pas, merci de réessayer&token=' . htmlspecialchars($_GET['token']) .'&id=' . htmlspecialchars($_GET['id']) . '&check=0');
         }
         
     } else {
-        header('location: ../connexion.php?messageFailure=Aucun token trouvé à votre nom, il se peut que votre adresse mail soit déjà vérifiée, essayez de vous connecter');
-        exit;
+        redirectFailure('../connexion.php', 'Aucun token trouvé à votre nom, il se peut que votre adresse mail soit déjà vérifiée, essayez de vous connecter');
     }
     }
 } else {
-    header('location: inscription.php?messageFailure=Oh ! Avez-vous essayer de gruger l\'inscription ?');
-    exit;
+    redirectFailure('inscription.php', 'Oh ! Avez-vous essayer de gruger l\'inscription ?');
 }
 ?>

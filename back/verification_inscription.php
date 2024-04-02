@@ -1,5 +1,8 @@
 <?php 
 
+include('../includes/header_location.php');
+include('../includes/bd.php');
+
 if (isset($_POST['email'])&& !empty($_POST['email'])){
     setcookie('email', $_POST['email'] , time()+30*24*3600); // Cookie expire dans 30 jours
 } else if (isset($_POST['email_pro']) && !empty($_POST['email_pro'])){
@@ -36,30 +39,25 @@ if(isset($_POST['email'])){
     }
 
     if (!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
-        header('location: ../inscription.php?messageFailure=Votre email est invalide :('); 
-        exit;
+        redirectFailure('../inscription.php', 'Votre email est invalide :('); 
     }
 
     if (strlen($_POST['password'])<8){
-        header('location: ../inscription.php?messageFailure=Votre mot de passe doit être d\'au moins 8 caractères.'); 
-        exit;
+        redirectFailure('../inscription.php', 'Votre mot de passe doit être d\'au moins 8 caractères.'); 
     }
 
-    include('../includes/bd.php');
 
     if($_FILES['image']['error']!=4){ // Si un fichier a été uploadé
 
         // Vérification de son type
         $acceptable=['image/png','image/jpeg','image/gif'];
         if(!in_array($_FILES['image']['type'],$acceptable)){ // Permet de savoir si une valeur est dans un tableau, renvoie true si c'est le cas et non si ce n'est pas le cas
-            header('location: ../inscription.php?message=Le fichier doit être un jpeg, png ou gif, ne manipule pas mon code !'); 
-            exit;
+            redirectFailure('../inscription.php', 'Le fichier doit être un jpeg, png ou gif, ne manipule pas mon code !'); 
         }
         $maxSize=2*1024*1024;
         // Vérification de sa taille
         if($_FILES['image']['size']>$maxSize){ //  On vérifie si la taille est supérieur à 2Mo
-            header('location: ../inscription.php?message=Le fichier doit être inférieur à 2Mo!'); 
-            exit;
+            redirectFailure('../inscription.php', 'Le fichier doit être inférieur à 2Mo!'); 
         }
 
         if(!file_exists('assets/uploads')){  // Permet de savoir si un fichier / dossier existe, renvoie true si il existe
@@ -93,8 +91,7 @@ if(isset($_POST['email'])){
         ]);
     $results=$req->fetchAll();
     if (!empty($results)){
-        header('location: ../inscription.php?messageFailure=Email déjà utilisé :((('); 
-        exit;
+        redirectFailure('../inscription.php', 'Email déjà utilisé :(((');
     }
 
     $salt = 'SANANESL3PLUSBEAUDUMONDEETDELESGIJEPENSEQUILA49ANS';
@@ -120,8 +117,7 @@ if(isset($_POST['email'])){
         header('location: verification_email.php?message=' . $_POST['email']);
         exit;
     } else {
-        header('location: ../inscription.php?messageFailure=Erreur lors de la création du compte, veuillez recommencer.');
-        exit;
+        redirectFailure('../inscription.php?', 'Erreur lors de la création du compte, veuillez recommencer.');
     }
 
 
@@ -143,22 +139,17 @@ if(isset($_POST['email'])){
         || !isset($_POST['zip'])
         || empty ($_POST['zip'])){
 
-            header("location: inscription.php?messageFailure=Vous devez remplir tous les champs !" ); // Redirection vers connexion.php
-            exit; //Interrompt le code
+        redirectFailure('../inscription.php', 'Vous devez remplir tous les champs !'); // Redirection vers connexion.php
     }
 
 
     if (!filter_var($_POST['email_pro'],FILTER_VALIDATE_EMAIL)){
-        header('location: inscription.php?messageFailure=Votre email est invalide :('); 
-        exit;
+        redirectFailure('../inscription.php', 'Votre email est invalide :('); 
     }
 
     if (strlen($_POST['password'])<8){
-        header('location: inscription.php?messageFailure=Votre mot de passe doit être d\'au moins 8 caractères.'); 
-        exit;
+        redirectFailure('../inscription.php', 'Votre mot de passe doit être d\'au moins 8 caractères.'); 
     }
-
-    include('../includes/bd.php');
 
 
     if($_FILES['image']['error']!=4){ // Si un fichier a été uploadé
@@ -166,14 +157,12 @@ if(isset($_POST['email'])){
         // Vérification de son type
         $acceptable=['image/png','image/jpeg','image/gif'];
         if(!in_array($_FILES['image']['type'],$acceptable)){ // Permet de savoir si une valeur est dans un tableau, renvoie true si c'est le cas et non si ce n'est pas le cas
-            header('location: ../inscription.php?messageFailure=Le fichier doit être un jpeg, png ou gif, ne manipule pas mon code !'); 
-            exit;
+            redirectFailure('../inscription.php', 'Le fichier doit être un jpeg, png ou gif, ne manipule pas mon code !');
         }
         $maxSize=2*1024*1024;
         // Vérification de sa taille
         if($_FILES['image']['size']>$maxSize){ //  On vérifie si la taille est supérieur à 2Mo
-            header('location: ../inscription.php?messageFailure=Le fichier doit être inférieur à 2Mo!'); 
-            exit;
+            redirectFailure('../inscription.php', 'Le fichier doit être inférieur à 2Mo!'); 
         }
 
         if(!file_exists('assets/uploads')){  // Permet de savoir si un fichier / dossier existe, renvoie true si il existe
@@ -208,8 +197,7 @@ if(isset($_POST['email'])){
         ]);
     $results=$req->fetchAll();
     if (!empty($results)){
-        header('location: inscription.php?messageFailure=Email déjà utilisé :((('); 
-        exit;
+        redirectFailure('../inscription.php', 'Email déjà utilisé :((('); 
     }
 
     $salt = 'SANANESL3PLUSBEAUDUMONDEETDELESGIJEPENSEQUILA49ANS';
@@ -235,8 +223,7 @@ if(isset($_POST['email'])){
         header('location: verification_email.php?message='.$_POST['email_pro']);
         exit;
     } else {
-        header('location: inscription.php?messageFailure=Erreur lors de la création du compte, veuillez recommencer.');
-        exit;
+        redirectFailure('../inscription.php', 'Erreur lors de la création du compte, veuillez recommencer.');
     }
 
 }

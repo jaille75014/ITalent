@@ -3,33 +3,18 @@ session_start();
 $_SESSION['code'] = '1';
 include('../includes/bd.php');
 include('../includes/phpmailer.php');
+include('../includes/header_location.php');
 
+function executeQuery($bdd, $query, $params) {
+    $req = $bdd->prepare($query);
+    $req->execute($params);
+    return $req->fetch(PDO::FETCH_ASSOC);
+}
 
-
-    $rand_verification_email = rand(1000000, 9999999); // Genère une valeur à 7 chiffres
-    $select_id = 'SELECT user_id FROM USERS WHERE email = :email';
-    $req = $bdd->prepare($select_id);
-    $result = $req->execute([
-        'email' => htmlspecialchars($_GET['message'])
-    ]);
-    $result = $req->fetch(PDO::FETCH_ASSOC);
-
-    $id_user = $result;
-    
-    $date = date('Y-m-d H:i:s', strtotime('1 hour')); // Rajoute une heure pour stocker l'expiration
-
-    $token = 'INSERT INTO TOKEN (value, date, user_id) values (:value, :date, :user_id)';
-    $req=$bdd->prepare($token);
-    $result=$req->execute([
-        'value' => $rand_verification_email,
-        'date' => $date,
-        'user_id' => $id_user
-        ]);
-
-
+function sendEmail($mail, $email, $rand_verification_email, $id_user) {
     //Recipients
     $mail->setFrom('italent.contact.site@gmail.com', 'Italent');
-    $mail->addAddress(htmlspecialchars($_GET['message'])); // Destinataire
+    $mail->addAddress(htmlspecialchars($email)); // Destinataire
 
     $body = '<p>Bonjour, nous vous remercions de faire confiance à Italent pour la recherche de votre prochain emploi ! <br><br>
     Nous avons juste besoin d\'une petite vérification de votre part pour que vous puissiez vous connecter. <br>
@@ -37,7 +22,6 @@ include('../includes/phpmailer.php');
     <h3>' . $rand_verification_email . '</h3>
     <p>Et cliquez sur ce lien pour vérifier votre identitée : <a href="https://italent.site/back/codes_verification.php?id=' . $id_user . '&token=' . $rand_verification_email . '&check=0">Clique vite !</a><br>
     <b>Attention !</b> Ce lien n\'est valable que pendant 1h! </p>';
-
 
     //Attachments :
     $mail->addAttachment('../assets/LOGO_version_complète.png', "LOGO_version_complète.png");
@@ -49,30 +33,34 @@ include('../includes/phpmailer.php');
     $mail->AltBody = strip_tags($body);
 
     try {
-    $mail->send();
-
+        $mail->send();
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     } 
+}
 
+$rand_verification_email = rand(1000000, 9999999); // Genère une valeur à 7 chiffres
+$result = executeQuery($bdd, 'SELECT user_id FROM USERS WHERE email = :email', ['email' => htmlspecialchars($_GET['message'])]);
+$id_user = $result;
 
-    // Code pour le reload de la page
+$date = date('Y-m-d H:i:s', strtotime('1 hour')); // Rajoute une heure pour stocker l'expiration
+executeQuery($bdd, 'INSERT INTO TOKEN (value, date, user_id) values (:value, :date, :user_id)', 
+    [
+        'value' => $rand_verification_email, 
+        'date' => $date, 
+        'user_id' => $id_user
+    ]);
 
-    if(isset($_GET['reload'])){
-        $check_token = 'SELECT email_check FROM USERS WHERE email = :email';
-        $req = $bdd->prepare($check_token);
-        $result = $req->execute([
-            'email'=> htmlspecialchars($_GET['message'])
-        ]);
-        $result = $req->fetch(PDO::FETCH_ASSOC);
-        if($result['email_check'] = 1){
-            header('location: ../connexion.php?messageSuccess=Votre email a été vérifié, veuillez vous connecter');
-            exit;
-        }
+sendEmail($mail, $_GET['message'], $rand_verification_email, $id_user);
+
+if(isset($_GET['reload'])){
+    $result = executeQuery($bdd, 'SELECT email_check FROM USERS WHERE email = :email', ['email'=> htmlspecialchars($_GET['message'])]);
+    if($result['email_check'] = 1){
+        redirectSuccess('../connexion.php', 'Votre email a été vérifié, veuillez vous connecter');
     }
-
-
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,7 +75,7 @@ include('../includes/phpmailer.php');
 <link type="text/css" rel="stylesheet" href="../css/style.css">
     <title>Verification</title>
 </head>
-<body onload="timer = setTimeout('auto_reload()',10000);">
+<body>
 <div class="container py-5">
     <div class="row">
         <div class="col-md-12">
@@ -96,13 +84,13 @@ include('../includes/phpmailer.php');
     </div>
 </div>>
 <script>
-    var timer = null;
     function auto_reload()
     {
         window.location = 'https://italent.site/back/verification_email.php?reload=1';  //your page location
     }
 
-// Recharge la page toutes les 10 seconds.
+    // Reload the page every 10 seconds.
+    var timer = setInterval(auto_reload, 10000);
 </script> 
 </body>
 </html>
