@@ -10,7 +10,7 @@ writeVisitLog('messagerie.php');
 
 $result_messages = array();
 
-$sql_users = "SELECT user_id, firstname, lastname FROM users";
+$sql_users = "SELECT user_id, firstname, lastname FROM USERS";
 $stmt_users = $bdd->query($sql_users);
 $result_users = $stmt_users->fetchAll(PDO::FETCH_ASSOC);
 
