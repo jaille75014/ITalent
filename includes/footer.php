@@ -46,10 +46,10 @@
               <a href="#!" class="text-white">Conditions généraless</a>
             </li>
             <li class="mb-2">
-              <a href="#!" class="text-white">Politique de confidentialité</a>
+              <a href="confidentialite.php" class="text-white">Politique de confidentialité</a>
             </li>
             <li class="mb-2">
-              <a href="#!" class="text-white">Utilisation des cookies</a>
+              <a href="cookies.php" class="text-white">Utilisation des cookies</a>
             </li>
           </ul>
     </div>
