@@ -50,7 +50,7 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
     $req->execute([
         'id'=> htmlspecialchars($_GET['id'])
     ]);
-    $result = $req->fetch(PDO::FETCH_ASSOC);
+    $result = $req->fetchAll(PDO::FETCH_ASSOC);
     var_dump($result);
 
     if(isset($result)){
@@ -75,7 +75,7 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
             redirectFailure('verification_email.php', 'Vous êtes trop lent ! votre délais pour vérifier votre email a expiré');
 
         } else if (($result['value'] != $_POST['code'])){
-            redirectFailure('codes_vérification.php', 'Le code ne correspond pas, merci de réessayer&token=' . htmlspecialchars($_GET['token']) .'&id=' . htmlspecialchars($_GET['id']) . '&check=0');
+            redirectFailure('codes_verification.php', 'Le code ne correspond pas, merci de réessayer&token=' . htmlspecialchars($_GET['token']) .'&id=' . htmlspecialchars($_GET['id']) . '&check=0&debug=' . $result['value'] . '&debug2=' . $result['date']);
         }
         
     } else {
