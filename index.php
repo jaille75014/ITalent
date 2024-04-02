@@ -5,8 +5,8 @@
         <style>
             .flip-card {
                 background-color: transparent;
-                width: 300px;
-                height: 400px;
+                width: 400px;
+                height: 500px;
                 perspective: 1000px;
                 margin-bottom: 20px;
             }
@@ -35,7 +35,7 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                padding: 20px;
+                padding: 10px;
                 border-radius: 10px;
             }
 
@@ -51,9 +51,8 @@
 
             .flip-card img {
                 max-width: 100%;
-                max-height: 200px;
+                max-height: 250px;
                 border-radius: 5px;
-                margin-bottom: 10px;
             }
 
             .flip-card h5 {

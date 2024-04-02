@@ -47,7 +47,7 @@ mais vous pouvez généralement modifier les paramètres de votre navigateur pou
 Toutefois, veuillez noter que si vous désactivez les cookies, certaines fonctionnalités de notre site Web peuvent ne pas fonctionner correctement.</p>
 
 <h3 class="text-center" >Questions ?</h3>
-<p class="my-4">Si vous avez des questions concernant notre utilisation des cookies, n'hésitez pas à nous contacter à <b>contact.italent.site@gmail.com</b> pour obtenir plus d'informations. <br>
+<p class="my-4">Si vous avez des questions concernant notre utilisation des cookies, n'hésitez pas à nous contacter par <b><a href="mailto:italent.contact.site@gmail.com">email</a></b> pour obtenir plus d'informations. <br>
 
 En continuant à utiliser notre site Web, vous acceptez notre utilisation des cookies conformément à la présente politique.</p>
     </main>
