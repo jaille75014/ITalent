@@ -11,11 +11,11 @@ $email = htmlspecialchars($_GET['message']);
 $rand_verification_email = rand(1000000, 9999999); // Genère une valeur à 7 chiffres
 $select_id = 'SELECT user_id FROM USERS WHERE email = :email';
 $req = $bdd->prepare($select_id);
-$req->execute(
-    ['email' => htmlspecialchars($_GET['message'])
+$req->execute([
+    'email' => htmlspecialchars($_GET['message'])
 ]);
 $result = $req->fetch(PDO::FETCH_ASSOC);
-$id_user = $result;
+$id_user = $result['user_id'];
 
 $date = date('Y-m-d H:i:s', time() + 60*60); // Rajoute une heure pour stocker l'expiration
 
