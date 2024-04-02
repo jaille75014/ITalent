@@ -52,7 +52,7 @@
             include('../includes/bd.php');
 
 
-            $q='SELECT competence_id FROM competences WHERE name=:name';
+            $q='SELECT competence_id FROM COMPETENCES WHERE name=:name';
             $req=$bdd->prepare($q);
             $req->execute([
                 'name'=>$_POST['competenceTest']
@@ -60,7 +60,7 @@
             $result=$req->fetch(PDO::FETCH_ASSOC);
             foreach($result as $index => $value) $id_competence=$value;
 
-            $q2='INSERT INTO possesses (competence_id,user_id,level,validity) VALUES(:competence_id,:user_id,:level,:validity);';
+            $q2='INSERT INTO POSSESSES (competence_id,user_id,level,validity) VALUES(:competence_id,:user_id,:level,:validity);';
             $req2=$bdd->prepare($q2);
             $req2->execute([
                 'competence_id'=> $id_competence,

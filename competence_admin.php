@@ -1,5 +1,6 @@
 <?php 
 session_start(); 
+ini_set("display_errors",1); // A SUPP APRES
 
 if(!isset($_SESSION['captcha'])){
     header('location:captcha.php?error=Chipeur arrête de chipper !');

@@ -22,7 +22,7 @@ writeVisitLog('captcha_admin.php');
 include('includes/bd.php'); // Connexion à la base de données
 
 // Récupérer l'id de la compétencec choisi par l'utilisateur (sert pour la requête permettant de récupérer tte les questions)
-$q='SELECT competence_id FROM competences WHERE name=:name;';
+$q='SELECT competence_id FROM COMPETENCES WHERE name=:name;';
 $req=$bdd->prepare($q);
 $req->execute([
     'name'=>$_POST['competenceTest']
@@ -34,7 +34,7 @@ foreach($result as $index=>$value){
 }
 
 // Maintenant qu'on a l'id de la compétence, on peut récupérer l'ensemble des questions
-$q2='SELECT question,answerCorrect,answer1,answer2,answer3,answer4 FROM questions WHERE competence_id=:competence_id;';
+$q2='SELECT question,answerCorrect,answer1,answer2,answer3,answer4 FROM QUESTIONS WHERE competence_id=:competence_id;';
 $req2=$bdd->prepare($q2);
 $req2->execute([
     'competence_id'=> $competenceId

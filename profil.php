@@ -26,7 +26,7 @@ $stmtStorys->execute([$user_id]);
 $storys = $stmtStorys->fetchAll();
 
 // LISTE DE COMPÉTENCES
-$q='SELECT name FROM competences ;';
+$q='SELECT name FROM COMPETENCES ;';
 $req=$bdd->prepare($q);
 $req->execute(); 
 
