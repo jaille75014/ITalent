@@ -43,7 +43,9 @@ $rand_verification_email = rand(1000000, 9999999); // Genère une valeur à 7 ch
 $result = executeQuery($bdd, 'SELECT user_id FROM USERS WHERE email = :email', ['email' => htmlspecialchars($_GET['message'])]);
 $id_user = $result;
 
-$date = date('Y-m-d H:i:s', strtotime('1 hour')); // Rajoute une heure pour stocker l'expiration
+$date = date('Y-m-d H:i:s', time() + 60*60); // Rajoute une heure pour stocker l'expiration
+echo $date;
+
 executeQuery($bdd, 'INSERT INTO TOKEN (value, date, user_id) values (:value, :date, :user_id)', 
     [
         'value' => $rand_verification_email, 
