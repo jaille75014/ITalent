@@ -16,7 +16,7 @@ $result_users = $stmt_users->fetchAll(PDO::FETCH_ASSOC);
 
 if (isset($_GET['user_id'])) {
     $user_id = $_GET['user_id'];
-    $sql_messages = "SELECT * FROM message WHERE (user_id_source = ? AND user_id_target_id = ?) OR (user_id_source = ? AND user_id_target_id = ?) ORDER BY date ASC";
+    $sql_messages = "SELECT * FROM MESSAGE WHERE (user_id_source = ? AND user_id_target_id = ?) OR (user_id_source = ? AND user_id_target_id = ?) ORDER BY date ASC";
     $stmt_messages = $bdd->prepare($sql_messages);
     $stmt_messages->execute([$_SESSION['user_id'], $user_id, $user_id, $_SESSION['user_id']]);
     $result_messages = $stmt_messages->fetchAll(PDO::FETCH_ASSOC);
