@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tel = $_POST['tel'];
 
     $query = "UPDATE USERS SET firstname = ?, lastname = ?, email = ?, tel = ? WHERE user_id = ?";
-    $stmt = $bdd->prepare($query);
-    if ($stmt->execute([$firstname, $lastname, $email, $tel, $user_id])) {
+    $res = $bdd->prepare($query);
+    if ($res->execute([$firstname, $lastname, $email, $tel, $user_id])) {
         header('Location: ../profil.php');
     } else {
         header('Location: ../profil.php?messageFailure=');
