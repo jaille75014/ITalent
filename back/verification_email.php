@@ -56,6 +56,7 @@ $req->execute(
         'user_id' => $id_user
     ]);
     $result = $req->fetch(PDO::FETCH_ASSOC);
+    ///var_dump($result);
 
 if(isset($_GET['reload'])){
 $select_check = 'SELECT email_check FROM USERS WHERE email = :email';
