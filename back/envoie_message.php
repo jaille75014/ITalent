@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['message_content'], $_P
     $message_content = htmlspecialchars($message_content);
 
     // Préparation de la requête d'insertion
-    $insert = $bdd->prepare("INSERT INTO message (content, user_id_target_id, user_id_source, date) VALUES (?, ?, ?, NOW())");
+    $insert = $bdd->prepare("INSERT INTO MESSAGE (content, user_id_target_id, user_id_source, date) VALUES (?, ?, ?, NOW())");
     
     if ($insert->execute([$message_content, $user_id_target_id, $user_id_source])) {
         header('Location: ../messagerie.php?user_id=' . urlencode($user_id_target_id));
