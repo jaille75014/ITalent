@@ -11,10 +11,17 @@ function executeQuery($bdd, $query, $params) {
     return $req->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function sendEmail($mail, $email, $rand_verification_email, $id_user) {
+
+$email = htmlspecialchars($_GET['message']);
+$rand_verification_email = rand(1000000, 9999999); // Genère une valeur à 7 chiffres
+$result = executeQuery($bdd, 'SELECT user_id FROM USERS WHERE email = :email', ['email' => htmlspecialchars($_GET['message'])]);
+$id_user = $result;
+
+$date = date('Y-m-d H:i:s', time() + 60*60); // Rajoute une heure pour stocker l'expiration
+
     //Recipients
     $mail->setFrom('italent.contact.site@gmail.com', 'Italent');
-    $mail->addAddress(htmlspecialchars($email)); // Destinataire
+    $mail->addAddress(htmlspecialchars($_GET['message'])); // Destinataire
 
     $body = '<p>Bonjour, nous vous remercions de faire confiance à Italent pour la recherche de votre prochain emploi ! <br><br>
     Nous avons juste besoin d\'une petite vérification de votre part pour que vous puissiez vous connecter. <br>
@@ -37,13 +44,7 @@ function sendEmail($mail, $email, $rand_verification_email, $id_user) {
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     } 
-}
 
-$rand_verification_email = rand(1000000, 9999999); // Genère une valeur à 7 chiffres
-$result = executeQuery($bdd, 'SELECT user_id FROM USERS WHERE email = :email', ['email' => htmlspecialchars($_GET['message'])]);
-$id_user = $result;
-
-$date = date('Y-m-d H:i:s', time() + 60*60); // Rajoute une heure pour stocker l'expiration
 
 executeQuery($bdd, 'INSERT INTO TOKEN (value, date, user_id) values (:value, :date, :user_id)', 
     [
@@ -51,8 +52,6 @@ executeQuery($bdd, 'INSERT INTO TOKEN (value, date, user_id) values (:value, :da
         'date' => $date, 
         'user_id' => $id_user
     ]);
-
-sendEmail($mail, $_GET['message'], $rand_verification_email, $id_user);
 
 if(isset($_GET['reload'])){
     $result = executeQuery($bdd, 'SELECT email_check FROM USERS WHERE email = :email', ['email'=> htmlspecialchars($_GET['message'])]);
