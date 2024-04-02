@@ -45,15 +45,15 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
 <?php
 
 } else {
-    $valid_token = 'SELECT value, hour FROM TOKEN WHERE user_id = :id';
+    $valid_token = 'SELECT value, date FROM TOKEN WHERE user_id = :id';
     $req = $bdd->prepare($valid_token);
     $req->execute([
         'id'=> htmlspecialchars($_GET['id'])
     ]);
-    $result = $req->fetch(PDO::FETCH_ASSOC);
+    $result = $req->fetchAll(PDO::FETCH_ASSOC);
 
     if(isset($result)){
-        if(($result['value'] == $_POST['code']) && ($result['hour'] >= $_GET['hour'])){
+        if(($result['value'] == $_POST['code']) && ($result['date'] >= $_GET['date'])){
 
             // Supprimer le token une fois qu'il à été validé
             $delete = 'DELETE FROM TOKEN WHERE user_id = :id';
@@ -70,7 +70,7 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
             ]);
 
             redirectSuccess('../connexion.php', 'Votre email a été vérifié, veuillez vous connecter');  
-        } else if(($result['value'] == $_POST['code']) && ($result['hour'] <= $_GET['hour'])){
+        } else if(($result['value'] == $_POST['code']) && ($result['date'] <= $_GET['hour'])){
             redirectFailure('verification_email.php', 'Vous êtes trop lent ! votre délais pour vérifier votre email a expiré');
 
         } else if (($result['value'] != $_POST['code'])){

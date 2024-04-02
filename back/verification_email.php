@@ -41,6 +41,7 @@ $date = date('Y-m-d H:i:s', time() + 60*60); // Rajoute une heure pour stocker l
 
     try {
         $mail->send();
+        echo '<p>Un email vient de vous être envoyé, vérifiez vos email et revennez sur cette page lorsque vous aurez terminé !</p>';
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     } 
@@ -62,7 +63,7 @@ if(isset($_GET['reload'])){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
