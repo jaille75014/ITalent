@@ -50,8 +50,7 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
     $req->execute([
         'id'=> htmlspecialchars($_GET['id'])
     ]);
-    $result = $req->fetchAll(PDO::FETCH_ASSOC);
-    var_dump($result);
+    $result = $req->fetch(PDO::FETCH_ASSOC);
 
     if(isset($result)){
         if(($result['value'] == $_POST['code']) && ($result['date'] >= $_GET['date'])){
