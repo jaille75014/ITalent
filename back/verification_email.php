@@ -5,16 +5,16 @@ include('../includes/bd.php');
 include('../includes/phpmailer.php');
 include('../includes/header_location.php');
 
-function executeQuery($bdd, $query, $params) {
-    $req = $bdd->prepare($query);
-    $req->execute($params);
-    return $req->fetch(PDO::FETCH_ASSOC);
-}
 
 
 $email = htmlspecialchars($_GET['message']);
 $rand_verification_email = rand(1000000, 9999999); // Genère une valeur à 7 chiffres
-$result = executeQuery($bdd, 'SELECT user_id FROM USERS WHERE email = :email', ['email' => htmlspecialchars($_GET['message'])]);
+$select_id = 'SELECT user_id FROM USERS WHERE email = :email';
+$req = $bdd->prepare($select_id);
+$req->execute(
+    ['email' => htmlspecialchars($_GET['message'])
+]);
+$result = $req->fetch(PDO::FETCH_ASSOC);
 $id_user = $result;
 
 $date = date('Y-m-d H:i:s', time() + 60*60); // Rajoute une heure pour stocker l'expiration
@@ -47,15 +47,23 @@ $date = date('Y-m-d H:i:s', time() + 60*60); // Rajoute une heure pour stocker l
     } 
 
 
-executeQuery($bdd, 'INSERT INTO TOKEN (value, date, user_id) values (:value, :date, :user_id)', 
+$insert_token = 'INSERT INTO TOKEN (value, date, user_id) values (:value, :date, :user_id)';
+$req = $bdd->prepare($insert_token);
+$req->execute(
     [
         'value' => $rand_verification_email, 
         'date' => $date, 
         'user_id' => $id_user
     ]);
+    $result = $req->fetch(PDO::FETCH_ASSOC);
 
 if(isset($_GET['reload'])){
-    $result = executeQuery($bdd, 'SELECT email_check FROM USERS WHERE email = :email', ['email'=> htmlspecialchars($_GET['message'])]);
+$select_check = 'SELECT email_check FROM USERS WHERE email = :email';
+$req = $bdd->prepare($select_check);
+$req->execute(
+['email'=> htmlspecialchars($_GET['message'])]);
+$result = $req->fetch(PDO::FETCH_ASSOC);
+
     if($result['email_check'] = 1){
         redirectSuccess('../connexion.php', 'Votre email a été vérifié, veuillez vous connecter');
     }
