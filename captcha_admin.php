@@ -106,7 +106,7 @@ $req->execute();
                                 
                             } else {
                                 echo '<td>';
-                                $q='SELECT lastname, firstname FROM users WHERE user_id='.$value;
+                                $q='SELECT lastname, firstname FROM USERS WHERE user_id='.$value;
                                 $req2=$bdd->prepare($q);
                                 $req2->execute(); 
                                 $result2=$req2->fetch(PDO::FETCH_ASSOC);

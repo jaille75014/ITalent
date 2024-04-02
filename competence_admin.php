@@ -1,6 +1,10 @@
 <?php 
 session_start(); 
 
+if(!isset($_SESSION['captcha'])){
+    header('location:captcha.php?error=Chipeur arrête de chipper !');
+    exit;
+}
     
 
 if (!isset($_SESSION['statut'])) {
@@ -9,14 +13,14 @@ if (!isset($_SESSION['statut'])) {
 } 
 
 include('includes/fonctions_logs.php');
-writeVisitLog('captcha.php');
+writeVisitLog('competence_admin.php');
 
 include('includes/bd.php'); // Connexion à la base de données
     
 // AJOUT DE COMPÉTENCES
 
 if(isset($_POST['addCompetence'])&& !empty($_POST['addCompetence'])){
-    $q='INSERT INTO competences (name) VALUES (:name);';
+    $q='INSERT INTO COMPETENCES (name) VALUES (:name);';
     $req=$bdd->prepare($q);
     $req->execute([
         'name'=>$_POST['addCompetence']
@@ -25,12 +29,12 @@ if(isset($_POST['addCompetence'])&& !empty($_POST['addCompetence'])){
 
 // TABLEAU DES COMPÉTENCES
 
-$q2='SELECT competence_id,name FROM competences ;';
+$q2='SELECT competence_id,name FROM COMPETENCES ;';
 $req2=$bdd->prepare($q2);
 $req2->execute();  
 
 // LISTE DE COMPÉTENCES
-$q3='SELECT name FROM competences ;';
+$q3='SELECT name FROM COMPETENCES ;';
 $req3=$bdd->prepare($q3);
 $req3->execute(); 
 
@@ -44,7 +48,7 @@ if (isset($_POST['competenceScroll']) && !empty($_POST['competenceScroll'])
 && isset($_POST['answerCorrect']) && !empty($_POST['answerCorrect']) ){
 
 
-    $q4='SELECT competence_id FROM competences WHERE name=:name;';
+    $q4='SELECT competence_id FROM COMPETENCES WHERE name=:name;';
     $req4=$bdd->prepare($q4);
     $req4->execute([
         'name'=>$_POST['competenceScroll']
@@ -55,7 +59,7 @@ if (isset($_POST['competenceScroll']) && !empty($_POST['competenceScroll'])
         $competenceName=$value4;
     }
     
-    $q5='INSERT INTO questions (question,answerCorrect,answer1,answer2,answer3,answer4,competence_id) VALUES (:question,:answerCorrect,:answer1,:answer2,:answer3,:answer4,:competence_id);';
+    $q5='INSERT INTO QUESTIONS (question,answerCorrect,answer1,answer2,answer3,answer4,competence_id) VALUES (:question,:answerCorrect,:answer1,:answer2,:answer3,:answer4,:competence_id);';
     $req5=$bdd->prepare($q5);
     $req5->execute([
         'question'=> $_POST['question'],
@@ -74,7 +78,7 @@ if (isset($_POST['competenceScroll']) && !empty($_POST['competenceScroll'])
 // SUPPRESSION DE QUESTIONS
 
 if(isset($_POST['delete'])){
-    $q9='DELETE FROM questions WHERE question=:question ;';
+    $q9='DELETE FROM QUESTIONS WHERE question=:question ;';
     $req9=$bdd->prepare($q9);
     $req9->execute([
         'question'=>$_POST['delete']
@@ -82,7 +86,7 @@ if(isset($_POST['delete'])){
 }
 
 // LISTE DE COMPÉTENCES V2 (pour le tableau de questions)
-$q6='SELECT name FROM competences ;';
+$q6='SELECT name FROM COMPETENCES ;';
 $req6=$bdd->prepare($q6);
 $req6->execute(); 
 
@@ -219,7 +223,7 @@ $req6->execute();
 
                     if (isset($_POST['competenceScroll2'])&&!empty($_POST['competenceScroll2'])){
 
-                        $q7='SELECT competence_id FROM competences WHERE name=:name;';
+                        $q7='SELECT competence_id FROM COMPETENCES WHERE name=:name;';
                         $req7=$bdd->prepare($q7);
                         $req7->execute([
                             'name'=>$_POST['competenceScroll2']
@@ -230,7 +234,7 @@ $req6->execute();
                             $competenceName2=$value7;
                         }
 
-                        $q8='SELECT question,answer1,answer2,answer3,answer4,answerCorrect FROM questions WHERE competence_id=:competence_id;';
+                        $q8='SELECT question,answer1,answer2,answer3,answer4,answerCorrect FROM QUESTIONS WHERE competence_id=:competence_id;';
                         $req8=$bdd->prepare($q8);
                         $req8->execute([
                             'competence_id'=> $competenceName2

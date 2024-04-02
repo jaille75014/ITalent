@@ -4,8 +4,14 @@ if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
     header('location:index.php');
     exit;
 } 
+if(!isset($_SESSION['captcha'])){
+    header('location:captcha.php?error=Chipeur arrête de chipper !');
+    exit;
+}
+    
+
 include('includes/fonctions_logs.php');
-writeVisitLog('captcha_admin.php');
+writeVisitLog('newsletter_admin.php');
 
 ?>
 <!DOCTYPE html>
