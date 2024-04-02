@@ -8,7 +8,7 @@ include('../includes/header_location.php');
 function executeQuery($bdd, $query, $params) {
     $req = $bdd->prepare($query);
     $req->execute($params);
-    return $req->fetchAll(PDO::FETCH_ASSOC);
+    return $req->fetch(PDO::FETCH_ASSOC);
 }
 
 
