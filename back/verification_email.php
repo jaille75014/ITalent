@@ -8,7 +8,7 @@ include('../includes/header_location.php');
 function executeQuery($bdd, $query, $params) {
     $req = $bdd->prepare($query);
     $req->execute($params);
-    return $req->fetch(PDO::FETCH_ASSOC);
+    return $req->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function sendEmail($mail, $email, $rand_verification_email, $id_user) {
@@ -44,7 +44,6 @@ $result = executeQuery($bdd, 'SELECT user_id FROM USERS WHERE email = :email', [
 $id_user = $result;
 
 $date = date('Y-m-d H:i:s', time() + 60*60); // Rajoute une heure pour stocker l'expiration
-echo $date;
 
 executeQuery($bdd, 'INSERT INTO TOKEN (value, date, user_id) values (:value, :date, :user_id)', 
     [
