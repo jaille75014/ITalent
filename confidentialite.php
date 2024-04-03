@@ -60,7 +60,7 @@ include('includes/head.php');
 
 <h2 class="text-center">Contactez-nous</h2>
 
-<p>Si vous avez des questions concernant cette politique de confidentialité, veuillez nous contacter par <a href="mailto:italent.contact.site@gmail.com">email</a></p>
+<p>Si vous avez des questions concernant cette politique de confidentialité, veuillez nous contacter à l'adresse <b><a href="mailto:italent.contact.site@gmail.com">italent.contact.site@gmail.com</a></b></p>
 
     </main>
     

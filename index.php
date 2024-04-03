@@ -1,75 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-    <head>
-        <style>
-            .flip-card {
-                background-color: transparent;
-                width: 400px;
-                height: 500px;
-                perspective: 1000px;
-                margin-bottom: 20px;
-            }
 
-            .flip-card-inner {
-                position: relative;
-                width: 100%;
-                height: 100%;
-                text-align: center;
-                transition: transform 0.6s;
-                transform-style: preserve-3d;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
-            }
-
-            .flip-card:hover .flip-card-inner {
-                transform: rotateY(180deg);
-            }
-
-            .flip-card-front,
-            .flip-card-back {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                backface-visibility: hidden;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                padding: 10px;
-                border-radius: 10px;
-            }
-
-            .flip-card-front {
-                color: black;
-            }
-
-            .flip-card-back {
-                background: linear-gradient(to right, #0E3D69, #2482DC);
-                color: white;
-                transform: rotateY(180deg);
-            }
-
-            .flip-card img {
-                max-width: 100%;
-                max-height: 250px;
-                border-radius: 5px;
-            }
-
-            .flip-card h5 {
-                margin-bottom: 10px;
-            }
-
-            .flip-card-back ul {
-                list-style-type: none;
-                padding: 0;
-                margin: 0;
-            }
-
-            .flip-card-back ul li {
-                padding: 5px 0;
-            }
-        </style>
-    </head>
 
     <?php 
     $title='Accueil';
