@@ -12,7 +12,6 @@ if (!isset($_SESSION['statut'])) {
     header('location:index.php');
     exit;
 } 
-
 include('includes/fonctions_logs.php');
 writeVisitLog('competence_admin.php');
 
