@@ -7,13 +7,13 @@ function getSubscribedUsers($bdd) {
     $users_subscribed = 'SELECT email FROM USERS WHERE newsletter = 1';
     $req = $bdd->prepare($users_subscribed);
     $req->execute();
-    return $req->fetch(PDO::FETCH_ASSOC);
+    return $req->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function getUserType($bdd, $email) {
-    $type = 'SELECT statut FROM USERS WHERE email = \''. $email . '\'';
+    $type = 'SELECT statut FROM USERS WHERE email = :email';
     $req = $bdd->prepare($type);
-    $req->execute();
+    $req->execute(['email' => $email]);
     return $req->fetch(PDO::FETCH_ASSOC);
 }
 
@@ -48,10 +48,13 @@ $image = $_FILES['image']['error'] != 4 ? $_FILES['image'] : '../assets/LOGO_ver
 $results = getSubscribedUsers($bdd);
 
 foreach ($results as $index => $values) {
-    $userType = getUserType($bdd, $values);
-    if ((isset($_POST['etudiant']) && $userType == 1) || (isset($_POST['recruteur']) && $userType == 2) || (isset($_POST["admin"]) && $userType == 3)) {
-        echo '<p>Envoi du mail à' . $values . '</p>';
-        sendEmail($mail, $header, $body, $image, $values);
+    $userType = getUserType($bdd, $values['email']);
+    if ((isset($_POST['etudiant']) && $userType['statut'] == 1) || (isset($_POST['recruteur']) && $userType['statut'] == 2) || (isset($_POST["admin"]) && $userType['statut'] == 3)) {
+        echo '<p>Envoi du mail à' . $values['email'] . '</p>';
+        sendEmail($mail, $header, $body, $image, $values['email']);
+    } else { // envoi à tous les utilisateurs
+        echo '<p>Envoi du mail à' . $values['email'] . '</p>';
+        sendEmail($mail, $header, $body, $image, $values['email']);
     }
 }
 

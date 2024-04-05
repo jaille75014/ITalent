@@ -58,7 +58,7 @@ writeVisitLog('newsletter_admin.php');
                 <label>Recruteurs</label>
                 <input type="checkbox" name="Admin">
                 <label >Admins</label>
-                <input class="col-12 my-4 btn btn-success" type="submit" value="Envoyer le mail"  class="btn btn-success btn-lg float-right my-1">
+                <input type="submit" value="Envoyer le mail"  class="btn btn-success btn-lg float-right my-1">
             </div>
             </div>
             
