@@ -68,6 +68,5 @@
   </div>
   </div>
   <hr>
-  <p class="copyright">Tous droits réservés &copy 2024 - ITalent </p>
-
+  <p class="copyright">Tous droits réservés &copy <?php echo date('Y'); ?> - ITalent </p>
 </footer>
