@@ -1,7 +1,6 @@
 <?php 
 session_start();
-
-    
+include('includes/header_location.php');
 include'includes/bd.php';
 ?>
 
@@ -24,16 +23,14 @@ include'includes/bd.php';
         $results = $req->fetch(PDO::FETCH_ASSOC);
 
         if (!isset($_SESSION["newsletter"]) && $_SESSION["newsletter"] != 1) {
-            echo "<h1>Oh oh ! Si ce message apparaît, c'est que vous n'étiez pas sensé apparaître sur cette page ! 
-            Retournez en arrière et réessayez.</h1>";
+            redirectFailure($_GET['url'], 'Vous n\'avez pas les droits pour accéder à cette page.');
         } else {
             if($_GET['news'] == 1 ) {
                 setcookie("email", $_GET['email'], time()+60); // On crée un cookie qui expirera 25 secondes plus tard pour des raisons de sécurité.
             } else 
             foreach ($results as $index => $value) {
                 if ($value == 1){ //Si le champ newsletter est déjà rempli
-                    header('location: ' . $_GET['url'] . '?messageSuccess=Vous êtes déjà inscrit à notre newsletter!');
-                    exit();
+                    redirectSuccess($_GET['url'], 'Vous êtes déjà inscrit à notre newsletter !');
                 }
             }
              
@@ -81,8 +78,8 @@ include'includes/bd.php';
             <?php
             } else if ($_GET['news'] == 2) {
                 if(isset($_POST['no']) && !empty($_POST['no'])){
-                    header('location: ' . htmlspecialchars($_GET['url']) . '?messageSuccess=Vous avez décidé d\'annuler votre inscription... Si proche du but !');
-                    exit;
+                    
+                    redirectSuccess($_GET['url'], 'Vous avez changé d\'avis, vous n\'êtes pas inscrit à notre newsletter');
                 }
                 $email_db = 'SELECT email FROM USERS where email = :email';
                 $req = $bdd->prepare($email_db);
@@ -103,8 +100,7 @@ include'includes/bd.php';
             }
             
         }
-            header('location: ' . htmlspecialchars($_GET['url']) . '?messageSuccess=Votre inscription à notre newsletter s\'est bien déroulée ! Merci');
-            exit;
+            redirectSuccess($_GET['url'], 'Vous êtes maintenant inscrit à notre newsletter ! MERCI !');
             }
             else {
                 header('location: inscription_newsletter.php?messageFailure=Une erreure s\'est produite, vérifiez que vous avez bien écrit votre email&news=1&mail=' . htmlspecialchars($_GET['email']) . '&url=' . htmlspecialchars($_GET['url']));

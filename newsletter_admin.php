@@ -1,12 +1,11 @@
 <?php 
 session_start();
+include('includes/header_location.php');
 if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
-    header('location:index.php');
-    exit;
+    redirectFailure('index.php', 'Vous devez être connecté en tant qu\'admin pour accéder à cette page.');
 } 
 if(!isset($_SESSION['captcha'])){
-    header('location:captcha.php?error=Chipeur arrête de chipper !');
-    exit;
+    redirectFailure('captcha.php', 'Chipeur arrête de chipper !');
 }
     
 

@@ -1,11 +1,11 @@
 <?php
 session_start(); 
+include('includes/header_location.php');
 
 include('includes/bd.php'); 
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../connexion.php'); 
-    exit;
+    redirectFailure('connexion.php', 'Vous devez être connecté pour accéder à cette page.');
 }
 
 $user_id = $_SESSION['user_id'];

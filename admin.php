@@ -47,7 +47,7 @@
         $req_storys = $bdd->prepare('DELETE FROM STORYS WHERE user_id = :id');
         $req_storys->execute(array(':id' => $id));
 
-        $req = $bdd->prepare('DELETE FROM USERS WHERE user_id = :id');
+        $req = $bdd->prepare('DELETE FROM USERS WHERE user_id = :id'); // Opter pour une modification du statut à 0 plutôt que la suppression
         $req->execute(array(':id' => $id));
 
         if(isset($_POST['raison_suppression'])) {
@@ -125,7 +125,24 @@ include('includes/head.php');?>
                         <td class="text-center"><?php echo $user['lastname']; ?></td>
                         <td class="text-center"><?php echo $user['firstname']; ?></td>
                         <td class="text-center"><?php echo $user['email']; ?></td>
-                        <td class="text-center"><?php echo $user['statut'] == '1' ? "Etudiant" : ($user['statut'] == '2' ? "Recruteur" : "Admin"); ?></td>
+                        <td class="text-center">
+                        <?php 
+                            switch ($user['statut']) {
+                                case '1':
+                                    echo "Etudiant";
+                                    break;
+                                case '2':
+                                    echo "Recruteur";
+                                    break;
+                                case '3':
+                                    echo "Admin";
+                                    break;
+                                default:
+                                    echo "Banni temporairement";
+                                    break;
+                                }
+                            ?>
+                        </td>
                         <td class="text-center">
                             <form method="post">
                                 <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">

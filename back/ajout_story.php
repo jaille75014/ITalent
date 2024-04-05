@@ -1,10 +1,10 @@
 <?php
 session_start();
 include('../includes/bd.php');
+include('../includes/header_location.php');
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../connexion.php');
-    exit;
+    redirectFailure('../connexion.php', 'Vous devez être connecté pour accéder à cette page.');
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['image_story'])) {

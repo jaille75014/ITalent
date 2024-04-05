@@ -15,7 +15,7 @@ $res->execute([$user_id]);
 $res = $bdd->prepare("DELETE FROM STORYS WHERE user_id = ?");
 $res->execute([$user_id]);
 
-$res = $bdd->prepare("DELETE FROM USERS WHERE user_id = ?");
+$res = $bdd->prepare("DELETE FROM USERS WHERE user_id = ?"); // Opter pour une modification du statut à 0 plutôt que la suppression
 if ($res->execute([$user_id])) {
     session_destroy();
     header('Location: ../login.php');

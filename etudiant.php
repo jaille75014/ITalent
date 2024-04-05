@@ -2,6 +2,11 @@
 session_start();
 include("includes/bd.php");
 include("includes/fonctions_logs.php");
+include("includes/header_location.php");
+if (!isset($_SESSION['user_id'])) {
+    redirectFailure('connexion.php', 'Vous devez être connecté pour accéder à cette page.');
+}
+
 
 writeVisitLog('etudiant.php');
 

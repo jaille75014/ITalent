@@ -1,19 +1,17 @@
 <?php 
 session_start(); 
+include('includes/header_location.php');
 if(!isset($_SESSION['captcha'])){
-    header('location:captcha.php?error=Chipeur arrête de chipper !');
-    exit;
+    redirectFailure('captcha.php', 'Chipeur arrête de chipper !');
 }
     
 
 if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 1) {
-    header('location:index.php');
-    exit;
+    redirectFailure('index.php', 'Vous n\'avez pas les droits pour accéder à cette page.');
 } 
 
 if (!isset($_POST['competenceTest']) || $_SESSION['statut'] != 1) {
-    header('location:profil.php');
-    exit;
+    redirectFailure('index.php', 'Vous n\'avez pas les droits pour accéder à cette page.');
 } 
 
 include('includes/fonctions_logs.php');

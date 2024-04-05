@@ -34,8 +34,7 @@ if(isset($_POST['email'])){
         || !isset($_POST['zip'])
         || empty ($_POST['zip'])){
 
-            header("location: ../inscription.php?messageFailure=Vous devez remplir tous les champs !" ); // Redirection vers connexion.php
-            exit; //Interrompt le code
+            redirectFailure('../inscription.php', 'Vous devez remplir tous les champs !'); // Redirection vers connexion.php
     }
 
     if (!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){

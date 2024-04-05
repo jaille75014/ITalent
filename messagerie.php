@@ -1,11 +1,13 @@
 <?php
 session_start();
-if(!isset($_SESSION['captcha'])){
-    header('location:captcha.php?error=Chipeur arrête de chipper !');
-    exit;
-}
+include('includes/header_location.php');
 include('includes/fonctions_logs.php');
 include("includes/bd.php");
+
+if(!isset($_SESSION['captcha'])){
+    redirectFailure('captcha.php', 'Chipeur arrête de chipper !');
+}
+
 writeVisitLog('messagerie.php');
 
 $result_messages = array();
