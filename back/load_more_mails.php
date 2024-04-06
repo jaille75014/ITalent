@@ -1,5 +1,5 @@
 <?php
-include('includes/bd.php');
+include('../includes/bd.php');
 $mailCount = $_GET['mailCount'];
 $requete = $bdd->prepare('SELECT 
                         NEWSLETTER.title, NEWSLETTER.body, NEWSLETTER.send_date, USERS.firstname, USERS.lastname 

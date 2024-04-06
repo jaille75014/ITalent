@@ -100,7 +100,7 @@ writeVisitLog('newsletter_admin.php');
         </table>
         <button id="loadMore" onclick="getMoreMails()">Charger plus de mails</button>
     </div>
-    <script src="JS/load.js"></script>
+    <script src="js/load.js"></script>
 </main>
 <?php 
 include('includes/footer.php');
