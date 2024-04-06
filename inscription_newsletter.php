@@ -26,7 +26,7 @@ include'includes/bd.php';
             redirectFailure($_GET['url'], 'Vous n\'avez pas les droits pour accéder à cette page.');
         } else {
             if($_GET['news'] == 1 ) {
-                setcookie("email", $_GET['email'], time()+60); // On crée un cookie qui expirera 25 secondes plus tard pour des raisons de sécurité.
+                setcookie("email", $_GET['email'], time()+60); // On crée un cookie qui expirera 60 secondes plus tard pour des raisons de sécurité.
             } else 
             foreach ($results as $index => $value) {
                 if ($value == 1){ //Si le champ newsletter est déjà rempli
