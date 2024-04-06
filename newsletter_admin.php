@@ -80,7 +80,12 @@ writeVisitLog('newsletter_admin.php');
             </thead>
             <tbody>
             <?php
-                $requete = $bdd->prepare('SELECT newsletter.title, newsletter.body, newsletter.send_date, users.firstname, users.lastname FROM NEWSLETTER INNER JOIN USERS ON newsletter.user_id = users.user_id ORDER BY newsletter.send_date DESC');
+                $requete = $bdd->prepare('SELECT 
+                                        NEWSLETTER.title, NEWSLETTER.body, NEWSLETTER.send_date, USERS.firstname, USERS.lastname 
+                                        FROM NEWSLETTER 
+                                            INNER JOIN USERS ON 
+                                                NEWSLETTER.user_id = USERS.user_id 
+                                                    ORDER BY NEWSLETTER.send_date DESC');
                 $requete->execute();
                 while($donnees = $requete->fetch()){
                     echo '<tr>';
