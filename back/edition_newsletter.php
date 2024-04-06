@@ -37,9 +37,9 @@ function sendEmail($mail, $header, $body, $image, $email) {
     }
 }
 function saveNewsletter($bdd, $header, $body, $user_id) {
-    $query = 'INSERT INTO NEWSLETTER (titre, corps, user_id) VALUES (:titre, :corps, :user_id)';
+    $query = 'INSERT INTO NEWSLETTER (title, body, user_id) VALUES (:title, :body, :user_id)';
     $req = $bdd->prepare($query);
-    $req->execute(['titre' => $header, 'corps' => $body, 'user_id' => $user_id]);
+    $req->execute(['title' => $header, 'body' => $body, 'user_id' => $user_id]);
 }
 
 

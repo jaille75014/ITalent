@@ -64,7 +64,6 @@ writeVisitLog('newsletter_admin.php');
         </form>
 
 
-        // Historique des mails envoyés ainsi que les personnes qui les ont reçus
         <div class="row">
         <h1 class="col-12">Historique des mails envoyés</h1>
 </div> 
@@ -76,6 +75,7 @@ writeVisitLog('newsletter_admin.php');
                     <th>Titre</th>
                     <th>Corps</th>
                     <th>Date d'envoi</th>
+                    <th>Envoyé par</th>
                 </tr>
             </thead>
             <tbody>
