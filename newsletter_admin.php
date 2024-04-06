@@ -98,7 +98,7 @@ writeVisitLog('newsletter_admin.php');
                 ?>
             </tbody>
         </table>
-        <button id="loadMore" onclick="getMoreMails()">Charger plus de mails</button>
+        <button id="loadMore" class="btn btn-primary" onclick="getMoreMails()">Charger plus de mails</button>
     </div>
     <script src="js/load.js"></script>
 </main>
