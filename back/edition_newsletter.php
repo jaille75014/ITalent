@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include("../includes/bd.php");
 include('../includes/phpmailer.php');
 include('../includes/header_location.php');
