@@ -1,15 +1,16 @@
 <?php 
 session_start();
 include('includes/header_location.php');
+include('includes/bd.php');
+include('includes/fonctions_logs.php');
 if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
     redirectFailure('index.php', 'Vous devez être connecté en tant qu\'admin pour accéder à cette page.');
 } 
 if(!isset($_SESSION['captcha'])){
     redirectFailure('captcha.php', 'Chipeur arrête de chipper !');
 }
-    
 
-include('includes/fonctions_logs.php');
+
 writeVisitLog('newsletter_admin.php');
 
 ?>
@@ -60,11 +61,42 @@ writeVisitLog('newsletter_admin.php');
                 <input type="submit" value="Envoyer le mail"  class="btn btn-success btn-lg float-right my-1">
             </div>
             </div>
-            
         </form>
-    </main>
-    <?php 
-    include('includes/footer.php');
-    ?>
+
+
+        // Historique des mails envoyés ainsi que les personnes qui les ont reçus
+        <div class="row">
+        <h1 class="col-12">Historique des mails envoyés</h1>
+</div> 
+<div class="row">
+    <div class="col-12">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Corps</th>
+                    <th>Date d'envoi</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+                $requete = $bdd->prepare('SELECT newsletter.title, newsletter.body, newsletter.send_date, users.firstname, users.lastname FROM NEWSLETTER INNER JOIN USERS ON newsletter.user_id = users.user_id ORDER BY newsletter.send_date DESC');
+                $requete->execute();
+                while($donnees = $requete->fetch()){
+                    echo '<tr>';
+                    echo '<td>'.$donnees['title'].'</td>';
+                    echo '<td>'.$donnees['body'].'</td>';
+                    echo '<td>'.$donnees['send_date'].'</td>';
+                    echo '<td>'.$donnees['firstname'].' '.$donnees['lastname'].'</td>';
+                    echo '</tr>';
+                }
+            ?>
+            </tbody>
+        </table>
+    </div>
+</main>
+<?php 
+include('includes/footer.php');
+?>
 </body>
 </html>

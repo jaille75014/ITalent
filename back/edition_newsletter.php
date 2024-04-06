@@ -36,6 +36,12 @@ function sendEmail($mail, $header, $body, $image, $email) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 }
+function saveNewsletter($bdd, $header, $body, $user_id) {
+    $query = 'INSERT INTO NEWSLETTER (titre, corps, user_id) VALUES (:titre, :corps, :user_id)';
+    $req = $bdd->prepare($query);
+    $req->execute(['titre' => $header, 'corps' => $body, 'user_id' => $user_id]);
+}
+
 
 $header = isset($_POST['header']) && !empty($_POST['header']) ? htmlspecialchars($_POST['header']) : 'Quoi de neuf chez ITalent ?';
 $body = isset($_POST['body_newsletter']) && !empty($_POST['body_newsletter']) ? $_POST['body_newsletter'] : 
@@ -57,6 +63,9 @@ foreach ($results as $index => $values) {
         sendEmail($mail, $header, $body, $image, $values['email']);
     }
 }
+
+// Enregistre le mail envoyé dans la base de données apres l'envoi de tous les mails
+saveNewsletter($bdd, $header, $body, $_SESSION['user_id']);
 
 redirectSuccess('../newsletter_admin.php', 'Tous les email ont été envoyé !');
 ?>
