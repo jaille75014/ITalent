@@ -78,27 +78,29 @@ writeVisitLog('newsletter_admin.php');
                     <th>Envoyé par</th>
                 </tr>
             </thead>
-            <tbody>
-            <?php
-                $requete = $bdd->prepare('SELECT 
-                                        NEWSLETTER.title, NEWSLETTER.body, NEWSLETTER.send_date, USERS.firstname, USERS.lastname 
-                                        FROM NEWSLETTER 
+            <tbody id="mails">
+                <?php
+                    $requete = $bdd->prepare('SELECT 
+                                            NEWSLETTER.title, NEWSLETTER.body, NEWSLETTER.send_date, USERS.firstname, USERS.lastname 
+                                            FROM NEWSLETTER 
                                             INNER JOIN USERS ON 
-                                                NEWSLETTER.user_id = USERS.user_id 
-                                                    ORDER BY NEWSLETTER.send_date DESC');
-                $requete->execute();
-                while($donnees = $requete->fetch()){
-                    echo '<tr>';
-                    echo '<td>'.$donnees['title'].'</td>';
-                    echo '<td>'.$donnees['body'].'</td>';
-                    echo '<td>'.$donnees['send_date'].'</td>';
-                    echo '<td>'.$donnees['firstname'].' '.$donnees['lastname'].'</td>';
-                    echo '</tr>';
-                }
-            ?>
+                                            NEWSLETTER.user_id = USERS.user_id 
+                                            ORDER BY NEWSLETTER.send_date DESC LIMIT 10');
+                    $requete->execute();
+                    while($donnees = $requete->fetch()){
+                        echo '<tr>';
+                        echo '<td>'.$donnees['title'].'</td>';
+                        echo '<td>'.$donnees['body'].'</td>';
+                        echo '<td>'.$donnees['send_date'].'</td>';
+                        echo '<td>'.$donnees['firstname'].' '.$donnees['lastname'].'</td>';
+                        echo '</tr>';
+                    }
+                ?>
             </tbody>
         </table>
+        <button id="loadMore" onclick="getMoreMails()">Charger plus de mails</button>
     </div>
+    <script src="JS/load.js"></script>
 </main>
 <?php 
 include('includes/footer.php');
