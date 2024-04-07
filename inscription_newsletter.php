@@ -2,6 +2,10 @@
 session_start();
 include('includes/header_location.php');
 include'includes/bd.php';
+
+$user_email = htmlspecialchars($_GET['email']);
+$url = htmlspecialchars($_GET['url']);
+
 ?>
 
 <!DOCTYPE html>
@@ -18,19 +22,19 @@ include'includes/bd.php';
         $newletter_check = 'SELECT newsletter FROM USERS WHERE email = :email';
         $req = $bdd->prepare($newletter_check);
         $result = $req->execute([
-            'email' => htmlspecialchars($_GET['email'])
+            'email' => $user_email
         ]);
         $results = $req->fetch(PDO::FETCH_ASSOC);
 
         if (!isset($_SESSION["newsletter"]) && $_SESSION["newsletter"] != 1) {
-            redirectFailure($_GET['url'], 'Vous n\'avez pas les droits pour accéder à cette page.');
+            redirectFailure($url, 'Vous n\'avez pas les droits pour accéder à cette page.');
         } else {
             if($_GET['news'] == 1 ) {
-                setcookie("email", $_GET['email'], time()+60); // On crée un cookie qui expirera 60 secondes plus tard pour des raisons de sécurité.
+                setcookie("email", $user_email, time()+60); // On crée un cookie qui expirera 60 secondes plus tard pour des raisons de sécurité.
             } else 
             foreach ($results as $index => $value) {
                 if ($value == 1){ //Si le champ newsletter est déjà rempli
-                    redirectSuccess($_GET['url'], 'Vous êtes déjà inscrit à notre newsletter !');
+                    redirectSuccess($url, 'Vous êtes déjà inscrit à notre newsletter !');
                 }
             }
              
@@ -54,10 +58,10 @@ include'includes/bd.php';
                 <h3 class="mb-0">Validation de la newsletter</h3>
                     </div>
                         <div class="card-body">
-                            <form id="form_code" action="<?php echo 'inscription_newsletter.php?news=2&email=' . htmlspecialchars($_GET['email']) . '&url=' . htmlspecialchars($_GET['url']) ?>" method="POST">
+                            <form id="form_code" action="<?php echo 'inscription_newsletter.php?news=2&email=' . $user_email . '&url=' . $url ?>" method="POST">
                                 <div class="form-group my-4">
                                     <label for="uname1">email</label>
-                                    <input type="email" class="form-control form-control-lg rounded-0" id="email" name="email" value="<?= htmlspecialchars($_GET['email'])?>" onFocus="this.value='';">
+                                    <input type="email" class="form-control form-control-lg rounded-0" id="email" name="email" value="<?= $user_email ?>" onFocus="this.value='';">
                                 </div>
                                 <div class="form-group my-4">
                                     <label>Vous pouvez encore changer d'avis !</label><br>
@@ -78,32 +82,29 @@ include'includes/bd.php';
             <?php
             } else if ($_GET['news'] == 2) {
                 if(isset($_POST['no']) && !empty($_POST['no'])){
-                    
-                    redirectSuccess($_GET['url'], 'Vous avez changé d\'avis, vous n\'êtes pas inscrit à notre newsletter');
+                    redirectSuccess($url, 'Vous avez changé d\'avis, vous n\'êtes pas inscrit à notre newsletter');
                 }
+            
                 $email_db = 'SELECT email FROM USERS where email = :email';
                 $req = $bdd->prepare($email_db);
                 $result = $req->execute([
-                    'email' => htmlspecialchars($_GET['email'])
+                    'email' => $user_email
                 ]);
                 $results = $req->fetch(PDO::FETCH_ASSOC);
-
-                $email_formulaire = $_POST['email'];
-
-                foreach ($results as $index => $value) {
-                if($value == $email_formulaire) {
-                $pull_newsletter = 'UPDATE USERS SET newsletter = :newsletter WHERE email = \''. $value . '\''; 
-                $req=$bdd->prepare($pull_newsletter);
-                $result=$req->execute([
-                'newsletter' => 1
-                ]);
-            }
             
-        }
-            redirectSuccess($_GET['url'], 'Vous êtes maintenant inscrit à notre newsletter ! MERCI !');
-            }
-            else {
-                header('location: inscription_newsletter.php?messageFailure=Une erreure s\'est produite, vérifiez que vous avez bien écrit votre email&news=1&mail=' . htmlspecialchars($_GET['email']) . '&url=' . htmlspecialchars($_GET['url']));
+                $email_formulaire = $_POST['email'];
+            
+                if($results['email'] == $email_formulaire) {
+                    $pull_newsletter = 'UPDATE USERS SET newsletter = :newsletter WHERE email = :email'; 
+                    $req=$bdd->prepare($pull_newsletter);
+                    $result=$req->execute([
+                        'newsletter' => 1,
+                        'email' => $email_formulaire
+                    ]);
+                }
+                redirectSuccess($url, 'Vous êtes maintenant inscrit à notre newsletter ! MERCI !');
+            } else {
+                header('location: inscription_newsletter.php?messageFailure=Une erreure s\'est produite, vérifiez que vous avez bien écrit votre email&news=1&mail=' . $user_email . '&url=' . $url);
                 exit;
             }
         }
