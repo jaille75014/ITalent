@@ -101,13 +101,13 @@ if(isset($_POST['email'])){
     $q= 'INSERT INTO USERS (lastname,firstname,email,password,tel,zip,city,statut,email_check) VALUES (:lastname,:firstname,:email,:password,:tel,:zip,:city,:statut,:email_check)';
     $req=$bdd->prepare($q);
     $result=$req->execute([
-        'lastname'=>$_POST['lastname'], 
-        'firstname'=>$_POST['firstname'], 
+        'lastname'=>htmlspecialchars($_POST['lastname']), 
+        'firstname'=>htmlspecialchars($_POST['firstname']), 
         'email'=>$_POST['email'], 
         'password'=>$password,
-        'tel'=>$_POST['phone'], 
-        'zip'=>$_POST['zip'], 
-        'city'=>$_POST['city'],
+        'tel'=>htmlspecialchars($_POST['phone']), 
+        'zip'=>htmlspecialchars($_POST['zip']), 
+        'city'=>htmlspecialchars($_POST['city']),
         'statut' => 1,
         'email_check' => 0
         ]);    
@@ -207,13 +207,13 @@ if(isset($_POST['email'])){
     $q= 'INSERT INTO USERS (lastname,firstname,email,password,zip,city,name_factory,statut,email_check) VALUES (:lastname,:firstname,:email,:password,:zip,:city,:name_factory,:statut,:email_check)';
     $req=$bdd->prepare($q);
     $result=$req->execute([
-        'lastname'=>$_POST['lastname'], 
-        'firstname'=>$_POST['firstname'], 
+        'lastname'=>htmlspecialchars($_POST['lastname']), 
+        'firstname'=>htmlspecialchars($_POST['firstname']), 
         'email'=>$_POST['email_pro'], 
         'password'=>$password, 
-        'zip'=>$_POST['zip'], 
-        'city'=>$_POST['city'],
-        'name_factory'=>$_POST['name_factory'],
+        'zip'=>htmlspecialchars($_POST['zip']), 
+        'city'=>htmlspecialchars($_POST['city']),
+        'name_factory'=>htmlspecialchars($_POST['name_factory']),
         'statut' => 2,
         'email_check' => 0
         ]);    
