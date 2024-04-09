@@ -3,6 +3,7 @@
 include('../includes/header_location.php');
 include('../includes/bd.php');
 
+
 if (isset($_POST['email'])&& !empty($_POST['email'])){
     setcookie('email', $_POST['email'] , time()+30*24*3600); // Cookie expire dans 30 jours
 } else if (isset($_POST['email_pro']) && !empty($_POST['email_pro'])){
