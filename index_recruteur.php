@@ -27,7 +27,7 @@ include('includes/head.php');?>
         <h1>ESPACE RECRUTEUR</h1>
         <p>Chercher des étudiants que vous souhaitez en filtrant vos recherches pour pouvoir discuter avec eux</p>
         <div class="search-container">
-            <form id="searchForm" class="d-flex justify-content-center align-items-end">
+            <div id="searchForm" class="d-flex justify-content-center align-items-end">
                 <div class="form-group">
                     <input type="text" class="form-control" id="competence" name="competence" placeholder="Compétence">
                 </div>
@@ -42,8 +42,7 @@ include('includes/head.php');?>
                 <div class="form-group">
                     <input type="text" class="form-control" id="poste" name="poste" placeholder="Poste">
                 </div>
-                <button type="submit" class="btn btn-primary">Rechercher</button>
-            </form>
+            </div>
         </div>
     </div>
    
