@@ -96,7 +96,7 @@ include('includes/head.php');?>
                     <div class="icon">
                         <input type="hidden" id="user_followed" value="<?= $user['user_id'] ?>">
                         <input type="hidden" id="user_follower" value="<?= $_SESSION['user_id'] ?>">
-                        <button onclick="follow()"><i class="bi bi-person-fill-add"></i></button>
+                        <i onclick="follow()" class="bi bi-person-fill-add"></i>
                     </div>
                 </div>
             </div>
