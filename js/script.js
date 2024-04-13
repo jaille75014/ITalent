@@ -41,3 +41,13 @@ function togglePasswordVisibility(eye) {
         eye.src = "assets/eye-slash.svg"; // Change the image when password is hidden
     }
 }
+
+async function follow() {
+    const followed = document.getElementById("user_followed").value;
+    const follower = document.getElementById("user_follower").value;
+    const res = await fetch(`back/connect_users.php?followed=${followed}&follower=${follower}`);
+    const txt = await res.text();
+    const btn = document.getElementsByClassName("bi");
+    // Change la class de l'icone
+    btn[0].classList.toggle("bi bi-person-check-fill");
+}

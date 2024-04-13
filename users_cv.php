@@ -6,7 +6,8 @@ include("includes/bd.php");
 $title='Blabla';
 include("includes/head.php");
 // Requete pour récuperer le nom, prénom, la ville, le numéro de téléphone, l'email, l'image et le nom du job
-$req = $bdd->prepare('SELECT USERS.lastname, USERS.firstname, USERS.city, USERS.phone, USER.email, USERS.image, JOBS.name FROM USERS WHERE status = 1 INNER JOIN JOBS ON USERS.student_job = JOBS.id');
+$get_infos = 'SELECT USERS.user_id, USERS.lastname, USERS.firstname, USERS.city, USERS.phone, USERS.email, USERS.image, JOBS.name FROM USERS INNER JOIN JOBS ON USERS.student_job = JOBS.id WHERE USERS.status = 1 LIMIT 20';
+$req = $bdd->prepare($get_infos);
 $req->execute();
 $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
 
@@ -31,7 +32,7 @@ shuffle($donnees);
                 </div>
                 <div class="status">
                     <span></span>
-                    <p>Alternance</p>
+                    <p><?= $user['name'] == 0 ? 'Type de contrat non précisé' : $user['name']; ?></p>                
                 </div>
                 <div class="location">
                     <p><?= $user['city'] ?></p>
@@ -44,14 +45,16 @@ shuffle($donnees);
                 </div>
                 <div class="action">
                     <div class="icon">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                        <input type="hidden" id="user_followed" value="<?= $user['user_id'] ?>">
+                        <input type="hidden" id="user_follower" value="<?= $_SESSION['user_id'] ?>">
+                        <button onclick="follow()"><i class="bi bi-person-fill-add"></i></button>
                     </div>
                 </div>
             </div>
+            <button id="loadUsers" class="btn btn-primary " onclick="loadMoreUsers()">Charger plus de Candidats</button> <!-- Bouton pour charger plus de candidats -->
         <?php endforeach; ?>
     </div>
+    <script src="js/script.js"></script>
 </main> 
 </body> 
 </html>
