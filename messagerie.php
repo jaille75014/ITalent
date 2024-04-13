@@ -29,7 +29,13 @@ $is_connected->execute(
 $connected = $is_connected->fetch();
 }
 
-$connected_ids = array_column($connected, $_SESSION['statut'] == 2 ? 'student_id' : 'recruiter_id'); // Récupère les id des utilisateurs connectés sous forme de tableau
+if (is_array($connected)) {
+    $connected_ids = array_column($connected, $_SESSION['statut'] == 2 ? 'student_id' : 'recruiter_id');
+} else {
+    // Gérer le cas où $connected n'est pas un tableau
+    // Par exemple, vous pouvez définir $connected_ids comme un tableau vide
+    $connected_ids = [];
+}
 $ids_string = implode(',', $connected_ids); // Transforme le tableau en string pour la requête SQL, ex: '1,2,3'
 
 $sql_users = "SELECT user_id, firstname, lastname FROM USERS WHERE user_id IN ($ids_string)";
