@@ -36,11 +36,15 @@ if (is_array($connected)) {
     // Par exemple, vous pouvez définir $connected_ids comme un tableau vide
     $connected_ids = [];
 }
-$ids_string = implode(',', $connected_ids); // Transforme le tableau en string pour la requête SQL, ex: '1,2,3'
+if (!empty($connected_ids)) {
+    $ids_string = implode(',', $connected_ids); // Transforme le tableau en string pour la requête SQL, ex: '1,2,3'
 
-$sql_users = "SELECT user_id, firstname, lastname FROM USERS WHERE user_id IN ($ids_string)";
-$stmt_users = $bdd->query($sql_users);
-$result_users = $stmt_users->fetchAll(PDO::FETCH_ASSOC);
+    $sql_users = "SELECT user_id, firstname, lastname FROM USERS WHERE user_id IN ($ids_string)";
+    $stmt_users = $bdd->query($sql_users);
+    $result_users = $stmt_users->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    $result_users = [];
+}
 
 
 
