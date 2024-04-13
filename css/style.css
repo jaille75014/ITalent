@@ -516,7 +516,7 @@ footer hr {
 .profile img {
         aspect-ratio: 1/1;
         border-radius: 20rem;
-        width : 3.5 rem;
+        width : 3.5rem;
         object-fit: cover;
         object-position: top center;
 }
@@ -539,15 +539,6 @@ footer hr {
 }
 .status p {
     margin-left: 0.5rem;
-}
-
-.icon span {
-    display: inline-block;
-    width: 0.35rem;
-    height: 0.35rem;
-    border-radius: 50%;
-    background-color: #2482DC;
-
 }
 
 
