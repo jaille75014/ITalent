@@ -87,7 +87,7 @@ include('includes/head.php');?>
                     <p><?= $user['city'] ?></p>
                 </div>
                 <div class="phone">
-                    <p><?= $user['phone'] ?></p>
+                    <p><?= $user['tel'] ?></p>
                 </div>
                 <div class="contact">
                     <a href="messagerie.php?user_id=<?= $user['user_id'] ?>" class="btn btn-primary">Contacter</a>
@@ -103,13 +103,6 @@ include('includes/head.php');?>
         <?php endforeach; ?>
     </div>
     <script src="js/script.js"></script>
-
-
-        <script src="js/script.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
         
         </main>
 
