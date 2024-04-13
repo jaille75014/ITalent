@@ -11,7 +11,7 @@
     } 
     
     // Requete pour récuperer le nom, prénom, la ville, le numéro de téléphone, l'email, l'image et le nom du job
-$get_infos = 'SELECT USERS.user_id, USERS.lastname, USERS.firstname, USERS.city, USERS.tel, USERS.email, USERS.image, JOBS.name FROM USERS INNER JOIN JOBS ON USERS.student_job = JOBS.id WHERE USERS.status = 1 LIMIT 20';
+$get_infos = 'SELECT USERS.user_id, USERS.lastname, USERS.firstname, USERS.city, USERS.tel, USERS.email, USERS.image, JOBS.name FROM USERS INNER JOIN JOBS ON USERS.student_job = JOBS.id WHERE USERS.statut = 1 LIMIT 20';
 $req = $bdd->prepare($get_infos);
 $req->execute();
 $donnees = $req->fetchAll(PDO::FETCH_ASSOC);

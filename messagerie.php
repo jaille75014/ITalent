@@ -13,14 +13,14 @@ writeVisitLog('messagerie.php');
 $result_messages = array();
 
 // Si c'est un recruteur qui est connecté
-if($_SESSION['status'] == 2){
+if($_SESSION['statut'] == 2){
 $all_connections = "SELECT student_id FROM CONNECTS WHERE recruiter_id = ?";
 $is_connected = $bdd->prepare($all_connections);
 $is_connected->execute(
     [$_SESSION['user_id']]
 );
 $connected = $is_connected->fetch();
-} else if($_SESSION['status'] == 1){
+} else if($_SESSION['statut'] == 1){
 $all_connections = "SELECT recruiter_id FROM CONNECTS WHERE student_id = ?";
 $is_connected = $bdd->prepare($all_connections);
 $is_connected->execute(
@@ -29,7 +29,7 @@ $is_connected->execute(
 $connected = $is_connected->fetch();
 }
 
-$connected_ids = array_column($connected, $_SESSION['status'] == 2 ? 'student_id' : 'recruiter_id'); // Récupère les id des utilisateurs connectés sous forme de tableau
+$connected_ids = array_column($connected, $_SESSION['statut'] == 2 ? 'student_id' : 'recruiter_id'); // Récupère les id des utilisateurs connectés sous forme de tableau
 $ids_string = implode(',', $connected_ids); // Transforme le tableau en string pour la requête SQL, ex: '1,2,3'
 
 $sql_users = "SELECT user_id, firstname, lastname FROM USERS WHERE user_id IN ($ids_string)";
