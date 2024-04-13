@@ -506,7 +506,7 @@ footer hr {
 }
 .username {
     font-size: 0.8rem;
-    color: rgba(162, 162, 162);
+    color: #495057;
 }
 .user {
     display: flex;
@@ -540,7 +540,9 @@ footer hr {
 .status p {
     margin-left: 0.5rem;
 }
-
+.my-icon {
+    color: #495057;
+}
 
 
 
