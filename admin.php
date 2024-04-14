@@ -153,10 +153,10 @@ include('includes/head.php');?>
                             </form>
                         </td>
                         <td class="text-center">
-                            <form method="post">
-                                <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
-                                <button type="submit" class="btn btn-danger" name="delete_user">Bannir</button>
-                            </form>
+                        <form method="post">
+                            <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
+                            <button type="submit" class="btn btn-danger" name="delete_user" onclick="return confirm('Êtes-vous sûr de vouloir bannir cet utilisateur ?')">Bannir</button>
+                        </form>
                         </td>
                         <td class="text-center">
                             <form class="d-flex flex-column flex-md-row" method="post">
