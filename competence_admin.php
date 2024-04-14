@@ -125,7 +125,6 @@ $req6->execute();
 
             <div class="row my-5">
                 
-                <div id="result"></div>
                 
 
                 <div class="col-12 col-md-6">
@@ -166,6 +165,7 @@ $req6->execute();
                         
                         <button onclick="addQuestionsToCompetence()" type="submit" class="btn btn-primary">Envoyer</button>
                 </div>
+                <div id="result"></div> <!-- Permet d'afficher le résultat de l'ajout de questions. -->
 
             </div>
             
