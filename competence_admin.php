@@ -292,6 +292,8 @@ $req6->execute();
 
         </main>
 
+        <script src="js/load.js"></script>
+
     <?php include('includes/footer.php');?>
     </body>
 </html>
