@@ -38,42 +38,6 @@ $q3='SELECT name FROM COMPETENCES ;';
 $req3=$bdd->prepare($q3);
 $req3->execute(); 
 
-// AJOUTER DES QUESTIONS 
-if (isset($_POST['competenceScroll']) && !empty($_POST['competenceScroll'])
-&& isset($_POST['question']) && !empty($_POST['question'])
-&& isset($_POST['answer1']) && !empty($_POST['answer1'])
-&& isset($_POST['answer2']) && !empty($_POST['answer2'])
-&& isset($_POST['answer3']) && !empty($_POST['answer3'])
-&& isset($_POST['answer4']) && !empty($_POST['answer4'])
-&& isset($_POST['answerCorrect']) && !empty($_POST['answerCorrect']) ){
-
-
-    $q4='SELECT competence_id FROM COMPETENCES WHERE name=:name;';
-    $req4=$bdd->prepare($q4);
-    $req4->execute([
-        'name'=>$_POST['competenceScroll']
-    ]); 
-
-    $result4=$req4->fetch(PDO::FETCH_ASSOC);
-    foreach($result4 as $index4=>$value4){
-        $competenceName=$value4;
-    }
-    
-    $q5='INSERT INTO QUESTIONS (question,answerCorrect,answer1,answer2,answer3,answer4,competence_id) VALUES (:question,:answerCorrect,:answer1,:answer2,:answer3,:answer4,:competence_id);';
-    $req5=$bdd->prepare($q5);
-    $req5->execute([
-        'question'=> $_POST['question'],
-        'answerCorrect'=> $_POST['answerCorrect'],
-        'answer1'=> $_POST['answer1'],
-        'answer2'=> $_POST['answer2'],
-        'answer3'=> $_POST['answer3'],
-        'answer4'=> $_POST['answer4'],
-        'competence_id'=> $competenceName
-    ]); 
-
-
-
-}
 
 // SUPPRESSION DE QUESTIONS
 
@@ -160,15 +124,17 @@ $req6->execute();
                     
 
             <div class="row my-5">
+                
+                <div id="result"></div>
+                
 
                 <div class="col-12 col-md-6">
                     <h2 class="text-center">Ajouter des questions</h2>
                     
                 </div>
                 <div class="col-12 col-md-6">
-                    <form method="post">
                         <label class="form-label" for="selectCompetence">Compétence :</label>
-                        <select id="selectCompetence" class="form-select" name="competenceScroll">
+                        <select id="selectCompetence" class="form-select">
                             <option selected>Sélectionner une compétence</option>
                             <?php 
                             while($result3=$req3->fetch(PDO::FETCH_ASSOC)){
@@ -178,22 +144,27 @@ $req6->execute();
                             }
 
                         ?>
+                        
                         </select>
                         <label class="form-label mt-4" for="question">Question :</label>
-                        <input type="text" name="question" placeholder="Entrer la question à ajouter" class="form-control mb-4" id="question">
+                        <input type="text" id="question" placeholder="Entrer la question à ajouter" class="form-control mb-4">
+                        
                         <label class="form-label" for="answer1">Réponse 1 :</label>
-                        <input type="text" name="answer1" placeholder="Entrer une des propositions de réponses à la question" class="form-control mb-4" id="answer1">
+                        <input type="text" id="answer1" placeholder="Entrer une des propositions de réponses à la question" class="form-control mb-4">
+                        
                         <label class="form-label" for="answer2">Réponse 2 :</label>
-                        <input type="text" name="answer2" placeholder="Entrer une des propositions de réponses à la question" class="form-control mb-4" id="answer2">
+                        <input type="text" id="answer2" placeholder="Entrer une des propositions de réponses à la question" class="form-control mb-4">
+                       
                         <label class="form-label" for="answer3">Réponse 3 :</label>
-                        <input type="text" name="answer3" placeholder="Entrer une des propositions de réponses à la question" class="form-control mb-4" id="answer3">
+                        <input type="text" id="answer3" placeholder="Entrer une des propositions de réponses à la question" class="form-control mb-4">
+                        
                         <label class="form-label" for="answer4">Réponse 4 :</label>
-                        <input type="text" name="answer4" placeholder="Entrer une des propositions de réponses à la question" class="form-control mb-4" id="answer4">
+                        <input type="text" id="answer4" placeholder="Entrer une des propositions de réponses à la question" class="form-control mb-4">
+                       
                         <label class="form-label" for="answerCorrect">Réponse correct :</label>
-                        <input type="text" name="answerCorrect" placeholder="Entrer la proposition correct" class="form-control mb-4" id="answerCorrect">
-                        <button type="submit" class="btn btn-primary">Envoyer</button>
-
-                    </form>
+                        <input type="text" id="answerCorrect" placeholder="Entrer la proposition correct" class="form-control mb-4">
+                        
+                        <button onclick="addQuestionsToCompetence()" type="submit" class="btn btn-primary">Envoyer</button>
                 </div>
 
             </div>
