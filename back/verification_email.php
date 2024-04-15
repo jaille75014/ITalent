@@ -5,19 +5,58 @@ include('../includes/bd.php');
 include('../includes/phpmailer.php');
 include('../includes/header_location.php');
 
+function generateReloadUrl($message) {
+    $host = $_SERVER['HTTP_HOST'];
+    $newLocation = strpos($host, 'italent.site') !== false // vérifie si la chaîne 'italent.site' est contenue dans $host. Si c'est le cas, strpos retourne 
+                                                            //l'index de début de la sous-chaîne dans la chaîne principale, qui sera toujours un nombre non négatif. 
+                                                            //Si la sous-chaîne n'est pas trouvée, strpos retourne false.
+        ? 'https://italent.site/back/verification_email.php?reload=1&message=' . $message
+        : 'https://213.32.89.122/back/verification_email.php?reload=1&message=' . $message;
+    return $newLocation;
+}
 
+if(isset($_GET['reload'])){
+    $select_check = 'SELECT email_check FROM USERS WHERE email = :email';
+    $req = $bdd->prepare($select_check);
+    $req->execute(
+    ['email'=> htmlspecialchars($_GET['message'])]);
+    $result = $req->fetch(PDO::FETCH_ASSOC);
+    
+    if($result['email_check'] == 1){
+        redirectSuccess('../connexion.php', 'Votre email a été vérifié, veuillez vous connecter');
+    } else {
+        $reloadUrl = generateReloadUrl($_GET['message']);
+        ?>
+        <script>
+            function auto_reload()
+            {
+                window.location = '<?php echo $reloadUrl; ?>';
+            }
 
-$email = htmlspecialchars($_GET['message']);
-$rand_verification_email = rand(1000000, 9999999); // Genère une valeur à 7 chiffres
-$select_id = 'SELECT user_id FROM USERS WHERE email = :email';
-$req = $bdd->prepare($select_id);
-$req->execute([
-    'email' => htmlspecialchars($_GET['message'])
-]);
-$result = $req->fetch(PDO::FETCH_ASSOC);
-$id_user = $result['user_id'];
+            // Check if the page should be reloaded.
+            var urlParams = new URLSearchParams(window.location.search);
+            var reload = urlParams.get('reload');
 
-$date = date('Y-m-d H:i:s', time() + 60*60); // Rajoute une heure pour stocker l'expiration
+            // Si le paramètre 'reload' n'est pas défini ou est défini à '1', rechargez la page après 10 secondes.
+            if (reload === null || reload === '1') {
+                setTimeout(auto_reload, 10000);
+            }
+        </script> 
+            <?php
+        }
+    } else {
+
+    $email = htmlspecialchars($_GET['message']);
+    $rand_verification_email = rand(1000000, 9999999); // Genère une valeur à 7 chiffres
+    $select_id = 'SELECT user_id FROM USERS WHERE email = :email';
+    $req = $bdd->prepare($select_id);
+    $req->execute([
+        'email' => htmlspecialchars($_GET['message'])
+    ]);
+    $result = $req->fetch(PDO::FETCH_ASSOC);
+    $id_user = $result['user_id'];
+
+    $date = date('Y-m-d H:i:s', time() + 60*60); // Rajoute une heure pour stocker l'expiration
 
     //Recipients
     $mail->setFrom('italent.contact.site@gmail.com', 'Italent');
@@ -47,28 +86,18 @@ $date = date('Y-m-d H:i:s', time() + 60*60); // Rajoute une heure pour stocker l
     } 
 
 
-$insert_token = 'INSERT INTO TOKEN (value, date, user_id) values (:value, :date, :user_id)';
-$req = $bdd->prepare($insert_token);
-$req->execute(
-    [
-        'value' => $rand_verification_email, 
-        'date' => $date, 
-        'user_id' => $id_user
-    ]);
-    $result = $req->fetch(PDO::FETCH_ASSOC);
-    ///var_dump($result);
-
-if(isset($_GET['reload'])){
-$select_check = 'SELECT email_check FROM USERS WHERE email = :email';
-$req = $bdd->prepare($select_check);
-$req->execute(
-['email'=> htmlspecialchars($_GET['message'])]);
-$result = $req->fetch(PDO::FETCH_ASSOC);
-
-    if($result['email_check'] = 1){
-        redirectSuccess('../connexion.php', 'Votre email a été vérifié, veuillez vous connecter');
-    }
+    $insert_token = 'INSERT INTO TOKEN (value, date, user_id) values (:value, :date, :user_id)';
+    $req = $bdd->prepare($insert_token);
+    $req->execute(
+        [
+            'value' => $rand_verification_email, 
+            'date' => $date, 
+            'user_id' => $id_user
+        ]);
+        $result = $req->fetch(PDO::FETCH_ASSOC);
+        ///var_dump($result);
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -92,25 +121,24 @@ $result = $req->fetch(PDO::FETCH_ASSOC);
             <h2 class="text-center mb-4">Code de vérification envoyé, consultez votre boite mail ! Lorsque votre email aura été vérifié, revenez sur cette page...</h2>
         </div>
     </div>
-</div>>
-<script>
-    function auto_reload()
-    {
-        var host = window.location.host;
-        var newLocation = host.includes('italent.site') 
-            ? 'https://italent.site/back/verification_email.php?reload=1'
-            : 'https://213.32.89.122/back/verification_email.php?reload=1';
-        window.location = newLocation;
-    }
+</div>
+<?php 
+$reloadUrl = generateReloadUrl($_GET['message']);
+?>
+        <script>
+            function auto_reload()
+            {
+                window.location = '<?php echo $reloadUrl; ?>';
+            }
 
-    // Check if the page should be reloaded.
-    var urlParams = new URLSearchParams(window.location.search);
-    var reload = urlParams.get('reload');
+            // Check if the page should be reloaded.
+            var urlParams = new URLSearchParams(window.location.search);
+            var reload = urlParams.get('reload');
 
-    // Si le paramètre 'reload' n'est pas défini ou est défini à '1', rechargez la page après 10 secondes.
-    if (reload === null || reload === '1') {
-        setTimeout(auto_reload, 10000);
-    }
-</script> 
+            // Si le paramètre 'reload' n'est pas défini ou est défini à '1', rechargez la page après 10 secondes.
+            if (reload === null || reload === '1') {
+                setTimeout(auto_reload, 10000);
+            }
+        </script> 
 </body>
 </html>
