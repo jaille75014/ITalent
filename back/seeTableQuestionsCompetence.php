@@ -17,6 +17,8 @@ if (isset($_GET['competence'])&& !empty($_GET['competence'])
     $result=$req->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($result);
                         
+} else if($_GET['competence']==="Sélectionner une compétence"){
+    echo json_encode([]);
 }
 
 ?>

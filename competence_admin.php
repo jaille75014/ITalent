@@ -84,6 +84,7 @@ $req6->execute();
                     <h2 class="text-center">Ajouter une compétence</h2>
 
 
+
                 </div>    
 
                 <div class="col-12 col-md-6">
@@ -129,7 +130,8 @@ $req6->execute();
 
                 <div class="col-12 col-md-6">
                     <h2 class="text-center">Ajouter des questions</h2>
-                    
+                    <p class="mt-5">Veuillez sélectionner une compétence, puis entrer une question et 4 réponses possibles. Il doit y en avoir une de bonne, que vous devez entrer à nouveau dans le dernier champ.</p>
+
                 </div>
                 <div class="col-12 col-md-6">
                         <label class="form-label" for="selectCompetence">Compétence :</label>
@@ -171,7 +173,7 @@ $req6->execute();
             
             <h3 class="text-center" >Table des questions</h3>
             <label class="form-label" for="selectCompetence2">Compétence dont vous voulez afficher les questions :</label>
-            <select id="selectCompetence2" class="form-select" name="competenceScroll2" onchange="selectCompetence()">
+            <select id="selectCompetence2" class="form-select mb-5" name="competenceScroll2" onchange="selectCompetence()">
                 <option selected>Sélectionner une compétence</option>
                 <?php 
                 while($result6=$req6->fetch(PDO::FETCH_ASSOC)){
