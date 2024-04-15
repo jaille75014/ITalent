@@ -171,7 +171,7 @@ $req6->execute();
             
             <h3 class="text-center" >Table des questions</h3>
             <label class="form-label" for="selectCompetence2">Compétence dont vous voulez afficher les questions :</label>
-            <select id="selectCompetence2" class="form-select" name="competenceScroll2" onchange="">
+            <select id="selectCompetence2" class="form-select" name="competenceScroll2" onchange="selectCompetence()">
                 <option selected>Sélectionner une compétence</option>
                 <?php 
                 while($result6=$req6->fetch(PDO::FETCH_ASSOC)){
@@ -182,82 +182,19 @@ $req6->execute();
                 ?>
 
                 </select>
-                <button type="submit" class="btn btn-primary my-4">Envoyer</button>
-
 
             
-            
-                <?php 
-
-
-                    if (isset($_POST['competenceScroll2'])&&!empty($_POST['competenceScroll2'])){
-
-                        $q7='SELECT competence_id FROM COMPETENCES WHERE name=:name;';
-                        $req7=$bdd->prepare($q7);
-                        $req7->execute([
-                            'name'=>$_POST['competenceScroll2']
-                        ]); 
-
-                        $result7=$req7->fetch(PDO::FETCH_ASSOC);
-                        foreach($result7 as $index7=>$value7){
-                            $competenceName2=$value7;
-                        }
-
-                        $q8='SELECT question,answer1,answer2,answer3,answer4,answerCorrect FROM QUESTIONS WHERE competence_id=:competence_id;';
-                        $req8=$bdd->prepare($q8);
-                        $req8->execute([
-                            'competence_id'=> $competenceName2
-                        ]); 
-
-                        echo '<table class="table table-striped my-5">
-                        <tr>
-                            <th>Question</th>
-                            <th>Réponse 1</th>
-                            <th>Réponse 2</th>
-                            <th>Réponse 3</th>
-                            <th>Réponse 4</th>
-                            <th>Bonne réponse</th>
-                            <th>Commande</th>
-                        </tr>';
-
-                        while($result8=$req8->fetch(PDO::FETCH_ASSOC)){
-                            echo '<tr>';
-                            foreach($result8 as $index8=>$value8){
-                                if($index8=='question'){
-                                    $questKeep=$value8;
-                                    echo '<td>'.$value8.'</td>'; 
-                                } else {
-                                    echo '<td>'.$value8.'</td>'; 
-                                }
-                                                      
-                            }
-
-                            echo '<td>
-                                    <form method="post">
-                                        <input type="hidden" name="delete" value="'.$questKeep.'">
-                                        <button type="submit" class="btn btn-danger"> Suppresion </button>
-                                    </form>
-                                </td>';
+                <div id="tableQuestions"></div>
+                
                         
-                        
-                        echo '</tr>';
-                    
-                        
-                            echo '</tr>';
-                        }
-                        echo '</table>';
-                    }
-
-                ?>
-                        
-            </table>
+        
 
 
             
 
 
                 
-            </div>
+            
 
         </main>
 

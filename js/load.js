@@ -56,6 +56,33 @@ async function search(queryParam, inputId){
 
 }
 
-function selectCompetence(){
-    console.log("test");
+async function selectCompetence(){
+    const competence=document.getElementById("selectCompetence2");
+    const div = document.getElementById("tableQuestions");
+
+    const res = await fetch(`back/seeTableQuestionsCompetence.php?competence=${competence.value}`);
+    const txt = await res.text();
+
+    const tableauQuestions = JSON.parse(txt);
+    let html = '<table class="table table-striped my-5"><tr><th>Question</th><th>Réponse 1</th><th>Réponse 2</th><th>Réponse 3</th><th>Réponse 4</th><th>Bonne réponse</th></tr>';
+    console.log(txt);
+    for(let i=0;i<tableauQuestions.length;++i){
+        const question = tableauQuestions[i];
+        html+="<tr>";
+        html+="<td>"+question['question']+'</td>';
+        html+="<td>"+question['answer1']+'</td>';
+        html+="<td>"+question['answer2']+'</td>';
+        html+="<td>"+question['answer3']+'</td>';
+        html+="<td>"+question['answer4']+'</td>';
+        html+="<td>"+question['answerCorrect']+'</td>';
+        html+="</tr>";
+    }
+    console.log(txt);
+    console.log(tableauQuestions);
+
+    html+="</table>";
+    div.innerHTML=html;
+
+
+
 }
