@@ -45,7 +45,6 @@ async function search(queryParam, inputId){
     answer4.value="";
     answerCorrect.value="";
 
-    console.log(txt);
     if(txt==1) {
         document.getElementById('result').innerHTML='<div class="alert alert-success" role="alert">Votre question a bien été ajoutée.</div>';
     }else{ 
@@ -55,4 +54,8 @@ async function search(queryParam, inputId){
 
 
 
+}
+
+function selectCompetence(){
+    console.log("test");
 }
