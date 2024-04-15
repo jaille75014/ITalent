@@ -96,11 +96,21 @@ $result = $req->fetch(PDO::FETCH_ASSOC);
 <script>
     function auto_reload()
     {
-        window.location = 'https://italent.site/back/verification_email.php?reload=1';  //your page location
+        var host = window.location.host;
+        var newLocation = host.includes('italent.site') 
+            ? 'https://italent.site/back/verification_email.php?reload=1'
+            : 'https://213.32.89.122/back/verification_email.php?reload=1';
+        window.location = newLocation;
     }
 
-    // Reload the page every 10 seconds.
-    var timer = setInterval(auto_reload, 10000);
+    // Check if the page should be reloaded.
+    var urlParams = new URLSearchParams(window.location.search);
+    var reload = urlParams.get('reload');
+
+    // Si le paramètre 'reload' n'est pas défini ou est défini à '1', rechargez la page après 10 secondes.
+    if (reload === null || reload === '1') {
+        setTimeout(auto_reload, 10000);
+    }
 </script> 
 </body>
 </html>
