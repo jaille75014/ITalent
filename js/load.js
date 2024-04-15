@@ -70,13 +70,14 @@ async function selectCompetence(){
         let html = '<table class="table table-striped my-5"><tr><th>Question</th><th>Réponse 1</th><th>Réponse 2</th><th>Réponse 3</th><th>Réponse 4</th><th>Bonne réponse</th><th>Action</th></tr>';
         for(let i=0;i<tableauQuestions.length;++i){
             const question = tableauQuestions[i];
+            html+="<tr>";
             html+='<td>'+question['question']+'</td>';
             html+='<td>'+question['answer1']+'</td>';
             html+='<td>'+question['answer2']+'</td>';
             html+='<td>'+question['answer3']+'</td>';
             html+='<td>'+question['answer4']+'</td>';
             html+='<td>'+question['answerCorrect']+'</td>';
-            html+='<td><button class="btn btn-danger" onclick="suppQuestions("'+question['question']+'"))">Supprimer</button></td>';
+            html+='<td><button class="btn btn-danger" onclick="suppQuestions(\''+question['question']+'\')">Supprimer</button></td>';       
             html+="</tr>";
         }
         html+="</table>";
@@ -91,6 +92,6 @@ async function selectCompetence(){
 async function suppQuestions(question){
     const res = await fetch(`back/deleteQuestionsCompetence.php?question=${question}`);
     
-
+    selectCompetence();
     
 }
