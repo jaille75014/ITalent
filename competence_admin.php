@@ -165,26 +165,24 @@ $req6->execute();
                         
                         <button onclick="addQuestionsToCompetence()" type="submit" class="btn btn-primary">Envoyer</button>
                 </div>
-                <div id="result"></div> <!-- Permet d'afficher le résultat de l'ajout de questions. -->
+                <div id="result" class="mt-4"></div> <!-- Permet d'afficher le résultat de l'ajout de questions. -->
 
             </div>
             
             <h3 class="text-center" >Table des questions</h3>
-            <form method="post">
-                <label class="form-label" for="selectCompetence2">Compétence dont vous voulez afficher les questions :</label>
-                <select id="selectCompetence2" class="form-select" name="competenceScroll2">
-                    <option selected>Sélectionner une compétence</option>
-                    <?php 
-                    while($result6=$req6->fetch(PDO::FETCH_ASSOC)){
-                        foreach($result6 as $index6=>$value6){
-                            echo '<option value="'. $value6 .'">'. $value6.'</option>';                   
-                        }
+            <label class="form-label" for="selectCompetence2">Compétence dont vous voulez afficher les questions :</label>
+            <select id="selectCompetence2" class="form-select" name="competenceScroll2" onchange="">
+                <option selected>Sélectionner une compétence</option>
+                <?php 
+                while($result6=$req6->fetch(PDO::FETCH_ASSOC)){
+                    foreach($result6 as $index6=>$value6){
+                        echo '<option value="'. $value6 .'">'. $value6.'</option>';                   
                     }
-                    ?>
+                }
+                ?>
 
                 </select>
                 <button type="submit" class="btn btn-primary my-4">Envoyer</button>
-            </form>
 
 
             
