@@ -43,11 +43,15 @@ function togglePasswordVisibility(eye) {
 }
 
 async function follow(button) {
+    console.log(button);
     const followed = button.parentElement.querySelector('.user_followed').value;
     const follower = button.parentElement.querySelector('.user_follower').value;
+    console.log(followed, follower);
     const res = await fetch(`back/connect_users.php?followed=${followed}&follower=${follower}`);
     const txt = await res.text();
+    console.log(res, txt);
     const icon = button.querySelector('i');
+    console.log(icon);
     icon.classList.toggle("bi-person-plus");
     icon.classList.toggle("bi-person-check-fill");
 }
