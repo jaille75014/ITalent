@@ -49,5 +49,7 @@ async function follow() {
     const txt = await res.text();
     const btn = document.getElementsByClassName("bi");
     // Change la class de l'icone
-    btn[0].classList.toggle("bi bi-person-check-fill my-icon");
+    btn[0].classList.toggle("bi");
+    btn[0].classList.toggle("bi-person-check-fill");
+    btn[0].classList.toggle("my-icon");
 }

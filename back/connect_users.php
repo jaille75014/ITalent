@@ -7,8 +7,8 @@ if(isset($_GET['followed']) && isset($_GET['follower'])){
     $insert_connects = 'INSERT INTO CONNECTS (student_id, recruiteur_id) VALUES (:followed, :follower)';
     $success = $bdd->prepare($insert_connects);
     $success->execute([
-        'student_id' => $followed,
-        'recruiter_id' => $follower
+        'followed' => $followed,
+        'follower' => $follower
     ]);
     if($success){
         http_response_code(201); // Created
