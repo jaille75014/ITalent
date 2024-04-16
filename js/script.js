@@ -50,8 +50,14 @@ function togglePasswordVisibility(eye) {
 
 async function follow(button) {
     console.log(button);
-    const followed = button.parentElement.querySelector('.user_followed').value;
-    const follower = button.parentElement.querySelector('.user_follower').value;
+    const followedElement = button.parentElement.querySelector('.user_followed');
+    const followerElement = button.parentElement.querySelector('.user_follower');
+    if (!followedElement || !followerElement) {
+        console.error('Followed or follower element not found');
+        return;
+    }
+    const followed = followedElement.value;
+    const follower = followerElement.value;
     console.log(followed, follower);
     const res = await fetch(`back/connect_users.php?followed=${followed}&follower=${follower}`);
     const txt = await res.text();
