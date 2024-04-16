@@ -42,14 +42,12 @@ function togglePasswordVisibility(eye) {
     }
 }
 
-async function follow() {
-    const followed = document.getElementById("user_followed").value;
-    const follower = document.getElementById("user_follower").value;
+async function follow(button) {
+    const followed = button.parentElement.querySelector('.user_followed').value;
+    const follower = button.parentElement.querySelector('.user_follower').value;
     const res = await fetch(`back/connect_users.php?followed=${followed}&follower=${follower}`);
     const txt = await res.text();
-   // Trouver l'icône à l'intérieur du bouton
-   const icon = button.querySelector('i');
-   // Change la class de l'icone
-   icon.classList.toggle("bi-person-plus");
-   icon.classList.toggle("bi-person-check-fill");
+    const icon = button.querySelector('i');
+    icon.classList.toggle("bi-person-plus");
+    icon.classList.toggle("bi-person-check-fill");
 }
