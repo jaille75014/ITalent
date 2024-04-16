@@ -14,6 +14,8 @@ if(isset($_GET['followed']) && isset($_GET['follower'])){
         http_response_code(201); // Created
     } else{
         http_response_code(500); // Internal server error
+        
+        echo "Error: " . $query->errorInfo()[2];
     }   
 } else{
 http_response_code(400); // Bad request
