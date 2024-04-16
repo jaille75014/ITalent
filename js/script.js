@@ -47,9 +47,9 @@ async function follow() {
     const follower = document.getElementById("user_follower").value;
     const res = await fetch(`back/connect_users.php?followed=${followed}&follower=${follower}`);
     const txt = await res.text();
-    const btn = document.getElementsByClassName("bi");
-    // Change la class de l'icone
-    btn[0].classList.toggle("bi");
-    btn[0].classList.toggle("bi-person-check-fill");
-    btn[0].classList.toggle("my-icon");
+   // Trouver l'icône à l'intérieur du bouton
+   const icon = button.querySelector('i');
+   // Change la class de l'icone
+   icon.classList.toggle("bi-person-plus");
+   icon.classList.toggle("bi-person-check-fill");
 }
