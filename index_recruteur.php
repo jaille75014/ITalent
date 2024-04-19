@@ -9,18 +9,47 @@
     if(!isset($_SESSION['captcha'])){
         redirectFailure('captcha.php', 'Chipeur arrête de chipper !');
     } 
-    
-    // Requete pour récuperer le nom, prénom, la ville, le numéro de téléphone, l'email, l'image et le nom du job
-$get_infos = 'SELECT USERS.user_id, USERS.lastname, USERS.firstname, USERS.city, USERS.tel, USERS.email, USERS.image, JOBS.name FROM USERS INNER JOIN JOBS ON USERS.student_job = JOBS.id WHERE USERS.statut = 1 LIMIT 20';
-$req = $bdd->prepare($get_infos);
-$req->execute();
-$donnees = $req->fetchAll(PDO::FETCH_ASSOC);
 
-// mélanger les users
-shuffle($donnees);
+
+
 
     
+        // Get filter values from POST or GET reques
+        $competence_name = isset($_POST['competence']) ? $_POST['competence'] : '';
+        $competence_id = isset($_POST['competence_id']) ? $_POST['competence_id'] : '';
+        $level = isset($_POST['level']) ? $_POST['level'] : '';
+        $poste = isset($_POST['poste']) ? $_POST['poste'] : '';
+
+        $competence_id = 'SELECT competence_id FROM COMPETENCES WHERE name LIKE :name';
+        $req = $bdd->prepare($competence_id);
+        $req->execute([
+            'name'=> '%' . $competence_name . '%'
+        ]);	
+        $comp_id = $req->fetch(PDO::FETCH_ASSOC);
     
+        // Requete pour récuperer le nom, prénom, la ville, le numéro de téléphone, l'email, l'image et le nom du job
+        $get_infos = 'SELECT USERS.user_id, USERS.lastname, USERS.firstname, USERS.city, USERS.tel, USERS.email, USERS.image, JOBS.name FROM USERS INNER JOIN JOBS ON USERS.student_job = JOBS.id INNER JOIN POSSESSES ON USERS.user_id = POSSESSES.user_id WHERE USERS.statut = 1';
+    
+        // Add filters to the query
+        if (!empty($competence_id)) {
+            $get_infos .= " AND POSSESSES.competence_id = " . htmlspecialchars($comp_id['competence_id']);
+        }
+        if (!empty($level)) {
+            $get_infos .= " AND POSSESSES.level = " . htmlspecialchars($level);
+        }
+        if (!empty($poste)) {
+            $get_infos .= " AND JOBS.name LIKE '%" . htmlspecialchars($poste) . "%'";
+        }
+    
+        $get_infos .= " LIMIT 20";
+    
+        $req = $bdd->prepare($get_infos);
+    
+        $req->execute();
+        $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
+    
+        // mélanger les users
+        shuffle($donnees);    
 ?>
 
 <!DOCTYPE html>
@@ -41,27 +70,35 @@ include('includes/head.php');?>
         <img src="assets/banner_recruteur.jpg" alt="Bannière recruteur">
         <h1>ESPACE RECRUTEUR</h1>
         <p>Chercher des étudiants que vous souhaitez en filtrant vos recherches pour pouvoir discuter avec eux</p>
-        <div class="search-container">
-            <div id="searchForm" class="d-flex justify-content-center align-items-end">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="competence" name="competence" placeholder="Compétence">
-                </div>
-                <div class="form-group">
-                    <select class="form-control" id="niveau" name="niveau">
-                        <option value="">Niveau</option>
-                        <option value="Débutant">Débutant</option>
-                        <option value="Intermédiaire">Intermédiaire</option>
-                        <option value="Avancé">Avancé</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="poste" name="poste" placeholder="Poste">
-                </div>
+    <div class="search-container">
+        <form id="searchForm" class="d-flex justify-content-center align-items-end" method="post" action="index_recruteur.php">
+            <div class="form-group">
+                <input type="text" class="form-control" id="competence" name="competence" placeholder="Compétence">
             </div>
-        </div>
+            <div class="form-group">
+                <select class="form-control" id="niveau" name="niveau">
+                    <option value="">Niveau</option>
+                    <option value="Débutant">Débutant</option>
+                    <option value="Intermédiaire">Intermédiaire</option>
+                    <option value="Avancé">Avancé</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="form-control" id="poste" name="poste">
+                    <option value="">Poste</option>
+                    <option value="CDD">CDD</option>
+                    <option value="CDI">CDI</option>
+                    <option value="Stage">Stage</option>
+                    <option value="Alternance">Alternance</option>
+                    <option value="Apprentissage">Apprentissage</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Filtrer">
+            </div>
+        </form>
     </div>
-   
-
+    </div>
 
         <div class="row py-5 gy-4">
             <h1 class="text-center">CV Etudiants</h1>
