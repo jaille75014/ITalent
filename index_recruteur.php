@@ -21,7 +21,7 @@
     $req->execute([
         'name'=> '%' . $competence_name . '%'
     ]);	
-    $comp_id = $req->fetch(PDO::FETCH_ASSOC);
+    $comp_id = $req->fetchAll(PDO::FETCH_ASSOC);
     $competence_id = isset($comp_id['competence_id']) ? $comp_id['competence_id'] : '';
     
     // Obtenir les informations des étudiants
