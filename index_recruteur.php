@@ -70,7 +70,7 @@ include('includes/head.php');?>
         <h1>ESPACE RECRUTEUR</h1>
         <p>Chercher des étudiants que vous souhaitez en filtrant vos recherches pour pouvoir discuter avec eux</p>
     <div class="search-container">
-        <form id="searchForm" class="d-flex justify-content-center align-items-end" method="post" action="index_recruteur.php">
+        <form id="searchForm" class="d-flex justify-content-center align-items-end" method="post" action="">
             <div class="form-group">
                 <input type="text" class="form-control" id="competence" name="competence" placeholder="Compétence">
             </div>
