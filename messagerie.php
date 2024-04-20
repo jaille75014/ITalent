@@ -14,28 +14,19 @@ $result_messages = array();
 
 // Si c'est un recruteur qui est connecté
 if($_SESSION['statut'] == 2){
-$all_connections = "SELECT student_id FROM CONNECTS WHERE recruiter_id = ?";
-$is_connected = $bdd->prepare($all_connections);
-$is_connected->execute(
-    [$_SESSION['user_id']]
-);
-$connected = $is_connected->fetch();
+    $all_connections = "SELECT student_id FROM CONNECTS WHERE recruiter_id = ?";
+    $is_connected = $bdd->prepare($all_connections);
+    $is_connected->execute([$_SESSION['user_id']]);
+    $connected = $is_connected->fetchAll(PDO::FETCH_ASSOC);
+    $connected_ids = array_column($connected, 'student_id');
 } else if($_SESSION['statut'] == 1){
-$all_connections = "SELECT recruiter_id FROM CONNECTS WHERE student_id = ?";
-$is_connected = $bdd->prepare($all_connections);
-$is_connected->execute(
-    [$_SESSION['user_id']]
-);
-$connected = $is_connected->fetch();
+    $all_connections = "SELECT recruiter_id FROM CONNECTS WHERE student_id = ?";
+    $is_connected = $bdd->prepare($all_connections);
+    $is_connected->execute([$_SESSION['user_id']]);
+    $connected = $is_connected->fetchAll(PDO::FETCH_ASSOC);
+    $connected_ids = array_column($connected, 'recruiter_id');
 }
 
-if (is_array($connected)) {
-    $connected_ids = array_column($connected, $_SESSION['statut'] == 2 ? 'student_id' : 'recruiter_id');
-} else {
-    // Gérer le cas où $connected n'est pas un tableau
-    // Par exemple, vous pouvez définir $connected_ids comme un tableau vide
-    $connected_ids = [];
-}
 if (!empty($connected_ids)) {
     $ids_string = implode(',', $connected_ids); // Transforme le tableau en string pour la requête SQL, ex: '1,2,3'
 
@@ -46,7 +37,13 @@ if (!empty($connected_ids)) {
     $result_users = [];
 }
 
-
+if (isset($_GET['user_id'])) {
+    $user_id = htmlspecialchars($_GET['user_id']);
+    $sql_messages = "SELECT * FROM MESSAGE WHERE (user_id_source = ? AND user_id_target_id = ?) OR (user_id_source = ? AND user_id_target_id = ?) ORDER BY date ASC";
+    $stmt_messages = $bdd->prepare($sql_messages);
+    $stmt_messages->execute([$_SESSION['user_id'], $user_id, $user_id, $_SESSION['user_id']]);
+    $result_messages = $stmt_messages->fetchAll(PDO::FETCH_ASSOC);
+}
 
 /* ANCIENNE VERSION A SUPPRIMER SI LA NOUVELLE FONCTIONNE CAR ELLE SELECTIONNE TOUS LES UTILISATEURS
 
@@ -55,15 +52,6 @@ $stmt_users = $bdd->query($sql_users);
 $result_users = $stmt_users->fetchAll(PDO::FETCH_ASSOC);
 */
 
-
-
-if (isset($_GET['user_id'])) {
-    $user_id = htmlspecialchars($_GET['user_id']);
-    $sql_messages = "SELECT * FROM MESSAGE WHERE (user_id_source = ? AND user_id_target_id = ?) OR (user_id_source = ? AND user_id_target_id = ?) ORDER BY date ASC";
-    $stmt_messages = $bdd->prepare($sql_messages);
-    $stmt_messages->execute([$_SESSION['user_id'], $user_id, $user_id, $_SESSION['user_id']]);
-    $result_messages = $stmt_messages->fetchAll(PDO::FETCH_ASSOC);
-}
 ?>
 
 <!DOCTYPE html>
