@@ -28,7 +28,7 @@
     $get_infos = 'SELECT USERS.user_id, USERS.lastname, USERS.firstname, USERS.city, USERS.tel, USERS.email, USERS.image, JOBS.name, COMPETENCES.name AS competence_name FROM USERS 
     LEFT JOIN JOBS ON USERS.student_job = JOBS.id 
     LEFT JOIN POSSESSES ON USERS.user_id = POSSESSES.user_id 
-    LEFT JOIN COMPETENCES ON POSSESSES.competence_id = COMPETENCES.id 
+    LEFT JOIN COMPETENCES ON POSSESSES.competence_id = COMPETENCES.competence_id 
     WHERE USERS.statut = 1';
     
     // Ajouter les potentielles conditions de filtre à la requête
