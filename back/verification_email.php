@@ -62,11 +62,13 @@ if(isset($_GET['reload'])){
     $mail->setFrom('italent.contact.site@gmail.com', 'Italent');
     $mail->addAddress(htmlspecialchars($_GET['message'])); // Destinataire
 
+    $serverName = $_SERVER['SERVER_NAME'];
+
     $body = '<p>Bonjour, nous vous remercions de faire confiance à Italent pour la recherche de votre prochain emploi ! <br><br>
     Nous avons juste besoin d\'une petite vérification de votre part pour que vous puissiez vous connecter. <br>
     Copiez ce code : <br></p>
     <h3>' . $rand_verification_email . '</h3>
-    <p>Et cliquez sur ce lien pour vérifier votre identitée : <a href="https://italent.site/back/codes_verification.php?id=' . $id_user . '&token=' . $rand_verification_email . '&check=0">Clique vite !</a><br>
+    <p>Et cliquez sur ce lien pour vérifier votre identitée : <a href="https://' . $serverName . '/back/codes_verification.php?id=' . $id_user . '&token=' . $rand_verification_email . '&check=0">Clique vite !</a><br>
     <b>Attention !</b> Ce lien n\'est valable que pendant 1h! </p>';
 
     //Attachments :
