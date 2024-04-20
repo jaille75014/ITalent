@@ -53,7 +53,7 @@ async function follow(button) {
     const followedElement = button.parentElement.querySelector('.user_followed');
     const followerElement = button.parentElement.querySelector('.user_follower');
     if (!followedElement || !followerElement) {
-        console.error('Followed or follower element not found');
+        console.error('Les elements n\'ont pas été trouvés');
         return;
     }
     const followed = followedElement.value;

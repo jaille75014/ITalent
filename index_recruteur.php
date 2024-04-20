@@ -9,47 +9,46 @@
     if(!isset($_SESSION['captcha'])){
         redirectFailure('captcha.php', 'Chipeur arrête de chipper !');
     } 
+    
+    // Get filter values from POST or GET request
+    $competence_name = isset($_POST['competence']) ? $_POST['competence'] : '';
+    $level = isset($_POST['level']) ? $_POST['level'] : '';
+    $poste = isset($_POST['poste']) ? $_POST['poste'] : '';
+    
+    // Get competence_id for the given competence_name
+    $competence_id_query = 'SELECT competence_id FROM COMPETENCES WHERE name LIKE :name';
+    $req = $bdd->prepare($competence_id_query);
+    $req->execute([
+        'name'=> '%' . $competence_name . '%'
+    ]);	
+    $comp_id = $req->fetch(PDO::FETCH_ASSOC);
+    $competence_id = isset($comp_id['competence_id']) ? $comp_id['competence_id'] : '';
+    
+    // Obtenir les informations des étudiants
+    $get_infos = 'SELECT USERS.user_id, USERS.lastname, USERS.firstname, USERS.city, USERS.tel, USERS.email, USERS.image, JOBS.name, COMPETENCES.name AS competence_name FROM USERS 
+    LEFT JOIN JOBS ON USERS.student_job = JOBS.id 
+    LEFT JOIN POSSESSES ON USERS.user_id = POSSESSES.user_id 
+    LEFT JOIN COMPETENCES ON POSSESSES.competence_id = COMPETENCES.id 
+    WHERE USERS.statut = 1';
+    
+    // Ajouter les potentielles conditions de filtre à la requête
+    if (!empty($competence_id)) {
+        $get_infos .= " AND POSSESSES.competence_id = " . htmlspecialchars($competence_id);
+    }
+    if (!empty($level)) {
+        $get_infos .= " AND POSSESSES.level >= " . htmlspecialchars($level);
+    }
+    if (!empty($poste)) {
+        $get_infos .= " AND JOBS.name LIKE '%" . htmlspecialchars($poste) . "%'";
+    }
 
+    
+    $req = $bdd->prepare($get_infos);
+    $req->execute();
+    $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
 
-
-
-    
-        // Get filter values from POST or GET reques
-        $competence_name = isset($_POST['competence']) ? $_POST['competence'] : '';
-        $competence_id = isset($_POST['competence_id']) ? $_POST['competence_id'] : '';
-        $level = isset($_POST['level']) ? $_POST['level'] : '';
-        $poste = isset($_POST['poste']) ? $_POST['poste'] : '';
-
-        $competence_id = 'SELECT competence_id FROM COMPETENCES WHERE name LIKE :name';
-        $req = $bdd->prepare($competence_id);
-        $req->execute([
-            'name'=> '%' . $competence_name . '%'
-        ]);	
-        $comp_id = $req->fetch(PDO::FETCH_ASSOC);
-    
-        // Requete pour récuperer le nom, prénom, la ville, le numéro de téléphone, l'email, l'image et le nom du job
-        $get_infos = 'SELECT USERS.user_id, USERS.lastname, USERS.firstname, USERS.city, USERS.tel, USERS.email, USERS.image, JOBS.name FROM USERS INNER JOIN JOBS ON USERS.student_job = JOBS.id INNER JOIN POSSESSES ON USERS.user_id = POSSESSES.user_id WHERE USERS.statut = 1';
-    
-        // Add filters to the query
-        if (!empty($competence_id)) {
-            $get_infos .= " AND POSSESSES.competence_id = " . htmlspecialchars($comp_id['competence_id']);
-        }
-        if (!empty($level)) {
-            $get_infos .= " AND POSSESSES.level = " . htmlspecialchars($level);
-        }
-        if (!empty($poste)) {
-            $get_infos .= " AND JOBS.name LIKE '%" . htmlspecialchars($poste) . "%'";
-        }
-    
-        $get_infos .= " LIMIT 20";
-    
-        $req = $bdd->prepare($get_infos);
-    
-        $req->execute();
-        $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
-    
-        // mélanger les users
-        shuffle($donnees);    
+    // mélanger les users pour un affichage aléatoire. 
+    shuffle($donnees);
 ?>
 
 <!DOCTYPE html>
@@ -113,7 +112,7 @@ include('includes/head.php');?>
                     </div>
                     <div class="details">
                         <h1 class="name"><?=$user['lastname'] . ' ' . $user['firstname']?></h1>
-                        <h3 class="username"><?php $user['email'] ?></h3>
+                        <h3 class="username"><?= $user['email'] ?></h3>
                     </div>
                 </div>
                 <div class="status">
