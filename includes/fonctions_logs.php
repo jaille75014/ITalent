@@ -24,7 +24,7 @@ function writeVisitLog($page){
     date_default_timezone_set('Europe/Paris');
 
     // Ouverture du flux log_visites.txt
-    $log = fopen('../logs/log_visites.txt', 'a+');
+    $log = fopen('logs/log_visites.txt', 'a+');
 
     // Création de la ligne à ajouter
     // AAAA/mm/jj - h/m/s - Visite de la page 'page'
