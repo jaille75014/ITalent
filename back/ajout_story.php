@@ -4,7 +4,7 @@ include('../includes/bd.php');
 include('../includes/header_location.php');
 
 if (!isset($_SESSION['user_id'])) {
-    redirectFailure('../connexion.php', 'Vous devez être connecté pour accéder à cette page.');
+    redirectFailure('../connexion', 'Vous devez être connecté pour accéder à cette page.');
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['image_story'])) {
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['image_story'])) {
         if (move_uploaded_file($image["tmp_name"], $target_file)) {
             $stmt = $bdd->prepare("INSERT INTO STORYS (image, user_id, expiration) VALUES (?, ?, ADDDATE(NOW(), INTERVAL 1 DAY))");
             if ($stmt->execute([$filename, $user_id])) { 
-                header('Location: ../profil.php');
+                header('Location: ../profil');
                 exit; 
             } else {
                 echo "Erreur lors de l'ajout dans la base de données.";

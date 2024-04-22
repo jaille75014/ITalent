@@ -2,7 +2,7 @@
 <html lang="fr">
 <?php 
 $title='Cookies';
-$url = 'cookies.php';
+$url = 'cookies';
 include('includes/head.php');
 ?>
 <body>

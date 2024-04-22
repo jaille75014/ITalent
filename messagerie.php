@@ -5,7 +5,7 @@ include('includes/fonctions_logs.php');
 include("includes/bd.php");
 
 if(!isset($_SESSION['captcha'])){
-    redirectFailure('captcha.php', 'Chipeur arrête de chipper !');
+    redirectFailure('captcha', 'Chipeur arrête de chipper !');
 }
 
 writeVisitLog('messagerie.php');
@@ -89,7 +89,7 @@ $result_users = $stmt_users->fetchAll(PDO::FETCH_ASSOC);
 
         <?php include("includes/header.php"); 
 
-        $url = 'messagerie.php'; // Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter 
+        $url = 'messagerie'; // Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter 
 
         if (isset($_GET['messageFailure'])): ?>
         <div class="alert alert-danger" role="alert">
@@ -110,7 +110,7 @@ $result_users = $stmt_users->fetchAll(PDO::FETCH_ASSOC);
                         <ul class="list-group">
                             <?php foreach ($result_users as $row) : ?>
                                 <li class="list-group-item">
-                                    <a href="messagerie.php?user_id=<?= $row['user_id'] ?>" class="user-link"><?= $row['firstname'] ?> <?= $row['lastname'] ?></a>
+                                    <a href="messagerie?user_id=<?= $row['user_id'] ?>" class="user-link"><?= $row['firstname'] ?> <?= $row['lastname'] ?></a>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
@@ -135,7 +135,7 @@ $result_users = $stmt_users->fetchAll(PDO::FETCH_ASSOC);
 
 
                         <div class="send-message">
-                            <form action="back/envoie_message.php" method="post" class="d-flex">
+                            <form action="back/envoie_message" method="post" class="d-flex">
                                 <textarea name="message_content" placeholder="Votre message" class="form-control mr-2"></textarea>
                                 <input type="hidden" name="user_id_target_id" value="<?= isset($user_id) ? $user_id : '' ?>">
                                 <button type="submit" class="btn btn-primary">Envoyer</button>

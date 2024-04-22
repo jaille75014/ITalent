@@ -4,10 +4,10 @@ include('includes/header_location.php');
 include('includes/bd.php');
 include('includes/fonctions_logs.php');
 if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
-    redirectFailure('index.php', 'Vous devez être connecté en tant qu\'admin pour accéder à cette page.');
+    redirectFailure('index', 'Vous devez être connecté en tant qu\'admin pour accéder à cette page.');
 } 
 if(!isset($_SESSION['captcha'])){
-    redirectFailure('captcha.php', 'Chipeur arrête de chipper !');
+    redirectFailure('captcha', 'Chipeur arrête de chipper !');
 }
 
 
@@ -38,7 +38,7 @@ writeVisitLog('newsletter_admin.php');
     ?>
         <h1 class="text-center">Gestion de la <span class="text-primary">Newsletter</span></h1>
 
-        <form action="back/edition_newsletter.php" method="POST" enctype="multipart/form-data">
+        <form action="back/edition_newsletter" method="POST" enctype="multipart/form-data">
             <div class="row">
             <h1 class="col-12">Envoyer un nouveau mail</h1>
             </div>

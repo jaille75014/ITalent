@@ -12,7 +12,7 @@ else {
     if(isset($_SESSION["code"])){
 
     if(!isset($_GET['token']) || empty($_GET['token'])){
-        redirectFailure('verification_email.php', 'Une erreur est survenue, veuillez réessayer ou regénérer un nouveau mail&again=1');
+        redirectFailure('verification_email', 'Une erreur est survenue, veuillez réessayer ou regénérer un nouveau mail&again=1');
     }
 
     if($_GET['check'] == 0){
@@ -34,7 +34,7 @@ else {
             <h3 class="mb-0">Validation du code</h3>
                 </div>
                     <div class="card-body">
-                        <form id="form_code" <?php echo 'action="codes_verification.php?id=' . htmlspecialchars($_GET['id']) . '&hour=' . date('Y-m-d H:i:s') . '&check=1&token=' . htmlspecialchars($_GET['token']) . '" '?> method="POST">
+                        <form id="form_code" <?php echo 'action="codes_verification?id=' . htmlspecialchars($_GET['id']) . '&hour=' . date('Y-m-d H:i:s') . '&check=1&token=' . htmlspecialchars($_GET['token']) . '" '?> method="POST">
                             <div class="form-group">
                                 <label>Code</label>
                                 <input type="text" class="form-control form-control-lg rounded-0" name="code" value="<?php echo isset($_GET['token']) ? htmlspecialchars($_GET['token']) : '' ?>">
@@ -74,20 +74,20 @@ else {
                     'id'=> htmlspecialchars($_GET['id'])
                 ]);
 
-                redirectSuccess('codes_verification.php', 'Votre email a été vérifié, vous pouvez à présent fermer cette fenetre et revenir sur la page précédente pour vous connecter !&verified=1');  
+                redirectSuccess('codes_verification', 'Votre email a été vérifié, vous pouvez à présent fermer cette fenetre et revenir sur la page précédente pour vous connecter !&verified=1');  
             } else if(($result['value'] == $_POST['code']) && ($result['date'] <= $_GET['hour'])){
-                redirectFailure('verification_email.php', 'Vous êtes trop lent ! votre délais pour vérifier votre email a expiré');
+                redirectFailure('verification_email', 'Vous êtes trop lent ! votre délais pour vérifier votre email a expiré');
 
             } else if (($result['value'] != $_POST['code'])){
-                redirectFailure('codes_verification.php', 'Le code ne correspond pas, merci de réessayer&token=' . htmlspecialchars($_GET['token']) .'&id=' . htmlspecialchars($_GET['id']) . '&check=0&debug=' . $result['value'] . '&debug2=' . $result['date']);
+                redirectFailure('codes_verification', 'Le code ne correspond pas, merci de réessayer&token=' . htmlspecialchars($_GET['token']) .'&id=' . htmlspecialchars($_GET['id']) . '&check=0&debug=' . $result['value'] . '&debug2=' . $result['date']);
             }
             
         } else {
-            redirectFailure('../connexion.php', 'Aucun token trouvé à votre nom, il se peut que votre adresse mail soit déjà vérifiée, essayez de vous connecter');
+            redirectFailure('../connexion', 'Aucun token trouvé à votre nom, il se peut que votre adresse mail soit déjà vérifiée, essayez de vous connecter');
         }
         }
     } else {
-        redirectFailure('inscription.php', 'Oh ! Avez-vous essayer de gruger l\'inscription ?');
+        redirectFailure('inscription', 'Oh ! Avez-vous essayer de gruger l\'inscription ?');
     }
 } // If isset verified
 ?>

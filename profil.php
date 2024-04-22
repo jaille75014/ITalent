@@ -5,7 +5,7 @@ include('includes/header_location.php');
 include('includes/bd.php'); 
 
 if (!isset($_SESSION['user_id'])) {
-    redirectFailure('connexion.php', 'Vous devez être connecté pour accéder à cette page.');
+    redirectFailure('connexion', 'Vous devez être connecté pour accéder à cette page.');
 }
 
 $user_id = $_SESSION['user_id'];
@@ -30,14 +30,14 @@ $q='SELECT name FROM COMPETENCES ;';
 $req=$bdd->prepare($q);
 $req->execute(); 
 
-$url = 'profil.php'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
+$url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
     <?php
     $title='Profil';
-    $url = 'profil.php';
+    $url = 'profil';
     include('includes/head.php');
     ?>
     <body class="bg-light">
@@ -62,7 +62,7 @@ $url = 'profil.php'; //Permet de revenir sur cette page en cas d'erreurs dans le
                         <div class="card shadow-sm">
                             <div class="card-body">
                                 <h2 class="card-title">Profil de <?php echo htmlspecialchars($userInfo['firstname']) . ' ' . htmlspecialchars($userInfo['lastname']); ?></h2>
-                                <form action="back/modif_profil.php" method="POST">
+                                <form action="back/modif_profil" method="POST">
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label for="firstname" class="form-label">Prénom</label>
@@ -85,7 +85,7 @@ $url = 'profil.php'; //Permet de revenir sur cette page en cas d'erreurs dans le
                                     </div>
                                     <button type="submit" class="btn btn-primary">Sauvegarder les modifications</button>
                                 </form>
-                                <a href="back/supp_compte.php" class="btn btn-danger mt-3" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.');">Supprimer mon compte</a>
+                                <a href="back/supp_compte" class="btn btn-danger mt-3" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.');">Supprimer mon compte</a>
                             </div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@ $url = 'profil.php'; //Permet de revenir sur cette page en cas d'erreurs dans le
                         <div class="story-bar">
                             <div class="mb-3">
                                 <h4>Ajouter une Story</h4>
-                                <form action="back/ajout_story.php" method="POST" enctype="multipart/form-data">
+                                <form action="back/ajout_story" method="POST" enctype="multipart/form-data">
                                     <input type="file" name="image_story" accept="image/*" required>
                                     <button type="submit" class="btn btn-primary">Publier</button>
                                 </form>
@@ -104,7 +104,7 @@ $url = 'profil.php'; //Permet de revenir sur cette page en cas d'erreurs dans le
                             <?php foreach ($storys as $story): ?>
                                 <div class="story-circle me-3 position-relative">
                                     <img src="<?php echo htmlspecialchars('uploads/storys/' . $story['image']); ?>" alt="Image de story" style="width: 100px; height: 100px;"> 
-                                    <a href="back/supp_story.php?story_id=<?php echo $story['story_id']; ?>" class="btn btn-danger btn-sm position-absolute top-0 end-0" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette story ?');">X</a>
+                                    <a href="back/supp_story?story_id=<?php echo $story['story_id']; ?>" class="btn btn-danger btn-sm position-absolute top-0 end-0" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette story ?');">X</a>
                                 </div>
                             <?php endforeach; ?>
 
@@ -117,7 +117,7 @@ $url = 'profil.php'; //Permet de revenir sur cette page en cas d'erreurs dans le
                         <div class="row">
                             <div class="mb-4">
                                 <h4>Ajouter une Publication</h4>
-                                <form action="back/ajout_publi.php" method="POST" enctype="multipart/form-data">
+                                <form action="back/ajout_publi" method="POST" enctype="multipart/form-data">
                                     <div class="mb-3">
                                         <input type="file" name="image_publication" accept="image/*" required>
                                     </div>
@@ -134,7 +134,7 @@ $url = 'profil.php'; //Permet de revenir sur cette page en cas d'erreurs dans le
                                         <img src="<?php echo htmlspecialchars('uploads/publications/' . $publication['image']); ?>" class="card-img-top" alt="Image de publication">
                                         <div class="card-body">
                                             <p class="card-text"><?php echo htmlspecialchars($publication['description']); ?></p>
-                                            <a href="back/supp_publi.php?publi_id=<?php echo $publication['publi_id']; ?>" class="btn btn-danger btn-sm position-absolute top-0 end-0" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette publication ?');">X</a>
+                                            <a href="back/supp_publi?publi_id=<?php echo $publication['publi_id']; ?>" class="btn btn-danger btn-sm position-absolute top-0 end-0" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette publication ?');">X</a>
                                         </div>
                                     </div>
                                 </div>
@@ -148,7 +148,7 @@ $url = 'profil.php'; //Permet de revenir sur cette page en cas d'erreurs dans le
 
                 <h3 class="text-center" >Ajouter une compétence à votre CV</h3>
 
-                <form method="post" action="exam.php">
+                <form method="post" action="exam">
                     <label class="form-label" for="selectCompetence">Compétence que vous voulez tester:</label>
                     <select id="selectCompetence" class="form-select" name="competenceTest">
                         <option selected>Sélectionner une compétence</option>

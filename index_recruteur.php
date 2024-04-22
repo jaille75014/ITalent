@@ -4,10 +4,10 @@
     include('includes/fonctions_logs.php');
     include("includes/bd.php");
     if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 2) {
-        redirectFailure('index.php', 'Vous n\'avez pas les droits pour accéder à cette page.');
+        redirectFailure('index', 'Vous n\'avez pas les droits pour accéder à cette page.');
     }
     if(!isset($_SESSION['captcha'])){
-        redirectFailure('captcha.php', 'Chipeur arrête de chipper !');
+        redirectFailure('captcha', 'Chipeur arrête de chipper !');
     } 
     
     // Get filter values from POST or GET request
@@ -56,7 +56,7 @@
 
 <?php 
 $title='Recruteur';
-$url = 'index_recruteur.php'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
+$url = 'index_recruteur'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
 include('includes/head.php');?>
 
     <body class="bg-light">
@@ -126,7 +126,7 @@ include('includes/head.php');?>
                     <p><?= $user['tel'] ?></p>
                 </div>
                 <div class="contact">
-                    <a href="messagerie.php?user_id=<?= $user['user_id'] ?>" class="btn btn-primary">Contacter</a>
+                    <a href="messagerie?user_id=<?= $user['user_id'] ?>" class="btn btn-primary">Contacter</a>
                 </div>
                 <div class="action">
                     <div class="icon">

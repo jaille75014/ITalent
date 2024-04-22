@@ -3,7 +3,7 @@ session_start();
 include("../includes/bd.php");
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../connexion.php');
+    header('Location: ../connexion');
     exit;
 }
 
@@ -16,14 +16,14 @@ if (isset($_GET['publi_id'])) {
     if ($res->rowCount() > 0) {
         $res = $bdd->prepare("DELETE FROM PUBLICATIONS WHERE publi_id = ?");
         if ($res->execute([$publi_id])) {
-            header('Location: ../profil.php?');
+            header('Location: ../profil?');
         } else {
-            header('Location: ../profil.php');
+            header('Location: ../profil');
         }
     } else {
-        header('Location: ../profil.php');
+        header('Location: ../profil');
     }
 } else {
-    header('Location: ../profil.php');
+    header('Location: ../profil');
 }
 ?>

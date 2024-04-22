@@ -2,20 +2,20 @@
 session_start(); 
 include('includes/header_location.php');
 if(!isset($_SESSION['captcha'])){
-    redirectFailure('captcha.php', 'Chipeur arrête de chipper !');
+    redirectFailure('captcha', 'Chipeur arrête de chipper !');
 }
     
 
 if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 1) {
-    redirectFailure('index.php', 'Vous n\'avez pas les droits pour accéder à cette page.');
+    redirectFailure('index', 'Vous n\'avez pas les droits pour accéder à cette page.');
 } 
 
 if (!isset($_POST['competenceTest']) || $_SESSION['statut'] != 1) {
-    redirectFailure('index.php', 'Vous n\'avez pas les droits pour accéder à cette page.');
+    redirectFailure('index', 'Vous n\'avez pas les droits pour accéder à cette page.');
 } 
 
 include('includes/fonctions_logs.php');
-writeVisitLog('captcha_admin.php');
+writeVisitLog('captcha_admin');
 
 include('includes/bd.php'); // Connexion à la base de données
 
@@ -38,7 +38,7 @@ $req2->execute([
     'competence_id'=> $competenceId
 ]);
 
-$url = 'exam.php'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
+$url = 'exam'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
 
 
 ?>
@@ -63,7 +63,7 @@ include('includes/head.php');?>
 
                 <h1 class="text-center">Examen de : <span class="text-primary"><?= $_POST['competenceTest']?></span></h1>
 
-                <form method="post" action="back/verif_exam.php">
+                <form method="post" action="back/verif_exam">
                 <?php 
                 $numberQuestion=1;
 

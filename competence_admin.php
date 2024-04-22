@@ -3,17 +3,17 @@ session_start();
 
 
 if(!isset($_SESSION['captcha'])){
-    header('location:captcha.php?error=Chipeur arrête de chipper !');
+    header('location:captcha?error=Chipeur arrête de chipper !');
     exit;
 }
     
 
 if (!isset($_SESSION['statut'])) {
-    header('location:index.php');
+    header('location:index');
     exit;
 } 
 include('includes/fonctions_logs.php');
-writeVisitLog('competence_admin.php');
+writeVisitLog('competence_admin');
 
 include('includes/bd.php'); // Connexion à la base de données
     
@@ -65,7 +65,7 @@ $req6->execute();
 <html>
     <?php 
     $title='Gestion Compétence';
-    $url = 'competence_admin.php'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
+    $url = 'competence_admin'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php')
     ?>
 

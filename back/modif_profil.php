@@ -3,7 +3,7 @@ session_start();
 include("../includes/bd.php");
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../connexion.php');
+    header('Location: ../connexion');
     exit;
 }
 
@@ -17,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $query = "UPDATE USERS SET firstname = ?, lastname = ?, email = ?, tel = ? WHERE user_id = ?";
     $res = $bdd->prepare($query);
     if ($res->execute([$firstname, $lastname, $email, $tel, $user_id])) {
-        header('Location: ../profil.php');
+        header('Location: ../profil');
     } else {
-        header('Location: ../profil.php?messageFailure=');
+        header('Location: ../profil?messageFailure=');
     }
 }
 ?>

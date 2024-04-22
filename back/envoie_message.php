@@ -3,7 +3,7 @@ session_start();
 include('../includes/bd.php');
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../login.php');
+    header('Location: ../login');
     exit;
 }
 
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['message_content'], $_P
     $message_content = $_POST['message_content'];
     
     if (strlen($message_content) > $maxContentLength) {
-        header('Location: ../messagerie.php?user_id=' . urlencode($user_id_target_id) . '&messageFailure=Message trop long&max_length=' . $maxContentLength);
+        header('Location: ../messagerie?user_id=' . urlencode($user_id_target_id) . '&messageFailure=Message trop long&max_length=' . $maxContentLength);
         exit;
     }
 
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['message_content'], $_P
     $insert = $bdd->prepare("INSERT INTO MESSAGE (content, user_id_target_id, user_id_source, date) VALUES (?, ?, ?, NOW())");
     
     if ($insert->execute([$message_content, $user_id_target_id, $user_id_source])) {
-        header('Location: ../messagerie.php?user_id=' . urlencode($user_id_target_id));
+        header('Location: ../messagerie?user_id=' . urlencode($user_id_target_id));
         exit;
     } else {
         echo "Une erreur est survenue lors de l'envoi du message.";

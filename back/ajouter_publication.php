@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt = $bdd->prepare("INSERT INTO PUBLICATIONS (image, description) VALUES (?, ?)");
             $stmt->execute([$uploadFile, $description]);
             
-            header("location: ../etudiant.php");
+            header("location: ../etudiant");
             exit(); 
         } else {
             echo "Une erreur s'est produite lors de l'upload de l'image.";
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Veuillez remplir tous les champs du formulaire.";
     }
 } else {
-    header("location: ../etudiant.php");
+    header("location: ../etudiant");
     exit(); 
 }
 ?>

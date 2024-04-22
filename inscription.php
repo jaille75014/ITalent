@@ -18,7 +18,7 @@ include('includes/head.php');?>
     ?>
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form action="back/verification_inscription.php" method="POST" enctype="multipart/form-data">
+            <form action="back/verification_inscription" method="POST" enctype="multipart/form-data">
                 <h1>Créer un compte étudiant</h1>
                 <input type="text" name="lastname" placeholder="Nom">
                 <input type="text" name="firstname" placeholder="Prénom">
@@ -38,7 +38,7 @@ include('includes/head.php');?>
         </div>
 
         <div class="form-container sign-in">
-            <form action="back/verification_inscription.php" method="POST" enctype="multipart/form-data">
+            <form action="back/verification_inscription" method="POST" enctype="multipart/form-data">
                 <h1>Créer un compte recruteur</h1>
                 <input type="text" name="lastname" placeholder="Nom">
                 <input type="text" name="firstname" placeholder="Prénom">

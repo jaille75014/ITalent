@@ -2,7 +2,7 @@
 <html lang="fr">
 <?php 
 $title='Confidentialité';
-$url = 'confidentialite.php';
+$url = 'confidentialite';
 include('includes/head.php');
 ?>
 <body>

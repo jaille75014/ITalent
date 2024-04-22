@@ -4,12 +4,12 @@ session_start();
     
 
 if (!isset($_SESSION['statut'])) {
-    header('location: index.php');
+    header('location: index');
     exit;
 } 
 
 include('includes/fonctions_logs.php');
-writeVisitLog('captcha.php');
+writeVisitLog('captcha');
 
 include('includes/bd.php'); // Connexion à la base de données
 
@@ -18,21 +18,21 @@ if(isset($_POST['answer'])&& !empty($_POST['answer'])){
         $_SESSION['captcha']=1;
         switch($_SESSION['statut']){
             case 1 : 
-                header('location: etudiant.php');
+                header('location: etudiant');
                 exit;
                 break;
             case 2 : 
-                header('location: index_recruteur.php');
+                header('location: index_recruteur');
                 exit;
                 break;
             case 3 : 
-                header('location: admin.php');
+                header('location: admin');
                 exit;
                 break;
         }
         
     } else {
-        header('location: captcha.php?error=Veuillez réessayer !');
+        header('location: captcha?error=Veuillez réessayer !');
         exit;
     }
 }
@@ -68,7 +68,7 @@ for ($i=1;$i<=$numberQuestion;$i++){
 <html>
     <?php 
     $title='Captcha';
-    $url = 'captcha.php'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
+    $url = 'captcha'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php')
     ?>
 

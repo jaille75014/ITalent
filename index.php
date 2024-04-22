@@ -15,7 +15,7 @@
         <main class="bg-light">
 
             <?php 
-            $url = 'index.php'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
+            $url = 'index'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
             if(isset($_GET['messageFailure'])){
                 echo '<div class="alert alert-danger" role="alert">'.htmlspecialchars($_GET['messageFailure']).'</div>'; 
             }
@@ -33,7 +33,7 @@
                         <div class="col-12 col-md-6 text-center text-md-start my-5">
                             <h2>Prouve tes compétences,<br>Discute,<br>Passe un entretien et...<br>Décroche un job !</h2>
                             <h4 class="mt-3">Bienvenue chez <span class="text-primary">ITalent</span> !</h4>
-                            <a href="inscription.php" class="btn btn-primary mt-3">Viens décrocher ton premier emploi !</a>
+                            <a href="inscription" class="btn btn-primary mt-3">Viens décrocher ton premier emploi !</a>
                         </div>
                         <div class="col-12 col-md-6 my-5">
                             <img alt="Logo ITalent, Le Treizième Travail d'Hercule" src="assets/LOGO_version_complète.png"

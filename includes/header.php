@@ -1,33 +1,33 @@
 <?php 
 if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==1) {
     $links = [
-        "Accueil" => "index_etudiant.php",
-        "Profil" => "profil.php",
-        "Entretien" => "entretien.php",
-        "Messages" => "messagerie.php",
-        "Déconnexion" => "deconnexion.php"
+        "Accueil" => "index_etudiant",
+        "Profil" => "profil",
+        "Entretien" => "entretien",
+        "Messages" => "messagerie",
+        "Déconnexion" => "deconnexion"
     ];
 }  else if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==2) {
   $links = [
-      "Accueil" => "index_recruteur.php",
-      "Profil" => "profil.php",
-      "Entretien" => "entretien.php",
-      "Messages" => "messagerie.php",
-      "Déconnexion" => "deconnexion.php"
+      "Accueil" => "index_recruteur",
+      "Profil" => "profil",
+      "Entretien" => "entretien",
+      "Messages" => "messagerie",
+      "Déconnexion" => "deconnexion"
   ];
 } else if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==3) {
   $links = [
-      "Accueil" => "admin.php",
-      "Captcha" => "captcha_admin.php",
-      "Newsletter" => "newsletter_admin.php",
-      "Compétence" => "competence_admin.php",
-      "Déconnexion" => "deconnexion.php"
+      "Accueil" => "admin",
+      "Captcha" => "captcha_admin",
+      "Newsletter" => "newsletter_admin",
+      "Compétence" => "competence_admin",
+      "Déconnexion" => "deconnexion"
   ];
 } else {
     $links = [
-        "Accueil" => "index.php", 
-        "Connexion" => "connexion.php",
-        "Inscription" => "inscription.php"
+        "Accueil" => "index", 
+        "Connexion" => "connexion",
+        "Inscription" => "inscription"
     ];
 }
 
@@ -42,7 +42,7 @@ function writeNavLine($name, $url){
   
     <div class="container">
 
-      <a href="index.php"><img alt="Logo ITalent" height="90px" src="assets/LOGO_version_minimalisé.png"></a>
+      <a href="index"><img alt="Logo ITalent" height="90px" src="assets/LOGO_version_minimalisé.png"></a>
       <nav class="bg-light" id="nav">
         <ul>
           <?php 

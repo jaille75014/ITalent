@@ -3,7 +3,7 @@ session_start();
 include("../includes/bd.php");
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../connexion.php');
+    header('Location: ../connexion');
     exit;
 }
 
@@ -18,8 +18,8 @@ $res->execute([$user_id]);
 $res = $bdd->prepare("DELETE FROM USERS WHERE user_id = ?"); // Opter pour une modification du statut à 0 plutôt que la suppression
 if ($res->execute([$user_id])) {
     session_destroy();
-    header('Location: ../login.php');
+    header('Location: ../login');
 } else {
-    header('Location: ../profil.php');
+    header('Location: ../profil');
 }
 ?>

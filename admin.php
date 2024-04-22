@@ -1,13 +1,13 @@
 <?php  
     session_start(); 
     if(!isset($_SESSION['captcha'])){
-        header('location:captcha.php?error=Chipeur arrête de chipper !');
+        header('location:captcha?error=Chipeur arrête de chipper !');
         exit;
     }
     
 
     if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
-        header('location:index.php');
+        header('location:index');
         exit;
     }
     
@@ -56,7 +56,7 @@
             file_put_contents($log_file, "Utilisateur supprimé (ID: $id) - Raison: $raison\n", FILE_APPEND);
         }
 
-        header('location: admin.php');
+        header('location: admin');
         exit;
     }
 ?>
@@ -66,7 +66,7 @@
 
 <?php 
 $title='Admin';
-$url = 'admin.php'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
+$url = 'admin'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
 include('includes/head.php');?>
 
 <body class="bg-light">

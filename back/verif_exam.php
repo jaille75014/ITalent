@@ -72,10 +72,10 @@
 
 
 
-            header('location:../profil.php?messageSuccess=Félicitation ! Vous avez eu un taux de réussite de '.$score.'% ! La compétence a été ajouté à votre profil.');
+            header('location:../profil?messageSuccess=Félicitation ! Vous avez eu un taux de réussite de '.$score.'% ! La compétence a été ajouté à votre profil.');
             exit;
         } else {
-            header('location:../profil.php?messageFailure=Dommage... Vous avez eu un taux de réussite de '.$score.'%, ce n\'est pas suffisant pour ajouter cette compétence à votre profil.');
+            header('location:../profil?messageFailure=Dommage... Vous avez eu un taux de réussite de '.$score.'%, ce n\'est pas suffisant pour ajouter cette compétence à votre profil.');
             exit;
         }
     }

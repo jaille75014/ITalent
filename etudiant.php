@@ -4,11 +4,11 @@ include("includes/bd.php");
 include("includes/fonctions_logs.php");
 include("includes/header_location.php");
 if (!isset($_SESSION['user_id'])) {
-    redirectFailure('connexion.php', 'Vous devez être connecté pour accéder à cette page.');
+    redirectFailure('connexion', 'Vous devez être connecté pour accéder à cette page.');
 }
 
 
-writeVisitLog('etudiant.php');
+writeVisitLog('etudiant');
 
 $req_publications = $bdd->query("SELECT * FROM PUBLICATIONS");
 $req_storys = $bdd->query("SELECT * FROM STORYS WHERE expiration >= CURDATE()"); // CURDATE() = date actuelle 
@@ -29,7 +29,7 @@ function afficherStorys($req_storys) {
 
     <?php
     $title = "Accueil étudiant";
-    $url = 'etudiant.php'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
+    $url = 'etudiant'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php');
     ?>
 
@@ -67,7 +67,7 @@ function afficherStorys($req_storys) {
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Ajouter une nouvelle publication</h5>
-                            <form action="back/ajouter_publication.php" method="POST" id="ajouterPublicationForm">
+                            <form action="back/ajouter_publication" method="POST" id="ajouterPublicationForm">
                                 <div class="mb-3">
                                     <label for="image" class="form-label">Image</label>
                                     <input type="file" class="form-control" id="image" name="image">
@@ -94,7 +94,7 @@ function afficherStorys($req_storys) {
 
                 // Requête AJAX pour ajouter publication
                 var ajt = new XMLHttpRequest();
-                ajt.open("POST", "back/ajouter_publication.php", true);
+                ajt.open("POST", "back/ajouter_publication", true);
                 ajt.onload = function () {
                     if (ajt.status === 200) {
                         // Réussie > recharger la page

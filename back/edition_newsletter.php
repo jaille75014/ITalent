@@ -68,5 +68,5 @@ foreach ($results as $index => $values) {
 // Enregistre le mail envoyé dans la base de données apres l'envoi de tous les mails
 saveNewsletter($bdd, $header, $body, $_SESSION['user_id']);
 
-redirectSuccess('../newsletter_admin.php', 'Tous les email ont été envoyé !');
+redirectSuccess('../newsletter_admin', 'Tous les email ont été envoyé !');
 ?>

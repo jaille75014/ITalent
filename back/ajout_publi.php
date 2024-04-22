@@ -4,7 +4,7 @@ include('../includes/bd.php');
 include('../includes/header_location.php');
 
 if (!isset($_SESSION['user_id'])) {
-    redirectFailure('../connexion.php', 'Vous devez être connecté pour accéder à cette page.');
+    redirectFailure('../connexion', 'Vous devez être connecté pour accéder à cette page.');
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['image_publication']) && isset($_POST['description'])) {
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['image_publication']) 
         if (move_uploaded_file($from, $target_file)) {
             $stmt = $bdd->prepare("INSERT INTO PUBLICATIONS (image, description, user_id) VALUES (?, ?, ?)");
             if ($stmt->execute([$filename, $description, $user_id])) {
-                header('Location: ../profil.php');
+                header('Location: ../profil');
                 exit;
             } else {
                 echo "Une erreur est survenue lors de l'ajout de la publication dans la base de données.";

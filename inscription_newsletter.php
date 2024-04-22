@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include('includes/header_location.php');
-include'includes/bd.php';
+include('includes/bd.php');
 
 $user_email = htmlspecialchars($_GET['email']);
 $url = htmlspecialchars($_GET['url']);
@@ -13,7 +13,7 @@ $url = htmlspecialchars($_GET['url']);
 
 <?php 
     $title='Newsletter';
-    include'includes/head.php';
+    include('includes/head.php');
 ?>
 <body>
     <main>
@@ -58,7 +58,7 @@ $url = htmlspecialchars($_GET['url']);
                 <h3 class="mb-0">Validation de la newsletter</h3>
                     </div>
                         <div class="card-body">
-                            <form id="form_code" action="<?php echo 'inscription_newsletter.php?news=2&email=' . $user_email . '&url=' . $url ?>" method="POST">
+                            <form id="form_code" action="<?php echo 'inscription_newsletter?news=2&email=' . $user_email . '&url=' . $url ?>" method="POST">
                                 <div class="form-group my-4">
                                     <label for="uname1">email</label>
                                     <input type="email" class="form-control form-control-lg rounded-0" id="email" name="email" value="<?= $user_email ?>" onFocus="this.value='';">
@@ -104,7 +104,7 @@ $url = htmlspecialchars($_GET['url']);
                 }
                 redirectSuccess($url, 'Vous êtes maintenant inscrit à notre newsletter ! MERCI !');
             } else {
-                header('location: inscription_newsletter.php?messageFailure=Une erreure s\'est produite, vérifiez que vous avez bien écrit votre email&news=1&mail=' . $user_email . '&url=' . $url);
+                header('location: inscription_newsletter?messageFailure=Une erreure s\'est produite, vérifiez que vous avez bien écrit votre email&news=1&mail=' . $user_email . '&url=' . $url);
                 exit;
             }
         }

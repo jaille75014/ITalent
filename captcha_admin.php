@@ -1,17 +1,17 @@
 <?php 
 session_start(); 
 if(!isset($_SESSION['captcha'])){
-    header('location:captcha.php?error=Chipeur arrête de chipper !');
+    header('location:captcha.?error=Chipeur arrête de chipper !');
     exit;
 }
     
 
 if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
-    header('location:index.php');
+    header('location:index');
     exit;
 } 
 include('includes/fonctions_logs.php');
-writeVisitLog('captcha_admin.php');
+writeVisitLog('captcha_admin');
 
 include('includes/bd.php'); // Connexion à la base de données
 
@@ -29,7 +29,7 @@ isset($_POST['answer'])&& !empty($_POST['answer']) ){
         ]);  
 
 
-    header('location: captcha_admin.php');
+    header('location: captcha_admin');
     exit;
 } 
 
@@ -58,7 +58,7 @@ $req->execute();
 
 <?php 
     $title='Gestion Captcha';
-    $url = 'captcha_admin.php'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
+    $url = 'captcha_admin'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php');
 ?>
 
