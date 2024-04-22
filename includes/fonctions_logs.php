@@ -5,7 +5,7 @@ function writeLogLine($success, $email){
     date_default_timezone_set('Europe/Paris');
 
     // Ouverture du flux log.txt
-    $log = fopen($success ? 'log_reussies.txt' : 'log_echouées.txt', 'a+');
+    $log = fopen($success ? '../logs/log_reussies.txt' : '../logs/log_echouées.txt', 'a+');
 
     // Création de la ligne à ajouter
     // AAAA/mm/jj - h/m/s - tentative de connexion échoué de email
@@ -24,7 +24,7 @@ function writeVisitLog($page){
     date_default_timezone_set('Europe/Paris');
 
     // Ouverture du flux log_visites.txt
-    $log = fopen('log_visites.txt', 'a+');
+    $log = fopen('../logs/log_visites.txt', 'a+');
 
     // Création de la ligne à ajouter
     // AAAA/mm/jj - h/m/s - Visite de la page 'page'
