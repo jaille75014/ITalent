@@ -10,12 +10,11 @@
         redirectFailure('captcha', 'Chipeur arrête de chipper !');
     } 
     
-    // Get filter values from POST or GET request
     $competence_name = isset($_POST['competence']) ? $_POST['competence'] : '';
     $level = isset($_POST['level']) ? $_POST['level'] : '';
     $poste = isset($_POST['poste']) ? $_POST['poste'] : '';
-    
-    // Get competence_id for the given competence_name
+
+
     $competence_id_query = 'SELECT competence_id FROM COMPETENCES WHERE name LIKE :name';
     $req = $bdd->prepare($competence_id_query);
     $req->execute([
@@ -25,12 +24,12 @@
     $competence_id = isset($comp_id['competence_id']) ? $comp_id['competence_id'] : '';
     
     // Obtenir les informations des étudiants
-    $get_infos = 'SELECT USERS.user_id, USERS.lastname, USERS.firstname, USERS.city, USERS.tel, USERS.email, USERS.image, JOBS.name, COMPETENCES.name AS competence_name FROM USERS 
-    LEFT JOIN JOBS ON USERS.student_job = JOBS.id 
-    LEFT JOIN POSSESSES ON USERS.user_id = POSSESSES.user_id 
-    LEFT JOIN COMPETENCES ON POSSESSES.competence_id = COMPETENCES.competence_id 
-    WHERE USERS.statut = 1';
-    
+    $get_infos = 'SELECT USERS.user_id, USERS.lastname, USERS.firstname, USERS.city, USERS.tel, USERS.email, USERS.image, JOBS.name AS job_name, COMPETENCES.name AS competence_name FROM USERS 
+        LEFT JOIN JOBS ON USERS.student_job = JOBS.id 
+        LEFT JOIN POSSESSES ON USERS.user_id = POSSESSES.user_id 
+        LEFT JOIN COMPETENCES ON POSSESSES.competence_id = COMPETENCES.competence_id 
+        WHERE USERS.statut = 1';
+        
     // Ajouter les potentielles conditions de filtre à la requête
     if (!empty($competence_id)) {
         $get_infos .= " AND POSSESSES.competence_id = " . htmlspecialchars($competence_id);
@@ -117,7 +116,7 @@ include('includes/head.php');?>
                 </div>
                 <div class="status">
                     <span></span>
-                    <p><?= $user['name'] == 0 ? 'Type de contrat non précisé' : $user['name']; ?></p>                
+                    <p><?= empty($user['job_name']) ? 'Type de contrat non précisé' : $user['job_name']; ?></p>                 
                 </div>
                 <div class="location">
                     <p><?= $user['city'] ?></p>
