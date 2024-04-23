@@ -41,7 +41,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
 ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html>
     <?php
     $title='Profil';
     $url = 'profil';
@@ -51,8 +51,6 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
         <?php include('includes/header.php'); ?>
 
         <main class="bg-light pt-5">
-
-        
 
             <div class="container mt-5">
             <?php 
@@ -90,6 +88,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                             <input type="tel" class="form-control" id="tel" name="tel" value="<?php echo htmlspecialchars($userInfo['tel']); ?>" required>
                                         </div>
                                     </div>
+                                    <?php if ($userInfo['status'] == '1'): ?>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label for="job" class="form-label">Poste recherché</label>
@@ -101,6 +100,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                             </select>
                                         </div>
                                     </div>
+                                    <?php endif; ?>
                                     <button type="submit" class="btn btn-primary">Sauvegarder les modifications</button>
                                 </form>
                                 <a href="back/supp_compte" class="btn btn-danger mt-3" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.');">Supprimer mon compte</a>
