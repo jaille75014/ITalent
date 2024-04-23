@@ -38,8 +38,8 @@ if($success){
     foreach($users as $user) {
         echo '<tr>';
         echo '<td class="text-center">' . $user['user_id'] . '</td>';
-        echo '<td class="text-center">' . $user['firstname'] . '</td>';
         echo '<td class="text-center">' . $user['lastname'] . '</td>';
+        echo '<td class="text-center">' . $user['firstname'] . '</td>';
         echo '<td class="text-center">' . $user['email'] . '</td>';
         echo '<td class="text-center">';
         switch ($user['statut']) {
