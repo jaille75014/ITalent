@@ -104,30 +104,30 @@ include('includes/head.php');?>
 
         <div class="list">
         <?php foreach ($donnees as $user): ?>
-            <div class="line">
-                <div class="user">
-                    <div class="profile">
+            <div class="row align-items-center">
+                <div class="col-2 col-md-4">
+                    <div class="col-6">
                         <img src="<?= $user['image'] ?>" alt="photo de profil">
                     </div>
-                    <div class="details">
+                    <div class="col-6">
                         <h1 class="name"><?=$user['lastname'] . ' ' . $user['firstname']?></h1>
                         <h3 class="username"><?= $user['email'] ?></h3>
                     </div>
                 </div>
-                <div class="status">
+                <div class="col-2 col-md-4">
                     <span></span>
                     <p><?= empty($user['job_name']) ? 'Type de contrat non précisé' : $user['job_name']; ?></p>                 
                 </div>
-                <div class="location">
+                <div class="col-2 col-md-4">
                     <p><?= $user['city'] ?></p>
                 </div>
-                <div class="phone">
+                <div class="col-2 col-md-4">
                     <p><?= $user['tel'] ?></p>
                 </div>
-                <div class="contact">
+                <div class="col-2 col-md-4">
                     <a href="messagerie?user_id=<?= $user['user_id'] ?>" class="btn btn-primary">Contacter</a>
                 </div>
-                <div class="action">
+                <div class="col-2 col-md-4">
                     <div class="icon">
                         <input type="hidden" class="user_followed" value="<?= $user['user_id'] ?>">
                         <input type="hidden" class="user_follower" value="<?= $_SESSION['user_id'] ?>">
