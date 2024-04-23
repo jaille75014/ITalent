@@ -14,6 +14,12 @@
     $level = isset($_POST['level']) ? $_POST['level'] : '';
     $poste = isset($_POST['poste']) ? $_POST['poste'] : '';
 
+    // Stocker les filtres dans la session
+    $_SESSION['filters'] = [
+    'competence' => $competence_name,
+    'level' => $level,
+    'poste' => $poste
+    ];
 
     $competence_id_query = 'SELECT competence_id FROM COMPETENCES WHERE name LIKE :name';
     $req = $bdd->prepare($competence_id_query);
@@ -52,17 +58,20 @@ $get_infos .= " LIMIT $users_per_page OFFSET $offset";
     $req->execute();
     $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
 
+    // Générer une clé unique pour chaque combinaison de filtres
+    $filter_key = md5($competence_name . $level . $poste);
+
     // Avant de mélanger les utilisateurs, vérifiez si l'ordre des utilisateurs est déjà stocké dans une variable de session
-    if (!isset($_SESSION['user_order'])) {
-    shuffle($donnees);
-    // Stockez l'ordre des utilisateurs dans une variable de session
-    $_SESSION['user_order'] = array_column($donnees, 'user_id');
+    if (!isset($_SESSION['user_order'][$filter_key])) {
+        shuffle($donnees);
+        // Stockez l'ordre des utilisateurs dans une variable de session
+        $_SESSION['user_order'][$filter_key] = array_column($donnees, 'user_id');
     } else {
-    // Trier les utilisateurs en fonction de l'ordre stocké dans la variable de session
-    usort($donnees, function ($a, $b) {
-        return array_search($a['user_id'], $_SESSION['user_order']) - array_search($b['user_id'], $_SESSION['user_order']);
-    });
-}
+        // Trier les utilisateurs en fonction de l'ordre stocké dans la variable de session
+        usort($donnees, function ($a, $b) use ($filter_key) {
+            return array_search($a['user_id'], $_SESSION['user_order'][$filter_key]) - array_search($b['user_id'], $_SESSION['user_order'][$filter_key]);
+        });
+    }
 
     $total_pages_query = "SELECT COUNT(*) FROM USERS WHERE statut = 1";
     $req = $bdd->prepare($total_pages_query);
@@ -161,7 +170,7 @@ include('includes/head.php');?>
             </div>
         </div>
         <?php endforeach; 
-        
+
         $start = $page;
         $end = min($total_pages, $page + 2); // Affiche 3 pages à la fois, a chaque fois qu'on passe a la page suivante, il affiche 1 pages suivantes
         
