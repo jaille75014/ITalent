@@ -40,6 +40,12 @@
     if (!empty($poste)) {
         $get_infos .= " AND JOBS.name LIKE '%" . htmlspecialchars($poste) . "%'";
     }
+    
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // (int) verifie que c'est un nombre pour éviter les injections
+$users_per_page = 15; // Affiche 15 users par page
+$offset = ($page - 1) * $users_per_page; // cette ligne permet de définir le nombre de users à afficher par page
+
+$get_infos .= " LIMIT $users_per_page OFFSET $offset";
 
     
     $req = $bdd->prepare($get_infos);
@@ -48,6 +54,15 @@
 
     // mélanger les users pour un affichage aléatoire. 
     shuffle($donnees);
+
+
+    $total_pages_query = "SELECT COUNT(*) FROM USERS WHERE statut = 1";
+    $req = $bdd->prepare($total_pages_query);
+    $req->execute();
+    $total_users = $req->fetchColumn();
+    $total_pages = ceil($total_users / $users_per_page);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -136,8 +151,14 @@ include('includes/head.php');?>
                     </div>
                 </div>
             </div>
-        <?php endforeach; ?>
-    </div>
+            a
+        </div>
+        <?php endforeach; 
+        for ($i = 1; $i <= $total_pages; $i++) {
+        echo "<button class='btn btn-primary' onclick=\"location.href='index_recruteur.php?page=$i'\">$i</button> ";
+        }
+        ?>
+    
     <script src="js/script.js"></script>
         
         </main>
