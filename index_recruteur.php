@@ -154,7 +154,7 @@ include('includes/head.php');?>
         </div>
         <?php endforeach; 
         for ($i = 1; $i <= $total_pages; $i++) {
-        echo "<button class='btn btn-primary mx-5' onclick=\"location.href='index_recruteur.php?page=$i'\">$i</button> ";
+        echo "<button class='btn btn-primary mx-5 py-2' onclick=\"location.href='index_recruteur.php?page=$i'\">$i</button> ";
         }
         ?>
     
