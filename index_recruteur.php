@@ -151,11 +151,10 @@ include('includes/head.php');?>
                     </div>
                 </div>
             </div>
-            a
         </div>
         <?php endforeach; 
         for ($i = 1; $i <= $total_pages; $i++) {
-        echo "<button class='btn btn-primary px-5' onclick=\"location.href='index_recruteur.php?page=$i'\">$i</button> ";
+        echo "<button class='btn btn-primary mx-5' onclick=\"location.href='index_recruteur.php?page=$i'\">$i</button> ";
         }
         ?>
     
