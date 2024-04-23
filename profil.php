@@ -89,7 +89,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                             <label for="tel" class="form-label">Téléphone</label>
                                             <input type="tel" class="form-control" id="tel" name="tel" value="<?php echo htmlspecialchars($userInfo['tel']); ?>" required>
                                         </div>
-                                        <div class="col-md-6 mb-12">
+                                        <div class="col-md-6 mb-3">
                                             <label for="job" class="form-label">Poste recherché</label>
                                             <select id="job" class="form-select" name="job" required>
                                                 <option selected>Sélectionner un poste</option>
