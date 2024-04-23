@@ -57,8 +57,7 @@
                                         <img src="assets/student_picture.jpg" alt="etudiant passant un entretien">
                                         <h5 class="mt-3">Étudiants</h5>
                                         <p class="card-text">Fatigués de vous inscrire sur tous les sites pour que des
-                                            recruteurs vous remarquent ? <br> Venez découvrir les nombreux avantages de vous
-                                            inscrire chez ITalent !
+                                            recruteurs vous remarquent ? <br> Venez découvrir les nombreux avantages d'ITalent !
                                         </p>
                                     </div>
                                     <div class="flip-card-back">
@@ -80,7 +79,7 @@
                                     <div class="flip-card-front">
                                         <img src="assets/banniere_accueil.jpg" alt="Recruteur en entretien avec une personne">
                                         <h5 class="mt-3">Recruteurs</h5>
-                                        <p>N'attendez plus, inscrivez vous pour recruter vos futurs alternants et stagiaires
+                                        <p>N'attendez plus, inscrivez-vous pour recruter vos futurs alternants et stagiaires
                                             ! <br> Inscription simple et rapide !</p>
                                     </div>
                                     <div class="flip-card-back">
