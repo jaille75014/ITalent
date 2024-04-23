@@ -106,7 +106,7 @@ include('includes/head.php');?>
         <?php foreach ($donnees as $user): ?>
             <div class="row align-items-center">
                 <div class="col-2 col-md-4">
-                    <div class="col-6">
+                    <div class="col-6 profile">
                         <img src="<?= $user['image'] ?>" alt="photo de profil">
                     </div>
                     <div class="col-6">
