@@ -42,7 +42,7 @@
     }
     
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // (int) verifie que c'est un nombre pour éviter les injections
-$users_per_page = 15; // Affiche 15 users par page
+$users_per_page = 10; // Affiche 10 users par page
 $offset = ($page - 1) * $users_per_page; // cette ligne permet de définir le nombre de users à afficher par page
 
 $get_infos .= " LIMIT $users_per_page OFFSET $offset";
@@ -155,7 +155,7 @@ include('includes/head.php');?>
         </div>
         <?php endforeach; 
         for ($i = 1; $i <= $total_pages; $i++) {
-        echo "<button class='btn btn-primary' onclick=\"location.href='index_recruteur.php?page=$i'\">$i</button> ";
+        echo "<button class='btn btn-primary px-5' onclick=\"location.href='index_recruteur.php?page=$i'\">$i</button> ";
         }
         ?>
     
