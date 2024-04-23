@@ -25,6 +25,13 @@ $stmtStorys = $bdd->prepare($queryStorys);
 $stmtStorys->execute([$user_id]);
 $storys = $stmtStorys->fetchAll();
 
+$select_post = "SELECT name FROM JOBS";
+$req_post = $bdd->prepare($select_post);
+$req = $req_post->execute();
+$infos_job = $req_post->fetchAll();
+
+
+
 // LISTE DE COMPÉTENCES
 $q='SELECT name FROM COMPETENCES ;';
 $req=$bdd->prepare($q);
@@ -81,6 +88,14 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                         <div class="col-md-6 mb-3">
                                             <label for="tel" class="form-label">Téléphone</label>
                                             <input type="tel" class="form-control" id="tel" name="tel" value="<?php echo htmlspecialchars($userInfo['tel']); ?>" required>
+                                        </div>
+                                        <div class="col-md-6 mb-12">
+                                            <label for="job" class="form-label">Poste recherché</label>
+                                            <select id="job" class="form-select" name="job" required>
+                                                <option selected>Sélectionner un poste</option>
+                                                <?php foreach ($infos_job as $info_job): ?>
+                                                    <option value="<?php echo $info_job['name']; ?>" <?php if ($userInfo['job'] == $info_job['name']) { echo 'selected'; } ?>><?php echo htmlspecialchars($info_job['name']); ?></option>
+                                                <?php endforeach; ?>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Sauvegarder les modifications</button>
