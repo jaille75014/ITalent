@@ -42,7 +42,7 @@
     }
     
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // (int) verifie que c'est un nombre pour éviter les injections
-$users_per_page = 10; // Affiche 10 users par page
+$users_per_page = 5; // Affiche 10 users par page
 $offset = ($page - 1) * $users_per_page; // cette ligne permet de définir le nombre de users à afficher par page
 
 $get_infos .= " LIMIT $users_per_page OFFSET $offset";
@@ -153,8 +153,12 @@ include('includes/head.php');?>
             </div>
         </div>
         <?php endforeach; 
-        for ($i = 1; $i <= $total_pages; $i++) {
-        echo "<button class='btn btn-primary mx-5 py-2' onclick=\"location.href='index_recruteur.php?page=$i'\">$i</button> ";
+        $start = $page;
+        $end = min($total_pages, $page + 2); // Affiche 3 pages à la fois, a chaque fois qu'on passe a la page suivante, il affiche 1 pages suivantes
+        
+        for ($i = $start; $i <= $end; $i++) { // Boucle pour afficher les pages
+            $class = $i == $page ? "btn btn-primary mx-5 py-2" : "btn btn-primary";
+            echo "<button class='$class' onclick=\"location.href='index_recruteur.php?page=$i'\">$i</button> ";
         }
         ?>
     
