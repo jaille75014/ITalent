@@ -98,6 +98,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                                 <?php foreach ($infos_job as $info_job): ?>
                                                     <option value="<?php echo $info_job['name']; ?>" <?php if ($userInfo['job'] == $info_job['name']) { echo 'selected'; } ?>><?php echo htmlspecialchars($info_job['name']); ?></option>
                                                 <?php endforeach; ?>
+                                            </select>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Sauvegarder les modifications</button>
