@@ -102,14 +102,15 @@ include('includes/head.php');?>
             <h1 class="text-center">CV Etudiants</h1>
         </div>
 
-        <div class="list">
+        
         <?php foreach ($donnees as $user): ?>
+            <div class="list">
             <div class="row align-items-center line">
                 <div class="col-2">
-                    <div class="col-6 profile">
+                    <div class="col-3 profile">
                         <img src="<?= $user['image'] ?>" alt="photo de profil">
                     </div>
-                    <div class="col-6">
+                    <div class="col-9">
                         <p class="name"><?=$user['lastname'] . ' ' . $user['firstname']?></p>
                         <p class="username"><?= $user['email'] ?></p>
                     </div>
