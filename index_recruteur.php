@@ -88,7 +88,7 @@ include('includes/head.php');?>
                     <option value="CDI">CDI</option>
                     <option value="Stage">Stage</option>
                     <option value="Alternance">Alternance</option>
-                    <option value="Apprentissage">Apprentissage</option>
+                    <option value="Professionnalisation">Professionnalisation</option>
                 </select>
             </div>
             <div class="form-group">
