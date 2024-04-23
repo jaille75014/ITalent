@@ -52,9 +52,17 @@ $get_infos .= " LIMIT $users_per_page OFFSET $offset";
     $req->execute();
     $donnees = $req->fetchAll(PDO::FETCH_ASSOC);
 
-    // mélanger les users pour un affichage aléatoire. 
+    // Avant de mélanger les utilisateurs, vérifiez si l'ordre des utilisateurs est déjà stocké dans une variable de session
+    if (!isset($_SESSION['user_order'])) {
     shuffle($donnees);
-
+    // Stockez l'ordre des utilisateurs dans une variable de session
+    $_SESSION['user_order'] = array_column($donnees, 'user_id');
+    } else {
+    // Trier les utilisateurs en fonction de l'ordre stocké dans la variable de session
+    usort($donnees, function ($a, $b) {
+        return array_search($a['user_id'], $_SESSION['user_order']) - array_search($b['user_id'], $_SESSION['user_order']);
+    });
+}
 
     $total_pages_query = "SELECT COUNT(*) FROM USERS WHERE statut = 1";
     $req = $bdd->prepare($total_pages_query);
@@ -153,12 +161,17 @@ include('includes/head.php');?>
             </div>
         </div>
         <?php endforeach; 
+        
         $start = $page;
         $end = min($total_pages, $page + 2); // Affiche 3 pages à la fois, a chaque fois qu'on passe a la page suivante, il affiche 1 pages suivantes
         
-        for ($i = $start; $i <= $end; $i++) { // Boucle pour afficher les pages
-            $class = $i == $page ? "btn btn-primary mx-5 py-2" : "btn btn-primary";
-            echo "<button class='$class' onclick=\"location.href='index_recruteur.php?page=$i'\">$i</button> ";
+        if ($page > 1) {
+            echo "<button class='btn btn-primary' onclick=\"location.href='index_recruteur.php?page=" . ($page - 1) . "'\">Précédent</button> ";
+        }
+        
+        for ($i = $start; $i <= $end; $i++) {
+        $class = $i == $page ? "btn btn-primary mx-5 py-2" : "btn btn-primary";
+        echo "<button class='$class' onclick=\"location.href='index_recruteur?page=$i'\">$i</button> ";
         }
         ?>
     
