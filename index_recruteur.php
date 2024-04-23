@@ -110,8 +110,8 @@ include('includes/head.php');?>
                         <img src="<?= $user['image'] ?>" alt="photo de profil">
                     </div>
                     <div class="col-6">
-                        <h1 class="name"><?=$user['lastname'] . ' ' . $user['firstname']?></h1>
-                        <h3 class="username"><?= $user['email'] ?></h3>
+                        <p class="name"><?=$user['lastname'] . ' ' . $user['firstname']?></p>
+                        <p class="username"><?= $user['email'] ?></p>
                     </div>
                 </div>
                 <div class="col-2">
