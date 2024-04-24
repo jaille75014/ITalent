@@ -67,7 +67,7 @@ async function selectCompetence(){
 
     const tableauQuestions = JSON.parse(txt);
     if (tableauQuestions.length!=0){
-        let html = '<table class="table table-striped my-5"><tr><th>Question</th><th>Réponse 1</th><th>Réponse 2</th><th>Réponse 3</th><th>Réponse 4</th><th>Bonne réponse</th><th>Action</th></tr>';
+        let html = '<table class="table table-striped my-5"><tr><th>Question</th><th>Réponse 1</th><th>Réponse 2</th><th>Réponse 3</th><th>Réponse 4</th><th>Bonne réponse</th><th>Suppression</th><th>Modification</th></tr>';
         for(let i=0;i<tableauQuestions.length;++i){
             const question = tableauQuestions[i];
             html+="<tr>";
@@ -77,7 +77,8 @@ async function selectCompetence(){
             html+='<td>'+question['answer3']+'</td>';
             html+='<td>'+question['answer4']+'</td>';
             html+='<td>'+question['answerCorrect']+'</td>';
-            html+='<td><button class="btn btn-danger" onclick="suppQuestions(\''+question['question']+'\')">Supprimer</button></td>';       
+            html+='<td><button class="btn btn-danger" onclick="suppQuestions(\''+question['question']+'\')">Supprimer</button></td>'; 
+            html+='<td><form action="modifQuestionsCompetence" method="post"><input type="hidden" value="'+question['question']+'" name="question"> <button class="btn btn-success" type="submit" >Modifier</button></td>';      
             html+="</tr>";
         }
         html+="</table>";
@@ -95,3 +96,4 @@ async function suppQuestions(question){
     selectCompetence();
     
 }
+

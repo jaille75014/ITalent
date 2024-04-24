@@ -94,7 +94,8 @@ $req->execute();
                     <th>Question</th>
                     <th>Réponse</th>
                     <th>Nom créateur</th>
-                    <th>Commande</th>
+                    <th>Suppresion</th>
+                    <th>Modification</th>
                 </tr>
                 <?php 
                     while($result=$req->fetch(PDO::FETCH_ASSOC)){
@@ -127,7 +128,19 @@ $req->execute();
                             </button>
                         </form>
 
-                            </td>';
+                            </td>
+                            
+                            
+                            <td>
+
+                            <form method="post" action="modifQuestionsCaptcha">
+                                <input type="hidden" name="question" value="'.$questKeep.'">
+                                <button type="submit" class="btn btn-success">
+                                    Modification
+                                </button>
+                            </form>
+    
+                                </td>';
                         
                         
                         echo '</tr>';
