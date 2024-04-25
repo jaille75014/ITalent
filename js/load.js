@@ -78,7 +78,7 @@ async function selectCompetence(){
             html+='<td>'+question['answer4']+'</td>';
             html+='<td>'+question['answerCorrect']+'</td>';
             html+='<td><button class="btn btn-danger" onclick="suppQuestions(\''+question['question']+'\')">Supprimer</button></td>'; 
-            html+='<td><form action="modifQuestionsCompetence" method="post"><input type="hidden" value="'+question['question']+'" name="question"> <button class="btn btn-success" type="submit" >Modifier</button></td>';      
+            html+='<td><form action="modifQuestionsCompetence" method="post"><input type="hidden" value="'+question['question']+'" name="question"> <button class="btn btn-success" type="submit" >Modifier</button></form></td>';      
             html+="</tr>";
         }
         html+="</table>";

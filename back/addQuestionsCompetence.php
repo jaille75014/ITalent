@@ -18,9 +18,8 @@ if (isset($_GET['competence']) && !empty($_GET['competence'])
     ]); 
 
     $result=$req->fetch(PDO::FETCH_ASSOC);
-    foreach($result as $index4=>$value4){
-        $competenceName=$value4;
-    }
+    
+    
 
     $q2="INSERT INTO QUESTIONS (question,answerCorrect,answer1,answer2,answer3,answer4,competence_id) VALUES (:question,:answerCorrect,:answer1,:answer2,:answer3,:answer4,:competence_id);";
     $req2=$bdd->prepare($q2);
@@ -31,7 +30,7 @@ if (isset($_GET['competence']) && !empty($_GET['competence'])
         'answer2'=> htmlspecialchars($_GET['answer2']),
         'answer3'=>htmlspecialchars($_GET['answer3']),
         'answer4'=> htmlspecialchars($_GET['answer4']),
-        'competence_id'=> htmlspecialchars($competenceName)
+        'competence_id'=> htmlspecialchars($competenceName($result['competence_id']))
     ]); 
 
     echo "1";
