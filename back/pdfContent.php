@@ -26,7 +26,6 @@
                             // Récupérer les informations de l'utilisateur
                             $user_info_query = "SELECT firstname, lastname, email, tel, zip, city FROM USERS WHERE user_id = :user_id";
                             $user_info_q = $bdd->prepare($user_info_query);
-                            $user_info_q->bindParam(':user_id', $user_id);
                             $user_info_q->execute();
                             $user_info = $user_info_q->fetch(PDO::FETCH_ASSOC);
 
@@ -41,9 +40,8 @@
                                 <?php
 
                                 // Récupérer les compétences de l'utilisateur
-                                $competences_query = "SELECT name, level FROM COMPETENCES WHERE user_id = :user_id";
+                                $competences_query = 'SELECT COMPETENCES.name, COMPETENCES.level FROM COMPETENCES INNER JOIN USERS ON COMPETENCES.user_id = USERS.user_id WHERE USERS.user_id = :user_id';
                                 $competences_q = $bdd->prepare($competences_query);
-                                $competences_q->bindParam(':user_id', $user_id);
                                 $competences_q->execute();
                                 $competences = $competences_q->fetchAll(PDO::FETCH_ASSOC);
 
