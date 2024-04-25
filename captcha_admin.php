@@ -20,12 +20,12 @@ include('includes/bd.php'); // Connexion à la base de données
 if(isset($_POST['question']) && !empty($_POST['question']) &&
 isset($_POST['answer'])&& !empty($_POST['answer']) ){
     
-    $q='INSERT INTO CAPTCHA (question,answer,user_id) VALUES (:question,:answer,:user_id);';
+    $q="INSERT INTO CAPTCHA (question,answer,user_id) VALUES (:question,:answer,:user_id);";
     $req=$bdd->prepare($q);
     $result=$req->execute([
-        'question'=> $_POST['question'],
-        'answer'=> $_POST['answer'],
-        'user_id'=> $_SESSION['user_id']
+        'question'=> htmlspecialchars($_POST['question']),
+        'answer'=> htmlspecialchars($_POST['answer']),
+        'user_id'=> htmlspecialchars($_SESSION['user_id'])
         ]);  
 
 
@@ -39,7 +39,7 @@ if(isset($_POST['delete'])){
     $q='DELETE FROM CAPTCHA WHERE question=:question ;';
     $req3=$bdd->prepare($q);
     $req3->execute([
-        'question'=>$_POST['delete']
+        'question'=>htmlspecialchars($_POST['delete'])
     ]); 
 }
 
