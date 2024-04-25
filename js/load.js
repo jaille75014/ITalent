@@ -63,7 +63,7 @@ async function selectCompetence(){
     const res = await fetch(`back/seeTableQuestionsCompetence.php?competence=${competence.value}`);
     const txt = await res.text();
 
-    console.log(txt);
+    
 
     const tableauQuestions = JSON.parse(txt);
     if (tableauQuestions.length!=0){
@@ -78,7 +78,7 @@ async function selectCompetence(){
             html+='<td>'+question['answer4']+'</td>';
             html+='<td>'+question['answerCorrect']+'</td>';
             html+='<td><button class="btn btn-danger" onclick="suppQuestions(\''+question['question']+'\')">Supprimer</button></td>'; 
-            html+='<td><form action="modifQuestionsCompetence" method="post"><input type="hidden" value="'+question['question']+'" name="question"> <button class="btn btn-success" type="submit" >Modifier</button></form></td>';      
+            html+='<td> <form action="modifQuestionsCompetence" method="post"> j<input type="hidden" value="'+question['question']+'" name="question"> <button class="btn btn-success" type="submit" >Modifier</button></form></td>';      
             html+="</tr>";
         }
         html+="</table>";
