@@ -6,10 +6,6 @@ if (!isset($_SESSION['user_id'])) {
     redirectFailure('connexion', 'Vous devez être connecté pour accéder à cette page.');
 }
 
-$title='genPDF';
-$url = 'genPDF';
-include('../includes/head.php');
-
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
