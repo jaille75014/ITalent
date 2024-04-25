@@ -80,7 +80,7 @@ async function selectCompetence(){
             html+='<td><button class="btn btn-danger" onclick="suppQuestions(\''+question['question']+'\')">Supprimer</button></td>'; 
             html+='<td> <form action="modifQuestionsCompetence" method="post">' ;
             html+='<input type="hidden" value="'+question['question']+'" name="question"> <button class="btn btn-success" type="submit" >Modifier</button>';
-            html+='</form> </td>';      
+            html+='  </form> </td>';      
             html+="</tr>";
         }
         html+="</table>";
