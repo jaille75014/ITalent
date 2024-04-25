@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<?php
+    <?php
     $title='pdfContent';
     $url = 'pdfContent';
-    include('includes/head.php');
+    include('../includes/head.php');
     ?>
     <body>
 
