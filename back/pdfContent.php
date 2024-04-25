@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 
+    <?php
+    $title='CV';
+    $url = 'pdfContent';
+    include('includes/head.php');
+    ?>
+
     <body>
 
         <div class="container">
