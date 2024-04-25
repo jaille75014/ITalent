@@ -4,7 +4,7 @@
     <?php
     $title='CV';
     $url = 'pdfContent';
-    include('includes/head.php');
+    include('../includes/head.php');
     ?>
 
     <body>
