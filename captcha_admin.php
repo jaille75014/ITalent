@@ -124,7 +124,7 @@ $req->execute();
                         <form method="post">
                             <input type="hidden" name="delete" value="'.$questKeep.'">
                             <button type="submit" class="btn btn-danger">
-                                Suppresion
+                                Supprimer
                             </button>
                         </form>
 
@@ -136,7 +136,7 @@ $req->execute();
                             <form method="post" action="modifQuestionsCaptcha">
                                 <input type="hidden" name="question" value="'.$questKeep.'">
                                 <button type="submit" class="btn btn-success">
-                                    Modification
+                                    Modifier
                                 </button>
                             </form>
     
