@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<?php include('../includes/head.php'); ?>
-
+<?php
+    $title='pdfContent';
+    $url = 'pdfContent';
+    include('includes/head.php');
+    ?>
     <body>
 
         <div class="container">

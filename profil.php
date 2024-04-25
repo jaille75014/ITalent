@@ -103,6 +103,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                     <?php endif; ?>
                                     <button type="submit" class="btn btn-primary">Sauvegarder les modifications</button>
                                 </form>
+                                <a href="back/genPDF.php" class="btn btn-primary">Télécharger le CV en PDF</a>
                                 <a href="back/supp_compte" class="btn btn-danger mt-3" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.');">Supprimer mon compte</a>
                             </div>
                         </div>
