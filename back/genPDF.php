@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-$sql = 'SELECT lastname, firstname FROM users';
+$sql = 'SELECT lastname, firstname FROM USERS';
 $query = $bdd->prepare($sql);
 $query->execute();
 $users = $query->fetchAll(PDO::FETCH_ASSOC);
