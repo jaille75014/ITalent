@@ -25,13 +25,13 @@ if (isset($_GET['competence']) && !empty($_GET['competence'])
     $q2="INSERT INTO QUESTIONS (question,answerCorrect,answer1,answer2,answer3,answer4,competence_id) VALUES (:question,:answerCorrect,:answer1,:answer2,:answer3,:answer4,:competence_id);";
     $req2=$bdd->prepare($q2);
     $req2->execute([
-        'question'=> $_GET['question'],
-        'answerCorrect'=> $_GET['question'],
-        'answer1'=> $_GET['answer1'],
-        'answer2'=> $_GET['answer2'],
-        'answer3'=>$_GET['answer3'],
-        'answer4'=> $_GET['answer4'],
-        'competence_id'=> $competenceName
+        'question'=> htmlspecialchars($_GET['question']),
+        'answerCorrect'=> htmlspecialchars($_GET['answerCorrect']),
+        'answer1'=> htmlspecialchars($_GET['answer1']),
+        'answer2'=> htmlspecialchars($_GET['answer2']),
+        'answer3'=>htmlspecialchars($_GET['answer3']),
+        'answer4'=> htmlspecialchars($_GET['answer4']),
+        'competence_id'=> htmlspecialchars($competenceName)
     ]); 
 
     echo "1";
