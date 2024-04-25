@@ -1,29 +1,5 @@
-<?
-session_start();
-
-include('../includes/bd.php');
-
-if (!isset($_SESSION['user_id'])) {
-    echo "<p class='text-danger'>Vous devez être connecté pour accéder à cette page.</p>";
-} else {
-    $user_id = $_SESSION['user_id'];
-
-    // Récupérer les informations de l'utilisateur
-    $user_info_query = "SELECT firstname, lastname, email, tel, zip, city FROM USERS WHERE user_id = :user_id";
-    $user_info_q = $bdd->prepare($user_info_query);
-    $user_info_q->execute();
-    $user_info = $user_info_q->fetch(PDO::FETCH_ASSOC);
-}
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
-
-    <?php
-    $title='CV';
-    $url = 'pdfContent';
-    include('../includes/head.php');
-    ?>
 
     <body>
 
@@ -33,6 +9,20 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="col-md-8 offset-md-2">
                     <div class="mt-5">
                         <?php
+                        include('../includes/bd.php');
+                        session_start();
+
+                        if (!isset($_SESSION['user_id'])) {
+                            echo "<p class='text-danger'>Vous devez être connecté pour accéder à cette page.</p>";
+                        } else {
+                            $user_id = $_SESSION['user_id'];
+
+                            // Récupérer les informations de l'utilisateur
+                            $user_info_query = "SELECT firstname, lastname, email, tel, zip, city FROM USERS WHERE user_id = :user_id";
+                            $user_info_q = $bdd->prepare($user_info_query);
+                            $user_info_q->bindParam(':user_id', $user_id);
+                            $user_info_q->execute();
+                            $user_info = $user_info_q->fetch(PDO::FETCH_ASSOC);
 
                             if ($user_info) {
                                 ?>
@@ -45,8 +35,9 @@ if (!isset($_SESSION['user_id'])) {
                                 <?php
 
                                 // Récupérer les compétences de l'utilisateur
-                                $competences_query = 'SELECT COMPETENCES.name, COMPETENCES.level FROM COMPETENCES INNER JOIN USERS ON COMPETENCES.user_id = USERS.user_id WHERE USERS.user_id = :user_id';
+                                $competences_query = "SELECT name, level FROM COMPETENCES WHERE user_id = :user_id";
                                 $competences_q = $bdd->prepare($competences_query);
+                                $competences_q->bindParam(':user_id', $user_id);
                                 $competences_q->execute();
                                 $competences = $competences_q->fetchAll(PDO::FETCH_ASSOC);
 
@@ -66,6 +57,7 @@ if (!isset($_SESSION['user_id'])) {
                             } else {
                                 echo "<p class='text-danger'>Utilisateur non trouvé.</p>";
                             }
+                        }
                         ?>
                     </div>
                 </div>

@@ -37,6 +37,28 @@
     }
     
     $users = $bdd->query($query)->fetchAll();
+
+    if(isset($_POST['delete_user']) && isset($_POST['user_id'])) {
+        $id = $_POST['user_id'];
+        
+        $req_publications = $bdd->prepare('DELETE FROM PUBLICATIONS WHERE user_id = :id');
+        $req_publications->execute(array(':id' => $id));
+
+        $req_storys = $bdd->prepare('DELETE FROM STORYS WHERE user_id = :id');
+        $req_storys->execute(array(':id' => $id));
+
+        $req = $bdd->prepare('DELETE FROM USERS WHERE user_id = :id'); // Opter pour une modification du statut à 0 plutôt que la suppression
+        $req->execute(array(':id' => $id));
+
+        if(isset($_POST['raison_suppression'])) {
+            $raison = $_POST['raison_suppression'];
+            $log_file = 'delete_user_log.txt';
+            file_put_contents($log_file, "Utilisateur supprimé (ID: $id) - Raison: $raison\n", FILE_APPEND);
+        }
+
+        header('location: admin');
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -90,6 +112,7 @@ include('includes/head.php');?>
                         <th class="text-center">Supprimer publications</th>
                         <th class="text-center">Supprimer story</th>
                         <th class="text-center">Action</th>
+                        <th class="text-center">Raison bannissement</th>
                     </tr>
                 </thead>
                 <tbody id="users">
@@ -130,10 +153,16 @@ include('includes/head.php');?>
                             </form>
                         </td>
                         <td class="text-center">
-                            <form method="post">
+                        <form method="post">
+                            <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
+                            <button type="submit" class="btn btn-danger" name="delete_user" onclick="return confirm('Êtes-vous sûr de vouloir bannir cet utilisateur ?')">Bannir</button>
+                        </form>
+                        </td>
+                        <td class="text-center">
+                            <form class="d-flex flex-column flex-md-row" method="post">
                                 <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
                                 <input type="text" name="raison_suppression" class="form-control me-md-2 mb-2 mb-md-0" placeholder="Raison :" required>
-                                <button type="submit" class="btn btn-danger" name="ban_user" onclick="return confirm('Êtes-vous sûr de vouloir bannir cet utilisateur ?')">Bannir</button>
+                                <button type="submit" class="btn btn-primary">Valider</button>
                             </form>
                         </td>
                     </tr>
