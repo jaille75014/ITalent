@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-    <?php include('../includes/head.php'); ?>
+<?php include('../includes/head.php'); ?>
 
     <body>
 
@@ -20,36 +20,36 @@
                             $user_id = $_SESSION['user_id'];
 
                             // Récupérer les informations de l'utilisateur
-                            $user_query = "SELECT firstname, lastname, email, tel, zip, city FROM USERS WHERE user_id = :user_id";
-                            $user_statement = $bdd->prepare($user_query);
-                            $user_statement->bindParam(':user_id', $user_id);
-                            $user_statement->execute();
-                            $user_row = $user_statement->fetch(PDO::FETCH_ASSOC);
+                            $user_info_query = "SELECT firstname, lastname, email, tel, zip, city FROM USERS WHERE user_id = :user_id";
+                            $user_info_q = $bdd->prepare($user_info_query);
+                            $user_info_q->bindParam(':user_id', $user_id);
+                            $user_info_q->execute();
+                            $user_info = $user_info_q->fetch(PDO::FETCH_ASSOC);
 
-                            if ($user_row) {
+                            if ($user_info) {
                                 ?>
-                                <h1 class="text-center"><?= $user_row['firstname'] . ' ' . $user_row['lastname'] ?></h1>
+                                <h1 class="text-center"><?= $user_info['firstname'] . ' ' . $user_info['lastname'] ?></h1>
                                 <div class="mt-4">
-                                    <p><strong>Email :</strong> <?= $user_row['email'] ?></p>
-                                    <p><strong>Téléphone :</strong> <?= $user_row['tel'] ?></p>
-                                    <p><strong>Adresse :</strong> <?= $user_row['zip'] . ' ' . $user_row['city'] ?></p>
+                                    <p>Email : <?= $user_info['email'] ?></p>
+                                    <p>Téléphone : <?= $user_info['tel'] ?></p>
+                                    <p>Adresse : <?= $user_info['zip'] . ' ' . $user_info['city'] ?></p>
                                 </div>
                                 <?php
 
                                 // Récupérer les compétences de l'utilisateur
-                                $competence_query = "SELECT name, level FROM COMPETENCES WHERE user_id = :user_id";
-                                $competence_statement = $bdd->prepare($competence_query);
-                                $competence_statement->bindParam(':user_id', $user_id);
-                                $competence_statement->execute();
-                                $competence_rows = $competence_statement->fetchAll(PDO::FETCH_ASSOC);
+                                $competences_query = "SELECT name, level FROM COMPETENCES WHERE user_id = :user_id";
+                                $competences_q = $bdd->prepare($competences_query);
+                                $competences_q->bindParam(':user_id', $user_id);
+                                $competences_q->execute();
+                                $competences = $competences_q->fetchAll(PDO::FETCH_ASSOC);
 
-                                if ($competence_rows) {
+                                if ($competences) {
                                     ?>
                                     <div class="mt-4">
                                         <h2>Compétences</h2>
                                         <ul class="list-group">
-                                            <?php foreach ($competence_rows as $competence_row) : ?>
-                                                <li class="list-group-item"><?= $competence_row['name'] ?> - Niveau : <?= $competence_row['level'] ?></li>
+                                            <?php foreach ($competences as $competence) : ?>
+                                                <li class="list-group-item"><?= $competence['name'] ?> - Niveau : <?= $competence['level'] ?></li>
                                             <?php endforeach; ?>
                                         </ul>
                                     </div>
