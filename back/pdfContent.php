@@ -9,7 +9,7 @@
                 <div class="col-md-8 offset-md-2">
                     <div class="mt-5">
                         <?php
-                        include('../bd.php');
+                        include('../includes/bd.php');
                         session_start();
 
                         if (!isset($_SESSION['user_id'])) {

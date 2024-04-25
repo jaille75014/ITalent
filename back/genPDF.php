@@ -9,8 +9,6 @@ if (!isset($_SESSION['user_id'])) {
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-include('../includes/bd.php');
-
 $sql = 'SELECT lastname, firstname FROM users';
 $query = $bdd->prepare($sql);
 $query->execute();
