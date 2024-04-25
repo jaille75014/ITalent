@@ -21,7 +21,7 @@ if(isset($_POST['delete_user']) && isset($_POST['user_id'])) {
     
         if(isset($_POST['raison_suppression'])) {
             $raison = $_POST['raison_suppression'];
-            $log_file = 'delete_user_log.txt';
+            $log_file = '../logs/delete_user_log.txt';
             file_put_contents($log_file, "Utilisateur banni (ID: $id) - Raison: $raison\n", FILE_APPEND);
         }
     
