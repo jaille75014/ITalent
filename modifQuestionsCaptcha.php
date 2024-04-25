@@ -78,7 +78,7 @@ $result=$req->fetch(PDO::FETCH_ASSOC);
                     <label class="form-label text-center" for="answer">Réponse :</label>
                     <input type="text" class="form-control mb-4" id="answer" value="<?= $result['answer']?>" name="answer">
 
-                    <button type="submit" class="btn btn-primary mb-5 text-center">Modifier</button>
+                    <button type="submit" class="btn btn-success mb-5 text-center">Modifier</button>
 
                 </form>
             </div>
