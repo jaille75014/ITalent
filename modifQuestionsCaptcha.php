@@ -19,13 +19,15 @@ include('includes/fonctions_logs.php');
 writeVisitLog('competence_admin');
 
 if (isset($_POST['question']) && !empty($_POST['question'])
-    && isset($_POST['answer']) && !empty($_POST['answer'])){
+    && isset($_POST['answer']) && !empty($_POST['answer'])
+    && isset($_POST['questionNew']) && !empty($_POST['questionNew'])){
 
-        $q='UPDATE CAPTCHA SET answer= :answer  WHERE question= :question ;';
+        $q='UPDATE CAPTCHA SET question=:questionNew, answer= :answer  WHERE question= :question ;';
         $req=$bdd->prepare($q);
         $req->execute([
             "answer" =>htmlspecialchars($_POST['answer']),
-            "question" =>htmlspecialchars($_POST['question'])
+            "question" =>htmlspecialchars($_POST['question']),
+            "questionNew" =>htmlspecialchars($_POST['questionNew'])
         ]);
 
         header('location:captcha_admin.php');
@@ -75,6 +77,8 @@ $result=$req->fetch(PDO::FETCH_ASSOC);
 
                     <input type="hidden" value="<?= $result['question'];?>" name="question">
 
+                    <label class="form-label text-center" for="questionNew">Question :</label>
+                    <input type="text" class="form-control mb-4" id="questionNew" value="<?= $result['question']?>" name="questionNew">
                     <label class="form-label text-center" for="answer">Réponse :</label>
                     <input type="text" class="form-control mb-4" id="answer" value="<?= $result['answer']?>" name="answer">
 

@@ -24,11 +24,13 @@ if (isset($_POST['question']) && !empty($_POST['question'])
     && isset($_POST['answer2']) && !empty($_POST['answer2'])
     && isset($_POST['answer3']) && !empty($_POST['answer3'])
     && isset($_POST['answer4']) && !empty($_POST['answer4'])
-    && isset($_POST['answerCorrect']) && !empty($_POST['answerCorrect'])){
+    && isset($_POST['answerCorrect']) && !empty($_POST['answerCorrect'])
+    && isset($_POST['questionNew']) && !empty($_POST['questionNew'])){
 
-        $q='UPDATE QUESTIONS SET answerCorrect= :answerCorrect ,answer1 = :answer1 ,answer2= :answer2,answer3 = :answer3 ,answer4 = :answer4 WHERE question= :question ;';
+        $q='UPDATE QUESTIONS SET question=:questionNew, answerCorrect= :answerCorrect ,answer1 = :answer1 ,answer2= :answer2,answer3 = :answer3 ,answer4 = :answer4 WHERE question= :question ;';
         $req=$bdd->prepare($q);
         $req->execute([
+            "questionNew" =>htmlspecialchars($_POST['questionNew']),
             "answerCorrect" =>htmlspecialchars($_POST['answerCorrect']),
             "answer1" =>htmlspecialchars($_POST['answer1']),
             "answer2" =>htmlspecialchars($_POST['answer2']),
@@ -81,13 +83,16 @@ $result=$req->fetch(PDO::FETCH_ASSOC);
                 <form method="post">
 
                     <input type="hidden" value="<?= $result['question'];?>" name="question">
-                    <label class="form-label text-center" for="answer1">Réponse 1</label>
+
+                    <label class="form-label text-center" for="questionNew">Question :</label>
+                    <input type="text" class="form-control mb-4" id="questionNew" value="<?= $result['question']?>" name="questionNew">
+                    <label class="form-label text-center" for="answer1">Réponse 1 : </label>
                     <input type="text" class="form-control mb-4" id="answer1" value="<?= $result['answer1']?>" name="answer1">
-                    <label class="form-label" for="answer2">Réponse 2</label>
+                    <label class="form-label" for="answer2">Réponse 2 : </label>
                     <input type="text" class="form-control mb-4" id="answer2" value="<?= $result['answer2']?>" name="answer2">
-                    <label class="form-label" for="answer3">Réponse 3</label>
+                    <label class="form-label" for="answer3">Réponse 3 : </label>
                     <input type="text" class="form-control mb-4" id="answer3" value="<?= $result['answer3']?>" name="answer3">
-                    <label class="form-label" for="answer4">Réponse 4</label>
+                    <label class="form-label" for="answer4">Réponse 4 : </label>
                     <input type="text" class="form-control mb-4" id="answer4" value="<?= $result['answer4']?>" name="answer4">
 
                     <label class="form-label" for="answerCorrect">Réponse Correct</label>
