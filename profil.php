@@ -88,6 +88,12 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                             <input type="tel" class="form-control" id="tel" name="tel" value="<?php echo htmlspecialchars($userInfo['tel']); ?>" required>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="password" class="form-label">Nouveau mot de passe</label>
+                                            <input type="password" class="form-control" name="password" placeholder="Votre mot de passe" id="password">
+                                        </div>
+                                    </div>
                                     <?php if ($userInfo['statut'] == '1'): ?>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
@@ -103,8 +109,10 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                     <?php endif; ?>
                                     <button type="submit" class="btn btn-primary">Sauvegarder les modifications</button>
                                 </form>
-                                <a href="back/supp_compte" class="btn btn-danger mt-3" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.');">Supprimer mon compte</a>
+                                <?php if ($userInfo['statut'] == '1'): ?>
                                 <a href="back/genPDF.php" class="btn btn-primary mt-3">Télécharger le CV en PDF</a>
+                                <?php endif; ?>
+                                <a href="back/supp_compte" class="btn btn-danger mt-3" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.');">Supprimer mon compte</a>
                             </div>
                         </div>
                     </div>

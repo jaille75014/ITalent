@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $email = $_POST['email'];
+    $password = $_POST['password'];
     $tel = $_POST['tel'];
     $job = $_POST['job'];
 
@@ -23,6 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = $res->fetch(PDO::FETCH_ASSOC);
     $job_id = $result['id'];
 
+    // Vérification de l'envoie du mdp 
+    $passwordReset = isset($_POST['password']) && !empty($_POST['password']);
+    if($passwordReset) {
+        if (strlen($_POST['password']) < 8) {
+            header('location: edit.php?id=' . $_POST['user_id'] . '&message=Le mot de passe doit faire au moins 8 caractères !&type=danger');
+            exit;
+        }
+    }
+
     // Mettre à jour la table USERS avec l'ID du poste
     $query = "UPDATE USERS SET firstname = ?, lastname = ?, email = ?, tel = ?, student_job = ? WHERE user_id = ?";
     $res = $bdd->prepare($query);
@@ -31,5 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         redirectFailure('../profil', 'Une erreur est survenue lors de la mise à jour de vos informations.');
     }
+
+
 }
 ?>
