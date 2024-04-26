@@ -37,7 +37,7 @@ $q='SELECT name FROM COMPETENCES ;';
 $req=$bdd->prepare($q);
 $req->execute(); 
 
-$url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
+$url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter et codes_verification
 ?>
 
 <!DOCTYPE html>

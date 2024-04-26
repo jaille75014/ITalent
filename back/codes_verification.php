@@ -34,7 +34,7 @@ else {
             <h3 class="mb-0">Validation du code</h3>
                 </div>
                     <div class="card-body">
-                        <form id="form_code" <?php echo 'action="codes_verification?id=' . htmlspecialchars($_GET['id']) . '&hour=' . date('Y-m-d H:i:s') . '&check=1&token=' . htmlspecialchars($_GET['token']) . '" '?> method="POST">
+                        <form id="form_code" <?php echo 'action="codes_verification?id=' . htmlspecialchars($_GET['id']) . '&date=' . date('Y-m-d H:i:s') . '&check=1&token=' . htmlspecialchars($_GET['token']) . '" '?> method="POST">
                             <div class="form-group">
                                 <label>Code</label>
                                 <input type="text" class="form-control form-control-lg rounded-0" name="code" value="<?php echo isset($_GET['token']) ? htmlspecialchars($_GET['token']) : '' ?>">
