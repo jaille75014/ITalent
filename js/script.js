@@ -89,3 +89,13 @@ async function openVerificationNewsletter(event) {
 
     window.open(url, '_blank');
 }
+
+document.querySelector('form').addEventListener('submit', function(event) {
+    var password = document.getElementById('password').value;
+    var confirmPassword = document.getElementById('confirm_password').value;
+
+    if (password !== confirmPassword) {
+        alert('Les mots de passe ne correspondent pas.');
+        event.preventDefault(); // Empêche l'envoi du formulaire
+    }
+});

@@ -41,7 +41,7 @@ if(isset($_POST["email"])) {
     <?php
   } catch (Exception $e) {
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-      header("location: ../connexion");
+      header("location: ../index.php?messageFailure=Une erreur est survenue lors de l'envoi de l'email :(");
   } 
   } //if(!empty($_POST['email'])) 
   

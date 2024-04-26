@@ -92,6 +92,8 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                         <div class="col-md-6 mb-3">
                                             <label for="password" class="form-label">Nouveau mot de passe</label>
                                             <input type="password" class="form-control" name="password" placeholder="Votre mot de passe" id="password">
+                                            <label for="confirm_password" class="form-label">Confirmer le mot de passe</label>
+                                            <input type="password" class="form-control" name="confirm_password" placeholder="Confirmez votre mot de passe" id="confirm_password">
                                         </div>
                                     </div>
                                     <?php if ($userInfo['statut'] == '1'): ?>
@@ -194,7 +196,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
 
             </div>
         </main>
-
+        <script src="js/script.js"></script>
         <?php include('includes/footer.php'); ?>
     </body>
 </html>
