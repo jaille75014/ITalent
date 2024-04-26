@@ -60,6 +60,10 @@ foreach ($email_check_result as $index => $values) {
 
 // La connexion a réussi > démarrer la session
 session_start();
+if($result['statut'] == 0){
+    redirectFailure('../connexion', 'Votre compte a été désactivé ou supprimé. Veuillez contacter un administrateur pour plus d\'informations.');
+    exit;
+}
 $_SESSION['user_id'] = $result['user_id'];
 $_SESSION['statut'] = $result['statut'];
 
