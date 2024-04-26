@@ -116,7 +116,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                             <div class="mb-3">
                                 <h4>Ajouter une Story</h4>
                                 <form action="back/ajout_story" method="POST" enctype="multipart/form-data">
-                                    <input type="file" name="image_story" accept='image/*' required>
+                                    <input type="file" name="image_story" accept="image/\*" required>
                                     <button type="submit" class="btn btn-primary">Publier</button>
                                 </form>
                             </div>

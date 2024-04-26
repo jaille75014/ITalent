@@ -32,7 +32,13 @@ if(isset($_POST["email"])) {
     $mail->send();
     echo'<p class="text-center">Un email viens de vous être envoyé !
     Cette page va se fermer automatiquement dans 10 secondes !</p>';
-
+?>
+      <script>
+        setTimeout(function() {
+          window.close();
+        }, 10000); // 10000 millisecondes = 10 secondes
+      </script>
+    <?php
   } catch (Exception $e) {
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
       header("location: ../connexion");
