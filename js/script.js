@@ -90,6 +90,7 @@ async function openVerificationNewsletter(event) {
     window.open(url, '_blank');
 }
 
+// vérifier que les mots de passe correspondent | page profil.php
 document.querySelector('form').addEventListener('submit', function(event) {
     var password = document.getElementById('password').value;
     var confirmPassword = document.getElementById('confirm_password').value;
