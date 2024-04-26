@@ -47,7 +47,13 @@
         if($_POST['answer10']==$_POST['answer10Correct']) $score+=10;
 
 
-        if ($score>=70){
+        if ($score>=50){
+
+            if ($score<=60) $newScore=1;
+            else if ($score<=70) $newScore=2;
+            else if ($score<=80) $newScore=3;
+            else if ($score<=90) $newScore=4;
+            else $newScore=5;
 
             include('../includes/bd.php');
 
@@ -65,14 +71,14 @@
             $req2->execute([
                 'competence_id'=> $id_competence,
                 'user_id' => $_SESSION['user_id'],
-                'level' => $score,
-                'validity'=> '2020-12-10'
+                'level' => $newScore,
+                'validity'=> date("Y/m/d")
             ]);
 
 
 
 
-            header('location:../profil?messageSuccess=Félicitation ! Vous avez eu un taux de réussite de '.$score.'% ! La compétence a été ajouté à votre profil.');
+            header('location:../profil?messageSuccess=Félicitation ! Vous avez eu un taux de réussite de '.$score.', pour une note de '.$newScore.'/5 ! La compétence a été ajouté à votre profil.');
             exit;
         } else {
             header('location:../profil?messageFailure=Dommage... Vous avez eu un taux de réussite de '.$score.'%, ce n\'est pas suffisant pour ajouter cette compétence à votre profil.');
