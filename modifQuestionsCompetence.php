@@ -1,6 +1,8 @@
 <?php 
 session_start(); 
 
+var_dump($_POST['question']);
+
 
 if(!isset($_SESSION['captcha'])){
     header('location:captcha?error=Chipeur arrête de chipper !');
@@ -55,8 +57,10 @@ $req->execute([
     htmlspecialchars($_POST['question'])
 ]);
 
+var_dump($req);
 $result=$req->fetch(PDO::FETCH_ASSOC);
 
+var_dump($result);
 
 ?>
 

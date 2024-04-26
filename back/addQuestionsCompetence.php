@@ -30,7 +30,7 @@ if (isset($_GET['competence']) && !empty($_GET['competence'])
         'answer2'=> htmlspecialchars($_GET['answer2']),
         'answer3'=>htmlspecialchars($_GET['answer3']),
         'answer4'=> htmlspecialchars($_GET['answer4']),
-        'competence_id'=> htmlspecialchars($competenceName($result['competence_id']))
+        'competence_id'=> htmlspecialchars($result['competence_id'])
     ]); 
 
     echo "1";
