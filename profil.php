@@ -176,7 +176,47 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                 // verifier le statut de l'utilisateur
                 if($userInfo['statut'] == 1){
 
+<<<<<<< HEAD
                 ?>
+=======
+
+                <h3 class="text-center" >Vos compétences</h3>
+
+                <table class="table table-striped my-5 text-center">
+                    <tr>
+                        <th>Compétence</th>
+                        <th>Note</th>
+                        <th>Date de passage</th>
+                    </tr>
+
+                
+                <?php 
+
+                $q2 = 'SELECT name,level,validity FROM POSSESSES INNER JOIN COMPETENCES ON COMPETENCES.competence_id=POSSESSES.competence_id WHERE POSSESSES.user_id = ? ;';
+                $req2=$bdd->prepare($q2);
+                $req2->execute([
+                    $_SESSION['user_id']
+                ]);
+                $competences = $req2->fetchAll(PDO::FETCH_ASSOC);
+
+                
+                
+                
+                foreach ($competences as $competence) {
+                    echo '
+                        <tr>
+                            <td>'.$competence['name'].'</td>
+                            <td>'.$competence['level'].'/5</td>
+                            <td>'.$competence['validity'].'</td>
+                        </tr>
+                    
+                    ';
+                }
+                
+                ?>
+                </table>
+
+>>>>>>> db5cd994029bc4b1a950b65b2bc1c5630b4e14f4
                 <h3 class="text-center" >Ajouter une compétence à votre CV</h3>
 
                 <form method="post" action="exam">
