@@ -67,3 +67,25 @@ async function follow(button) {
     icon.classList.toggle("bi-person-plus");
     icon.classList.toggle("bi-person-check-fill");
 }
+
+// Open the page newsletter with windows.open
+async function openVerificationNewsletter(event) {
+    event.preventDefault(); // N'envoie pas le formulaire normalement
+    var form = document.getElementById('newsletterForm'); 
+    var url = form.action; // Récupère l'URL du formulaire 
+    var formData = new FormData(form); // Crée un objet FormData avec les données du formulaire
+
+    const response = await fetch(url, {
+        method: 'POST',
+        body: formData
+    });
+
+    if (response.ok) { // Si le serveur a répondu avec un code 200
+        // get the response body
+        const json = await response.json();
+    } else {
+        alert("HTTP-Error: " + response.status);
+    }
+
+    window.open(url, '_blank');
+}

@@ -58,8 +58,8 @@ $url = htmlspecialchars($_GET['url']);
                 <h3 class="mb-0">Validation de la newsletter</h3>
                     </div>
                         <div class="card-body">
-                            <form id="form_code" action="<?php echo 'inscription_newsletter?news=2&email=' . $user_email . '&url=' . $url ?>" method="POST">
-                                <div class="form-group my-4">
+                        <form id="form_code" action="<?php echo 'inscription_newsletter?news=2&email=' . $user_email . '&url=' . $url ?>" method="POST">                                
+                        <div class="form-group my-4">
                                     <label for="uname1">email</label>
                                     <input type="email" class="form-control form-control-lg rounded-0" id="email" name="email" value="<?= $user_email ?>" onFocus="this.value='';">
                                 </div>

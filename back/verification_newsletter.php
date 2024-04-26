@@ -7,6 +7,7 @@ if(isset($_POST["email"])) {
       exit;
   }
   $_SESSION['newsletter'] = 1;
+  $serverName = $_SERVER['SERVER_NAME'];
   include '../includes/phpmailer.php'; // Settings for phpmailer
 
   $email = htmlspecialchars($_POST['email']);
@@ -15,7 +16,7 @@ if(isset($_POST["email"])) {
   $mail->addAddress($email); // Destinataire
   
   $body = '<p>Vous touchez au but ! Pour valider votre inscription à notre newsletter, 
-  <a href="213.32.89.122/inscription_newsletter?news=1&email=' . $email . '&url=' . htmlspecialchars($_GET['url']) . '">cliquez ici</a></p>.'; // tru = condition pour la page d'inscription à la newsletter; 
+  <a href="https://' . $serverName . '/inscription_newsletter?news=1&email=' . $email . '&url=' . htmlspecialchars($_GET['url']) . '">cliquez ici</a></p>.'; // tru = condition pour la page d'inscription à la newsletter; 
                                                                                                                         //url=page sur laquelle il s'est inscrit pour le rediriger sur la meme page en cas de problemes
 
   //Attachments :
@@ -29,14 +30,13 @@ if(isset($_POST["email"])) {
 
   try {
     $mail->send();
-    echo'<p>Un email viens de vous être envoyé <br>
-          Revenez sur cette page une fois que vous aurez validé le code !</p>';
+    echo'<p class="text-center">Un email viens de vous être envoyé !
+    Cette page va se fermer automatiquement dans 10 secondes !</p>';
 
   } catch (Exception $e) {
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
       header("location: ../connexion");
   } 
-
   } //if(!empty($_POST['email'])) 
   
 } // if(isset($_GET["email"])) {

@@ -59,7 +59,7 @@
       <div class="col-8 offset-2 col-lg-4 offset-lg-4">
       <h5 class="text-uppercase mb-4">Newsletter</h5>
 
-      <form action="<?php echo '../back/verification_newsletter?url=' . $url ?>" method="POST">
+      <form id="newsletterForm" action="<?php echo '/back/verification_newsletter?url=' . $url ?>" method="POST" onsubmit="openVerificationNewsletter(event);">
       <i class='bx bxs-envelope'></i>
       <input type="email" name="email" placeholder="Entrez votre e-mail" required>
       <button type="submit"><i class='bx bx-right-arrow-alt'></i></button>
@@ -69,4 +69,5 @@
   </div>
   <hr>
   <p class="copyright">Tous droits réservés &copy <?php echo date('Y'); ?> - ITalent </p>
+  <script src="/js/script.js"></script>
 </footer>
