@@ -78,6 +78,11 @@
             header('location:../profil?messageFailure=Dommage... Vous avez eu un taux de réussite de '.$score.'%, ce n\'est pas suffisant pour ajouter cette compétence à votre profil.');
             exit;
         }
+    } else {
+        header('location:../profil?messageFailure=Problème lors de l\'examen.');
+        exit;
     }
+
+
 
 ?>

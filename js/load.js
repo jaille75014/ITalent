@@ -25,7 +25,6 @@ async function search(queryParam, inputId){
 
 
  async function addQuestionsToCompetence(){
-    console.log("yah");
     const competence = document.getElementById('selectCompetence');
     const question = document.getElementById('question');
     const answer1 = document.getElementById('answer1');
@@ -34,7 +33,7 @@ async function search(queryParam, inputId){
     const answer4 = document.getElementById('answer4');
     const answerCorrect = document.getElementById('answerCorrect');
 
-    const res = await fetch(`back/addQuestionsCompetence.php?competence=${competence.value}&question=${question.value}&answer1=${answer1.value}&answer2=${answer2.value}&answer3=${answer3.value}&answer4=${answer4.value}&answerCorrect=${answerCorrect.value}`);
+    const res = await fetch(`back/addQuestionsCompetence?competence=${competence.value}&question=${question.value}&answer1=${answer1.value}&answer2=${answer2.value}&answer3=${answer3.value}&answer4=${answer4.value}&answerCorrect=${answerCorrect.value}`);
     const txt = await res.text();
 
     competence.value="Sélectionner une compétence";
@@ -52,7 +51,7 @@ async function search(queryParam, inputId){
     }
 
 
-
+    selectCompetence();
 
 }
 
