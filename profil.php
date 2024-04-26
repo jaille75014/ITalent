@@ -148,7 +148,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                 <h4>Ajouter une Publication</h4>
                                 <form action="back/ajout_publi" method="POST" enctype="multipart/form-data">
                                     <div class="mb-3">
-                                        <input type="file" name="image_publication" accept="image/*" required>
+                                        <input type="file" name="image_publication" accept="image/\*" required>
                                     </div>
                                     <div class="mb-3">
                                         <textarea name="description" class="form-control" placeholder="Description"></textarea>
@@ -171,10 +171,12 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
 
                         </div>
                     </div>
-
-
                 </div>
+                <?php 
+                // verifier le statut de l'utilisateur
+                if($userInfo['statut'] == 1){
 
+                ?>
                 <h3 class="text-center" >Ajouter une compétence à votre CV</h3>
 
                 <form method="post" action="exam">
@@ -192,7 +194,9 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                     </select>
                     <button type="submit" class="btn btn-primary my-4">Envoyer</button>
                 </form>
-
+                <?php
+                } // fin de la vérification du statut
+                ?>
 
             </div>
         </main>

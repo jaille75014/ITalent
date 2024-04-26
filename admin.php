@@ -58,12 +58,12 @@
         $req = $bdd->prepare('UPDATE USERS SET statut = 0 WHERE user_id = :id'); 
         $req->execute(array(':id' => $id));
 
-        $req_ban = $bdd->prepare('INSERT INTO BAN (user_id, date_ban, reason) VALUES (:id, :date_ban, :reason)');
+        $req_ban = $bdd->prepare('INSERT INTO BAN (id, date_ban, reason) VALUES (:id, :date_ban, :reason)');
         $req_ban->execute(array(
             ':id' => $id,
             ':date_ban' => date('Y-m-d H:i:s', strtotime("+30 days")),
             ':reason' => $raison
-        ));        
+        ));
 
         header('location: admin');
         exit;
