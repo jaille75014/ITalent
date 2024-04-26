@@ -18,7 +18,7 @@
                             $user_id = $_SESSION['user_id'];
 
                             // Récupérer les informations de l'utilisateur
-                            $user_info_query = "SELECT firstname, lastname, email, tel, zip, city FROM USERS WHERE user_id = :user_id";
+                            $user_info_query = "SELECT user_id, firstname, lastname, email, tel, zip, city FROM USERS WHERE user_id = :user_id";
                             $user_info_q = $bdd->prepare($user_info_query);
                             $user_info_q->bindParam(':user_id', $user_id);
                             $user_info_q->execute();
