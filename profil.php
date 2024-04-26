@@ -88,7 +88,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                             <input type="tel" class="form-control" id="tel" name="tel" value="<?php echo htmlspecialchars($userInfo['tel']); ?>" required>
                                         </div>
                                     </div>
-                                    <?php if ($userInfo['status'] == '1'): ?>
+                                    <?php if ($userInfo['statut'] == '1'): ?>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label for="job" class="form-label">Poste recherché</label>
