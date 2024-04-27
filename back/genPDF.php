@@ -1,4 +1,5 @@
 <?php
+/*
 include('../includes/fpdf/fpdf.php');
 include('../includes/bd.php');
 
@@ -46,4 +47,5 @@ foreach ($user_info as $row) {
 }
 
 $pdf->Output();
-?>
+*/
+?> 
