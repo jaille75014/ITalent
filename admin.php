@@ -150,14 +150,11 @@ include('includes/head.php');?>
                         <td class="text-center">
                         <form method="post">
                             <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
-                            <button type="submit" class="btn btn-danger" name="delete_user" onclick="return confirm('Êtes-vous sûr de vouloir bannir cet utilisateur ?')">Bannir</button>
-                        </form>
                         </td>
                         <td class="text-center">
-                            <form class="d-flex flex-column flex-md-row" method="post">
                                 <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
                                 <input type="text" name="raison_suppression" class="form-control me-md-2 mb-2 mb-md-0" placeholder="Raison :" required>
-                                <button type="submit" class="btn btn-primary">Valider</button>
+                                <button type="submit" class="btn btn-danger" name="delete_user" onclick="return confirm('Êtes-vous sûr de vouloir bannir cet utilisateur ?')">Bannir</button>
                             </form>
                         </td>
                     </tr>
