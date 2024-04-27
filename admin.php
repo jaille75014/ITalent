@@ -26,7 +26,6 @@
     include('includes/fonctions_logs.php');
     include('includes/bd.php');
     writeVisitLog('admin.php');
-    $users = $bdd->query($query)->fetchAll();
 
     if(isset($_POST['delete_user']) && $id) {
         
