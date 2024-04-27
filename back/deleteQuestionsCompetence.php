@@ -9,6 +9,6 @@ if(isset($_GET['question'])&&!empty($_GET['question'])){
     $req->execute([
         htmlspecialchars($_GET['question'])
     ]);
-}
+}// elseif(isset($_GET['competence'])&&!empty($_GET['competence'])){
 
 ?>

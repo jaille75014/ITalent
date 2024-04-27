@@ -1,5 +1,5 @@
 <?php 
-
+// includes
 include('../includes/bd.php');
 
     
