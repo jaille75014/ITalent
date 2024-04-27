@@ -4,22 +4,6 @@
 
 
     <?php 
-    include('includes/db.php');
-
-    $delete_user = 'SELECT id, date_ban FROM BAN';
-    $req = $bdd->query($delete_user);
-    $users = $req->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach ($users as $user) {
-        if (strtotime($user['date_ban']) < time()) { //
-            $req = $bdd->prepare('DELETE FROM USERS WHERE id = :id');
-            $req->execute(array(':id' => $user['id']));
-
-            $req = $bdd->prepare('DELETE FROM BAN WHERE id = :id');
-            $req->execute(array(':id' => $user['id']));
-        }
-    }
-
     $title='Accueil';
     include('includes/head.php');
     ?>
