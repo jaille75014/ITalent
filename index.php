@@ -4,7 +4,7 @@
 
 
     <?php 
-    include('includes/db.php');
+    include('includes/bd.php');
 
     $delete_user = 'SELECT id, date_ban FROM BAN';
     $req = $bdd->query($delete_user);
