@@ -148,7 +148,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                 <h4>Ajouter une Publication</h4>
                                 <form action="back/ajout_publi" method="POST" enctype="multipart/form-data">
                                     <div class="mb-3">
-                                        <input type="file" name="image_publication" accept="image/\*" required>
+                                        <input type="file" name="image_publication" accept="image/*" required>
                                     </div>
                                     <div class="mb-3">
                                         <textarea name="description" class="form-control" placeholder="Description"></textarea>
@@ -171,12 +171,47 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
 
                         </div>
                     </div>
-                </div>
-                <?php 
-                // verifier le statut de l'utilisateur
-                if($userInfo['statut'] == 1){
 
+
+                </div>
+
+
+                <h3 class="text-center" >Vos compétences</h3>
+
+                <table class="table table-striped my-5 text-center">
+                    <tr>
+                        <th>Compétence</th>
+                        <th>Note</th>
+                        <th>Date de passage</th>
+                    </tr>
+
+                
+                <?php 
+
+                $q2 = 'SELECT name,level,validity FROM POSSESSES INNER JOIN COMPETENCES ON COMPETENCES.competence_id=POSSESSES.competence_id WHERE POSSESSES.user_id = ? ;';
+                $req2=$bdd->prepare($q2);
+                $req2->execute([
+                    $_SESSION['user_id']
+                ]);
+                $competences = $req2->fetchAll(PDO::FETCH_ASSOC);
+
+                
+                
+                
+                foreach ($competences as $competence) {
+                    echo '
+                        <tr>
+                            <td>'.$competence['name'].'</td>
+                            <td>'.$competence['level'].'/5</td>
+                            <td>'.$competence['validity'].'</td>
+                        </tr>
+                    
+                    ';
+                }
+                
                 ?>
+                </table>
+
                 <h3 class="text-center" >Ajouter une compétence à votre CV</h3>
 
                 <form method="post" action="exam">
@@ -194,9 +229,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                     </select>
                     <button type="submit" class="btn btn-primary my-4">Envoyer</button>
                 </form>
-                <?php
-                } // fin de la vérification du statut
-                ?>
+
 
             </div>
         </main>

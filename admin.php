@@ -21,49 +21,32 @@
     
     include('includes/fonctions_logs.php');
     writeVisitLog('admin.php');
-    
-    include('includes/bd.php');
-    
-    $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : '';
-    $email = isset($_POST['email']) ? $_POST['email'] : '';
-    $lastname = isset($_POST['lastname']) ? $_POST['lastname'] : '';
-    $firstname = isset($_POST['firstname']) ? $_POST['firstname'] : '';
-    
-    $query = "SELECT * FROM USERS WHERE 1";
-    
-    if (!empty($user_id)) {
-        $query .= " AND user_id = $user_id";
-    }
-    if (!empty($email)) {
-        $query .= " AND email = '$email'";
-    }
-    if (!empty($lastname)) {
-        $query .= " AND lastname = '$lastname'";
-    }
-    if (!empty($firstname)) {
-        $query .= " AND firstname = '$firstname'";
-    }
-    
     $users = $bdd->query($query)->fetchAll();
 
     if(isset($_POST['delete_user']) && isset($_POST['user_id'])) {
+        $id = $_POST['user_id'];
         $id = htmlspecialchars($_POST['user_id']);
         
         $req_publications = $bdd->prepare('DELETE FROM PUBLICATIONS WHERE user_id = :id');
         $req_publications->execute(array(':id' => $id));
-
         $req_storys = $bdd->prepare('DELETE FROM STORYS WHERE user_id = :id');
         $req_storys->execute(array(':id' => $id));
 
+        $req = $bdd->prepare('DELETE FROM USERS WHERE user_id = :id'); // Opter pour une modification du statut à 0 plutôt que la suppression
         $req = $bdd->prepare('UPDATE USERS SET statut = 0 WHERE user_id = :id'); 
         $req->execute(array(':id' => $id));
 
-        $req_ban = $bdd->prepare('INSERT INTO BAN (id, date_ban, reason) VALUES (:id, :date_ban, :reason)');
+        if(isset($_POST['raison_suppression'])) {
+            $raison = $_POST['raison_suppression'];
+            $log_file = 'delete_user_log.txt';
+            file_put_contents($log_file, "Utilisateur supprimé (ID: $id) - Raison: $raison\n", FILE_APPEND);
+        }
+        $req_ban = $bdd->prepare('INSERT INTO BAN (user_id, date_ban, reason) VALUES (:id, :date_ban, :reason)');
         $req_ban->execute(array(
             ':id' => $id,
             ':date_ban' => date('Y-m-d H:i:s', strtotime("+30 days")),
             ':reason' => $raison
-        ));
+        ));        
 
         header('location: admin');
         exit;

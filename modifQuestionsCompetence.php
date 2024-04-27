@@ -57,6 +57,7 @@ $req->execute([
     htmlspecialchars($_POST['question'])
 ]);
 
+var_dump($req);
 var_dump(htmlspecialchars($_POST['question']));
 $result=$req->fetch(PDO::FETCH_ASSOC);
 
@@ -112,3 +113,4 @@ var_dump($result);
         <?php include('includes/footer.php');?>
     
     </body>
+</html>
