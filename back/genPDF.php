@@ -1,42 +1,49 @@
 <?php
-session_start();
+include('../includes/fpdf/fpdf.php');
 include('../includes/bd.php');
 
+session_start();
+
 if (!isset($_SESSION['user_id'])) {
-    redirectFailure('connexion', 'Vous devez être connecté pour accéder à cette page.');
+    die("<p class='text-danger'>Vous devez être connecté pour accéder à cette page.</p>");
 }
 
-use Dompdf\Dompdf;
-use Dompdf\Options;
+$user_id = $_SESSION['user_id'];
 
-$sql = 'SELECT lastname, firstname FROM USERS';
-$query = $bdd->prepare($sql);
-$query->execute();
-$users = $query->fetchAll(PDO::FETCH_ASSOC);
+$query = "SELECT u.firstname, u.lastname, u.email, u.tel, u.zip, u.city, c.name AS competence_name, c.level FROM USERS u LEFT JOIN COMPETENCES c ON u.user_id = c.user_id WHERE u.user_id = :user_id";
 
-ob_start(); // Buffer de mémoire pour stocker le contenu HTML
-include('pdfContent.php');
-$html = ob_get_contents(); // Stocke le contenu du buffer dans une variable
-ob_end_clean(); // Nettoie le buffer
+$user_info_q = $bdd->prepare($query);
+$user_info_q->bindParam(':user_id', $user_id);
+$user_info_q->execute();
+$user_info = $user_info_q->fetchAll(PDO::FETCH_ASSOC);
 
-include('../includes/dompdf/autoload.inc.php');
+// Créer le PDF
+$pdf = new FPDF('P','mm','A4');
+$pdf->AddPage();
+$pdf->SetFont('Helvetica','B',16);
 
-$options = new Options();
-$options->set('defaultFont', 'Montserrat');
+$pdf->Cell(71,10,'',0,0);
+$pdf->Cell(59,5,'CV',0,0);
+$pdf->Cell(59,19,'',0,1);
 
-$dompdf = new Dompdf(); 
-$dompdf->loadHtml($html);
-$dompdf->setPaper('A4', 'portrait');
-$dompdf->render();
+$pdf->SetFont('Helvetica','',12);
+$pdf->Cell(0,10,'Informations personnelles:',0,1);
 
-// Enregistrer le PDF dans un fichier
-$output = $dompdf->output();
-$file_path = 'CV.pdf';
-file_put_contents($file_path, $output);
+// Afficher les informations de l'utilisateur
+foreach ($user_info as $row) {
+    $pdf->Cell(0,10,'Nom : '. $row['firstname'] .' ' . $row['lastname'],0,1);
+    $pdf->Cell(0,10,'Email : '. $row['email'],0,1);
+    $pdf->Cell(0,10,'Téléphone : '. $row['tel'],0,1);
+    $pdf->Cell(0,10,'Adresse : '. $row['zip'].' ' . $row['city'],0,1);
 
-// Proposer le téléchargement du PDF
-header('Content-Type: application/pdf');
-header('Content-Disposition: attachment; filename="' . $file_path . '"');
-readfile($file_path);
-exit;
+    // Afficher les compétences de l'utilisateur
+    $pdf->Cell(0,10,'Compétences:',0,1);
+    if (!empty($row['competence_name'])) {
+        $pdf->Cell(0,10, $row['competence_name'].' - Niveau: '. $row['level'],0,1);
+    } else {
+        $pdf->Cell(0,10,'Pas de compétences répertoriées.',0,1);
+    }
+}
+
+$pdf->Output();
 ?>
