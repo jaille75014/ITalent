@@ -4,6 +4,7 @@ include("../includes/bd.php");
 include('../includes/phpmailer.php');
 include('../includes/header_location.php');
 
+$userid = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 'envoyé automatiquement';
 function getSubscribedUsers($bdd) {
     $users_subscribed = 'SELECT email FROM USERS WHERE newsletter = 1';
     $req = $bdd->prepare($users_subscribed);
@@ -66,7 +67,7 @@ foreach ($results as $index => $values) {
 }
 
 // Enregistre le mail envoyé dans la base de données apres l'envoi de tous les mails
-saveNewsletter($bdd, $header, $body, $_SESSION['user_id']);
+saveNewsletter($bdd, $header, $body, $userid);
 
 redirectSuccess('../newsletter_admin', 'Tous les email ont été envoyé !');
 ?>
