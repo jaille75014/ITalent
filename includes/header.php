@@ -3,7 +3,6 @@ if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==1) {
     $links = [
         "Accueil" => "index_etudiant",
         "Profil" => "profil",
-        "Entretien" => "entretien",
         "Messages" => "messagerie",
         "Déconnexion" => "deconnexion"
     ];
@@ -11,13 +10,13 @@ if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==1) {
   $links = [
       "Accueil" => "index_recruteur",
       "Profil" => "profil",
-      "Entretien" => "entretien",
       "Messages" => "messagerie",
       "Déconnexion" => "deconnexion"
   ];
 } else if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==3) {
   $links = [
       "Accueil" => "admin",
+      "Profil" => "profil",
       "Captcha" => "captcha_admin",
       "Newsletter" => "newsletter_admin",
       "Compétence" => "competence_admin",

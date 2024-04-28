@@ -15,7 +15,7 @@
               <a href="tel:0602081047" class="text-white"><i class='bx bxs-phone'></i>+33 6 02 08 10 47</a>
             </li>
             <li class="mb-2">
-              <a href="mailto:contact@italent.com" class="text-white"><i class='bx bxs-mail'>contact@italent.site</i></a>
+              <a href="mailto:contact@italent.com" class="text-white"><i class='bx bxs-mail'>italent.contact.site@gmail.com</i></a>
             </li>
           </ul>
         </div>
