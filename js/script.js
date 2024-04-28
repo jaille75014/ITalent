@@ -80,10 +80,7 @@ async function openVerificationNewsletter(event) {
         body: formData
     });
 
-    if (response.ok) { // Si le serveur a répondu avec un code 200
-        // get the response body
-        const json = await response.json();
-    } else {
+    if (!response.ok) { // Si le serveur n'a pas répondu avec un code 200
         alert("HTTP-Error: " + response.status);
     }
 
