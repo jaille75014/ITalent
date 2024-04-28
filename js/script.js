@@ -68,23 +68,46 @@ async function follow(button) {
     icon.classList.toggle("bi-person-check-fill");
 }
 
-// Open the page newsletter with windows.open
-async function openVerificationNewsletter(event) {
-    event.preventDefault(); // N'envoie pas le formulaire normalement
-    var form = document.getElementById('newsletterForm'); 
-    var url = form.action; // Récupère l'URL du formulaire 
-    var formData = new FormData(form); // Crée un objet FormData avec les données du formulaire
+function openVerificationNewsletter(event) {
+    // Empêcher l'envoi normal du formulaire
+    event.preventDefault();
 
-    const response = await fetch(url, {
-        method: 'POST',
-        body: formData
-    });
+    // Obtenir le formulaire et son action
+    let form = event.target;
+    let url = form.action;
 
-    if (!response.ok) { // Si le serveur n'a pas répondu avec un code 200
-        alert("HTTP-Error: " + response.status);
+    // Créer un objet pour stocker les données du formulaire
+    let data = {};
+
+    // Pour chaque élément du formulaire...
+    for (let element of form.elements) {
+        // Si l'élément a un nom, ajoutez-le aux données
+        if (element.name) {
+            data[element.name] = element.value;
+        }
     }
 
-    window.open(url, '_blank');
+    // Créer un nouveau formulaire dynamiquement
+    let dynamicForm = document.createElement('form');
+    dynamicForm.method = 'POST';
+    dynamicForm.action = url;
+    dynamicForm.target = '_blank';
+
+    // Ajouter les données au formulaire dynamique
+    for (let key in data) {
+        let input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = data[key];
+        dynamicForm.appendChild(input);
+    }
+
+    // Ajouter le formulaire dynamique au corps du document et le soumettre
+    document.body.appendChild(dynamicForm);
+    dynamicForm.submit();
+
+    // Supprimer le formulaire dynamique du corps du document
+    document.body.removeChild(dynamicForm);
 }
 
 // vérifier que les mots de passe correspondent | page profil.php
