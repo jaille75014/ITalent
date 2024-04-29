@@ -48,38 +48,46 @@
 
 
         if ($score>=70){
-        if ($score>=50){
+            if ($score>=50){
 
-            if ($score<=60) $newScore=1;
-            else if ($score<=70) $newScore=2;
-            else if ($score<=80) $newScore=3;
-            else if ($score<=90) $newScore=4;
-            else $newScore=5;
+                if ($score<=60) $newScore=1;
+                else if ($score<=70) $newScore=2;
+                else if ($score<=80) $newScore=3;
+                else if ($score<=90) $newScore=4;
+                else $newScore=5;
 
-            include('../includes/bd.php');
+                include('../includes/bd.php');
 
-            $req2->execute([
-                'competence_id'=> $id_competence,
-                'user_id' => $_SESSION['user_id'],
-                'level' => $score,
-                'validity'=> '2020-12-10',
-                'level' => $newScore,
-                'validity'=> date("Y/m/d")
-            ]);
+                $q='SELECT competence_id FROM COMPETENCES WHERE name=:name';
+                $req=$bdd->prepare($q);
+                $req->execute([
+                    'name'=>$_POST['competenceTest']
+                ]);
+                $result=$req->fetch(PDO::FETCH_ASSOC);
+                foreach($result as $index => $value) $id_competence=$value;
+
+                $q2='INSERT INTO POSSESSES (competence_id,user_id,level,validity) VALUES(:competence_id,:user_id,:level,:validity);';
+                $req2=$bdd->prepare($q2);
+
+                $req2->execute([
+                    'competence_id'=> $id_competence,
+                    'user_id' => $_SESSION['user_id'],
+                    'level' => $newScore,
+                    'validity'=> date("Y/m/d")
+                ]);
 
 
 
 
-            header('location:../profil?messageSuccess=Félicitation ! Vous avez eu un taux de réussite de '.$score.'% ! La compétence a été ajouté à votre profil.');
-            header('location:../profil?messageSuccess=Félicitation ! Vous avez eu un taux de réussite de '.$score.', pour une note de '.$newScore.'/5 ! La compétence a été ajouté à votre profil.');
-            exit;
+                header('location:../profil?messageSuccess=Félicitation ! Vous avez eu un taux de réussite de '.$score.'%, pour une note de '.$newScore.'/5 ! La compétence a été ajouté à votre profil.');
+                exit;
+            } else {
+                header('location:../profil?messageFailure=Dommage... Vous avez eu un taux de réussite de '.$score.'%, ce n\'est pas suffisant pour ajouter cette compétence à votre profil.');
+                exit;
+            }
         } else {
-            header('location:../profil?messageFailure=Dommage... Vous avez eu un taux de réussite de '.$score.'%, ce n\'est pas suffisant pour ajouter cette compétence à votre profil.');
+            header('location:../profil?messageFailure=Problème lors de l\'examen.');
             exit;
         }
-    } else {
-        header('location:../profil?messageFailure=Problème lors de l\'examen.');
-        exit;
-    }
 }
 ?>
