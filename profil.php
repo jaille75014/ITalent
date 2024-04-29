@@ -202,7 +202,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                     echo '
                         <tr>
                             <td>'.$competence['name'].'</td>
-                            <td>'.$competence['level'].'/5</td>
+                            <td>'.$competence['level'].'</td>
                             <td>'.$competence['validity'].'</td>
                         </tr>
                     
