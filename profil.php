@@ -174,19 +174,9 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
 
 
                 </div>
-
-
-                <h3 class="text-center" >Vos compétences</h3>
-
-                <table class="table table-striped my-5 text-center">
-                    <tr>
-                        <th>Compétence</th>
-                        <th>Note</th>
-                        <th>Date de passage</th>
-                    </tr>
-
                 
                 <?php 
+
 
                 $q2 = 'SELECT name,level,validity FROM POSSESSES INNER JOIN COMPETENCES ON COMPETENCES.competence_id=POSSESSES.competence_id WHERE POSSESSES.user_id = ? ;';
                 $req2=$bdd->prepare($q2);
@@ -195,21 +185,48 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                 ]);
                 $competences = $req2->fetchAll(PDO::FETCH_ASSOC);
 
-                
-                
-                
-                foreach ($competences as $competence) {
+                if(!empty($competences)){
                     echo '
-                        <tr>
-                            <td>'.$competence['name'].'</td>
-                            <td>'.$competence['level'].'</td>
-                            <td>'.$competence['validity'].'</td>
-                        </tr>
+                    
+                    
+                    <h3 class="text-center" >Vos compétences</h3>
+
+                    <table class="table table-striped my-5 text-center">
+                    <tr>
+                        <th>Compétence</th>
+                        <th>Note</th>
+                        <th>Date de passage</th>
+                    </tr>
                     
                     ';
+                    
+
+                    foreach ($competences as $competence) {
+                        echo '
+                            <tr>
+                                <td>'.$competence['name'].'</td>
+                                <td>'.$competence['level'].'</td>
+                                <td>'.$competence['validity'].'</td>
+                            </tr>
+                        
+                        ';
+                    }
+
+                    echo '</table>';
+
                 }
                 
+                
+                
+                
                 ?>
+
+                
+
+                
+                
+
+
                 </table>
 
                 <h3 class="text-center" >Ajouter une compétence à votre CV</h3>
