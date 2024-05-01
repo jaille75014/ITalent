@@ -23,13 +23,16 @@ $query = "SELECT USERS.firstname, USERS.lastname, USERS.city, USERS.zip, USERS.i
 $res = $bdd->prepare($query);
 $res->execute(['user_id' => $user_id]);
 $user = $res->fetchAll(PDO::FETCH_ASSOC);
+var_dump($user);
+exit;
 if (!$user) {
     redirectFailure('../profil', 'Ohh.. Une erreur s\'est produite. Nos équipes sont sur le coup ! (C\'est faux)');    
     exit;
 }
 
-?>
 // Afficher les informations de l'utilisateur
+?>
+
 <html>
     <?php
     include("includes/head.php");
