@@ -22,7 +22,7 @@ $query = "SELECT USERS.firstname, USERS.lastname, USERS.city, USERS.zip, USERS.i
             WHERE USERS.user_id = :user_id";
 $res = $bdd->prepare($query);
 $res->execute(['user_id' => $user_id]);
-$user = $res->fetch(PDO::FETCH_ASSOC);
+$user = $res->fetchAll(PDO::FETCH_ASSOC);
 if (!$user) {
     redirectFailure('../profil', 'Ohh.. Une erreur s\'est produite. Nos équipes sont sur le coup ! (C\'est faux)');    
     exit;
@@ -58,45 +58,51 @@ if (!$user) {
                                 <div class="col-12">
                                     <h2>Publications</h2>
                                     <?php 
-                                    foreach($user['publications'] as $publication){
-                                        ?>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <img src="assets/<?php echo $publication['publication_image']; ?>" alt="Photo de la publication" class="img-fluid">
+                                    if (!empty($user['publications'])) {
+                                        foreach($user['publications'] as $publication){
+                                            ?>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <img src="assets/<?php echo $publication['publication_image']; ?>" alt="Photo de la publication" class="img-fluid">
+                                                </div>
+                                                <div class="col-8">
+                                                    <p><?php echo $publication['description']; ?></p>
+                                                </div>
                                             </div>
-                                            <div class="col-8">
-                                                <p><?php echo $publication['description']; ?></p>
-                                            </div>
-                                        </div>
-                                        <?php
+                                            <?php
+                                        }
+                                    } else {
+                                        echo "<p>Cet utilisateur n'a pas de publications.</p>";
                                     }
                                     ?>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <h2>Storys</h2>
-                                            <?php 
-                                            foreach($user['storys'] as $story){
-                                                // Convertir la date d'expiration en timestamp
-                                                $expiration = strtotime($story['expiration']);
-                                                // Obtenir le timestamp actuel
-                                                $now = time();
-                                                // Vérifier si la date d'expiration est supérieure à la date actuelle
-                                                if ($expiration > $now) {
-                                                    ?>
-                                                    <div class="row">
-                                                        <div class="col-4">
-                                                            <img src="assets/<?php echo $story['story_image']; ?>" alt="Photo de la story" class="img-fluid">
-                                                        </div>
-                                                        <div class="col-8">
-                                                            <p>Expiration : <?php echo $story['expiration']; ?></p>
-                                                        </div>
+                                    <h2>Storys</h2>
+                                    <?php 
+                                    if (!empty($user['storys'])) {
+                                        foreach($user['storys'] as $story){
+                                            // Convertir la date d'expiration en timestamp
+                                            $expiration = strtotime($story['expiration']);
+                                            // Obtenir le timestamp actuel
+                                            $now = time();
+                                            // Vérifier si la date d'expiration est supérieure à la date actuelle
+                                            if ($expiration > $now) {
+                                                ?>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <img src="assets/<?php echo $story['story_image']; ?>" alt="Photo de la story" class="img-fluid">
                                                     </div>
-                                                    <?php
-                                                }
+                                                    <div class="col-8">
+                                                        <p>Expiration : <?php echo $story['expiration']; ?></p>
+                                                    </div>
+                                                </div>
+                                                <?php
                                             }
-                                            ?>
-                                        </div>
+                                        }
+                                    } else {
+                                        echo "<p>Cet utilisateur n'a pas de stories.</p>";
+                                    }
+                                    ?>
                                     </div>
+                                </div>
                             </div>
                         </div>
                     </div>
