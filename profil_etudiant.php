@@ -13,7 +13,7 @@ if(!isset($_GET['id'])){
 }
 $user_id = htmlspecialchars($_GET['id']);
 // Récupérer les informations de l'utilisateur
-$query = "SELECT firstname, lastname, city, zip, image, level, COMPETENCES.name, 
+$query = "SELECT USERS.firstname, USERS.lastname, USERS.city, USERS.zip, USERS.image AS user_image, POSSESSES.level, COMPETENCES.name, 
                 JOBS.name AS name_job, PUBLICATIONS.image AS publication_image,
                 PUBLICATIONS.description, 
                 PUBLICATIONS.publi_id,
@@ -24,7 +24,7 @@ $query = "SELECT firstname, lastname, city, zip, image, level, COMPETENCES.name,
             INNER JOIN JOBS ON USERS.student_job = JOBS.id
             INNER JOIN PUBLICATIONS ON USERS.user_id = PUBLICATIONS.user_id
             INNER JOIN STORYS ON USERS.user_id = STORYS.user_id
-            WHERE user_id = :user_id";
+            WHERE USERS.user_id = :user_id";
 $res = $bdd->prepare($query);
 $res->execute(['user_id' => $user_id]);
 $user = $res->fetch(PDO::FETCH_ASSOC);
@@ -48,7 +48,7 @@ if (!$user) {
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-4">
-                                    <img src="assets/<?php echo $user['image']; ?>" alt="Photo de profil" class="img-fluid">
+                                    <img src="assets/<?php echo $user['user_image']; ?>" alt="Photo de profil" class="img-fluid">
                                 </div>
                                 <div class="col-8">
                                     <h2><?php echo $user['firstname'] . ' ' . $user['lastname']; ?></h2>
@@ -67,7 +67,7 @@ if (!$user) {
                                         ?>
                                         <div class="row">
                                             <div class="col-4">
-                                                <img src="assets/<?php echo $publication['image']; ?>" alt="Photo de la publication" class="img-fluid">
+                                                <img src="assets/<?php echo $publication['publication_image']; ?>" alt="Photo de la publication" class="img-fluid">
                                             </div>
                                             <div class="col-8">
                                                 <p><?php echo $publication['description']; ?></p>
@@ -90,7 +90,7 @@ if (!$user) {
                                                     ?>
                                                     <div class="row">
                                                         <div class="col-4">
-                                                            <img src="assets/<?php echo $story['image']; ?>" alt="Photo de la story" class="img-fluid">
+                                                            <img src="assets/<?php echo $story['story_image']; ?>" alt="Photo de la story" class="img-fluid">
                                                         </div>
                                                         <div class="col-8">
                                                             <p>Expiration : <?php echo $story['expiration']; ?></p>
