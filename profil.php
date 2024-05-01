@@ -171,13 +171,11 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
 
                         </div>
                     </div>
-
-
                 </div>
                 
                 <?php 
-
-
+                // Si la session est celle d'un étudiant
+                if($_SESSION['statut'] = 1){
                 $q2 = 'SELECT name,level,validity FROM POSSESSES INNER JOIN COMPETENCES ON COMPETENCES.competence_id=POSSESSES.competence_id WHERE POSSESSES.user_id = ? ;';
                 $req2=$bdd->prepare($q2);
                 $req2->execute([
@@ -215,20 +213,9 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                     echo '</table>';
 
                 }
-                
-                
-                
-                
                 ?>
 
-                
-
-                
-                
-
-
                 </table>
-
                 <h3 class="text-center" >Ajouter une compétence à votre CV</h3>
 
                 <form method="post" action="exam">
@@ -241,13 +228,13 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                 echo '<option value="'. $value .'">'. $value.'</option>';                   
                             }
                         }
-
                         ?>
                     </select>
                     <button type="submit" class="btn btn-primary my-4">Envoyer</button>
                 </form>
-
-
+                <?php
+                }
+                ?>
             </div>
         </main>
         <script src="js/script.js"></script>

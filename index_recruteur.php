@@ -140,7 +140,9 @@ include('includes/head.php');?>
             <div class="row align-items-center line">
                 <div class="col-2">
                     <div class="col-3 profile">
+                        <a href="profil_etudiant.php?id=<?= $user['user_id'] ?>" title="Voir le profil" target="_blank">
                         <img src="<?= $user['image'] ?>" alt="photo de profil">
+                        </a>
                     </div>
                     <div class="col-9">
                         <p class="name"><?=$user['lastname'] . ' ' . $user['firstname']?></p>

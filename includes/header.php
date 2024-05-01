@@ -1,7 +1,7 @@
 <?php 
 if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==1) {
     $links = [
-        "Accueil" => "index_etudiant",
+        "Accueil" => "etudiant",
         "Profil" => "profil",
         "Messages" => "messagerie",
         "Déconnexion" => "deconnexion"

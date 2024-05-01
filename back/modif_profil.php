@@ -28,20 +28,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $passwordReset = isset($_POST['password']) && !empty($_POST['password']);
     if($passwordReset) {
         if (strlen($_POST['password']) < 8) {
-            header('location: edit.php?id=' . $_POST['user_id'] . '&message=Le mot de passe doit faire au moins 8 caractères !&type=danger');
+            header('location: ../profil?id=' . $_POST['user_id'] . '&message=Le mot de passe doit faire au moins 8 caractères !&type=danger');
             exit;
+        } else {
+            $salt = 'SANANESL3PLUSBEAUDUMONDEETDELESGIJEPENSEQUILA49ANS';
+            $mdp_salt = $_POST['password'] . $salt;
+            $password = hash('sha512', $mdp_salt);
         }
     }
 
+
     // Mettre à jour la table USERS avec l'ID du poste
-    $query = "UPDATE USERS SET firstname = ?, lastname = ?, email = ?, tel = ?, student_job = ? WHERE user_id = ?";
+    $query = "UPDATE USERS SET firstname = ?, lastname = ?, email = ?, tel = ?, student_job = ?, password = ? WHERE user_id = ?";
     $res = $bdd->prepare($query);
-    if ($res->execute([$firstname, $lastname, $email, $tel, $job_id, $user_id])) {
+    if ($res->execute([$firstname, $lastname, $email, $tel, $job_id, $password, $user_id])){
         redirectSuccess('../profil', 'Vos informations ont été mises à jour.');
     } else {
         redirectFailure('../profil', 'Une erreur est survenue lors de la mise à jour de vos informations.');
     }
-
-
 }
 ?>
