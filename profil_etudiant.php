@@ -3,12 +3,8 @@ session_start();
 include("includes/bd.php");
 include("includes/header_location.php");
 
-if (!isset($_SESSION['user_id'])) {
-    redirectFailure('../connexion', 'Vous devez être connecté pour accéder à cette page.');
-    exit;
-}
 if(!isset($_GET['id'])){
-    redirectFailure('../profil', 'Ohh.. Une erreur s\'est produite. Nos équipes sont sur le coup ! (C\'est faux)');	
+    redirectFailure('../index_recruteur', 'Ohh.. Une erreur s\'est produite. Nos équipes sont sur le coup ! (C\'est faux)');	
     exit;
 }
 $user_id = htmlspecialchars($_GET['id']);
