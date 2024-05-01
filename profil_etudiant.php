@@ -7,15 +7,15 @@ if(!isset($_GET['id'])){
     exit;
 }
 $user_id = htmlspecialchars($_GET['id']);
-// Récupérer les informations de l'utilisateur
+
 $query = "SELECT USERS.firstname, USERS.lastname, USERS.city, USERS.zip, USERS.image AS user_image, POSSESSES.level, COMPETENCES.name, 
                 JOBS.name AS name_job, PUBLICATIONS.image AS publication_image,
                 PUBLICATIONS.description, 
                 PUBLICATIONS.publi_id,
                 STORYS.image AS story_image, STORYS.expiration, STORYS.story_id
         FROM USERS 
-            INNER JOIN POSSESSES ON USERS.user_id = POSSESSES.user_id 
-            INNER JOIN COMPETENCES ON POSSESSES.competence_id = COMPETENCES.competence_id  
+            LEFT JOIN POSSESSES ON USERS.user_id = POSSESSES.user_id 
+            LEFT JOIN COMPETENCES ON POSSESSES.competence_id = COMPETENCES.competence_id  
             INNER JOIN JOBS ON USERS.student_job = JOBS.id
             LEFT JOIN PUBLICATIONS ON USERS.user_id = PUBLICATIONS.user_id
             LEFT JOIN STORYS ON USERS.user_id = STORYS.user_id
@@ -23,8 +23,6 @@ $query = "SELECT USERS.firstname, USERS.lastname, USERS.city, USERS.zip, USERS.i
 $res = $bdd->prepare($query);
 $res->execute(['user_id' => $user_id]);
 $user = $res->fetchAll(PDO::FETCH_ASSOC);
-var_dump($user);
-exit;
 if (!$user) {
     redirectFailure('../profil', 'Ohh.. Une erreur s\'est produite. Nos équipes sont sur le coup ! (C\'est faux)');    
     exit;
