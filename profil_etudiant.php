@@ -18,14 +18,14 @@ $query = "SELECT USERS.firstname, USERS.lastname, USERS.city, USERS.zip, USERS.i
             INNER JOIN POSSESSES ON USERS.user_id = POSSESSES.user_id 
             INNER JOIN COMPETENCES ON POSSESSES.competence_id = COMPETENCES.competence_id  
             INNER JOIN JOBS ON USERS.student_job = JOBS.id
-            INNER JOIN PUBLICATIONS ON USERS.user_id = PUBLICATIONS.user_id
-            INNER JOIN STORYS ON USERS.user_id = STORYS.user_id
+            LEFT JOIN PUBLICATIONS ON USERS.user_id = PUBLICATIONS.user_id
+            LEFT JOIN STORYS ON USERS.user_id = STORYS.user_id
             WHERE USERS.user_id = :user_id";
 $res = $bdd->prepare($query);
 $res->execute(['user_id' => $user_id]);
 $user = $res->fetch(PDO::FETCH_ASSOC);
 if (!$user) {
-    redirectFailure('../profil', 'Ohh.. Une erreur s\'est produite. Nos équipes sont sur le coup ! (C\'est faux)');	
+    redirectFailure('../profil', 'Ohh.. Une erreur s\'est produite. Nos équipes sont sur le coup ! (C\'est faux)');    
     exit;
 }
 
