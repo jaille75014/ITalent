@@ -77,19 +77,19 @@ include('includes/head.php');?>
                 <div class="row align-items-end"> 
                     <div class="col-12 col-sm-2 col-md-1 form-group">
                         <label for="user_id">ID :</label>
-                        <input type="text" oninput="search('id', 'user_id')" name="user_id" id="user_id" class="form-control" ?>">
+                        <input type="text" oninput="search('id', 'user_id')" name="user_id" id="user_id" class="form-control" ?>
                     </div>
                     <div class="col-12 col-sm-4 col-md-5 form-group"> 
                         <label for="email">Email :</label>
-                        <input type="text" oninput="search('email', 'email')" name="email" id="email" class="form-control" ?>">
+                        <input type="text" oninput="search('email', 'email')" name="email" id="email" class="form-control" ?>
                     </div>
                     <div class="col-6 col-sm-3 col-md-2 form-group">
                         <label for="lastname">Nom :</label>
-                        <input type="text" oninput="search('lastname', 'lastname')" name="lastname" id="lastname" class="form-control"?>">
+                        <input type="text" oninput="search('lastname', 'lastname')" name="lastname" id="lastname" class="form-control"?>
                     </div>
                     <div class="col-6 col-sm-3 col-md-2 form-group">
                         <label for="firstname">Prénom :</label>
-                        <input type="text" oninput="search('firstname', 'firstname')" name="firstname" id="firstname" class="form-control" ?>">
+                        <input type="text" oninput="search('firstname', 'firstname')" name="firstname" id="firstname" class="form-control" ?>
                     </div>
                 </div>
             </form>
