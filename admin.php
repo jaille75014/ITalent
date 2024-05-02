@@ -96,7 +96,7 @@ include('includes/head.php');?>
         </div>
 
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped align-middle">
                 <thead>
                     <tr>
                         <th class="text-center">Id</th>
@@ -150,8 +150,8 @@ include('includes/head.php');?>
                         <form method="post">
                             <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
                                 <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
-                                <input type="text" name="raison_suppression" placeholder="Raison :" required>
-                                <button type="submit" class="btn btn-danger" name="delete_user" onclick="return confirm('Êtes-vous sûr de vouloir bannir cet utilisateur ?')">Bannir</button>
+                                <input type="text" name="raison_suppression" class="form-control" placeholder="Raison :" required>
+                                <button type="submit" class="btn btn-danger mt-2" name="delete_user" onclick="return confirm('Êtes-vous sûr de vouloir bannir cet utilisateur ?')">Bannir</button>
                             </form>
                         </td>
                     </tr>
