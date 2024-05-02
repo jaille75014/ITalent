@@ -1,17 +1,22 @@
 {
     "manifest_version": 2,
-    "name": "Todo list Italent",
+    "name": "To-do List | Italent",
     "description": "Organiser vos tâches avec cette extension simple et efficace",
     "version": "1.0",
 
     "browser_action": {
         "default_popup": "popup.html",
         "default_icon": {            
-          "16": "LOGO_icone.png", 
-          "24": "LOGO_icone.png", 
-          "32": "LOGO_icone.png"  
+          "16": "LOGO_icone32.png", 
+          "32": "LOGO_icone32.png", 
+          "128": "LOGO_icone128.png"
         }
-    }, 
+    },
+    "icons": {
+        "16": "LOGO_icone32.png", 
+        "32": "LOGO_icone32.png", 
+        "128": "LOGO_icone128.png"
+    },
     "commands": {
         "_execute_browser_action": {
             "suggested_key": {
@@ -27,10 +32,5 @@
     "background": {
         "scripts": ["background.js"],
         "persistent": false
-    },
-    "icons": {
-        "16": "LOGO_icone.png",
-        "24": "LOGO_icone.png",
-        "32": "LOGO_icone.png"
     }
 }
