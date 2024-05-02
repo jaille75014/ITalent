@@ -32,33 +32,41 @@ if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==1) {
 
 
 function writeNavLine($name, $url){
-    return '<li class="nav-item">' . '<a class="nav-link text-primary" href="' . $url . '">' . $name . '</a>' . '</li>';
+    return '<li><a class="text-primary" href="' . $url . '">' . $name . '</a></li>';
 }
 ?>
 
 
 <header class="bg-light">
   
-    <div class="container">
+    <nav class="navbar1">
+    
 
-      <a href="index"><img alt="Logo ITalent" height="90px" src="assets/LOGO_version_minimalisé.png"></a>
-      <nav class="bg-light" id="nav">
+    
+      <a href="index.php" class="logo"><img src="assets/LOGO_version_minimalisé.png" alt="Logo ITalent" height="70px" ></a>
+      
+      <div class="nav-links">
+
         <ul>
           <?php 
-          foreach($links as $name => $url){
+            foreach($links as $name => $url){
               echo writeNavLine($name, $url);
-          }
+            }
           ?>
+          
         </ul>
-      </nav>
-      
-    </div>
 
-    <button class="nav-toggler" id="toggler" aria-label="toggler navigation menu" type="button">
-      <span class="line l1"></span>
-      <span class="line l2"></span>
-      <span class="line l3"></span>
-    </button>
+      </div>
+
+      <img src="assets/menu.png" alt="logo burger menu" class="burger-menu">
+      
+
+    
+
+    </nav>
+        
+      
+    
     
     
 
