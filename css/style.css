@@ -12,30 +12,38 @@ footer input::placeholder{
 }
 
 /* CSS du header  */
- 
-header {
-    position : sticky;
-    top:0;
-    z-index: 10;
-    opacity : 97%;
-}
 
-header div {
+.navbar1{
     display: flex;
     justify-content: space-around;
+    padding: 50px;
     align-items: center;
-    min-height: 15vh;
 }
-nav ul {
-    display: flex;
-    list-style : none;
+
+.navbar1 .nav-links ul {
+    list-style: none;
+    padding: 0;
+    margin : 0;
+    display : flex;
+    
+}
+.navbar1 .nav-links ul li a {
+    text-decoration: none;
+    font-size : 1.1rem;
+}
+
+.navbar1 .nav-links ul li  {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.navbar1 .burger-menu{
+    width: 2rem;
+    display: none;
 }
 
 
 
-.nav-toggler {
-    display:none;
-}
 
 
 /* CSS index.php */
@@ -533,79 +541,53 @@ footer hr {
 
 
 
+
+
 /* Format téléphone */
 @media (max-width: 700px) {
 
     /* Mise en forme du header */
 
-   
-    nav ul{
-        flex-direction: column;
-        padding:0;
-        padding-top: 5vh;
-        text-align:center;
-    }
-    
-    
-    nav {
-        position: fixed;
-        width: 100%;
-        display:flex;
-        justify-content: center;
-        align-items: center;
-        transform:translateY(-100%);
-        transition : transform 0.3s cubic-bezier(0.73,0.11,0.67,0.84);
-        border-bottom : 1px solid #cfcfcf;
-        
-    }
-    
-    nav.active {
-        transform : translateY(10%);
-    }
-
-    .nav-toggler {
-        position:fixed;
-        top:30px;
-        right:30px;
-        height:50px;
-        width:40px;
-        display:flex;
-        justify-content: center;
-        align-items: center;
-        border:none;
-        background:transparent;
-        
-    }
-    
-    .line {
+   .nav-links{
         position: absolute;
-        display:block;
-        width: 100%;
-        height:2px;
-        background-color: black;
-        transition : transform 0.3s ease-out, opacity 0.1s ease-out;
+        top:0;
+        left:0;
+        background-color: rgba(255,255,255,0.20);
+        backdrop-filter: blur(5px);
+        width:100vw;
+        height:100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index:100;
+        margin-left : -100%;
+        transition : all 0.5s ease;
+    }
+    .nav-links.mobile-menu {
+        margin-left:0;
     }
     
-    .l1 {
-        transform : translateY(-10px)
+    .nav-links ul{
+        position: absolute;
+        flex-direction: column;
+        align-items: center;
     }
-    .l3 {
-        transform : translateY(10px)
-    }
-    
-    .nav-toggler.active .l1{
-        transform: translateY(0) rotate(135deg);
-    }
-    .nav-toggler.active .l2{
-        opacity:0;
-    }
-    
-    .nav-toggler.active .l3{
-        transform: translateY(0) rotate(-135deg);
-    }
+   .navbar1 .burger-menu{
+        display: block;
+        z-index:101;
 
-
+   }
+   
+   
     footer form {
         padding: 30px;
     }
+
+    .navbar1 .nav-links ul li  {
+        padding : 1rem;
+    }
+
+
+
+    
 }
