@@ -70,7 +70,7 @@ writeVisitLog('newsletter_admin.php');
                 </div>
                 
 
-                <input type="submit" value="Envoyer le mail"  class="btn btn-success btn-lg float-right my-1">
+                <input type="submit" value="Envoyer le mail"  class="btn btn-success btn-lg float-right my-4">
             </div>
             </div>
         </form>
@@ -80,7 +80,7 @@ writeVisitLog('newsletter_admin.php');
 
 <div class="row">
     <div class="col-12">
-        <table class="table table-striped table-bordered">
+        <table class="table table-striped table-bordered text-center">
             <thead>
                 <tr>
                     <th>Titre</th>
