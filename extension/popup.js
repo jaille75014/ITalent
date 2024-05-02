@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
       taskItem.appendChild(checkBox);
       taskItem.appendChild(deleteBtn);
       taskList.appendChild(taskItem);
+      let barre = document.createElement('hr');
+      taskItem.appendChild(barre);
       taskInput.value = '';
       saveTask(taskText);
     }
@@ -45,15 +47,12 @@ document.addEventListener('DOMContentLoaded', function() {
     tasks = result.tasks || [];
     tasks.forEach(function(task) {
       let taskItem = document.createElement('li');
-      taskItem.className="list-group-item";
       let checkBox = document.createElement('input');
       checkBox.type = 'checkbox';
-      checkBox.className="form-check-input ms-3";
       checkBox.addEventListener('change', function() {
         taskItem.style.textDecoration = this.checked ? 'line-through' : 'none';
       });
       let deleteBtn = document.createElement('button');
-      deleteBtn.className="btn btn-danger btn-sm ms-5"
       deleteBtn.innerHTML = 'Supprimer';
       deleteBtn.addEventListener('click', function() {
         let taskIndex = tasks.indexOf(task);
@@ -68,6 +67,8 @@ document.addEventListener('DOMContentLoaded', function() {
       taskItem.appendChild(checkBox);
       taskList.appendChild(taskItem);
       taskItem.appendChild(deleteBtn);
+      let barre = document.createElement('hr');
+      taskItem.appendChild(barre);
     });
   });
 
