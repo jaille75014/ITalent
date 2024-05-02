@@ -52,12 +52,24 @@ writeVisitLog('newsletter_admin.php');
             
             <div class="form-group my-4 checkbox_newsletter col-6">
                 <p>Cochez des cases si vous souhaitez envoyer un mail qu'aux étudiants, recruteurs ou aux autres admins ! Sinon ne cochez rien</p><br>
-                <input type="checkbox" name="etudiant">
-                <label>Etudiants</label>
-                <input type="checkbox" name="recruteur">
-                <label>Recruteurs</label>
-                <input type="checkbox" name="Admin">
-                <label >Admins</label>
+                
+                <div class="form-check">
+                    <label class="form-check-label"  for="check1">Etudiants</label>
+                    <input id="check1" type="checkbox" class="form-check-input" name="etudiant">
+                </div>
+                
+                <div class="form-check">
+                    <label class="form-check-label" for="check2">Recruteurs</label>
+                    <input id="check2" type="checkbox" class="form-check-input" name="recruteur">
+                </div>
+                
+
+                <div class="form-check">
+                    <label class="form-check-label" for="check3"  >Admins</label>
+                    <input id="check3" type="checkbox" class="form-check-input" name="Admin">
+                </div>
+                
+
                 <input type="submit" value="Envoyer le mail"  class="btn btn-success btn-lg float-right my-1">
             </div>
             </div>
