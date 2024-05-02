@@ -1,24 +1,4 @@
-body {
+ body {
     width: 350px;
-    height: 450px;
-    padding: 10px;
-    font-family: Arial, sans-serif;
-  }
-  
-  input[type="text"] {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  
-  button {
-    margin-bottom: 10px;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    margin-bottom: 5px;
+    min-height: 350px;
   }

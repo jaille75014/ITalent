@@ -1,22 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var taskInput = document.getElementById('task');
-  var addTaskBtn = document.getElementById('addTask');
-  var taskList = document.getElementById('taskList');
-  var tasks = [];
+  let taskInput = document.getElementById('task');
+  let addTaskBtn = document.getElementById('addTask');
+  let taskList = document.getElementById('taskList');
+  let tasks = [];
 
   addTaskBtn.addEventListener('click', function() {
-    var taskText = taskInput.value.trim();
+    let taskText = taskInput.value.trim();
     if (taskText !== '') {
-      var taskItem = document.createElement('li');
-      var checkBox = document.createElement('input');
+      let taskItem = document.createElement('li');
+      let checkBox = document.createElement('input');
       checkBox.type = 'checkbox';
       checkBox.addEventListener('change', function() {
         taskItem.style.textDecoration = this.checked ? 'line-through' : 'none';
       });
-      var deleteBtn = document.createElement('button');
+      let deleteBtn = document.createElement('button');
       deleteBtn.textContent = 'Supprimer';
       deleteBtn.addEventListener('click', function() {
-        var taskIndex = tasks.indexOf(taskText);
+        let taskIndex = tasks.indexOf(taskText);
         if (taskIndex > -1) {
           tasks.splice(taskIndex, 1);
         }
@@ -44,16 +44,19 @@ document.addEventListener('DOMContentLoaded', function() {
   chrome.storage.sync.get(['tasks'], function(result) {
     tasks = result.tasks || [];
     tasks.forEach(function(task) {
-      var taskItem = document.createElement('li');
-      var checkBox = document.createElement('input');
+      let taskItem = document.createElement('li');
+      taskItem.className="list-group-item";
+      let checkBox = document.createElement('input');
       checkBox.type = 'checkbox';
+      checkBox.className="form-check-input ms-3";
       checkBox.addEventListener('change', function() {
         taskItem.style.textDecoration = this.checked ? 'line-through' : 'none';
       });
-      var deleteBtn = document.createElement('button');
-      deleteBtn.textContent = 'Supprimer';
+      let deleteBtn = document.createElement('button');
+      deleteBtn.className="btn btn-danger btn-sm ms-5"
+      deleteBtn.innerHTML = 'Supprimer';
       deleteBtn.addEventListener('click', function() {
-        var taskIndex = tasks.indexOf(task);
+        let taskIndex = tasks.indexOf(task);
         if (taskIndex > -1) {
           tasks.splice(taskIndex, 1);
         }
@@ -63,8 +66,10 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       taskItem.textContent = task;
       taskItem.appendChild(checkBox);
-      taskItem.appendChild(deleteBtn);
       taskList.appendChild(taskItem);
+      taskItem.appendChild(deleteBtn);
     });
   });
+
+  
 });
