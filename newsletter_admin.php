@@ -45,7 +45,7 @@ writeVisitLog('newsletter_admin.php');
             <div class="row">
             <div class="col-6 my-4">
             <input type="text" name="header" class="form-control form-control-lg rounded-0" placeholder="Tapez le titre du mail :">
-            <input class="my-4" type="file" name="image" accept="image/jpeg, image/png, image/gif"><br>
+            <input class="my-4 form-control" type="file" name="image" accept="image/jpeg, image/png, image/gif"><br>
             <span>Entrez le corps de votre e-mail :</span>
             <textarea name="body_newsletter" class="form-control form-control-lg rounded-0 my-4" cols="10" rows="5"></textarea>
             </div>
@@ -64,9 +64,8 @@ writeVisitLog('newsletter_admin.php');
         </form>
 
 
-        <div class="row">
-        <h1 class="col-12">Historique des mails envoyés</h1>
-</div> 
+        <h1 class="text-center">Historique des mails envoyés</h1>
+
 <div class="row">
     <div class="col-12">
         <table class="table table-striped table-bordered">
@@ -98,7 +97,9 @@ writeVisitLog('newsletter_admin.php');
                 ?>
             </tbody>
         </table>
-        <button id="loadMore" class="btn btn-primary" onclick="getMoreMails()">Charger plus de mails</button>
+        <div class="text-center">
+            <button id="loadMore" class="btn btn-primary my-5" onclick="getMoreMails()">Charger plus de mails</button>
+        </div>
     </div>
     <script src="js/load.js"></script>
 </main>
