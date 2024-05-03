@@ -1,64 +1,111 @@
 <?php 
 session_start();
-//include("includes/bd.php");
-/* $req = 'SELECT date_ban, reason FROM BAN WHERE id = ' . $_SESSION['user_id'];
+include("includes/bd.php");
+$req = 'SELECT date_ban, reason FROM BAN WHERE id = ' . $_SESSION['user_id'];
 $res = $bdd->query($req);
 if ($res->rowCount() > 0) {
     $row = $res->fetch(PDO::FETCH_ASSOC);
     $banDate = $row['date_ban'];
     $reason = $row['reason'];
 } else {
-    $banDate = "Banni indéfiniment";
-    $reason = "Inconnue";
+    $banDate = "Supprimé";
+    $reason = "Supprimé";
 }
-
-
-            <p>Votre compte a été suspendu et sera définitivement supprimé le : <?= $banDate ?></p>
-            <p>Raison : <?= $reason ?></p>
-
-            <h2>Que faire ?</h2>
-            <p>Si vous pensez que le bannissement de votre compte est injustifié, vous pouvez remplir ce formulaire pour contacter les administrateurs :</p>
-        
-*/
 ?>
 <html>
-    <?php 
-    include("includes/head.php");
-    ?>
+<head>
+    <meta charset="UTF-8">
+    <title> Talent</title>
+    <meta name="Description" content="ITalent, la révolution de la recherche d'emplois pour les étudiants en Informatique.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <!-- Ajout de la favicon -->
+    <link rel="icon" type="image/png" href="assets/LOGO_icone.png">
+    <!-- Intégration de la police d'écriture  -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <!-- Intégration de notre CSS -->
+    <link type="text/css" rel="stylesheet" href="./css/style.css">
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous">
+    </script>
+
+</head>
     <body>
         <main>
 
-        <div class="container_perso">
-            <div class="img">
-                <img src="assets/undraw_personalization_re_grty.svg" alt="photo">
+        <div class="container">
+        <div class="form">
+        <div class="contact-info">
+            <?php 
+            if($banDate == "Supprimé") {
+                echo '<h3 class="title">Vous avez décidé de supprimer votre compte</h3>';
+                echo '<p class="title">Si vous changez d\'avis, vous pouvez remplir ce formulaire pour récupérer votre compte</p>';
+            } else {
+                echo '<h3 class="title">Compte suspendu</h3>';
+                echo '<p>Votre compte a été banni par un administrateur et sera définitivement supprimé le : ' . $banDate . 'Raison : ' . $reason . ' Vous pouvez contester ce ban en remplissant ce formulaire</p>';
+            }
+            ?>
+          <div class="info">
+            <div class="information">
+              <img src="assets/location.png" class="icon" alt="" />
+              <p>21 rue Erard, 75012 Paris</p>
             </div>
-        <div class="container_perso">
-        <form action="back/request_unban" class="form_perso" method="POST">
-            <img class="avatar" src="assets/undraw_pic_profile_re_7g2h.svg" alt="Photo de profile">
-            <h1>Ohh.. Vous avez été banni !</h1>
-            <div class="input-div one">
-                <div class="i">
-                    <i class="fas fa-user"></i>
-                </div>
-            <div>
-                <h5>Votre email</h5>
-                <input type="text" class="input">
+            <div class="information">
+              <img src="assets/email.png" class="icon" alt="" />
+              <p>italent.contact.site@gmail.com</p>
             </div>
+            <div class="information">
+              <img src="assets/phone.png" class="icon" alt="" />
+              <p>+33 6 02 08 10 47</p>
             </div>
-            <div class="input-div two">
-                    <div class="i">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                <div>
-                    <h5>Votre requête</h5>
-                    <input type="text" class="input">
-                </div>
+          </div>
+
+          <div class="social-media">
+            <p>Suivez nous</p>
+            <div class="social-icons">
+              <a href="#">
+                <i class="fab fa-youtube"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
             </div>
-            <input type="submit" class="btn" value="Envoyer">
-        </form>
+          </div>
         </div>
+
+        <div class="contact-form">
+          <span class="circle one"></span>
+          <span class="circle two"></span>
+
+          <form action="back/checkban" autocomplete="off">
+            <h3 class="title">Réclamations</h3>
+            <div class="input-container">
+              <input type="text" name="name" class="input" />
+              <label for="">Prénom</label>
+              <span>Prénom</span>
+            </div>
+            <div class="input-container">
+              <input type="email" name="name" class="input" />
+              <label for="">Nom</label>
+              <span>Nom</span>
+            </div>
+            <div class="input-container">
+              <input type="tel" name="email" class="input" />
+              <label for="">Email</label>
+              <span>Email</span>
+            </div>
+            <div class="input-container textarea">
+              <textarea name="message" class="input"></textarea>
+              <label for="">Message</label>
+              <span>Message</span>
+            </div>
+            <input type="submit" value="Send" class="btn" />
+          </form>
         </div>
-        <script src="js/script.js"></script> 
-        </main>
-    </body>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
 </html>
