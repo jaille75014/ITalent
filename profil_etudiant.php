@@ -5,7 +5,6 @@ include("includes/header_location.php");
 
 if(!isset($_GET['id'])){
     redirectFailure('../index_recruteur', 'Ohh.. Une erreur s\'est produite. Nos équipes sont sur le coup ! (C\'est faux)');	
-    exit;
 }
 $user_id = htmlspecialchars($_GET['id']);
 
@@ -26,7 +25,6 @@ $res->execute(['user_id' => $user_id]);
 $user = $res->fetchAll(PDO::FETCH_ASSOC);
 if (!$user) {
     redirectFailure('../index_recruteur', 'L\'utilisateur n\'a pas souhaité partager ses informations.');    
-    exit;
 }
 $firstUser = $user[0];
 // Afficher les informations de l'utilisateur
