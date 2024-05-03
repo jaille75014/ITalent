@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("includes/bd.php");
 include("includes/header_location.php");
 
@@ -24,10 +25,10 @@ $res = $bdd->prepare($query);
 $res->execute(['user_id' => $user_id]);
 $user = $res->fetchAll(PDO::FETCH_ASSOC);
 if (!$user) {
-    redirectFailure('../profil', 'Ohh.. Une erreur s\'est produite. Nos équipes sont sur le coup ! (C\'est faux)');    
+    redirectFailure('../index_recruteur', 'L\'utilisateur n\'a pas souhaité partager ses informations.');    
     exit;
 }
-
+$firstUser = $user[0];
 // Afficher les informations de l'utilisateur
 ?>
 
@@ -44,23 +45,23 @@ if (!$user) {
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-4">
-                                    <img src="assets/<?php echo $user['user_image']; ?>" alt="Photo de profil" class="img-fluid">
+                                    <img src="assets/<?php echo $firstUser['user_image']; ?>" alt="Photo de profil">
                                 </div>
                                 <div class="col-8">
-                                    <h2><?php echo $user['firstname'] . ' ' . $user['lastname']; ?></h2>
-                                    <p>Ville : <?php echo $user['city']; ?></p>
-                                    <p>Code postal : <?php echo $user['zip']; ?></p>
-                                    <p>Compétence : <?php echo $user['name']; ?></p>
-                                    <p>Niveau : <?php echo $user['level']; ?></p>
-                                    <p>Poste : <?php echo $user['name_job']; ?></p>
+                                    <h2><?php echo $firstUser['firstname'] . ' ' . $firstUser['lastname']; ?></h2>
+                                    <p>Ville : <?php echo $firstUser['city']; ?></p>
+                                    <p>Code postal : <?php echo $firstUser['zip']; ?></p>
+                                    <p>Compétence : <?php echo $firstUser['name']; ?></p>
+                                    <p>Niveau : <?php echo $firstUser['level']; ?></p>
+                                    <p>Poste : <?php echo $firstUser['name_job']; ?></p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <h2>Publications</h2>
                                     <?php 
-                                    if (!empty($user['publications'])) {
-                                        foreach($user['publications'] as $publication){
+                                    if (!empty($firstUser['publications'])) {
+                                        foreach($firstUser['publications'] as $publication){
                                             ?>
                                             <div class="row">
                                                 <div class="col-4">
@@ -78,8 +79,8 @@ if (!$user) {
                                     ?>
                                     <h2>Storys</h2>
                                     <?php 
-                                    if (!empty($user['storys'])) {
-                                        foreach($user['storys'] as $story){
+                                    if (!empty($firstUser['storys'])) {
+                                        foreach($firstUser['storys'] as $story){
                                             // Convertir la date d'expiration en timestamp
                                             $expiration = strtotime($story['expiration']);
                                             // Obtenir le timestamp actuel
