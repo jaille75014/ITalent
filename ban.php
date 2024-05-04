@@ -2,7 +2,7 @@
 session_start();
 include("includes/bd.php");
 include("includes/header_location.php");
-if (!isset($_SESSION['statut']) != 0) {
+if (($_SESSION['statut']) != 0) {
     redirectFailure('connexion', 'Vous n\'êtes pas banni, pourquoi voulez-vous accéder à cette page ?');
 }
 $req = 'SELECT date_ban, reason FROM BAN WHERE id = ' . $_SESSION['user_id'];
