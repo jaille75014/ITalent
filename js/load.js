@@ -100,4 +100,3 @@ async function suppQuestions(question){
     selectCompetence();
     
 }
-

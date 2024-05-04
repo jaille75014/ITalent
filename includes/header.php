@@ -20,6 +20,7 @@ if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==1) {
       "Captcha" => "captcha_admin",
       "Newsletter" => "newsletter_admin",
       "Compétence" => "competence_admin",
+      "Débannissement" => "demandes",
       "Déconnexion" => "deconnexion"
   ];
 } else {

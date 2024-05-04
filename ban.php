@@ -1,6 +1,10 @@
 <?php 
 session_start();
 include("includes/bd.php");
+include("includes/header_location.php");
+if (!isset($_SESSION['statut']) != 0) {
+    redirectFailure('connexion', 'Vous n\'êtes pas banni, pourquoi voulez-vous accéder à cette page ?');
+}
 $req = 'SELECT date_ban, reason FROM BAN WHERE id = ' . $_SESSION['user_id'];
 $res = $bdd->query($req);
 if ($res->rowCount() > 0) {
@@ -78,7 +82,7 @@ if ($res->rowCount() > 0) {
           <span class="circle one"></span>
           <span class="circle two"></span>
 
-          <form action="back/checkban" autocomplete="off" class="form_ban">
+          <form action="back/check_ban" autocomplete="off" class="form_ban">
             <h3 class="title">Réclamations</h3>
             <div class="input-container">
               <input type="text" name="name" class="input" />
@@ -86,12 +90,12 @@ if ($res->rowCount() > 0) {
               <span>Prénom</span>
             </div>
             <div class="input-container">
-              <input type="email" name="name" class="input" />
+              <input type="text" name="lastname" class="input" />
               <label for="">Nom</label>
               <span>Nom</span>
             </div>
             <div class="input-container">
-              <input type="tel" name="email" class="input" />
+              <input type="email" name="email" class="input" />
               <label for="">Email</label>
               <span>Email</span>
             </div>
@@ -100,7 +104,8 @@ if ($res->rowCount() > 0) {
               <label for="">Message</label>
               <span>Message</span>
             </div>
-            <input type="submit" value="Send" class="btn_ban" />
+            <input type="hidden" name="reason" value="<?= $reason ?>">
+            <input type="submit" value="Envoyer" class="btn_ban" />
           </form>
         </div>
       </div>
