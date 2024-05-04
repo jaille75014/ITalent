@@ -1,5 +1,5 @@
 <?php
-
+include("../includes/header_location.php");
 // Vérifier si les champs sont présents et non vides
 if (!isset($_POST['email']) || empty($_POST['email']) || !isset($_POST['password']) || empty($_POST['password'])) {
     header('location: ../connexion?messageFailure=Veuillez remplir les deux champs !');
