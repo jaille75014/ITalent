@@ -35,7 +35,7 @@ include('includes/head.php');?>
             <h1 class="my-5 display-3 fw-bold ls-tight">
                 <span class="text-primary">ITalent</span>
                 <br>
-                Vous revoila !
+                Vous revoilà !
             </h1>
 
             <p class="text-secondary">
