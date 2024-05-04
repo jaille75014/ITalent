@@ -47,8 +47,10 @@ if ($res->rowCount() > 0) {
                 echo '<p class="title">Si vous changez d\'avis, vous pouvez remplir ce formulaire pour récupérer votre compte</p>';
             } else {
                 echo '<h3 class="title">Compte suspendu</h3>';
-                $banDateFormatted = date_format(date_create($banDate), 'j, F Y');
-                echo '<p>Votre compte a été banni par un administrateur et sera définitivement supprimé le : ' . $banDateFormatted . ' <br>Raison : ' . $reason . ' Vous pouvez contester ce bannissement en remplissant ce formulaire</p>';
+                $date = new DateTime($banDate);
+                $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+                $banDateFormatted = $formatter->format($date);
+                echo '<p>Votre compte a été banni par un administrateur et sera définitivement supprimé le : ' . $banDateFormatted . ' <br>Raison : ' . $reason . '<br>Vous pouvez contester ce bannissement en remplissant ce formulaire</p>';
             }
             ?>
           <div class="info">
