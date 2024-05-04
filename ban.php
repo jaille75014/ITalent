@@ -34,7 +34,7 @@ if ($res->rowCount() > 0) {
     <body>
         <main>
 
-        <div class="container">
+        <div class="container_ban">
         <div class="form">
         <div class="contact-info">
             <?php 
@@ -78,7 +78,7 @@ if ($res->rowCount() > 0) {
           <span class="circle one"></span>
           <span class="circle two"></span>
 
-          <form action="back/checkban" autocomplete="off">
+          <form action="back/checkban" autocomplete="off" class="form_ban">
             <h3 class="title">Réclamations</h3>
             <div class="input-container">
               <input type="text" name="name" class="input" />
@@ -100,7 +100,7 @@ if ($res->rowCount() > 0) {
               <label for="">Message</label>
               <span>Message</span>
             </div>
-            <input type="submit" value="Send" class="btn" />
+            <input type="submit" value="Send" class="btn_ban" />
           </form>
         </div>
       </div>

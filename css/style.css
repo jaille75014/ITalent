@@ -593,7 +593,7 @@ footer hr {
 }
 
 /* Page ban */
-.container {
+.container_ban {
     position: relative;
     width: 100%;
     min-height: 100vh;
@@ -654,7 +654,7 @@ footer hr {
     left: -13px;
   }
   
-  form {
+  .form_ban {
     padding: 2.3rem 2.2rem;
     z-index: 10;
     overflow: hidden;
@@ -715,7 +715,7 @@ footer hr {
     transform: translateY(0);
   }
   
-  .btn {
+  .btn_ban {
     padding: 0.6rem 1.3rem;
     background-color: #fff;
     border: 2px solid #fafafa;
@@ -729,7 +729,7 @@ footer hr {
     margin: 0;
   }
   
-  .btn:hover {
+  .btn_ban:hover {
     background-color: transparent;
     color: #fff;
   }
@@ -874,7 +874,7 @@ footer hr {
       }
 }
 @media (max-width: 480px) {
-    .container {
+    .container_ban {
       padding: 1.5rem;
     }
   
@@ -909,7 +909,7 @@ footer hr {
       padding: 0.45rem 1.2rem;
     }
   
-    .btn {
+    .btn_ban {
       padding: 0.45rem 1.2rem;
     }
   }
