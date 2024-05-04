@@ -47,7 +47,8 @@ if ($res->rowCount() > 0) {
                 echo '<p class="title">Si vous changez d\'avis, vous pouvez remplir ce formulaire pour récupérer votre compte</p>';
             } else {
                 echo '<h3 class="title">Compte suspendu</h3>';
-                echo '<p>Votre compte a été banni par un administrateur et sera définitivement supprimé le : ' . $banDate . 'Raison : ' . $reason . ' Vous pouvez contester ce ban en remplissant ce formulaire</p>';
+                $banDateFormatted = date_format(date_create($banDate), 'j, F Y');
+                echo '<p>Votre compte a été banni par un administrateur et sera définitivement supprimé le : ' . $banDateFormatted . ' <br>Raison : ' . $reason . ' Vous pouvez contester ce bannissement en remplissant ce formulaire</p>';
             }
             ?>
           <div class="info">
@@ -68,11 +69,11 @@ if ($res->rowCount() > 0) {
           <div class="social-media">
             <p>Suivez nous</p>
             <div class="social-icons">
-              <a href="#">
+              <a href="https://www.youtube.com/@Les3MousquetairesESGI">
                 <i class="fab fa-youtube"></i>
               </a>
-              <a href="#">
-                <i class="fab fa-linkedin-in"></i>
+              <a href="https://github.com/jaille75014/ITalent">
+                <i class="fab fa-github"></i>
               </a>
             </div>
           </div>
