@@ -13,7 +13,7 @@ $user_id = $_SESSION['user_id'];
 
 $query = "SELECT u.firstname, u.lastname, u.email, u.tel, u.zip, u.city, 
     c.name AS competence_name, 
-    p.level 
+    p.level, p.validity
     FROM USERS u 
     LEFT JOIN POSSESSES p ON u.user_id = p.user_id 
     LEFT JOIN COMPETENCES c ON p.competence_id = c.competence_id 
@@ -31,24 +31,59 @@ $pdf->SetFont('Helvetica','B',16);
 
 $pdf->Cell(71,10,'',0,0);
 $pdf->Cell(59,5,'CV',0,0);
-$pdf->Cell(59,19,'',0,1);
+$pdf->Cell(59,10,'',0,1);
 
-$pdf->SetFont('Helvetica','',12);
-$pdf->Cell(0,10,'Informations personnelles:',0,1);
+$pdf->SetFont('Helvetica','B',12);
+$pdf->Cell(71,5,'Adresse :',0,0);
+$pdf->Cell(59,5,'',0,0);
+$pdf->Cell(59,5,'Informations :',0,1);
 
-// Afficher les informations de l'utilisateur
-foreach ($user_info as $row) {
-    $pdf->Cell(0,10,'Nom : '. $row['firstname'] .' ' . $row['lastname'],0,1);
-    $pdf->Cell(0,10,'Email : '. $row['email'],0,1);
-    $pdf->Cell(0,10,'Téléphone : '. $row['tel'],0,1);
-    $pdf->Cell(0,10,'Adresse : '. $row['zip'].' ' . $row['city'],0,1);
+$pdf->SetFont('Helvetica','',16);
+$pdf->Cell(130,5,'France, FR',0,0);
+$pdf->Cell(25,5,'Nom : ',0,0);
+$pdf->Cell(34,5,$user_info['lastname'],0,1);
 
-    // Afficher les compétences de l'utilisateur
-    $pdf->Cell(0,10,'Compétences:',0,1);
-    if (!empty($row['competence_name'])) {
-        $pdf->Cell(0,10, $row['competence_name'].' - Niveau: '. $row['level'],0,1);
-    } else {
-        $pdf->Cell(0,10,'Pas de compétences répertoriées.',0,1);
+$pdf->Cell(130,5,$user_info['city'] . ', ' . $userInfo['zip'],0,0);
+$pdf->Cell(25,5,'Prénom : ',0,0);
+$pdf->Cell(34,5,$user_info['firstname'],0,1);
+
+$pdf->Cell(130,5,'',0,0);
+$pdf->Cell(25,5,'Email : ',0,0);
+$pdf->Cell(34,5,$user_info['email'],0,1);
+
+$pdf->Cell(130,5,'',0,0);
+$pdf->Cell(25,5,'Téléphone : ',0,0);
+$pdf->Cell(34,5,$user_info['tel'],0,1);
+
+
+$pdf->SetFont('Helvetica','B',15);
+$pdf->Cell(130,5,'Mes compétences',0,0);
+$pdf->Cell(59,5,'',0,0);
+$pdf->SetFont('Helvetica','B',10);
+$pdf->Cell(189,10,'',0,1);
+
+$pdf->Cell(50,10,'',0,1);
+
+$pdf->SetFont('Helvetica','B',10);
+
+/* Titre du tableau */
+$pdf->Cell(20,6,'N°:',1,0, 'C');
+$pdf->Cell(80,6,'Compétence',1,0, 'C');
+$pdf->Cell(50,6,'Niveau',1,0, 'C');
+$pdf->Cell(39,6,'Validité',1,1, 'C');
+
+/* Contenu du tableau */
+
+$pdf->SetFont('Helvetica','',10);
+if(empty($user_info)) {
+    $pdf->Cell(0,10,'Aucunes compétences',0,1);
+} else {
+    $counter = 1;
+    foreach ($user_info as $row) {
+        $pdf->Cell(20,6,$counter++,1,0, 'C');
+        $pdf->Cell(80,6,$row['competence_name'],1,0, 'C');
+        $pdf->Cell(50,6,$row['level'],1,0, 'C');
+        $pdf->Cell(39,6,$row['validity'],1,1, 'C');
     }
 }
 
