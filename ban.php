@@ -7,7 +7,7 @@ if (($_SESSION['statut']) != 0) {
 }
 $req = 'SELECT date_ban, reason FROM BAN WHERE id = ' . $_SESSION['user_id'];
 $res = $bdd->query($req);
-if ($res->rowCount() > 0) {
+if ($res) {
     $row = $res->fetch(PDO::FETCH_ASSOC);
     $banDate = $row['date_ban'];
     $reason = $row['reason'];
@@ -17,30 +17,21 @@ if ($res->rowCount() > 0) {
 }
 ?>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title> Talent</title>
-    <meta name="Description" content="ITalent, la révolution de la recherche d'emplois pour les étudiants en Informatique.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
-    <!-- Ajout de la favicon -->
-    <link rel="icon" type="image/png" href="assets/LOGO_icone.png">
-    <!-- Intégration de la police d'écriture  -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <!-- Intégration de notre CSS -->
-    <link type="text/css" rel="stylesheet" href="./css/style.css">
-    <script
-      src="https://kit.fontawesome.com/64d58efce2.js"
-      crossorigin="anonymous">
-    </script>
+<?php 
 
-</head>
-    <body>
-        <main>
+$title='Bannissement';
+$url = 'ban'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
+include('includes/head.php');
+
+?>
+
+
+    <body class="bg-light">
+        <main class="pt-5">
 
         <?php 
         if(isset($_GET['messageFailure'])){
-        echo '<div class="alert alert-danger" role="alert">'.htmlspecialchars($_GET['messageFailure']).'</div>'; 
+        echo '<div class="alert alert-danger container" role="alert">'.htmlspecialchars($_GET['messageFailure']).'</div>'; 
         }
         if(isset($_GET['messageSuccess'])){
             echo '<div class="alert alert-success" role="alert">'.htmlspecialchars($_GET['messageSuccess']).'</div>'; 
@@ -81,10 +72,10 @@ if ($res->rowCount() > 0) {
             <p>Suivez nous</p>
             <div class="social-icons">
               <a href="https://www.youtube.com/@Les3MousquetairesESGI">
-                <i class="fab fa-youtube"></i>
+              <i class="bi bi-youtube"></i>
               </a>
               <a href="https://github.com/jaille75014/ITalent">
-                <i class="fab fa-github"></i>
+              <i class="bi bi-github"></i>
               </a>
             </div>
           </div>
