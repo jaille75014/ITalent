@@ -45,11 +45,12 @@ if (isset($_GET['user_id'])) {
     $result_messages = $stmt_messages->fetchAll(PDO::FETCH_ASSOC);
 
     // Update read status
-    $sql_update_read = "UPDATE MESSAGE SET read_message = 1 WHERE (user_id_source = ? AND user_id_target_id = ?) OR (user_id_source = ? AND user_id_target_id = ?)";
-    $stmt_update_read = $bdd->prepare($sql_update_read);
-    $stmt_update_read->execute([$_SESSION['user_id'], $user_id, $user_id, $_SESSION['user_id']]);
+    if($_SESSION['statut'] == 1){
+        $sql_update_read = "UPDATE MESSAGE SET read_message = 1 WHERE user_id_source = ? AND user_id_target_id = ?";
+        $stmt_update_read = $bdd->prepare($sql_update_read);
+        $stmt_update_read->execute([$user_id, $_SESSION['user_id']]);
+    }
 }
-
 
 ?>
 
