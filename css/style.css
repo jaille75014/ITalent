@@ -831,6 +831,9 @@ footer hr {
     line-height: 35px;
     margin-right: 0.5rem;
     transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .social-icons a:hover {

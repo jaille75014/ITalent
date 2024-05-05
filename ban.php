@@ -34,7 +34,7 @@ include('includes/head.php');
         echo '<div class="alert alert-danger container" role="alert">'.htmlspecialchars($_GET['messageFailure']).'</div>'; 
         }
         if(isset($_GET['messageSuccess'])){
-            echo '<div class="alert alert-success" role="alert">'.htmlspecialchars($_GET['messageSuccess']).'</div>'; 
+            echo '<div class="alert alert-success container" role="alert">'.htmlspecialchars($_GET['messageSuccess']).'</div>'; 
             }
         ?>
 
@@ -69,7 +69,7 @@ include('includes/head.php');
           </div>
 
           <div class="social-media">
-            <p>Suivez nous</p>
+            <p>Suivez nous :</p>
             <div class="social-icons">
               <a href="https://www.youtube.com/@Les3MousquetairesESGI">
               <i class="bi bi-youtube"></i>
