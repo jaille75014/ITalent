@@ -38,6 +38,15 @@ if ($res->rowCount() > 0) {
     <body>
         <main>
 
+        <?php 
+        if(isset($_GET['messageFailure'])){
+        echo '<div class="alert alert-danger" role="alert">'.htmlspecialchars($_GET['messageFailure']).'</div>'; 
+        }
+        if(isset($_GET['messageSuccess'])){
+            echo '<div class="alert alert-success" role="alert">'.htmlspecialchars($_GET['messageSuccess']).'</div>'; 
+            }
+        ?>
+
         <div class="container_ban">
         <div class="form">
         <div class="contact-info">
