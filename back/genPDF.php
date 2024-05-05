@@ -11,7 +11,13 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-$query = "SELECT u.firstname, u.lastname, u.email, u.tel, u.zip, u.city, c.name AS competence_name, c.level FROM USERS u LEFT JOIN COMPETENCES c ON u.user_id = c.user_id WHERE u.user_id = :user_id";
+$query = "SELECT u.firstname, u.lastname, u.email, u.tel, u.zip, u.city, 
+    c.name AS competence_name, 
+    p.level 
+    FROM USERS u 
+    LEFT JOIN POSSESSES p ON u.user_id = p.user_id 
+    LEFT JOIN COMPETENCES c ON p.competence_id = c.competence_id 
+    WHERE u.user_id = :user_id";
 
 $user_info_q = $bdd->prepare($query);
 $user_info_q->bindParam(':user_id', $user_id);
