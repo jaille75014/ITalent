@@ -126,7 +126,7 @@ function afficherStorys($req_storys) {
             }
         
             function checkForNewMessages() {
-                fetch('back/is_new_messages.php') 
+                fetch('back/is_new_messages.php?' + new Date().getTime()) 
                     .then(response => response.json())
                     .then(data => {
                         if (data > 0) {
