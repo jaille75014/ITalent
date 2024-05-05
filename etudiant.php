@@ -105,58 +105,12 @@ function afficherStorys($req_storys) {
                 ajt.send(formData);
             });
 
-            // Script JS : notifications de nouveaux messages
-            if("Notification" in window){
-                // Check permissions
-                if(Notification.permission === "granted"){
-                    checkForNewMessages();
-                } else{
-                    Notification.requestPermission().then((res) =>{
-                        if(res === "granted"){
-                            checkForNewMessages();
-                        } else if(res === "denied"){
-                            console.log("Notifications access denied"); 
-                        } else if(res === "default"){
-                            console.log("Notifiations permission closed"); 
-                        }
-                    });
-                }       
-            } else { 
-                console.log("Notifications not supported");
-            }
-        
-            function checkForNewMessages() {
-                fetch('back/is_new_messages.php?' + new Date().getTime()) 
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data > 0) {
-                            notify();
-                        }
-                    })
-                    .catch(error => console.error('Error:', error));
-            }
-        
-            function notify() {
-                const notification = new Notification("Nouveaux messages", {
-                    body: "Vous avez reçu de nouveaux messages. Cliquez ici pour les consulter.",
-                    icon: "../assets/LOGO_version_minimalisé.png",
-                    vibrate: [200, 100, 200],
-                });
-        
-                notification.addEventListener("click", () => {
-                    window.open('https://italent.site/messagerie');
-                });
-        
-                setTimeout(() => {
-                    notification.close();
-                }, 7000)
-            }
         </script>
         
         <?php 
-        include 'includes/footer.php';
+        include("includes/footer.php");
         ?>
-
+    <script src="js/load.js"></script>
     </body>
 
 </html>
