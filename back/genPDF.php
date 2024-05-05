@@ -34,12 +34,12 @@ $pdf->Cell(71,10,'',0,0);
 $pdf->Cell(59,5,'CV',0,0);
 $pdf->Cell(59,10,'',0,1);
 
-$pdf->SetFont('Helvetica','B',12);
+$pdf->SetFont('Helvetica','',12);
 $pdf->Cell(71,5,'Adresse :',0,0);
 $pdf->Cell(59,5,'',0,0);
 $pdf->Cell(59,5,'Informations :',0,1);
 
-$pdf->SetFont('Helvetica','',16);
+$pdf->SetFont('Helvetica','',10);
 
 if(empty($user_info)) {
     $pdf->Cell(0,10,'Informations de l\'utilisateur non disponibles',0,1);
@@ -51,7 +51,7 @@ if(empty($user_info)) {
     $pdf->Cell(34,5,iconv('UTF-8', 'windows-1252', $user_info_first['lastname']),0,1);
 
     $pdf->Cell(130,5,iconv('UTF-8', 'windows-1252', $user_info_first['city']) . ', ' . $user_info_first['zip'],0,0);
-    $pdf->Cell(25,5,'Prénom : ',0,0);
+    $pdf->Cell(25,5,iconv('UTF-8', 'windows-1252', 'Prénom').' : ',0,0);
     $pdf->Cell(34,5,iconv('UTF-8', 'windows-1252', $user_info_first['firstname']),0,1);
 
     $pdf->Cell(130,5,'',0,0);
@@ -59,12 +59,12 @@ if(empty($user_info)) {
     $pdf->Cell(34,5,$user_info_first['email'],0,1);
 
     $pdf->Cell(130,5,'',0,0);
-    $pdf->Cell(25,5,'Téléphone : ',0,0);
+    $pdf->Cell(25,5,iconv('UTF-8', 'windows-1252', 'Téléphone').' : ',0,0);
     $pdf->Cell(34,5,$user_info_first['tel'],0,1);
 }
 
 $pdf->SetFont('Helvetica','B',15);
-$pdf->Cell(130,5,'Mes compétences',0,0);
+$pdf->Cell(130,5,iconv('UTF-8', 'windows-1252', 'Mes Compétences').' : ',0,0);
 $pdf->Cell(59,5,'',0,0);
 $pdf->SetFont('Helvetica','B',10);
 $pdf->Cell(189,10,'',0,1);
@@ -75,9 +75,9 @@ $pdf->SetFont('Helvetica','B',10);
 
 /* Titre du tableau */
 $pdf->Cell(20,6,'N°:',1,0, 'C');
-$pdf->Cell(80,6,'Compétence',1,0, 'C');
+$pdf->Cell(80,6,iconv('UTF-8', 'windows-1252', 'Compétence').' : ',1,0, 'C');
 $pdf->Cell(50,6,'Niveau',1,0, 'C');
-$pdf->Cell(39,6,'Validité',1,1, 'C');
+$pdf->Cell(39,6,iconv('UTF-8', 'windows-1252', 'Validité').' : ',1,1, 'C');
 
 /* Contenu du tableau */
 
