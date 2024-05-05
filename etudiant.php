@@ -129,7 +129,7 @@ function afficherStorys($req_storys) {
                 fetch('back/is_new_messages.php') 
                     .then(response => response.json())
                     .then(data => {
-                        if (data.length > 0) {
+                        if (data > 0) {
                             notify();
                         }
                     })
