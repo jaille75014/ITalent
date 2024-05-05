@@ -74,7 +74,7 @@ $pdf->Cell(50,10,'',0,1);
 $pdf->SetFont('Helvetica','B',10);
 
 /* Titre du tableau */
-$pdf->Cell(20,6,'N°:',1,0, 'C');
+$pdf->Cell(20,6,iconv('UTF-8', 'windows-1252', 'N°').' : ',1,0, 'C');
 $pdf->Cell(80,6,iconv('UTF-8', 'windows-1252', 'Compétence').' : ',1,0, 'C');
 $pdf->Cell(50,6,'Niveau',1,0, 'C');
 $pdf->Cell(39,6,iconv('UTF-8', 'windows-1252', 'Validité').' : ',1,1, 'C');
