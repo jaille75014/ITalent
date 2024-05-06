@@ -85,9 +85,12 @@ if (isset($_GET['user_id'])) {
 
     <body>
 
-        <?php include("includes/header.php"); 
-
-        $url = 'messagerie'; // Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter 
+        <?php 
+        include("includes/header.php");  
+        $title='Messagerie';
+        $url = 'messagerie'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
+        include('includes/head.php');
+        writeVisitLog($url);
 
         if (isset($_GET['messageFailure'])): ?>
         <div class="alert alert-danger" role="alert">

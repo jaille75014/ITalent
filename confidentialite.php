@@ -4,6 +4,7 @@
 $title='Confidentialité';
 $url = 'confidentialite';
 include('includes/head.php');
+writeVisitLog($url); 
 ?>
 <body>
     <?php 

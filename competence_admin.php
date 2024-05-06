@@ -66,7 +66,8 @@ $req6->execute();
     <?php 
     $title='Gestion Compétence';
     $url = 'competence_admin'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
-    include('includes/head.php')
+    include('includes/head.php');
+    writeVisitLog($url); 
     ?>
 
     <body class="bg-light">
