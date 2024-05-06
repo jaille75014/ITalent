@@ -48,7 +48,7 @@
         $req_ban->execute(array(
             ':date_ban' => date('Y-m-d H:i:s', strtotime("+30 days")),
             ':reason' => $raison,
-            ':user_id'=>$_POST['user_id']
+            ':user_id'=>$id
         ));  
         
         header('location: admin');

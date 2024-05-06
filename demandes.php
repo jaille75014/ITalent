@@ -36,30 +36,29 @@ include('includes/head.php');?>
         <div class="row">
             <div class="col-12 my-4">
                 <?php
-                    $select = 'SELECT user_id,name,lastname,message,date FROM BAN_REQUEST';
+                    $select = 'SELECT user_id,firstname,lastname,message,date FROM BAN_REQUEST';
                     $res = $bdd->query($select);
                     if ($res->rowCount() > 0) {
-                        echo '<table class="table table-striped">';
+                        echo '<table class="text-center table table-striped">';
                         echo '<thead>';
                         echo '<tr>';
-                        echo '<th class="text-center">Id</th>';
-                        echo '<th class="text-center">Nom</th>';
-                        echo '<th class="text-center">Prénom</th>';
-                        echo '<th class="text-center">Email</th>';
-                        echo '<th class="text-center">Message</th>';
-                        echo '<th class="text-center">Date</th>';
-                        echo '<th class="text-center">Actions</th>';
+                        echo '<th>Id User</th>';
+                        echo '<th>Nom</th>';
+                        echo '<th>Prénom</th>';
+                        echo '<th>Message</th>';
+                        echo '<th>Date</th>';
+                        echo '<th>Actions</th>';
                         echo '</tr>';
                         echo '</thead>';
                         echo '<tbody>';
                         while($row = $res->fetch(PDO::FETCH_ASSOC)) {
                             echo '<tr>';
-                            echo '<td class="text-center">' . $row['user_id'] . '</td>';
-                            echo '<td class="text-center">' . $row['name'] . '</td>';
-                            echo '<td class="text-center">' . $row['lastname'] . '</td>';
-                            echo '<td class="text-center">' . $row['message'] . '</td>';
-                            echo '<td class="text-center">' . $row['date'] . '</td>';
-                            echo '<td class="text-center"><a href="back/check_ban?id_user=' . $row['user_id'] . '&admin=1">Débannir</a></td>';
+                            echo '<td>' . $row['user_id'] . '</td>';
+                            echo '<td>' . $row['lastname'] . '</td>';
+                            echo '<td>' . $row['firstname'] . '</td>';
+                            echo '<td>' . $row['message'] . '</td>';
+                            echo '<td>' . $row['date'] . '</td>';
+                            echo '<td><a href="back/check_ban?id_user=' . $row['user_id'] . '&admin=1">Débannir</a></td>';
                             echo '</tr>';
                         }
                         echo '</tbody>';
