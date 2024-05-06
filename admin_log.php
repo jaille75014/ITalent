@@ -11,14 +11,17 @@
         exit;
     }
 
-    include('includes/fonctions_logs.php');
-    include('includes/head.php');
-
-    $log_file = 'logs/logs.txt';
-    $log_entries = [];
-    if (file_exists($log_file)) {
-        $log_entries = file($log_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    function readApacheErrorLog($log_file) {
+        $log_content = '';
+        if (file_exists($log_file)) {
+            $log_content = file_get_contents($log_file);
+        }
+        return $log_content;
     }
+
+    $apache_error_log_file = '/var/log/apache2/error.log';
+
+    $apache_error_logs = readApacheErrorLog($apache_error_log_file);
 ?>
 
 <!DOCTYPE html>
@@ -36,35 +39,16 @@ include('includes/head.php');?>
     <div class="container">
         <h3>Logs du site</h3>
 
-        <p>Nombre total d'entrées dans les logs : <?php echo count($log_entries); ?></p>
+        <p>Logs d'erreur Apache :</p>
+        <pre><?php echo htmlspecialchars($apache_error_logs); ?></pre>
 
-        <div class="table-responsive">
-            <table class="table table-striped align-middle">
-                <thead>
-                    <tr>
-                        <th class="text-center">Date/Heure</th>
-                        <th class="text-center">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    foreach ($log_entries as $log_entry) {
-                        list($timestamp, $description) = explode('|', $log_entry, 2);
-                        echo "<tr><td class='text-center'>$timestamp</td><td>$description</td></tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
 
         <div class="mt-3">
             <h5>Télécharger les logs</h5>
-            <form action="download_logs.php" method="post">
+            <form action="back/download_logs.php" method="post">
                 <button type="submit" class="btn btn-primary">Télécharger les logs</button>
             </form>
         </div>
-
-
     </div>
 
     <?php include('includes/footer.php'); ?>
