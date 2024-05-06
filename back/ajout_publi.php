@@ -36,21 +36,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['image_publication']) 
         $filename = 'publi-' . time() . '.' . $ext;
         $target_file = $target_directory . $filename;
 
-        if (move_uploaded_file($from, $target_file)) {
-            $stmt = $bdd->prepare("INSERT INTO PUBLICATIONS (image, description, user_id) VALUES (?, ?, ?)");
-            if ($stmt->execute([$filename, $description, $user_id])) {
-                header('Location: ../profil');
-                exit;
+        if (is_uploaded_file($from)) {
+            if (is_writable($target_directory)) {
+                if (move_uploaded_file($from, $target_file)) {
+                    $stmt = $bdd->prepare("INSERT INTO PUBLICATIONS (image, description, user_id) VALUES (?, ?, ?)");
+                    if ($stmt->execute([$filename, $description, $user_id])) {
+                        header('Location: ../profil');
+                        exit;
+                    } else {
+                        echo "Une erreur est survenue lors de l'ajout de la publication dans la base de données.";
+                    }
+                } else {
+                    echo "Erreur lors du déplacement du fichier téléchargé.";
+                }
             } else {
-                echo "Une erreur est survenue lors de l'ajout de la publication dans la base de données.";
+                echo "Le répertoire de destination n'est pas accessible en écriture.";
             }
         } else {
-            echo "Erreur lors du téléchargement de votre fichier.";
+            if ($_FILES['file']['error'] === UPLOAD_ERR_NO_FILE) {
+                echo "Aucun fichier sélectionné.";
+            } else {
+                echo "Erreur lors du téléchargement du fichier. Code d'erreur : " . $_FILES['file']['error'];
+            }
         }
     } else {
-        echo "Aucun fichier sélectionné ou formulaire invalide.";
+        echo "Vous devez sélectionner une image.";
     }
 } else {
-    echo "Requête invalide.";
+    echo "Une erreur est survenue lors de la soumission du formulaire.";
 }
 ?>
