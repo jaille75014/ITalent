@@ -94,5 +94,20 @@ if(empty($user_info)) {
     }
 }
 
+
+
+if(isset($_GET['reload']) && $_GET['reload'] == 1) {
+    $filename = "../uploads/pdf/cv_" . $user_id . ".pdf";
+
+    // Supprimer l'ancien fichier PDF
+    if (file_exists($filename)) {
+        unlink($filename);
+    }
+} else {
+    $filename = "../uploads/pdf/cv_" . $user_id . ".pdf";
+}
+
+$pdf->Output('F', $filename);
+
 $pdf->Output();
 ?>
