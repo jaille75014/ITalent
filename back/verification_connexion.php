@@ -63,7 +63,7 @@ session_start();
 $_SESSION['user_id'] = $result['user_id'];
 $_SESSION['statut'] = $result['statut'];
 if($result['statut'] == 0){
-    redirectFailure('../ban', 'Banned&id=' . $_SESSION['user_id']);
+    redirectFailure('../ban', 'Vous êtes banni !&id=' . $_SESSION['user_id']);
 }
 
 
