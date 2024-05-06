@@ -5,7 +5,7 @@ include("includes/header_location.php");
 if (($_SESSION['statut']) != 0) {
     redirectFailure('connexion', 'Vous n\'êtes pas banni, pourquoi voulez-vous accéder à cette page ?');
 }
-$req = 'SELECT date_ban, reason FROM BAN WHERE id = ' . $_SESSION['user_id'];
+$req = 'SELECT date_ban, reason FROM BAN WHERE user_id = ' . $_SESSION['user_id'];
 $res = $bdd->query($req);
 if ($res && $res->rowCount() > 0) {
     $row = $res->fetch(PDO::FETCH_ASSOC);
