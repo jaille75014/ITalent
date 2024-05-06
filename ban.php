@@ -7,7 +7,7 @@ if (($_SESSION['statut']) != 0) {
 }
 $req = 'SELECT date_ban, reason FROM BAN WHERE id = ' . $_SESSION['user_id'];
 $res = $bdd->query($req);
-if ($res) {
+if ($res && $res->rowCount() > 0) {
     $row = $res->fetch(PDO::FETCH_ASSOC);
     $banDate = $row['date_ban'];
     $reason = $row['reason'];
