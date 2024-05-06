@@ -29,13 +29,12 @@ include('includes/head.php');?>
     ?>
 
     <div class="container">
+        
+        <h1 class="text-center">Demandes de <span class="text-primary">débannissements</span></h1>
+            
+        
         <div class="row">
-            <div class="col-12">
-                <h1>Demandes de débannissements</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
+            <div class="col-12 my-4">
                 <?php
                     $select = 'SELECT * FROM BAN_REQUEST';
                     $res = $bdd->query($select);
@@ -72,13 +71,11 @@ include('includes/head.php');?>
                 ?>
             </div>
         </div>
+        
+        <h1 class="text-center">Utilisateurs <span class="text-primary">bannis</span></h1>
+         
         <div class="row">
-            <div class="col-12">
-                <h1>Utilisateurs bannis</h1>
-            </div>
-        </div> 
-        <div class="row">
-            <div class="col-12">
+            <div class="col-12 my-4">
                 <?php
                     $select = 'SELECT id, reason, date_ban FROM BAN';
                     $res = $bdd->query($select);
