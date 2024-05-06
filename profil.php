@@ -112,7 +112,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                     <button type="submit" class="btn btn-primary">Sauvegarder les modifications</button>
                                 </form>
                                 <?php 
-                                $filename = "../uploads/pdf/cv_" . $user_id. ".pdf";
+                                $filename = "uploads/pdf/cv_" . $user_id. ".pdf";
                                 $public_url = "https://italent.site/uploads/pdf/cv_" . $user_id . ".pdf";
                                 
                                 if ($userInfo['statut'] == '1'): 
