@@ -70,7 +70,6 @@ for ($i=1;$i<=$numberQuestion;$i++){
     $title='Captcha';
     $url = 'captcha'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php');
-    writeVisitLog($url); 
     ?>
 
     <body class="bg-light">

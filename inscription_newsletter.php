@@ -15,7 +15,6 @@ $url = htmlspecialchars($_GET['url']);
     $title='Newsletter';
     $url = 'inscription_newsletter'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php');
-    writeVisitLog($url);
 ?>
 <body>
     <main>

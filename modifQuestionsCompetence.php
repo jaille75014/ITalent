@@ -68,7 +68,6 @@ var_dump($result);
     $title='Modification Question Compétence';
     $url = 'modifQuestionsCompetence'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php');
-    writeVisitLog($url); 
     ?>
 
     <body class="bg-light">

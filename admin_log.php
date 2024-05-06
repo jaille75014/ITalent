@@ -38,7 +38,6 @@ $log_visites = readLogFile($log_visites_file);
     $url = 'admin_log'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php');
 
-    writeVisitLog($url); 
     ?>
 
     <body class="bg-light">
@@ -90,5 +89,5 @@ $log_visites = readLogFile($log_visites_file);
 
         <?php include('includes/footer.php'); ?>
     </body>
-    
+
 </html>

@@ -4,7 +4,6 @@
 $title='Cookies';
 $url = 'cookies';
 include('includes/head.php');
-writeVisitLog($url); 
 ?>
 <body>
     <?php 

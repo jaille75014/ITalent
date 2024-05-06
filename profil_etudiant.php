@@ -35,7 +35,6 @@ $firstUser = $user[0];
     $title='Profil Etudiant';
     $url = 'profil_etudiant'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php');
-    writeVisitLog($url);
     ?>
     <body>
         <div class="container">

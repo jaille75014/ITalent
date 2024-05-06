@@ -53,7 +53,6 @@ $url = 'exam'; //Permet de revenir sur cette page en cas d'erreurs dans les page
 $title='Examen';
 $url = 'exam';
 include('includes/head.php');
-writeVisitLog($url); 
 ?>
 
     <body class="bg-light">

@@ -46,7 +46,6 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
     $title='Profil';
     $url = 'profil';
     include('includes/head.php');
-    writeVisitLog($url);
     ?>
     <body class="bg-light">
         <?php include('includes/header.php'); ?>
