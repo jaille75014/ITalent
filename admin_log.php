@@ -46,7 +46,7 @@ include('includes/head.php');?>
         <div class="mt-3">
             <h5>Télécharger les logs</h5>
             <form action="back/download_logs.php" method="post">
-                <button type="submit" class="btn btn-primary">Télécharger les logs</button>
+                <button type="submit" class="btn btn-primary mb-6">Télécharger les logs</button>
             </form>
         </div>
     </div>
