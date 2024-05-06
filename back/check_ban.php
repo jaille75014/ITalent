@@ -42,7 +42,7 @@ if(isset($_GET['id'])) {
     $message = htmlspecialchars($_POST['message']);
 
     if($_POST['reason'] != "Supprimé") {
-    $request_unban = 'INSERT INTO BAN_REQUEST (user_id, name, lastname, email, message, date) VALUES ("' . $user_id .'", "' . $name . '", "' . $lastname . '", "' . $email . '", "' . $message . '", "'. date('Y-m-d H:i:s') .'")';
+    $request_unban = 'INSERT INTO BAN_REQUEST (user_id, firstname, lastname, email, message, date) VALUES ("' . $user_id .'", "' . $name . '", "' . $lastname . '", "' . $email . '", "' . $message . '", "'. date('Y-m-d H:i:s') .'")';
     $res = $bdd->query($request_unban);
 
         if($res) {
