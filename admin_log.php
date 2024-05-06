@@ -1,88 +1,94 @@
 <?php  
-    session_start(); 
+session_start(); 
 
-    if (!isset($_SESSION['captcha'])) {
-        header('location:captcha?error=Chipeur arrête de chipper !');
-        exit;
+if (!isset($_SESSION['captcha'])) {
+    header('location:captcha?error=Chipeur arrête de chipper !');
+    exit;
+}
+
+if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
+    header('location:index');
+    exit;
+}
+
+include('includes/fonctions_logs.php'); 
+
+function readLogFile($log_file) {
+    $log_content = '';
+    if (file_exists($log_file)) {
+        $log_content = file_get_contents($log_file);
     }
+    return $log_content;
+}
 
-    if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
-        header('location:index');
-        exit;
-    }
+$log_echouees_file = 'logs/log_echouées.txt';
+$log_reussies_file = 'logs/log_reussies.txt';
+$log_visites_file = 'logs/log_visites.txt';
 
-    function readApacheErrorLog($log_file) {
-        $log_content = '';
-        if (file_exists($log_file)) {
-            $log_content = file_get_contents($log_file);
-        }
-        return $log_content;
-    }
-
-    $apache_error_log_file = '/var/log/apache2/error.log';
-
-    $apache_error_logs = readApacheErrorLog($apache_error_log_file);
+$log_echouees = readLogFile($log_echouees_file);
+$log_reussies = readLogFile($log_reussies_file);
+$log_visites = readLogFile($log_visites_file);
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
 
-<?php 
-$title='Logs';
-$url = 'admin_log'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
-include('includes/head.php');
+    <?php 
+    $title='Logs';
+    $url = 'admin_log'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
+    include('includes/head.php');
 
-writeVisitLog($url); 
-?>
+    writeVisitLog($url); 
+    ?>
 
+    <body class="bg-light">
+        <?php include('includes/header.php'); ?>
 
-<body class="bg-light">
-    <?php include('includes/header.php'); ?>
+        <div class="container">
+            <h3>Logs du site</h3>
 
-    <div class="container">
-        <h3>Logs du site</h3>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Logs d'échecs de connexion :</h5>
+                    <?php if (!empty($log_echouees)): ?>
+                        <pre><?php echo htmlspecialchars($log_echouees); ?></pre>
+                    <?php else: ?>
+                        <p>Aucun log d'échecs de connexion disponible.</p>
+                    <?php endif; ?>
+                </div>
+            </div>
 
-        <div class="card">
-            <div class="card-body">
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">Logs de connexions réussies :</h5>
+                    <?php if (!empty($log_reussies)): ?>
+                        <pre><?php echo htmlspecialchars($log_reussies); ?></pre>
+                    <?php else: ?>
+                        <p>Aucun log de connexion réussie disponible.</p>
+                    <?php endif; ?>
+                </div>
+            </div>
 
-                <h5 class="card-title">Logs d'erreur Apache :</h5>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">Logs de visites de page :</h5>
+                    <?php if (!empty($log_visites)): ?>
+                        <pre><?php echo htmlspecialchars($log_visites); ?></pre>
+                    <?php else: ?>
+                        <p>Aucun log de visite de page disponible.</p>
+                    <?php endif; ?>
+                </div>
+            </div>
 
-                <?php if (!empty($apache_error_logs)): 
-                    $log_entries = explode("\n", $apache_error_logs);
-                ?>
-
-                    <div class="accordion" id="logAccordion">
-                        <?php foreach ($log_entries as $index => $log_entry): ?>
-
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="logHeading<?php echo $index; ?>">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#logCollapse<?php echo $index; ?>" aria-expanded="false" aria-controls="logCollapse<?php echo $index; ?>">
-                                        Log <?php echo $index + 1; ?>
-                                    </button>
-                                </h2>
-                                <div id="logCollapse<?php echo $index; ?>" class="accordion-collapse collapse" aria-labelledby="logHeading<?php echo $index; ?>" data-bs-parent="#logAccordion">
-                                    <div class="accordion-body">
-                                        <?php echo htmlspecialchars($log_entry); ?>
-                                    </div>
-                                </div>
-                            </div>
-
-                        <?php endforeach; ?>
-                    </div>
-                    
-                <?php else: ?>
-                    <p>Aucun log d'erreur Apache disponible.</p>
-                <?php endif; ?>
+            <div class="mt-3">
+                <h5>Télécharger les logs</h5>
+                <form action="back/download_logs.php" method="post">
+                    <button type="submit" class="btn btn-primary mb-3 mt-3">Télécharger les logs</button>
+                </form>
             </div>
         </div>
 
-        <div class="mt-3">
-            <h5>Télécharger les logs</h5>
-            <form action="back/download_logs.php" method="post">
-                <button type="submit" class="btn btn-primary mb-3 mt-3">Télécharger les logs</button>
-            </form>
-        </div>
-    </div>
-
-    <?php include('includes/footer.php'); ?>
-</body>
+        <?php include('includes/footer.php'); ?>
+    </body>
+    
+</html>
