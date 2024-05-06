@@ -68,7 +68,7 @@ if(isset($_GET['id'])) {
 
         //Content
         $mail->isHTML(true);                                  
-        $mail->Subject = 'Récupération de votre compte ITalent';
+        $mail->Subject = 'UTF-8' .  'windows-1252'. 'Récupération de votre compte ITalent';
         $mail->Body    = $body;
         $mail->AltBody = strip_tags($body);
 
