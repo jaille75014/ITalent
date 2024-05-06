@@ -61,11 +61,12 @@ foreach ($email_check_result as $index => $values) {
 // La connexion a réussi > démarrer la session
 session_start();
 $_SESSION['user_id'] = $result['user_id'];
+$_SESSION['statut'] = $result['statut'];
 if($result['statut'] == 0){
     redirectFailure('../ban', 'Banned&id=' . $_SESSION['user_id']);
 }
 
-$_SESSION['statut'] = $result['statut'];
+
 
 // Redirection vers la page appropriée selon le statut de l'utilisateur
 
