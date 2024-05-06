@@ -41,13 +41,16 @@ include('includes/head.php');?>
 
         <div class="card">
             <div class="card-body">
+
                 <h5 class="card-title">Logs d'erreur Apache :</h5>
-                <?php if (!empty($apache_error_logs)): ?>
-                    <?php
+
+                <?php if (!empty($apache_error_logs)): 
                     $log_entries = explode("\n", $apache_error_logs);
-                    ?>
+                ?>
+
                     <div class="accordion" id="logAccordion">
                         <?php foreach ($log_entries as $index => $log_entry): ?>
+
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="logHeading<?php echo $index; ?>">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#logCollapse<?php echo $index; ?>" aria-expanded="false" aria-controls="logCollapse<?php echo $index; ?>">
@@ -60,8 +63,10 @@ include('includes/head.php');?>
                                     </div>
                                 </div>
                             </div>
+
                         <?php endforeach; ?>
                     </div>
+                    
                 <?php else: ?>
                     <p>Aucun log d'erreur Apache disponible.</p>
                 <?php endif; ?>
