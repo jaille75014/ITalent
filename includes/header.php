@@ -21,6 +21,7 @@ if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==1) {
       "Newsletter" => "newsletter_admin",
       "Compétence" => "competence_admin",
       "Débannissement" => "demandes",
+      "Logs" => "admin_log",
       "Déconnexion" => "deconnexion"
   ];
 } else {
