@@ -85,7 +85,7 @@ include('includes/head.php');
           <span class="circle one"></span>
           <span class="circle two"></span>
 
-          <form action="back/check_ban" autocomplete="off" class="form_ban">
+          <form action="back/check_ban.php" method="post" autocomplete="off" class="form_ban">
             <h3 class="title">Réclamations</h3>
             <div class="input-container">
               <input type="text" name="name" class="input" />
