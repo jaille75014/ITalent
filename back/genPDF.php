@@ -31,7 +31,10 @@ $pdf->AddPage();
 $pdf->SetFont('Helvetica','B',16);
 
 $pdf->Cell(71,10,'',0,0);
-$pdf->Cell(59,5,'CV',0,0);
+$title = 'CV';
+$width = $pdf->GetStringWidth($title) + 6;
+$pdf->SetX((210 - $width) / 2); // 210 pour A4
+$pdf->Cell($width, 10, $title, 0, 1, 'C');
 $pdf->Cell(59,10,'',0,1);
 
 $pdf->SetFont('Helvetica','',12);
