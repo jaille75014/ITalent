@@ -158,7 +158,7 @@ include('includes/head.php');?>
                 </div>
                 <div class="col-2">
                     <?php 
-                    $filename = "../uploads/pdf/cv_" . $user['user_id'] . ".pdf";
+                    $filename = "uploads/pdf/cv_" . $user['user_id'] . ".pdf";
                     $pdf_url = "http://italent.site/uploads/pdf/cv_" . $user['user_id'] . ".pdf";
 
                     if (file_exists($filename)): ?>
