@@ -44,11 +44,11 @@
             $log_file = 'delete_user_log.txt';
             file_put_contents($log_file, "Utilisateur supprimé (ID: $id) - Raison: $raison\n", FILE_APPEND);
         }
-        $req_ban = $bdd->prepare('INSERT INTO BAN (id, date_ban, reason) VALUES (:id, :date_ban, :reason)');
+        $req_ban = $bdd->prepare('INSERT INTO BAN (date_ban, reason,user_id) VALUES (:date_ban, :reason,:user_id)');
         $req_ban->execute(array(
-            ':id' => $id,
             ':date_ban' => date('Y-m-d H:i:s', strtotime("+30 days")),
-            ':reason' => $raison
+            ':reason' => $raison,
+            ':user_id'=>$_POST['user_id']
         ));  
         
         header('location: admin');

@@ -36,7 +36,7 @@ include('includes/head.php');?>
         <div class="row">
             <div class="col-12 my-4">
                 <?php
-                    $select = 'SELECT * FROM BAN_REQUEST';
+                    $select = 'SELECT user_id,name,lastname,message,date FROM BAN_REQUEST';
                     $res = $bdd->query($select);
                     if ($res->rowCount() > 0) {
                         echo '<table class="table table-striped">';
@@ -57,7 +57,6 @@ include('includes/head.php');?>
                             echo '<td class="text-center">' . $row['user_id'] . '</td>';
                             echo '<td class="text-center">' . $row['name'] . '</td>';
                             echo '<td class="text-center">' . $row['lastname'] . '</td>';
-                            echo '<td class="text-center">' . $row['email'] . '</td>';
                             echo '<td class="text-center">' . $row['message'] . '</td>';
                             echo '<td class="text-center">' . $row['date'] . '</td>';
                             echo '<td class="text-center"><a href="back/check_ban?id_user=' . $row['user_id'] . '&admin=1">Débannir</a></td>';
@@ -77,13 +76,15 @@ include('includes/head.php');?>
         <div class="row">
             <div class="col-12 my-4">
                 <?php
-                    $select = 'SELECT id, reason, date_ban FROM BAN';
+                    $select = 'SELECT BAN.user_id,lastname,firstname, reason, date_ban FROM BAN INNER JOIN USERS ON BAN.user_id=USERS.user_id';
                     $res = $bdd->query($select);
                     if ($res->rowCount() > 0) {
                         echo '<table class="table table-striped">';
                         echo '<thead>';
                         echo '<tr>';
-                        echo '<th class="text-center">Id</th>';
+                        echo '<th class="text-center">Id User</th>';
+                        echo '<th class="text-center">Lastname</th>';
+                        echo '<th class="text-center">Firstname</th>';
                         echo '<th class="text-center">Raison</th>';
                         echo '<th class="text-center">Date</th>';
                         echo '</tr>';
@@ -91,7 +92,9 @@ include('includes/head.php');?>
                         echo '<tbody>';
                         while($row = $res->fetch(PDO::FETCH_ASSOC)) {
                             echo '<tr>';
-                            echo '<td class="text-center">' . $row['id'] . '</td>';
+                            echo '<td class="text-center">' . $row['user_id'] . '</td>';
+                            echo '<td class="text-center">' . $row['lastname'] . '</td>';
+                            echo '<td class="text-center">' . $row['firstname'] . '</td>';
                             echo '<td class="text-center">' . $row['reason'] . '</td>';
                             echo '<td class="text-center">' . $row['date_ban'] . '</td>';
                             echo '</tr>';
