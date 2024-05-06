@@ -67,9 +67,10 @@ if(isset($_GET['id'])) {
         $mail->addAttachment('../assets/LOGO_version_complète.png', "LOGO_version_complète.png");
 
         //Content
-        $mail->isHTML(true);                                  
-        $mail->Subject = 'UTF-8' .  'windows-1252'. 'Récupération de votre compte ITalent';
-        $mail->Body    = $body;
+        $mail->isHTML(true);
+        $mail->CharSet = 'UTF-8';
+        $mail->Subject = 'Récupération de votre compte ITalent';
+        $mail->Body = $body;
         $mail->AltBody = strip_tags($body);
 
         try {
