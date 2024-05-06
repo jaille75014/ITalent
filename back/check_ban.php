@@ -28,9 +28,9 @@ if(isset($_GET['id'])) {
     }
 
 } else {
-    if(!isset($_POST['name']) || !isset($_POST['lastname']) || !isset($_POST['message'])) {
+    if(empty($_POST['name']) || empty($_POST['lastname']) || empty($_POST['message']) || empty($_POST['email'])) {
         redirectFailure('../ban', 'Veuillez remplir tous les champs');
-    }
+    }    
 
     if (!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
         redirectFailure('../ban', 'Votre email est invalide :('); 

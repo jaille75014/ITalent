@@ -71,10 +71,10 @@ include('includes/head.php');
           <div class="social-media">
             <p>Suivez nous :</p>
             <div class="social-icons">
-              <a href="https://www.youtube.com/@Les3MousquetairesESGI">
+              <a href="https://www.youtube.com/@Les3MousquetairesESGI" target="_blank">
               <i class="bi bi-youtube"></i>
               </a>
-              <a href="https://github.com/jaille75014/ITalent">
+              <a href="https://github.com/jaille75014/ITalent" target="_blank">
               <i class="bi bi-github"></i>
               </a>
             </div>
