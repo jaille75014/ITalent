@@ -182,12 +182,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                     </div>
                 </div>
 
-                <h3 class="text-center" >Entrer une signature : </h3>
-                <canvas id="signatureCanvas" width="400" height="200" class="bg-white"></canvas>
-                <form id="signatureForm" action="back/save_signature" method="post">
-                    <input type="hidden" id="signatureData" name="signatureData">
-                    <button type="button" onclick="saveSignature()">Enregistrer</button>
-                </form>
+                
                 
                 <?php 
                 // Si la session est celle d'un étudiant
@@ -255,8 +250,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
             </div>
         </main>
 
-        <script src="js/canva.js"></script>
-        <!-- <script src="js/script.js"></script> -->
+        <script src="js/script.js"></script>
         
         <?php include('includes/footer.php'); ?>
     </body>
