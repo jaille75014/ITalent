@@ -157,7 +157,15 @@ include('includes/head.php');?>
                     <p><?= $user['city'] ?></p>
                 </div>
                 <div class="col-2">
-                    <p><?= $user['tel'] ?></p>
+                    <?php 
+                    $filename = "../uploads/pdf/cv_" . $user['id'] . ".pdf";
+                    $pdf_url = "http://italent.site/uploads/pdf/cv_" . $user['id'] . ".pdf";
+
+                    if (file_exists($filename)): ?>
+                        <a href="<?php echo $pdf_url; ?>" class="btn btn-info">Voir le CV en PDF</a>
+                    <?php else: ?>
+                        <p>L'utilisateur n'a pas de CV</p>
+                    <?php endif; ?>
                 </div>
                 <div class="col-2">
                     <a href="messagerie?user_id=<?= $user['user_id'] ?>" class="btn btn-primary">Contacter</a>
