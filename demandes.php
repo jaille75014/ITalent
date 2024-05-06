@@ -13,7 +13,7 @@ if(!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
 $title='Demandes de débannissements';
 $url = 'demande'; // Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
 include('includes/head.php');?>
-<body>
+<body class="bg-light">
     <?php
         include("includes/header.php");
     ?>
