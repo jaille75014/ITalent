@@ -42,7 +42,7 @@ include('includes/head.php');
         <div class="form">
         <div class="contact-info">
             <?php 
-            if($banDate == "Supprimé") {
+            if($reason == "Supprimé") {
                 echo '<h3 class="title">Vous avez décidé de supprimer votre compte</h3>';
                 echo '<p class="title">Si vous changez d\'avis, vous pouvez remplir ce formulaire pour récupérer votre compte</p>';
             } else {
