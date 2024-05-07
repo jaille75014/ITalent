@@ -4,6 +4,9 @@ include("../includes/bd.php");
 include('../includes/fonctions_logs.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    var_dump($_FILES); 
+    var_dump($_POST); 
+
     if (!empty($_FILES['image']['name']) && isset($_POST['description']) && !empty($_POST['description'])) {
         $user_id = $_SESSION['user_id'];
 
