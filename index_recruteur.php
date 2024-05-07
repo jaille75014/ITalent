@@ -1,7 +1,6 @@
 <?php 
     session_start(); 
     include('includes/header_location.php');
-    include('includes/fonctions_logs.php');
     include("includes/bd.php");
     if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 2) {
         redirectFailure('index', 'Vous n\'avez pas les droits pour accéder à cette page.');
