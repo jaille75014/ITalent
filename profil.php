@@ -184,7 +184,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                             <?php foreach ($publications as $publication): ?>
                                 <div class="col-md-4 mb-3">
                                     <div class="card h-100 position-relative">
-                                        <img src="<?php echo htmlspecialchars('uploads/publications/' . $publication['image']); ?>" class="card-img-top" alt="Image de publication">
+                                        <img src="<?php echo htmlspecialchars($publication['image']); ?>" class="card-img-top" alt="Image de publication">
                                         <div class="card-body">
                                             <p class="card-text"><?php echo htmlspecialchars($publication['description']); ?></p>
                                             <a href="back/supp_publi?publi_id=<?php echo $publication['publi_id']; ?>" class="btn btn-danger btn-sm position-absolute top-0 end-0" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette publication ?');">X</a>
@@ -195,6 +195,9 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
 
                         </div>
                     </div>
+
+
+
                 </div>
 
                 
