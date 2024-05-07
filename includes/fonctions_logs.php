@@ -23,18 +23,20 @@ function writeVisitLog($page){
     // Fuseau horaire Français
     date_default_timezone_set('Europe/Paris');
 
+    // Chemin absolu vers le dossier de logs
+    $logPath = $_SERVER['DOCUMENT_ROOT'] . '/logs/log_visites.txt';
+
     // Ouverture du flux log_visites.txt
-    $log = fopen('logs/log_visites.txt', 'a+');
+    $log = fopen($logPath, 'a+');
 
     // Création de la ligne à ajouter
     // AAAA/mm/jj - h/m/s - Visite de la page 'page'
-    $line = date("Y/m/d - H:i:s") . '- Visite de la page : ' . $page . "\r";
+    $line = date("Y/m/d - H:i:s") . '- Visite de la page : ' . $page . "\r\n";
 
     // Ajouter la ligne au flux ouvert
-    fputs($log,$line);
+    fputs($log, $line);
 
     // Fermeture du flux
     fclose($log);
 }
-
 ?>

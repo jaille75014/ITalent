@@ -5,6 +5,14 @@
 
     <?php 
     include('includes/bd.php');
+    include('includes/fonctions_logs.php');
+
+    $title='Accueil';
+    $url = 'index'; // Utilisé pour revenir sur cette page en cas d'erreurs dans les pages newsletter
+    include('includes/head.php');
+
+    writeVisitLog($url);
+
 
     $delete_user = 'SELECT id, date_ban FROM BAN';
     $req = $bdd->query($delete_user);
@@ -19,10 +27,6 @@
             $req->execute(array(':id' => $user['id']));
         }
     }
-
-    $title='Accueil';
-    $url = 'index'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
-    include('includes/head.php');
     ?>
 
     <body class="bg-light">
