@@ -1,26 +1,25 @@
 <?php 
-session_start();
-include('includes/header_location.php');
-include('includes/bd.php');
-include('includes/fonctions_logs.php');
-if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
-    redirectFailure('index', 'Vous devez être connecté en tant qu\'admin pour accéder à cette page.');
-} 
-if(!isset($_SESSION['captcha'])){
-    redirectFailure('captcha', 'Chipeur arrête de chipper !');
-}
-
-
-writeVisitLog('newsletter_admin.php');
-
+    session_start();
+    include('includes/header_location.php');
+    include('includes/bd.php');
+    if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
+        redirectFailure('index', 'Vous devez être connecté en tant qu\'admin pour accéder à cette page.');
+    } 
+    if(!isset($_SESSION['captcha'])){
+        redirectFailure('captcha', 'Chipeur arrête de chipper !');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 
 <?php 
+    include('includes/fonctions_logs.php');
+
     $title='Gestion newsletter';
     $url = 'newsletter_admin'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php');
+
+    writeVisitLog($url);
 ?>
 
 <body class="bg-light">

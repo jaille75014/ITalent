@@ -1,8 +1,6 @@
 <?php 
 session_start(); 
 
-
-
 if(!isset($_SESSION['captcha'])){
     header('location:captcha?error=Chipeur arrête de chipper !');
     exit;
@@ -15,9 +13,6 @@ if (!isset($_SESSION['statut'])) {
 } 
 
 include('includes/bd.php'); // Connexion à la base de données
-
-include('includes/fonctions_logs.php');
-writeVisitLog('competence_admin');
 
 
 if (isset($_POST['question']) && !empty($_POST['question'])
@@ -65,9 +60,13 @@ var_dump($result);
 <!DOCTYPE html>
 <html>
     <?php 
+    include('includes/fonctions_logs.php');
+
     $title='Modification Question Compétence';
     $url = 'modifQuestionsCompetence'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php');
+
+    writeVisitLog($url);
     ?>
 
     <body class="bg-light">

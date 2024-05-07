@@ -15,9 +15,6 @@ if (!isset($_SESSION['statut'])) {
 
 include('includes/bd.php'); // Connexion à la base de données
 
-include('includes/fonctions_logs.php');
-writeVisitLog('competence_admin');
-
 if (isset($_POST['question']) && !empty($_POST['question'])
     && isset($_POST['answer']) && !empty($_POST['answer'])
     && isset($_POST['questionNew']) && !empty($_POST['questionNew'])){
@@ -56,9 +53,13 @@ $result=$req->fetch(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html>
     <?php 
+    include('includes/fonctions_logs.php');
+
     $title='Modification Question Captcha';
     $url = 'modifQuestionsCompetence'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php');
+
+    writeVisitLog($url);
     ?>
 
     <body class="bg-light">

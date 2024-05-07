@@ -1,7 +1,6 @@
 <?php
 session_start(); 
 include('includes/header_location.php');
-
 include('includes/bd.php'); 
 
 if (!isset($_SESSION['user_id'])) {
@@ -43,9 +42,13 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
 <!DOCTYPE html>
 <html>
     <?php
+    include('includes/fonctions_logs.php');
+
     $title='Profil';
     $url = 'profil';
     include('includes/head.php');
+
+    writeVisitLog($url);
     ?>
     <body class="bg-light">
         <?php include('includes/header.php'); ?>
