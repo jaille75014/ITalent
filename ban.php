@@ -18,10 +18,13 @@ if ($res && $res->rowCount() > 0) {
 ?>
 <html>
 <?php 
+  include('includes/fonctions_logs.php');
 
-$title='Bannissement';
-$url = 'ban'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
-include('includes/head.php');
+  $title='Bannissement';
+  $url = 'ban'; // Utilisé pour revenir sur cette page en cas d'erreurs dans les pages newsletter
+  include('includes/head.php');
+
+  writeVisitLog($url);
 ?>
 
 
