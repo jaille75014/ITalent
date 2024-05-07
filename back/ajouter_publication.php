@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $description = $_POST['description'];
         
-        $uploadDir = "../assets/"; 
+        $uploadDir = "../uploads/publications/"; 
         $uploadFile = $uploadDir . basename($_FILES['image']['name']);
         
         if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
