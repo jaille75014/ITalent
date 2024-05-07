@@ -23,9 +23,7 @@
         $raison = 'Banni par un admin sans raison spécifiée';
     }
     
-    include('includes/fonctions_logs.php');
     include('includes/bd.php');
-    writeVisitLog('admin.php');
     $select_users = 'SELECT * FROM USERS WHERE 1';
     $users = $bdd->query($select_users)->fetchAll();
 
