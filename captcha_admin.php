@@ -10,13 +10,10 @@ if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
     header('location:index');
     exit;
 } 
-include('includes/fonctions_logs.php');
-writeVisitLog('captcha_admin');
 
 include('includes/bd.php'); // Connexion à la base de données
 
 // AJOUT DE QUESTIONS
-
 if(isset($_POST['question']) && !empty($_POST['question']) &&
 isset($_POST['answer'])&& !empty($_POST['answer']) ){
     
@@ -57,9 +54,13 @@ $req->execute();
 <html lang="fr">
 
 <?php 
-    $title='Gestion Captcha';
-    $url = 'captcha_admin'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
+    include('includes/fonctions_logs.php');
+
+    $title='Gestoion Captcha';
+    $url = 'captcha_admin'; // Utilisé pour revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php');
+
+    writeVisitLog($url);
 ?>
 
 <body class="bg-light">

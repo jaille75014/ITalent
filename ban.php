@@ -1,32 +1,32 @@
 <?php 
-session_start();
-include("includes/bd.php");
-include("includes/header_location.php");
-if (($_SESSION['statut']) != 0) {
-    redirectFailure('connexion', 'Vous n\'êtes pas banni, pourquoi voulez-vous accéder à cette page ?');
-}
-$req = 'SELECT date_ban, reason FROM BAN WHERE user_id = ' . $_SESSION['user_id'];
-$res = $bdd->query($req);
-if ($res && $res->rowCount() > 0) {
-    $row = $res->fetch(PDO::FETCH_ASSOC);
-    $banDate = $row['date_ban'];
-    $reason = $row['reason'];
-} else {
-    $banDate = "Supprimé";
-    $reason = "Supprimé";
-}
+  session_start();
+  include("includes/bd.php");
+  include("includes/header_location.php");
+  if (($_SESSION['statut']) != 0) {
+      redirectFailure('connexion', 'Vous n\'êtes pas banni, pourquoi voulez-vous accéder à cette page ?');
+  }
+  $req = 'SELECT date_ban, reason FROM BAN WHERE user_id = ' . $_SESSION['user_id'];
+  $res = $bdd->query($req);
+  if ($res && $res->rowCount() > 0) {
+      $row = $res->fetch(PDO::FETCH_ASSOC);
+      $banDate = $row['date_ban'];
+      $reason = $row['reason'];
+  } else {
+      $banDate = "Supprimé";
+      $reason = "Supprimé";
+  }
 ?>
+
 <html>
-<?php 
-  include('includes/fonctions_logs.php');
+  <?php 
+    include('includes/fonctions_logs.php');
 
-  $title='Bannissement';
-  $url = 'ban'; // Utilisé pour revenir sur cette page en cas d'erreurs dans les pages newsletter
-  include('includes/head.php');
+    $title='Bannissement';
+    $url = 'ban'; // Utilisé pour revenir sur cette page en cas d'erreurs dans les pages newsletter
+    include('includes/head.php');
 
-  writeVisitLog($url);
-?>
-
+    writeVisitLog($url);
+  ?>
 
     <body class="bg-light">
         <main class="pt-5">

@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
 <?php 
-$title='Confidentialité';
-$url = 'confidentialite';
-include('includes/head.php');
+    include('includes/fonctions_logs.php');
+
+    $title='Confidentialité';
+    $url = 'confidentialite'; // Utilisé pour revenir sur cette page en cas d'erreurs dans les pages newsletter
+    include('includes/head.php');
+
+    writeVisitLog($url);
 ?>
+
+
 <body>
     <?php 
     include('includes/header.php'); ?>

@@ -1,15 +1,10 @@
 <?php 
 session_start(); 
 
-    
-
 if (!isset($_SESSION['statut'])) {
     header('location: index');
     exit;
 } 
-
-include('includes/fonctions_logs.php');
-writeVisitLog('captcha');
 
 include('includes/bd.php'); // Connexion à la base de données
 
@@ -67,9 +62,13 @@ for ($i=1;$i<=$numberQuestion;$i++){
 <!DOCTYPE html>
 <html>
     <?php 
+    include('includes/fonctions_logs.php');
+
     $title='Captcha';
-    $url = 'captcha'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
+    $url = 'captcha'; // Utilisé pour revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php');
+
+    writeVisitLog($url);
     ?>
 
     <body class="bg-light">
