@@ -99,22 +99,18 @@ if(empty($user_info)) {
 
 
 if(isset($_POST['signatureBase64'])&&!empty($_POST['signatureBase64'])){
-    header('location: profil.php');
-    exit;
+    
     $image=$_POST['signatureBase64'];
     $image = str_replace('data:image/png;base64,', '', $image);
     $image = str_replace(' ', '+', $image);
     $imageDecode = base64_decode($image);
 
-    $imageFileName = 'temp_image.png';
+    $imageFileName = '../temp_image.png';
 
-// Enregistrer l'image dans un fichier temporaire
-file_put_contents($imageFileName, $imageDecode);
+    file_put_contents($imageFileName, $imageDecode);
+    $pdf->Image($imageFileName);
+    unlink($imageFileName);
 
-// Ajouter l'image au PDF
-$pdf->Image($imageFileName);
-
-// Supprimer le fichier temporaire de l'image
 }
 
 
