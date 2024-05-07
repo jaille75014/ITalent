@@ -70,7 +70,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Ajouter une nouvelle publication</h5>
-                            <form action="back/ajouter_publication" method="POST" id="ajouterPublicationForm">
+                            <form action="back/ajouter_publication.php" method="POST" id="ajouterPublicationForm" enctype="multipart/form-data">
                                 <div class="mb-3">
                                     <label for="image" class="form-label">Image</label>
                                     <input type="file" class="form-control" id="image" name="image">
@@ -86,7 +86,7 @@
                 </div>
             </div>
 
-            
+
         </div>
 
         <script>
