@@ -1,14 +1,12 @@
 <?php
 session_start();
 include('includes/header_location.php');
-include('includes/fonctions_logs.php');
 include("includes/bd.php");
 
 if(!isset($_SESSION['captcha'])){
     redirectFailure('captcha', 'Chipeur arrête de chipper !');
 }
 
-writeVisitLog('messagerie.php');
 
 $result_messages = array();
 
@@ -54,6 +52,16 @@ if (isset($_GET['user_id'])) {
 
 <!DOCTYPE html>
 <html>
+    <?php
+
+        include('includes/fonctions_logs.php');
+
+        $title='Messagerie';
+        $url = 'messagerie'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
+        include('includes/head.php');
+
+        writeVisitLog($url);
+    ?>
     <head>
         <?php include("includes/head.php"); ?>
         <style>

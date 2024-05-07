@@ -14,9 +14,6 @@ if (!isset($_POST['competenceTest']) || $_SESSION['statut'] != 1) {
     redirectFailure('index', 'Vous n\'avez pas les droits pour accéder à cette page.');
 } 
 
-include('includes/fonctions_logs.php');
-writeVisitLog('captcha_admin');
-
 include('includes/bd.php'); // Connexion à la base de données
 
 // Récupérer l'id de la compétencec choisi par l'utilisateur (sert pour la requête permettant de récupérer tte les questions)
@@ -37,10 +34,6 @@ $req2=$bdd->prepare($q2);
 $req2->execute([
     'competence_id'=> $competenceId
 ]);
-
-$url = 'exam'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
-
-
 ?>
 
 
@@ -50,9 +43,13 @@ $url = 'exam'; //Permet de revenir sur cette page en cas d'erreurs dans les page
 
 
 <?php 
-$title='Examen';
-$url = 'exam';
-include('includes/head.php');
+    include('includes/fonctions_logs.php');
+
+    $title='Examen';
+    $url = 'exam'; // Utilisé pour revenir sur cette page en cas d'erreurs dans les pages newsletter
+    include('includes/head.php');
+
+    writeVisitLog($url);
 ?>
 
     <body class="bg-light">

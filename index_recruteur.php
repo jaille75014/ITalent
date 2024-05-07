@@ -86,9 +86,13 @@ $get_infos .= " LIMIT $users_per_page OFFSET $offset";
 <html>
 
 <?php 
-$title='Recruteur';
-$url = 'index_recruteur'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
-include('includes/head.php');
+    include('includes/fonctions_logs.php');
+
+    $title='Recruteur';
+    $url = 'index_recruteur'; // Utilisé pour revenir sur cette page en cas d'erreurs dans les pages newsletter
+    include('includes/head.php');
+
+    writeVisitLog($url);
 ?>
 
     <body class="bg-light">
