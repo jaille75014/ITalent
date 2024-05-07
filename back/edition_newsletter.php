@@ -30,7 +30,8 @@ function sendEmail($mail, $header, $body, $image, $emails) {
     $mail->addAttachment($image, 'Image de la newsletter');
 
     //Content
-    $mail->isHTML(true);                                  //Set email format to HTML
+    $mail->isHTML(true);   
+    $mail->CharSet = 'UTF-8';                               
     $mail->Subject = $header;
     $mail->Body    = $body;
     $mail->AltBody = strip_tags($body);
