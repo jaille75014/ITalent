@@ -1,4 +1,4 @@
-let canvas = document.getElementById('signatureCanvas');
+let canvas = document.getElementById('signatureCanva');
 let ctx = canvas.getContext('2d');
 let drawing = false;
 let lastX = 0;
@@ -31,6 +31,6 @@ canvas.addEventListener('mouseup', function() {
 
 function saveSignature() {
     let dataURL = canvas.toDataURL(); 
-    document.getElementById('signatureData').value = dataURL; 
-    document.getElementById('signatureForm').submit(); 
+    document.getElementById('signatureBase64').value = dataURL; 
+    document.getElementById('signatureFormulaire').submit(); 
 }
