@@ -19,9 +19,12 @@ function getUserType($bdd, $email) {
     return $req->fetch(PDO::FETCH_ASSOC);
 }
 
-function sendEmail($mail, $header, $body, $image, $email) {
+function sendEmail($mail, $header, $body, $image, $emails) {
     $mail->setFrom('italent.contact.site@gmail.com', 'Italent');
-    $mail->addAddress($email); // Destinataire
+
+    foreach ($emails as $email) {
+        $mail->addBCC($email); // Ajoutez le destinataire en copie cachée
+    }
 
     //Attachments :
     $mail->addAttachment($image, 'Image de la newsletter');
@@ -55,16 +58,19 @@ $image = $_FILES['image']['error'] != 4 ? $_FILES['image'] : '../assets/LOGO_ver
 
 $results = getSubscribedUsers($bdd);
 
+$emails = [];
 foreach ($results as $index => $values) {
     $userType = getUserType($bdd, $values['email']);
     if ((isset($_POST['etudiant']) && $userType['statut'] == 1) || (isset($_POST['recruteur']) && $userType['statut'] == 2) || (isset($_POST["admin"]) && $userType['statut'] == 3)) {
-        echo '<p>Envoi du mail à' . $values['email'] . '</p>';
-        sendEmail($mail, $header, $body, $image, $values['email']);
+        echo '<p>Ajout de ' . $values['email'] . ' à la liste des destinataires</p>';
+        $emails[] = $values['email'];
     } else { // envoi à tous les utilisateurs
-        echo '<p>Envoi du mail à' . $values['email'] . '</p>';
-        sendEmail($mail, $header, $body, $image, $values['email']);
+        echo '<p>Ajout de ' . $values['email'] . ' à la liste des destinataires</p>';
+        $emails[] = $values['email'];
     }
 }
+
+sendEmail($mail, $header, $body, $image, $emails);
 
 // Enregistre le mail envoyé dans la base de données apres l'envoi de tous les mails
 saveNewsletter($bdd, $header, $body, $userid);
