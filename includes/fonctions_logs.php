@@ -24,7 +24,8 @@ function writeVisitLog($page){
     date_default_timezone_set('Europe/Paris');
 
     // Chemin absolu vers le dossier de logs
-    $logPath = $_SERVER['DOCUMENT_ROOT'] . '/logs/log_visites.txt';
+    $path=$_SERVER['SERVER_NAME']=='localhost'?'/italent/logs/log_visites.txt':'/logs/log_visites.txt';
+    $logPath = $_SERVER['DOCUMENT_ROOT'] . $path;
 
     // Ouverture du flux log_visites.txt
     $log = fopen($logPath, 'a+');
