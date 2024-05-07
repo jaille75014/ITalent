@@ -9,10 +9,16 @@ if(!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
 
 ?>
 <html>
-<?php 
-$title='Demandes de débannissements';
-$url = 'demande'; // Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
-include('includes/head.php');?>
+<?php
+    include('includes/fonctions_logs.php');
+
+    $title='Demande de débannissement';
+    $url = 'demande'; // Utilisé pour revenir sur cette page en cas d'erreurs dans les pages newsletter
+    include('includes/head.php');
+
+    writeVisitLog($url);
+
+?>
 <body class="bg-light">
     <?php
         include("includes/header.php");

@@ -56,7 +56,7 @@ $req->execute();
 <?php 
     include('includes/fonctions_logs.php');
 
-    $title='Gestoion Captcha';
+    $title='Gestion Captcha';
     $url = 'captcha_admin'; // Utilisé pour revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php');
 

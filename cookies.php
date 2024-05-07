@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 <?php 
-$title='Cookies';
-$url = 'cookies';
-include('includes/head.php');
+    include('includes/fonctions_logs.php');
+
+    $title='Cookies';
+    $url = 'cookies'; // Utilisé pour revenir sur cette page en cas d'erreurs dans les pages newsletter
+    include('includes/head.php');
+
+    writeVisitLog($url);
 ?>
 <body>
     <?php 

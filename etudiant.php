@@ -1,14 +1,10 @@
 <?php
 session_start();
 include("includes/bd.php");
-include("includes/fonctions_logs.php");
 include("includes/header_location.php");
 if (!isset($_SESSION['user_id'])) {
     redirectFailure('connexion', 'Vous devez être connecté pour accéder à cette page.');
 }
-
-
-writeVisitLog('etudiant');
 
 $req_publications = $bdd->query("SELECT * FROM PUBLICATIONS");
 $req_storys = $bdd->query("SELECT * FROM STORYS WHERE expiration >= CURDATE()"); // CURDATE() = date actuelle 
@@ -28,9 +24,13 @@ function afficherStorys($req_storys) {
 <html lang="fr">
 
     <?php
-    $title = "Accueil étudiant";
-    $url = 'etudiant'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
+    include('includes/fonctions_logs.php');
+
+    $title='Accueil étudiant';
+    $url = 'etudiant'; // Utilisé pour revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php');
+
+    writeVisitLog($url);
     ?>
 
     <body>
