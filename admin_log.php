@@ -34,13 +34,9 @@ $log_visites = readLogFile($log_visites_file);
 <html lang="fr">
 
     <?php 
-    include('includes/fonctions_logs.php');
-
     $title='Logs';
     $url = 'admin_log'; // Utilisé pour revenir sur cette page en cas d'erreurs dans les pages newsletter
     include('includes/head.php');
-
-    writeVisitLog($url);
     ?>
 
     <body class="bg-light">
