@@ -3,21 +3,18 @@ session_start();
 include("../includes/bd.php"); 
 include('../includes/fonctions_logs.php');
 
-// if (!isset($_SESSION['email'])) {
-//     header("Location: login.php");
-//     exit(); 
-// }
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST['description']) && !empty($_FILES['image']['name'])) {
+        $user_id = $_SESSION['user_id'];
+
         $description = $_POST['description'];
         
         $uploadDir = "../assets/"; 
         $uploadFile = $uploadDir . basename($_FILES['image']['name']);
         
         if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
-            $stmt = $bdd->prepare("INSERT INTO PUBLICATIONS (image, description) VALUES (?, ?)");
-            $stmt->execute([$uploadFile, $description]);
+            $stmt = $bdd->prepare("INSERT INTO PUBLICATIONS (image, description, user_id) VALUES (?, ?, ?)");
+            $stmt->execute([$uploadFile, $description, $user_id]);
             
             header("location: ../etudiant");
             exit(); 

@@ -146,3 +146,26 @@ function notify() {
         notification.close();
     }, 7000)
 }
+
+
+async function addPubliRefresh() {
+    const form = document.getElementById("ajouterPublicationForm");
+    const formData = new FormData(form);
+
+    try {
+        const response = await fetch("back/ajouter_publication", {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error('Une erreur s\'est produite lors de la requête.');
+        }
+
+        // Recharge la page si la requête est réussie
+        window.location.reload();
+    } catch (error) {
+        console.error('Erreur:', error);
+        // Gérer l'erreur ici, par exemple, afficher un message d'erreur à l'utilisateur
+    }
+}

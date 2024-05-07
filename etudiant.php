@@ -1,22 +1,25 @@
 <?php
-session_start();
-include("includes/bd.php");
-include("includes/header_location.php");
-if (!isset($_SESSION['user_id'])) {
-    redirectFailure('connexion', 'Vous devez être connecté pour accéder à cette page.');
-}
-
-$req_publications = $bdd->query("SELECT * FROM PUBLICATIONS");
-$req_storys = $bdd->query("SELECT * FROM STORYS WHERE expiration >= CURDATE()"); // CURDATE() = date actuelle 
-
-function afficherStorys($req_storys) {
-    while ($story = $req_storys->fetch()) {
-        echo '<div class="col-md-2">';
-        echo '<img src="' . $story['image'] . '" class="img-fluid rounded-circle" alt="Story">';
-        echo '</div>';
+    session_start();
+    include("includes/bd.php");
+    
+    if (!isset($_SESSION['user_id'])) {
+        redirectFailure('connexion', 'Vous devez être connecté pour accéder à cette page.');
     }
-}
 
+    $user_id = $_SESSION['user_id'];
+
+    $req_user_publications = $bdd->prepare("SELECT image, description FROM PUBLICATIONS WHERE user_id = ?");
+    $req_user_publications->execute([$user_id]);
+
+    $req_storys = $bdd->prepare("SELECT image, expiration FROM STORYS WHERE expiration >= CURDATE()"); // CURDATE() = date actuelle 
+
+    function afficherStorys($req_storys) {
+        while ($story = $req_storys->fetch()) {
+            echo '<div class="col-md-2">';
+            echo '<img src="' . $story['image'] . '" class="img-fluid rounded-circle" alt="Story">';
+            echo '</div>';
+        }
+    }
 ?>
 
 
@@ -44,10 +47,10 @@ function afficherStorys($req_storys) {
                 <?php afficherStorys($req_storys); ?>
             </div>
 
-            <!-- Affichage publications -->
-            <div class="row" id="publications">
+            <!-- Affichage publications de l'utilisateur -->
+            <div class="row" id="user_publications">
                 <?php 
-                while ($publication = $req_publications->fetch()) {
+                while ($publication = $req_user_publications->fetch()) {
                 ?>
                     <div class="col-md-4 mb-4">
                         <div class="card">
@@ -84,27 +87,8 @@ function afficherStorys($req_storys) {
             </div>
         </div>
 
-        
         <script>
-            // Script JS : ajouter publication / rechargement de la page
-            document.getElementById("ajouterPublicationForm").addEventListener("submit", function (event) {
-                event.preventDefault(); // Empêcher l'envoi du formulaire par défaut
-
-                // Récupérer données du formulaire
-                var formData = new FormData(this);
-
-                // Requête AJAX pour ajouter publication
-                var ajt = new XMLHttpRequest();
-                ajt.open("POST", "back/ajouter_publication", true);
-                ajt.onload = function () {
-                    if (ajt.status === 200) {
-                        // Réussie > recharger la page
-                        window.location.reload();
-                    }
-                };
-                ajt.send(formData);
-            });
-
+            addPubliRefresh();
         </script>
         
         <?php 
