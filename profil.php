@@ -115,11 +115,23 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                     <button type="submit" class="btn btn-primary">Sauvegarder les modifications</button>
                                 </form>
                                 <?php 
-                                $filename = "uploads/pdf/cv_" . $user_id. ".pdf";
-                                $public_url = "https://italent.site/uploads/pdf/cv_" . $user_id . ".pdf";
+
+                                
+
+                                
                                 
                                 if ($userInfo['statut'] == '1'): 
-                                    if (file_exists($filename)): ?>
+                                    $q="SELECT nom FROM CV WHERE user_id=?;";
+                                    $req=$bdd->prepare($q);
+                                    $req->execute([
+                                        $user_id
+                                    ]);
+                                    $result=$req->fetch(PDO::FETCH_ASSOC);
+                                    
+
+                                    if (!empty($result)): 
+                                    $filename = '../uploads/pdf/' . $result['nom'] . '.pdf';
+                                    $public_url = "https://italent.site/uploads/pdf/" . $result['nom'] . ".pdf"; ?>
                                         <a href="<?php echo $public_url; ?>" target="_blank" class="btn btn-primary mt-3">Afficher le CV</a>
                                         <a href="back/genPDF.php?reload=1" class="btn btn-primary mt-3" target="_blank">Regénérer le CV en PDF</a>
                                     <?php else: ?>

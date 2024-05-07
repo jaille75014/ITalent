@@ -100,14 +100,41 @@ if(empty($user_info)) {
 
 
 if(isset($_GET['reload']) && $_GET['reload'] == 1) {
-    $filename = "../uploads/pdf/cv_" . $user_id . ".pdf";
+
+    $q="SELECT nom FROM CV WHERE user_id=? ;";
+    $req=$bdd->prepare($q);
+    $req->execute([
+        $user_id
+    ]);
+    $result=$req->fetch(PDO::FETCH_ASSOC);
+
+    $filename = "../uploads/pdf/" . $result['nom'] . ".pdf";
 
     // Supprimer l'ancien fichier PDF
     if (file_exists($filename)) {
         unlink($filename);
     }
 } else {
-    $filename = "../uploads/pdf/cv_" . $user_id . ".pdf";
+    $q2="SELECT firstname,lastname FROM USERS WHERE user_id=?;";
+    $req2=$bdd->prepare($q2);
+    $req2->execute([
+        $user_id
+    ]);
+    $result2=$req2->fetch(PDO::FETCH_ASSOC);
+
+    $salt='AHAHUTT4CHEH';
+    $crypt=hash('sha256',$salt.$result2['firstname'].$result2['lastname'].$salt);
+
+    $filename = "../uploads/pdf/" .$crypt. ".pdf";
+    
+    
+    $q3="INSERT INTO CV (nom,user_id) VALUES(?,?)";
+    $req3=$bdd->prepare($q3);
+    $req3->execute([
+        $crypt,
+        $user_id
+    ]);
+
 }
 
 $pdf->Output('F', $filename);
