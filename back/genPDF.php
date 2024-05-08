@@ -110,22 +110,22 @@ if(isset($_POST['signatureBase64']) && !empty($_POST['signatureBase64'])){
     file_put_contents($imageFileName, $imageDecode);
 
     // Obtenir les dimensions de la page
-    $signatureWidth = 100; // Largeur signature
-    $signatureHeight = 50; // Hauteur signature
+    $signatureWidth = 80; // Largeur signature
+    $signatureHeight = 40; // Hauteur signature
 
-    $signatureX = ($pdf->GetPageWidth() - $signatureWidth) / 2;
+    $signatureX = $pdf->GetPageWidth() - $signatureWidth - 20; // Position de départ de la signature à droite
     $signatureY = $pdf->GetPageHeight() - $signatureHeight - 50; // Marge en bas
 
     // tab pour la signauture
     $pdf->SetXY($signatureX, $signatureY - 10); // Position du tableau
-    $pdf->Cell($pageWidth / 2 - 10, $signatureHeight + 20, '', 1, 1); // Créer le tableau
+    $pdf->Cell($signatureWidth, $signatureHeight + 20, '', 1, 1); // Créer le tableau
 
     // Ajouter le titre "Signature"
     $title = 'Signature';
     $titleWidth = $pdf->GetStringWidth($title); // Largeur du titre
 
     $pdf->SetTextColor(36, 130, 220); // Définir la couleur du texte en bleu
-    $pdf->SetXY($signatureX + ($pageWidth / 2 - $titleWidth) / 2, $signatureY - 10); // Centrer le titre
+    $pdf->SetXY($signatureX + ($signatureWidth - $titleWidth) / 2, $signatureY - 10); // Centrer le titre dans le tableau
     $pdf->Cell($titleWidth, 10, $title, 0, 1, 'C'); // Ajouter le titre centré
 
     // Ajouter la signature
