@@ -98,6 +98,41 @@ if(empty($user_info)) {
 }
 
 
+// if(isset($_POST['signatureBase64']) && !empty($_POST['signatureBase64'])){
+    
+//     $image = $_POST['signatureBase64'];
+//     $image = str_replace('data:image/png;base64,', '', $image);
+//     $image = str_replace(' ', '+', $image);
+//     $imageDecode = base64_decode($image);
+
+//     $imageFileName = '../temp_image.png';
+
+//     file_put_contents($imageFileName, $imageDecode);
+
+//     // Obtenir les dimensions de la page
+//     $pageWidth = $pdf->GetPageWidth();
+//     $pageHeight = $pdf->GetPageHeight();
+
+//     $signatureWidth = 50; // Largeur signature
+//     $signatureHeight = 20; // Hauteur signature
+
+//     $signatureX = $pageWidth - $signatureWidth - 5; // Marge à droite
+//     $signatureY = $pageHeight - $signatureHeight - 40; // Marge en bas
+
+//     $pdf->Image($imageFileName, $signatureX, $signatureY, $signatureWidth, $signatureHeight);
+
+//     unlink($imageFileName);
+
+// }
+
+$pdf->SetY(-30); 
+$pdf->SetFont('Helvetica', 'B', 10);
+$pdf->Cell(189, 6, 'Signature', 1, 1, 'C'); 
+
+$pdf->SetX(140); 
+$pdf->SetY($pdf->GetY() - 6);
+$pdf->SetFont('Helvetica', '', 10);
+
 if(isset($_POST['signatureBase64']) && !empty($_POST['signatureBase64'])){
     
     $image = $_POST['signatureBase64'];
@@ -109,21 +144,12 @@ if(isset($_POST['signatureBase64']) && !empty($_POST['signatureBase64'])){
 
     file_put_contents($imageFileName, $imageDecode);
 
-    // Obtenir les dimensions de la page
-    $pageWidth = $pdf->GetPageWidth();
-    $pageHeight = $pdf->GetPageHeight();
-
-    $signatureWidth = 50; // Largeur signature
-    $signatureHeight = 20; // Hauteur signature
-
-    $signatureX = $pageWidth - $signatureWidth - 5; // Marge à droite
-    $signatureY = $pageHeight - $signatureHeight - 40; // Marge en bas
-
-    $pdf->Image($imageFileName, $signatureX, $signatureY, $signatureWidth, $signatureHeight);
+    $pdf->Image($imageFileName, null, null, 50, 20);
 
     unlink($imageFileName);
 
 }
+
 
 
 if(isset($_GET['reload']) && $_GET['reload'] == 1) {
