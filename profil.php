@@ -32,9 +32,9 @@ $infos_job = $req_post->fetchAll();
 
 
 // LISTE DE COMPÉTENCES
-$q='SELECT name FROM COMPETENCES ;';
-$req=$bdd->prepare($q);
-$req->execute(); 
+$q3='SELECT name FROM COMPETENCES ;';
+$req3=$bdd->prepare($q3);
+$req3->execute(); 
 
 $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter et codes_verification
 ?>
@@ -253,8 +253,8 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                     <select id="selectCompetence" class="form-select" name="competenceTest">
                         <option selected>Sélectionner une compétence</option>
                         <?php 
-                        while($result=$req->fetch(PDO::FETCH_ASSOC)){
-                            foreach($result as $index=>$value){
+                        while($result3=$req3->fetch(PDO::FETCH_ASSOC)){
+                            foreach($result3 as $index=>$value){
                                 echo '<option value="'. $value .'">'. $value.'</option>';                   
                             }
                         }
