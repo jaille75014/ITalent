@@ -116,15 +116,22 @@ if(isset($_POST['signatureBase64']) && !empty($_POST['signatureBase64'])){
     $signatureWidth = 50; // Largeur signature
     $signatureHeight = 20; // Hauteur signature
 
-    $signatureX = $pageWidth - $signatureWidth - 5; // Marge à droite
-    $signatureY = $pageHeight - $signatureHeight - 40; // Marge en bas
+    $signatureX = $pageWidth - $signatureWidth - 20; // Marge à droite
+    $signatureY = $pageHeight - $signatureHeight - 50; // Marge en bas
 
+    // Créer un tableau pour la signature
+    $pdf->SetXY(10, $signatureY - 10); // Position du tableau
+    $pdf->Cell($pageWidth - 20, $signatureHeight + 20, '', 1, 1);
+
+  
+    $pdf->SetXY(10, $signatureY - 10);
+    $pdf->Cell(0, 10, 'Signature', 0, 1);
+
+    // Ajouter la signature
     $pdf->Image($imageFileName, $signatureX, $signatureY, $signatureWidth, $signatureHeight);
 
     unlink($imageFileName);
-
 }
-
 
 
 if(isset($_GET['reload']) && $_GET['reload'] == 1) {
