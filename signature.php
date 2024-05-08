@@ -42,7 +42,9 @@ if(!isset($_SESSION['captcha'])){
     <main>
         <div class="container">
 
-
+            <?php 
+            $width = " <script>document.write(screen.width); </script>";
+            echo $width ;?>
             <h3 class="text-center my-5" >Votre <span class="text-primary"> signature </span> : </h3>
 
             <div class="row justify-content-around">
@@ -50,9 +52,9 @@ if(!isset($_SESSION['captcha'])){
                     <p>Veuillez signer le document qui sera généré, cela permettra d'attester votre accord à la diffusion de vos données personnelles à tout recruteur le désirant.</p>
                 </div>
                 <div class="col-12 col-md-4 ">
+                    <canvas id="signatureCanva" width="400" height="200" class="bg-white"></canvas>
                     <form id="signatureFormulaire" action="back/genPDF<?=$_GET['reload']=='1'?'?reload=1':'' ;?>" method="post">
                         <input type="hidden" id="signatureBase64" name="signatureBase64">
-                        <canvas id="signatureCanva" width="400" height="200" class="bg-white"></canvas>
                         <button class="btn btn-primary my-5" type="button" onclick="saveSignature()">Enregistrer</button>
                     </form>
                 </div>
