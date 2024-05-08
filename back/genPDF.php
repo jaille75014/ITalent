@@ -116,7 +116,7 @@ if(isset($_POST['signatureBase64']) && !empty($_POST['signatureBase64'])){
     $signatureWidth = 100; // Largeur signature
     $signatureHeight = 40; // Hauteur signature
 
-    $signatureX = $pageWidth - $signatureWidth - 10; // Marge à droite
+    $signatureX = $pageWidth - $signatureWidth - 5; // Marge à droite
     $signatureY = $pageHeight - $signatureHeight - 40; // Marge en bas
 
     $pdf->Image($imageFileName, $signatureX, $signatureY, $signatureWidth, $signatureHeight);
