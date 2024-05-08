@@ -36,10 +36,10 @@
     writeVisitLog($url);
     ?>
 
-    <body>
+    <body class="bg-light">
 
         <?php include('includes/header.php'); ?>
-
+        <main class="mb-5">
         <div class="container mt-4">
 
             <!-- Affichage storys -->
@@ -88,6 +88,7 @@
 
 
         </div>
+        </main>
 
         <script>
             addPubliRefresh();
