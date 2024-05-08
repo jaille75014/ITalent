@@ -7,6 +7,11 @@ if (!isset($_SESSION['user_id'])) {
     redirectFailure('connexion', 'Vous devez être connecté pour accéder à cette page.');
 }
 
+if(!isset($_SESSION['captcha'])){
+    header('location:captcha?error=Chipeur arrête de chipper !');
+    exit;
+}
+
 $user_id = $_SESSION['user_id'];
 
 $query = "SELECT * FROM USERS WHERE user_id = ?";

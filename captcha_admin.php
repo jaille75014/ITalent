@@ -1,7 +1,7 @@
 <?php 
 session_start(); 
 if(!isset($_SESSION['captcha'])){
-    header('location:captcha.?error=Chipeur arrête de chipper !');
+    header('location:captcha?error=Chipeur arrête de chipper !');
     exit;
 }
     
