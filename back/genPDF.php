@@ -110,11 +110,11 @@ if(isset($_POST['signatureBase64']) && !empty($_POST['signatureBase64'])){
     file_put_contents($imageFileName, $imageDecode);
 
     // Obtenir les dimensions de la page
-    $signatureWidth = 80; // Largeur signature
+    $signatureWidth = 60; // Largeur signature
     $signatureHeight = 40; // Hauteur signature
 
     $signatureX = $pdf->GetPageWidth() - $signatureWidth - 20; // Position de départ de la signature à droite
-    $signatureY = $pdf->GetPageHeight() - $signatureHeight - 30; // Marge en bas
+    $signatureY = $pdf->GetPageHeight() - $signatureHeight - 33; // Marge en bas
 
     // tab pour la signauture
     $pdf->SetXY($signatureX, $signatureY - 10); // Position du tableau
