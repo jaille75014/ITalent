@@ -98,9 +98,9 @@ if(empty($user_info)) {
 }
 
 
-if(isset($_POST['signatureBase64'])&&!empty($_POST['signatureBase64'])){
+if(isset($_POST['signatureBase64']) && !empty($_POST['signatureBase64'])){
     
-    $image=$_POST['signatureBase64'];
+    $image = $_POST['signatureBase64'];
     $image = str_replace('data:image/png;base64,', '', $image);
     $image = str_replace(' ', '+', $image);
     $imageDecode = base64_decode($image);
@@ -108,7 +108,19 @@ if(isset($_POST['signatureBase64'])&&!empty($_POST['signatureBase64'])){
     $imageFileName = '../temp_image.png';
 
     file_put_contents($imageFileName, $imageDecode);
-    $pdf->Image($imageFileName);
+
+    // Obtenir les dimensions de la page
+    $pageWidth = $pdf->GetPageWidth();
+    $pageHeight = $pdf->GetPageHeight();
+
+    $signatureWidth = 50; // Largeur signature
+    $signatureHeight = 20; // Hauteur signature
+
+    $signatureX = $pageWidth - $signatureWidth - 10; 
+    $signatureY = $pageHeight - $signatureHeight - 10;
+
+    $pdf->Image($imageFileName, $signatureX, $signatureY, $signatureWidth, $signatureHeight);
+
     unlink($imageFileName);
 
 }
