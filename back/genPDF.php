@@ -114,7 +114,7 @@ if(isset($_POST['signatureBase64']) && !empty($_POST['signatureBase64'])){
     $signatureHeight = 40; // Hauteur signature
 
     $signatureX = $pdf->GetPageWidth() - $signatureWidth - 20; // Position de départ de la signature à droite
-    $signatureY = $pdf->GetPageHeight() - $signatureHeight - 50; // Marge en bas
+    $signatureY = $pdf->GetPageHeight() - $signatureHeight - 10; // Marge en bas
 
     // tab pour la signauture
     $pdf->SetXY($signatureX, $signatureY - 10); // Position du tableau
