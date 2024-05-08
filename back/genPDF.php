@@ -114,7 +114,7 @@ if(isset($_POST['signatureBase64']) && !empty($_POST['signatureBase64'])){
     $signatureHeight = 40; // Hauteur signature
 
     $signatureX = $pdf->GetPageWidth() - $signatureWidth - 20; // Position de départ de la signature à droite
-    $signatureY = $pdf->GetPageHeight() - $signatureHeight - 10; // Marge en bas
+    $signatureY = $pdf->GetPageHeight() - $signatureHeight - 20; // Marge en bas
 
     // tab pour la signauture
     $pdf->SetXY($signatureX, $signatureY - 10); // Position du tableau
@@ -174,8 +174,8 @@ if(isset($_GET['reload']) && $_GET['reload'] == 1) {
 }
 
 $imagePath = '../assets/LOGO_version_minimalisé.png'; // Chemin de l'image
-$imageWidth = 50; 
-$imageHeight = 50; 
+$imageWidth = 30; 
+$imageHeight = 30; 
 
 $imageX = 10; // Position X de l'image (10 pour une petite marge à gauche)
 $imageY = $pdf->GetPageHeight() - $imageHeight - 10;
