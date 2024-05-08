@@ -98,6 +98,13 @@ if(empty($user_info)) {
 }
 
 
+$signatureFrameX = 10;
+$signatureFrameY = $pageHeight - $signatureHeight - 40;
+$signatureFrameWidth = $pageWidth - 20; // Largeur cadre 
+$signatureFrameHeight = $signatureHeight + 10; // Hauteur cadre
+
+$pdf->Rect($signatureFrameX, $signatureFrameY, $signatureFrameWidth, $signatureFrameHeight);
+
 if(isset($_POST['signatureBase64']) && !empty($_POST['signatureBase64'])){
     
     $image = $_POST['signatureBase64'];
@@ -109,21 +116,15 @@ if(isset($_POST['signatureBase64']) && !empty($_POST['signatureBase64'])){
 
     file_put_contents($imageFileName, $imageDecode);
 
-    // Obtenir les dimensions de la page
-    $pageWidth = $pdf->GetPageWidth();
-    $pageHeight = $pdf->GetPageHeight();
-
-    $signatureWidth = 100; // Largeur signature
-    $signatureHeight = 40; // Hauteur signature
-
-    $signatureX = $pageWidth - $signatureWidth - 5; // Marge à droite
-    $signatureY = $pageHeight - $signatureHeight - 40; // Marge en bas
+    $signatureX = $signatureFrameX + ($signatureFrameWidth - $signatureWidth) / 2;
+    $signatureY = $signatureFrameY + ($signatureFrameHeight - $signatureHeight) / 2;
 
     $pdf->Image($imageFileName, $signatureX, $signatureY, $signatureWidth, $signatureHeight);
 
     unlink($imageFileName);
 
 }
+
 
 
 if(isset($_GET['reload']) && $_GET['reload'] == 1) {
