@@ -125,30 +125,20 @@ if(empty($user_info)) {
 
 // }
 
-$pdf->SetY(-30); 
 $pdf->SetFont('Helvetica', 'B', 10);
-$pdf->Cell(189, 6, 'Signature', 1, 1, 'C'); 
+$pdf->Cell(189, 10, 'Signature', 1, 1, 'C'); 
 
-$pdf->SetX(140); 
-$pdf->SetY($pdf->GetY() - 6);
 $pdf->SetFont('Helvetica', '', 10);
+$pdf->Cell(189, 10, '', 'LR'); 
 
 if(isset($_POST['signatureBase64']) && !empty($_POST['signatureBase64'])){
-    
-    $image = $_POST['signatureBase64'];
-    $image = str_replace('data:image/png;base64,', '', $image);
-    $image = str_replace(' ', '+', $image);
-    $imageDecode = base64_decode($image);
-
-    $imageFileName = '../temp_image.png';
-
-    file_put_contents($imageFileName, $imageDecode);
-
-    $pdf->Image($imageFileName, null, null, 50, 20);
-
+    $pdf->Image($imageFileName, $pdf->GetX(), $pdf->GetY(), 50, 20); 
     unlink($imageFileName);
-
+} else {
+    $pdf->Cell(50, 20, 'Aucune signature disponible', 0, 1, 'C');
 }
+
+$pdf->Cell(189, 0, '', 'T');
 
 
 
