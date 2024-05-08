@@ -110,25 +110,26 @@ if(isset($_POST['signatureBase64']) && !empty($_POST['signatureBase64'])){
     file_put_contents($imageFileName, $imageDecode);
 
     // Obtenir les dimensions de la page
-    $pageWidth = $pdf->GetPageWidth();
-    $pageHeight = $pdf->GetPageHeight();
-
     $signatureWidth = 50; // Largeur signature
     $signatureHeight = 20; // Hauteur signature
 
-    $signatureX = $pageWidth - $signatureWidth - 20; // Marge à droite
+    $signatureX = $pageWidth / 2; // Position de départ de la signature
     $signatureY = $pageHeight - $signatureHeight - 50; // Marge en bas
 
-    // Créer un tableau pour la signature
-    $pdf->SetXY(10, $signatureY - 10); // Position du tableau
-    $pdf->Cell($pageWidth - 20, $signatureHeight + 20, '', 1, 1);
+    // tab pour la signauture
+    $pdf->SetXY($signatureX, $signatureY - 10); // Position du tableau
+    $pdf->Cell($pageWidth / 2 - 10, $signatureHeight + 20, '', 1, 1); // Créer le tableau
 
-  
-    $pdf->SetXY(10, $signatureY - 10);
-    $pdf->Cell(0, 10, 'Signature', 0, 1);
+    // Ajouter le titre "Signature"
+    $title = 'Signature';
+    $titleWidth = $pdf->GetStringWidth($title); // Largeur du titre
+
+    $pdf->SetTextColor(36, 130, 220); // Définir la couleur du texte en bleu
+    $pdf->SetXY($signatureX + ($pageWidth / 2 - $titleWidth) / 2, $signatureY - 10); // Centrer le titre
+    $pdf->Cell($titleWidth, 10, $title, 0, 1, 'C'); // Ajouter le titre centré
 
     // Ajouter la signature
-    $pdf->Image($imageFileName, $signatureX, $signatureY, $signatureWidth, $signatureHeight);
+    $pdf->Image($imageFileName, $signatureX + ($pageWidth / 2 - $signatureWidth) / 2, $signatureY, $signatureWidth, $signatureHeight);
 
     unlink($imageFileName);
 }
@@ -172,7 +173,17 @@ if(isset($_GET['reload']) && $_GET['reload'] == 1) {
 
 }
 
+$imagePath = '../assets/LOGO_version_complète.png'; // Chemin de l'image
+$imageWidth = 50; 
+$imageHeight = 50; 
+
+$imageX = 10; // Position X de l'image (10 pour une petite marge à gauche)
+$imageY = $pdf->GetPageHeight() - $imageHeight - 10;
+
+$pdf->Image($imagePath, $imageX, $imageY, $imageWidth, $imageHeight);
+
 $pdf->Output('F', $filename);
 
 $pdf->Output();
+
 ?>
