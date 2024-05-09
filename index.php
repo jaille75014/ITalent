@@ -12,17 +12,27 @@
     writeVisitLog($url);
 
 
-    $delete_user = 'SELECT id, date_ban FROM BAN';
+    $delete_user = 'SELECT user_id, date_ban FROM BAN';
     $req = $bdd->query($delete_user);
     $users = $req->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($users as $user) {
         if (strtotime($user['date_ban']) < time()) { //
-            $req = $bdd->prepare('DELETE FROM USERS WHERE id = :id');
-            $req->execute(array(':id' => $user['id']));
+            
+            // Delete or update the corresponding records in the CONNECTS table
+            $req = $bdd->prepare('DELETE FROM CONNECTS WHERE recruiter_id = :user_id');
+            $req->execute(array(':user_id' => $user['user_id']));
 
-            $req = $bdd->prepare('DELETE FROM BAN WHERE id = :id');
-            $req->execute(array(':id' => $user['id']));
+            // Delete or update the corresponding records in the MESSAGE table
+            $req = $bdd->prepare('DELETE FROM MESSAGE WHERE user_id_source = :user_id');
+            $req->execute(array(':user_id' => $user['user_id']));
+
+            // Now you can delete the user from the USERS table
+            $req = $bdd->prepare('DELETE FROM USERS WHERE user_id = :user_id');
+            $req->execute(array(':user_id' => $user['user_id']));
+
+            $req = $bdd->prepare('DELETE FROM BAN WHERE user_id = :user_id');
+            $req->execute(array(':user_id' => $user['user_id']));
         }
     }
     ?>
