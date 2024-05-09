@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    session_start(); // On démarre la session AVANT toute chose
     include("includes/bd.php");
     
     if (!isset($_SESSION['user_id'])) {
