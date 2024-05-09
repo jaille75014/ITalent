@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("../includes/bd.php");
+include("../includes/header_location.php");
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../connexion');
@@ -8,18 +9,18 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
-
-$res = $bdd->prepare("DELETE FROM PUBLICATIONS WHERE user_id = ?");
-$res->execute([$user_id]);
-
-$res = $bdd->prepare("DELETE FROM STORYS WHERE user_id = ?");
-$res->execute([$user_id]);
-
-$res = $bdd->prepare("DELETE FROM USERS WHERE user_id = ?"); // Opter pour une modification du statut à 0 plutôt que la suppression
+$insert_ban = 'INSERT INTO BAN (user_id, date_ban, reason) VALUES (:user_id, :date_ban, :reason)';
+$res = $bdd->prepare($insert_ban);
+$res->execute([
+    ':user_id' => $user_id,
+    ':date_ban' => date('Y-m-d H:i:s', strtotime('+30 days')),
+    ':reason' => 'Suppression de compte'
+]);
+$res = $bdd->prepare("UPDATE USERS SET status = 0 WHERE user_id = ?"); 
 if ($res->execute([$user_id])) {
     session_destroy();
-    header('Location: ../login');
+    redirectSuccess("../index", "Votre compte a bien été supprimé ,vous disposez de 30 jours pour le réactiver.");
 } else {
-    header('Location: ../profil');
+    redirectFailure("../profil", "Une erreur est survenue lors de la suppression de votre compte, veuillez réessayer.");
 }
 ?>

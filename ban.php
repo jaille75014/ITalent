@@ -7,14 +7,9 @@
   }
   $req = 'SELECT date_ban, reason FROM BAN WHERE user_id = ' . $_SESSION['user_id'];
   $res = $bdd->query($req);
-  if ($res && $res->rowCount() > 0) {
-      $row = $res->fetch(PDO::FETCH_ASSOC);
-      $banDate = $row['date_ban'];
-      $reason = $row['reason'];
-  } else {
-      $banDate = "Supprimé";
-      $reason = "Supprimé";
-  }
+  $row = $res->fetch(PDO::FETCH_ASSOC);
+  $banDate = $row['date_ban'];
+  $reason = $row['reason'];
 ?>
 
 <html>
@@ -44,7 +39,7 @@
         <div class="form">
         <div class="contact-info">
             <?php 
-            if($reason == "Supprimé") {
+            if($reason == "Suppression de compte") {
                 echo '<h3 class="title">Vous avez décidé de supprimer votre compte</h3>';
                 echo '<p class="title">Si vous changez d\'avis, vous pouvez remplir ce formulaire pour récupérer votre compte</p>';
             } else {
