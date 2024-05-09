@@ -125,7 +125,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
 
                                 
                                 
-                                if ($userInfo['statut'] == '1'): 
+                                if ($userInfo['statut'] == '1'){
                                     $q="SELECT nom FROM CV WHERE user_id=?;";
                                     $req=$bdd->prepare($q);
                                     $req->execute([
@@ -137,25 +137,26 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                     if (!empty($result)){
                                         $filename = '../uploads/pdf/' . $result['nom'] . '.pdf';
                                         $public_url = "https://italent.site/uploads/pdf/" . $result['nom'] . ".pdf";
-                                        $width = " <script>document.write(screen.width); </script>";
+                                        
 
                                         echo '<a href="'.$public_url.'" target="_blank" class="btn btn-primary mt-3">Afficher le CV</a>';
-                                        if($width<=768 && $width>=426){
-                                            echo '<a href="signature?reload=1" class="btn btn-primary mt-3" target="_blank">Regénérer le CV en PDF</a>';
-                                        } else {
-                                            echo '<a href="back/genPDF?reload=1" class="btn btn-primary mt-3" target="_blank">Regénérer le CV en PDF</a>';
-                                        }
+                                        echo '<a id="signature1" href="back/genPDF?reload=1" class="btn btn-primary mt-3" target="_blank">Regénérer le CV en PDF</a>';
                                     } else {
-                                        if($width<=768 && $width>=426){
-                                            echo '<a href="signature" target="_blank" class="btn btn-primary mt-3">Télécharger le CV en PDF</a>';
-                                        } else {
-                                            echo '<a href="back/genPDF" target="_blank" class="btn btn-primary mt-3">Télécharger le CV en PDF</a>';
-                                        }
+                                        echo '<a id="signature2" href="back/genPDFsignature2" target="_blank" class="btn btn-primary mt-3">Télécharger le CV en PDF</a>';                                        
                                     }
-                                endif;
+
+
+                                }
                                     
                                         
                                     ?>
+
+                                <script>
+                                    let a1=document.getElementById("signature1");
+                                    let a2=document.getElementById("signature2");
+                                    let screenWidth = window.innerWidth;
+                                    if(screenWidth>=)
+                                </script>
                                         
                                     
                                 <a href="back/supp_compte" class="btn btn-danger mt-3" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.');">Supprimer mon compte</a>
