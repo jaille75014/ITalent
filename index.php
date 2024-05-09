@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<html lang="fr">
-
-
-
+<html>
+// Test
     <?php 
     include('includes/bd.php');
     include('includes/fonctions_logs.php');
