@@ -140,9 +140,9 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                         
 
                                         echo '<a href="'.$public_url.'" target="_blank" class="btn btn-primary mt-3">Afficher le CV</a>';
-                                        echo '<a id="signature1" href="back/genPDF?reload=1" class="btn btn-primary mt-3" target="_blank">Regénérer le CV en PDF</a>';
+                                        echo '<a id="signature" href="" class="btn btn-primary mt-3 mx-3" target="_blank">Regénérer le CV en PDF</a>';
                                     } else {
-                                        echo '<a id="signature2" href="back/genPDFsignature2" target="_blank" class="btn btn-primary mt-3">Télécharger le CV en PDF</a>';                                        
+                                        echo '<a id="signature" href="" target="_blank" class="btn btn-primary mt-3">Télécharger le CV en PDF</a>';                                        
                                     }
 
 
@@ -152,10 +152,22 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                     ?>
 
                                 <script>
-                                    let a1=document.getElementById("signature1");
-                                    let a2=document.getElementById("signature2");
+                                    let a=document.getElementById("signature");
                                     let screenWidth = window.innerWidth;
-                                    if(screenWidth>=)
+                                    if(a.innerHTML=="Regénérer le CV en PDF"){
+                                        if(screenWidth>=426 && screenWidth<=768 ){
+                                        a.href="signature?reload=1";
+                                        } else {
+                                        a.href="back/genPDF?reload=1";
+                                        }
+                                    } else {
+                                        if(screenWidth>=426 && screenWidth<=768 ){
+                                            a.href="signature";
+                                        } else {
+                                            a.href="back/genPDF";
+                                        }
+                                    }
+                                    
                                 </script>
                                         
                                     
