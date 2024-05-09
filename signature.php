@@ -42,9 +42,7 @@ if(!isset($_SESSION['captcha'])){
     <main>
         <div class="container">
 
-            <?php 
-            $width = " <script>document.write(screen.width); </script>";
-            echo $width ;?>
+            
             <h3 class="text-center my-5" >Votre <span class="text-primary"> signature </span> : </h3>
 
             <div class="row justify-content-around">
