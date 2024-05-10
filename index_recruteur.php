@@ -17,7 +17,7 @@
     // Stockez les filtres dans la session lorsqu'ils sont reçus via $_POST
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $competence_name = isset($_POST['competence']) ? htmlspecialchars($_POST['competence']) : '';
-        $level = isset($_POST['level']) ? htmlspecialchars($_POST['level']) : '';
+        $level = isset($_POST['niveau']) ? htmlspecialchars($_POST['niveau']) : '';
         $poste = isset($_POST['poste']) ? htmlspecialchars($_POST['poste']) : '';
 
         $_SESSION['filters'] = [
