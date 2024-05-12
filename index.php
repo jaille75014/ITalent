@@ -41,7 +41,7 @@
 
         <?php include('includes/header.php');?>
 
-        <main >
+        <main>
 
             <?php 
             $url = 'index'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
