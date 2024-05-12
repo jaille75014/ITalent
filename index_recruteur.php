@@ -8,25 +8,30 @@
     if(!isset($_SESSION['captcha'])){
         redirectFailure('captcha', 'Chipeur arrête de chipper !');
     } 
-    
-    $competence_name = isset($_POST['competence']) ? $_POST['competence'] : '';
-    $level = isset($_POST['level']) ? $_POST['level'] : '';
-    $poste = isset($_POST['poste']) ? $_POST['poste'] : '';
 
-    // Stocker les filtres dans la session
+
+    $competence_name = isset($_POST['competence']) ? htmlspecialchars($_POST['competence']) : '';
+    $level = isset($_POST['niveau']) ? htmlspecialchars($_POST['niveau']) : '';
+    $poste = isset($_POST['poste']) ? htmlspecialchars($_POST['poste']) : '';
+
     $_SESSION['filters'] = [
-    'competence' => $competence_name,
-    'level' => $level,
-    'poste' => $poste
+        'competence' => $competence_name,
+        'level' => $level,
+        'poste' => $poste
     ];
 
-    $competence_id_query = 'SELECT competence_id FROM COMPETENCES WHERE name LIKE :name';
-    $req = $bdd->prepare($competence_id_query);
-    $req->execute([
-        'name'=> '%' . $competence_name . '%'
-    ]);	
-    $comp_id = $req->fetchAll(PDO::FETCH_ASSOC);
-    $competence_id = isset($comp_id['competence_id']) ? $comp_id['competence_id'] : '';
+    if (!empty($competence_name) || !empty($level)) {
+        $competence_id_query = 'SELECT competence_id FROM COMPETENCES WHERE name LIKE :name';
+        $req = $bdd->prepare($competence_id_query);
+        $req->execute([
+            'name'=> '%' . $competence_name . '%'
+        ]);	
+        $comp_ids = $req->fetchAll(PDO::FETCH_ASSOC);
+        
+        $competence_ids = array_column($comp_ids, 'competence_id');
+        
+        $level = intval($level);
+    }
     
     // Obtenir les informations des étudiants
     $get_infos = 'SELECT USERS.user_id, USERS.lastname, USERS.firstname, USERS.city, USERS.tel, USERS.email, USERS.image, JOBS.name AS job_name, COMPETENCES.name AS competence_name FROM USERS 
@@ -36,21 +41,21 @@
         WHERE USERS.statut = 1';
         
     // Ajouter les potentielles conditions de filtre à la requête
-    if (!empty($competence_id)) {
-        $get_infos .= " AND POSSESSES.competence_id = " . htmlspecialchars($competence_id);
+    if (!empty($competence_ids)) {
+        $get_infos .= " AND POSSESSES.competence_id IN (" . implode(',', array_map('intval', $competence_ids)) . ")";
     }
     if (!empty($level)) {
-        $get_infos .= " AND POSSESSES.level >= " . htmlspecialchars($level);
+        $get_infos .= " AND POSSESSES.level >= " . $level;
     }
     if (!empty($poste)) {
         $get_infos .= " AND JOBS.name LIKE '%" . htmlspecialchars($poste) . "%'";
     }
     
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // (int) verifie que c'est un nombre pour éviter les injections
-$users_per_page = 5; // Affiche 10 users par page
-$offset = ($page - 1) * $users_per_page; // cette ligne permet de définir le nombre de users à afficher par page
+    $users_per_page = 5; // Affiche 5 users par page
+    $offset = ($page - 1) * $users_per_page; // cette ligne permet de définir le nombre de users à afficher par page
 
-$get_infos .= " LIMIT $users_per_page OFFSET $offset";
+    $get_infos .= " LIMIT $users_per_page OFFSET $offset";
 
     
     $req = $bdd->prepare($get_infos);
@@ -72,13 +77,26 @@ $get_infos .= " LIMIT $users_per_page OFFSET $offset";
         });
     }
 
-    $total_pages_query = "SELECT COUNT(*) FROM USERS WHERE statut = 1";
+    $total_pages_query = "SELECT COUNT(*) FROM USERS 
+    LEFT JOIN JOBS ON USERS.student_job = JOBS.id 
+    LEFT JOIN POSSESSES ON USERS.user_id = POSSESSES.user_id 
+    LEFT JOIN COMPETENCES ON POSSESSES.competence_id = COMPETENCES.competence_id 
+    WHERE USERS.statut = 1";
+
+    if (!empty($competence_ids)) {
+        $total_pages_query .= " AND POSSESSES.competence_id IN (" . implode(',', array_map('intval', $competence_ids)) . ")";
+    }
+    if (!empty($level)) {
+        $total_pages_query .= " AND POSSESSES.level >= " . $level;
+    }
+    if (!empty($poste)) {
+        $total_pages_query .= " AND JOBS.name LIKE '%" . $poste . "%'";
+    }
+
     $req = $bdd->prepare($total_pages_query);
     $req->execute();
     $total_users = $req->fetchColumn();
     $total_pages = ceil($total_users / $users_per_page);
-
-
 ?>
 
 <!DOCTYPE html>
@@ -112,9 +130,9 @@ $get_infos .= " LIMIT $users_per_page OFFSET $offset";
             <div class="form-group">
                 <select class="form-control" id="niveau" name="niveau">
                     <option value="">Niveau</option>
-                    <option value="Débutant">Débutant</option>
-                    <option value="Intermédiaire">Intermédiaire</option>
-                    <option value="Avancé">Avancé</option>
+                    <option value="3">Débutant</option>
+                    <option value="4">Intermédiaire</option>
+                    <option value="5">Avancé</option>
                 </select>
             </div>
             <div class="form-group">
