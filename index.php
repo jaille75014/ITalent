@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-// Test
+<!-- Test -->
     <?php 
     include('includes/bd.php');
     include('includes/fonctions_logs.php');
@@ -41,7 +41,7 @@
 
         <?php include('includes/header.php');?>
 
-        <main class="bg-light">
+        <main >
 
             <?php 
             $url = 'index'; //Permet de revenir sur cette page en cas d'erreurs dans les pages newsletter
