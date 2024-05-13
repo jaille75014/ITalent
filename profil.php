@@ -237,7 +237,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                 
                 <?php 
                 // Si la session est celle d'un étudiant
-                if($_SESSION['statut'] = 1){
+                if($_SESSION['statut'] == 1){
                 $q2 = 'SELECT name,level,validity FROM POSSESSES INNER JOIN COMPETENCES ON COMPETENCES.competence_id=POSSESSES.competence_id WHERE POSSESSES.user_id = ? ;';
                 $req2=$bdd->prepare($q2);
                 $req2->execute([
