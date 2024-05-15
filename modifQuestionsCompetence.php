@@ -45,7 +45,7 @@ if(!isset($_POST['question']) || empty($_POST['question'])){
     exit;
 }
 
-$q='SELECT question,answerCorrect,answer1,answer2,answer3,answer4 FROM QUESTIONS WHERE question=? ;';
+$q="SELECT question,answerCorrect,answer1,answer2,answer3,answer4 FROM QUESTIONS WHERE question=? ;";
 $req=$bdd->prepare($q);
 $req->execute([
     htmlspecialchars($_POST['question'])
@@ -53,7 +53,8 @@ $req->execute([
 
 $result=$req->fetch(PDO::FETCH_ASSOC);
 
-var_dump($result);
+
+
 
 ?>
 
