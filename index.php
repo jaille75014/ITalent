@@ -17,22 +17,19 @@
     $users = $req->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($users as $user) {
-        if (strtotime($user['date_ban']) < time()) { //
-            
-            // Delete or update the corresponding records in the CONNECTS table
+        if (strtotime($user['date_ban']) < time()) { 
+
             $req = $bdd->prepare('DELETE FROM CONNECTS WHERE recruiter_id = :user_id');
-            $req->execute(array(':user_id' => $user['user_id']));
+            $req->execute([':user_id' => $user['user_id']]);
 
-            // Delete or update the corresponding records in the MESSAGE table
             $req = $bdd->prepare('DELETE FROM MESSAGE WHERE user_id_source = :user_id');
-            $req->execute(array(':user_id' => $user['user_id']));
+            $req->execute([':user_id' => $user['user_id']]);
 
-            // Now you can delete the user from the USERS table
             $req = $bdd->prepare('DELETE FROM USERS WHERE user_id = :user_id');
-            $req->execute(array(':user_id' => $user['user_id']));
+            $req->execute([':user_id' => $user['user_id']]);
 
             $req = $bdd->prepare('DELETE FROM BAN WHERE user_id = :user_id');
-            $req->execute(array(':user_id' => $user['user_id']));
+            $req->execute([':user_id' => $user['user_id']]);
         }
     }
     ?>

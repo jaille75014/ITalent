@@ -61,6 +61,18 @@ $req2->execute([
             <div class="container">
 
                 <h1 class="text-center">Examen de : <span class="text-primary"><?= $_POST['competenceTest']?></span></h1>
+                <!-- <div class="time">
+                <div class="circle">
+                <div class="dots min_dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70" id="mm"></circle>
+                </svg>
+                <div class="minutes">00<span>Minutes</span></div>
+                </div>
+                </div>
+            
+                -->
 
                 <form method="post" action="back/verif_exam">
                 <?php 
