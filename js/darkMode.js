@@ -24,11 +24,9 @@ function themeAppliquer(){
         document.body.classList.remove("bg-light");
         document.body.classList.add("bg-dark","text-white");
 
-        divsBgLight=document.getElementsByClassName("bg-light");
-        for(let i=0;i<divsBgLight.length;++i){
-            let div=divsBgLight[i];
-            div.classList.remove("bg-light");            
-        }
+        header=document.getElementsByTagName("header")[0];
+        header.classList.remove("bg-light");
+        header.classList.add("bg-dark");
 
         
         document.documentElement.setAttribute('data-bs-theme','dark');
@@ -40,6 +38,12 @@ function themeAppliquer(){
         document.body.classList.remove("bg-dark","text-white");
         document.body.classList.add("bg-light");
         button.src="assets/iconeDarkModeNoir.svg";
+
+
+        header=document.getElementsByTagName("header")[0];
+        header.classList.remove("bg-dark");
+        header.classList.add("bg-light");
+        
         
         document.documentElement.setAttribute('data-bs-theme','white');
 

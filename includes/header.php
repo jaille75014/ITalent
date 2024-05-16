@@ -39,7 +39,7 @@ function writeNavLine($name, $url){
 ?>
 
 
-<header class="bg-light">
+<header class="bg-light sticky-top">
   
     <nav class="navbar1">
     

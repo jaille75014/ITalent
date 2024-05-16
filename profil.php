@@ -161,7 +161,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                         a.href="back/genPDF?reload=1";
                                         }
                                     } else {
-                                        if(screenWidth>=426 && screenWidth<=768 ){
+                                        if(screenWidth>=426 && screenWidth<=1024 ){
                                             a.href="signature";
                                         } else {
                                             a.href="back/genPDF";
