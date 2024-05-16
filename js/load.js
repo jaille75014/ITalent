@@ -66,7 +66,7 @@ async function selectCompetence(){
 
     const tableauQuestions = JSON.parse(txt);
     if (tableauQuestions.length!=0){
-        let html = '<table class="table table-striped my-5 align-middle"><tr><th>Question</th><th>Réponse 1</th><th>Réponse 2</th><th>Réponse 3</th><th>Réponse 4</th><th>Bonne réponse</th><th>Suppression</th><th>Modification</th></tr>';
+        let html = '<table class="table table-striped my-5 align-middle"><thead><tr><th>Question</th><th>Réponse 1</th><th>Réponse 2</th><th>Réponse 3</th><th>Réponse 4</th><th>Bonne réponse</th><th>Suppression</th><th>Modification</th></tr></thead><tbody>';
         for(let i=0;i<tableauQuestions.length;++i){
             const question = tableauQuestions[i];
             html+="<tr>";
@@ -82,7 +82,7 @@ async function selectCompetence(){
             html+='  </form> </td>';      
             html+="</tr>";
         }
-        html+="</table>";
+        html+="</tbody></table>";
 
         
         div.innerHTML=html;

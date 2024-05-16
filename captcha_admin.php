@@ -89,69 +89,79 @@ $req->execute();
             </div>
 
             <h3 class="text-center" >Table des questions</h3>
-
+            <div class="table-responsive">
             <table class="table table-striped my-5">
-                <tr>
-                    <th>Question</th>
-                    <th>Réponse</th>
-                    <th>Nom créateur</th>
-                    <th>Suppresion</th>
-                    <th>Modification</th>
-                </tr>
-                <?php 
-                    while($result=$req->fetch(PDO::FETCH_ASSOC)){
-                       echo '<tr>';
-                        foreach($result as $index=>$value){
-                            if($index!='user_id'){
-                                echo '<td>'.$value.'</td>';
-                                if ($index=='question') $questKeep=$value;
-                                
-                            } else {
-                                echo '<td>';
-                                $q='SELECT lastname, firstname FROM USERS WHERE user_id='.$value;
-                                $req2=$bdd->prepare($q);
-                                $req2->execute(); 
-                                $result2=$req2->fetch(PDO::FETCH_ASSOC);
-        
-                                foreach($result2 as $index2=>$value2){
-                                    echo $value2.' ';
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Réponse</th>
+                        <th>Nom créateur</th>
+                        <th>Suppresion</th>
+                        <th>Modification</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                
+
+                
+                    <?php 
+                        while($result=$req->fetch(PDO::FETCH_ASSOC)){
+                        echo '<tr>';
+                            foreach($result as $index=>$value){
+                                if($index!='user_id'){
+                                    echo '<td>'.$value.'</td>';
+                                    if ($index=='question') $questKeep=$value;
+                                    
+                                } else {
+                                    echo '<td>';
+                                    $q='SELECT lastname, firstname FROM USERS WHERE user_id='.$value;
+                                    $req2=$bdd->prepare($q);
+                                    $req2->execute(); 
+                                    $result2=$req2->fetch(PDO::FETCH_ASSOC);
+            
+                                    foreach($result2 as $index2=>$value2){
+                                        echo $value2.' ';
+                                    }
+                                    echo '</td>';
                                 }
-                                echo '</td>';
+                                
                             }
-                            
-                        }
-                        echo '<td>
+                            echo '<td>
 
-                        <form method="post">
-                            <input type="hidden" name="delete" value="'.$questKeep.'">
-                            <button type="submit" class="btn btn-danger">
-                                Supprimer
-                            </button>
-                        </form>
-
-                            </td>
-                            
-                            
-                            <td>
-
-                            <form method="post" action="modifQuestionsCaptcha">
-                                <input type="hidden" name="question" value="'.$questKeep.'">
-                                <button type="submit" class="btn btn-success">
-                                    Modifier
+                            <form method="post">
+                                <input type="hidden" name="delete" value="'.$questKeep.'">
+                                <button type="submit" class="btn btn-danger">
+                                    Supprimer
                                 </button>
                             </form>
-    
-                                </td>';
+
+                                </td>
+                                
+                                
+                                <td>
+
+                                <form method="post" action="modifQuestionsCaptcha">
+                                    <input type="hidden" name="question" value="'.$questKeep.'">
+                                    <button type="submit" class="btn btn-success">
+                                        Modifier
+                                    </button>
+                                </form>
+        
+                                    </td>';
+                            
+                            
+                            echo '</tr>';
+                        }
                         
                         
-                        echo '</tr>';
-                    }
                     
                     
-                
-                
-                ?>
+                    ?>
+                </tbody>
             </table>
+            </div>
 
             
 

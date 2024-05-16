@@ -251,13 +251,17 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                     
                     <h3 class="text-center" >Vos compétences</h3>
 
+                    <div class="table-responsive">
+
                     <table class="table table-striped my-5 text-center">
+                    <thead>
                     <tr>
                         <th>Compétence</th>
                         <th>Note</th>
                         <th>Date de passage</th>
                     </tr>
-                    
+                    </thead>
+                    <tbody>
                     ';
                     
 
@@ -272,7 +276,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                         ';
                     }
 
-                    echo '</table>';
+                    echo '</tbody></table></div';
 
                 }
                 ?>

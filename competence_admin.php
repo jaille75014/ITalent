@@ -100,26 +100,36 @@ $req6->execute();
             </div>
 
             <h3 class="text-center" >Table des compétences</h3>
+            <div class="table-responsive">
 
-            <table class="table table-striped my-5">
-                <tr>
-                    <th>ID Compétence</th>
-                    <th>Nom Compétence</th>
-                </tr>
-                <?php 
-                    while($result2=$req2->fetch(PDO::FETCH_ASSOC)){
-                       echo '<tr>';
-                        foreach($result2 as $index2=>$value2){
-                            
-                            echo '<td>'.$value2.'</td>';                      
-                        }
+            
+                <table class="table table-striped my-5">
+                    <thead>
+                        <tr>
+                            <th>ID Compétence</th>
+                            <th>Nom Compétence</th>
+                        </tr>   
+                    </thead>
                     
-                        
-                        echo '</tr>';
-                    }
 
-                ?>
-            </table>
+                    <tbody>
+                        <?php 
+                            while($result2=$req2->fetch(PDO::FETCH_ASSOC)){
+                            echo '<tr>';
+                                foreach($result2 as $index2=>$value2){
+                                    
+                                    echo '<td>'.$value2.'</td>';                      
+                                }
+                            
+                                
+                                echo '</tr>';
+                            }
+
+                        ?>
+                    </tbody>
+                    
+                </table>
+            </div>
 
             
                     
@@ -186,7 +196,7 @@ $req6->execute();
                 </select>
 
             
-                <div id="tableQuestions"></div>
+                <div id="tableQuestions" class="table-responsive"></div>
                 
                         
         
