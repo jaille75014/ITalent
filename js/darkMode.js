@@ -1,5 +1,8 @@
 button = document.getElementById("darkMode");
 let theme= localStorage.getItem('theme') || 'light';
+if(window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches){
+    theme='dark';
+}
 themeAppliquer();
 
 button.addEventListener('click',()=>{

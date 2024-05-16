@@ -983,3 +983,11 @@ footer hr {
   box-shadow: 0 0 20px var(--clr),
   0 0 60px var(--clr);
 }
+
+
+
+/* MEDIA QUERIES POUR SAVOIR LES PREFERENCES DE L'ORDI */
+
+@media (prefers-color-scheme : dark){
+  /* vide car on gère tout en js */
+}
