@@ -1,8 +1,16 @@
 button = document.getElementById("darkMode");
-let theme=0;
+let theme= localStorage.getItem('theme') || 'light';
+themeAppliquer();
 
 button.addEventListener('click',()=>{
-    if (theme==0){
+    theme = theme === 'light' ? 'dark' : 'light';
+    themeAppliquer();
+    localStorage.setItem('theme', theme); 
+}) 
+
+
+function themeAppliquer(){
+    if (theme==='dark'){
         document.body.classList.remove("bg-light");
         document.body.classList.add("bg-dark","text-white");
 
@@ -14,11 +22,11 @@ button.addEventListener('click',()=>{
 
         button.src="assets/iconeDarkModeBlanc.svg";
 
-        theme++;
+        theme='dark';
     } else {
         document.body.classList.remove("bg-dark","text-white");
         document.body.classList.add("bg-light");
         button.src="assets/iconeDarkModeNoir.svg";
-        theme--;
+        theme='light';
     }
-}) 
+}
