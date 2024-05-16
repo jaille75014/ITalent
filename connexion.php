@@ -27,6 +27,7 @@ include('includes/head.php');?>
         if(isset($_GET['messageSuccess'])){
             echo '<div class="alert alert-success" role="alert">'.htmlspecialchars($_GET['messageSuccess']).'</div>'; 
             }
+
         ?>
     </div>
 
@@ -54,7 +55,7 @@ include('includes/head.php');?>
             </div>
 
             <div class="col-lg-6 mb-5 mb-lg-0">
-            <div class="card">
+            <div class="card bg-white">
                 <div class="card-body py-5 px-md-5">
                 <form action="back/verification_connexion" method="POST">
                     <div class="form-outline mb-4">
