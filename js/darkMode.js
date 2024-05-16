@@ -1,5 +1,12 @@
 button = document.getElementById("darkMode");
 let theme= localStorage.getItem('theme') || 'light';
+
+const date = new Date() ;
+const hour = date.getHours();
+if(hour<7 || hour >21){
+    theme='dark';
+}
+
 if(window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches){
     theme='dark';
 }
