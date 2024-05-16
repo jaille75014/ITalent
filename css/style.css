@@ -15,7 +15,7 @@ footer input::placeholder{
 
 header{
   opacity:80%;
-}
+} 
 
 .navbar1{
     display: flex;
@@ -574,6 +574,8 @@ footer hr {
     .nav-links.mobile-menu {
         margin-left:0;
     }
+
+    
     
     .nav-links ul{
         position: absolute;
