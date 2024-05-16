@@ -83,9 +83,7 @@ footer input::placeholder{
     border-radius: 10px;
 }
 
-.flip-card-front {
-    color: black;
-}
+
 
 .flip-card-back {
     background: linear-gradient(to right, #0E3D69, #2482DC);
