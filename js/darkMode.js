@@ -30,13 +30,10 @@ function themeAppliquer(){
             div.classList.remove("bg-light");            
         }
 
-        divsBgWhite=document.getElementsByClassName("bg-white");
-        for(let i=0;i<divsBgWhite.length;++i){
-            let div=divsBgWhite[i];
-            div.classList.remove("bg-white");
-            div.classList.add("bg-dark");            
-        }
+        
+        document.documentElement.setAttribute('data-bs-theme','dark');
 
+        
         button.src="assets/iconeDarkModeBlanc.svg";
 
     } else {
@@ -44,11 +41,7 @@ function themeAppliquer(){
         document.body.classList.add("bg-light");
         button.src="assets/iconeDarkModeNoir.svg";
         
-        divsBgDark=document.getElementsByClassName("bg-dark");
-        for(let i=0;i<divsBgDark.length;++i){
-            let div=divsBgDark[i];
-            div.classList.remove("bg-dark");           
-        }
+        document.documentElement.setAttribute('data-bs-theme','white');
 
     }
 }

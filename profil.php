@@ -58,7 +58,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
     <body class="bg-light">
         <?php include('includes/header.php'); ?>
 
-        <main class="bg-light pt-5">
+        <main class=" pt-5">
 
             <div class="container mt-5">
             <?php 
