@@ -3,4 +3,4 @@ const menuHamburger = document.querySelector(".burger-menu")
  
         menuHamburger.addEventListener('click',()=>{
         navLinks.classList.toggle('mobile-menu')
-        })
+})

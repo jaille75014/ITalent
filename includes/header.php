@@ -55,7 +55,7 @@ function writeNavLine($name, $url){
               echo writeNavLine($name, $url);
             }
           ?>
-          <li><img src="assets/iconeDarkMode.svg" alt="Bouton pour activer / désactiver le mode sombre" id="darkMode" width="20px"></li>
+          <li><img src="assets/iconeDarkModeNoir.svg" alt="Bouton pour activer / désactiver le mode sombre" id="darkMode" width="20px"></li>
           
         </ul>
 
@@ -74,4 +74,5 @@ function writeNavLine($name, $url){
     
 
   <script src="js/header.js"></script>
+  <script src="js/darkMode.js"></script>
 </header>

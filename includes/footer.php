@@ -71,3 +71,4 @@
   <p class="copyright">Tous droits réservés &copy <?php echo date('Y'); ?> - ITalent </p>
   <script src="/js/script.js"></script>
 </footer>
+
