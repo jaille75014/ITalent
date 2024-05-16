@@ -12,6 +12,12 @@ if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
+if (isset($_POST['email'])&& !empty($_POST['email'])){
+    setcookie('email', $_POST['email'] , time()+30*24*3600,'/'); // Cookie expire dans 30 jours
+} else if (isset($_POST['email_pro']) && !empty($_POST['email_pro'])){
+    setcookie('email', $_POST['email_pro'], time()+ 30*24*3600,'/');
+}
+
 // Connexion à la base de données
 include("../includes/bd.php");
 

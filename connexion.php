@@ -17,15 +17,18 @@ include('includes/head.php');?>
     <main>
 
     <section>
+    <div class="container">
 
-    <?php 
-    if(isset($_GET['messageFailure'])){
-    echo '<div class="alert alert-danger" role="alert">'.htmlspecialchars($_GET['messageFailure']).'</div>'; 
-    }
-    if(isset($_GET['messageSuccess'])){
-        echo '<div class="alert alert-success" role="alert">'.htmlspecialchars($_GET['messageSuccess']).'</div>'; 
+    
+        <?php 
+        if(isset($_GET['messageFailure'])){
+        echo '<div class="alert alert-danger" role="alert">'.htmlspecialchars($_GET['messageFailure']).'</div>'; 
         }
-    ?>
+        if(isset($_GET['messageSuccess'])){
+            echo '<div class="alert alert-success" role="alert">'.htmlspecialchars($_GET['messageSuccess']).'</div>'; 
+            }
+        ?>
+    </div>
 
 
     <div class="px-4 py-5 px-md-5 text-center text-lg-start" >

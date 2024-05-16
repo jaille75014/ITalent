@@ -5,9 +5,9 @@ include('../includes/bd.php');
 
 
 if (isset($_POST['email'])&& !empty($_POST['email'])){
-    setcookie('email', $_POST['email'] , time()+30*24*3600); // Cookie expire dans 30 jours
+    setcookie('email', $_POST['email'] , time()+30*24*3600,'/'); // Cookie expire dans 30 jours
 } else if (isset($_POST['email_pro']) && !empty($_POST['email_pro'])){
-    setcookie('email', $_POST['email_pro'], time()+ 30*24*3600);
+    setcookie('email', $_POST['email_pro'], time()+ 30*24*3600,'/');
 }
 
 // if(!isset($_POST['email_pro']) || empty($_POST['email_pro'])
