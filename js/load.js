@@ -105,7 +105,7 @@ if("Notification" in window){
     // Check permissions
     if(Notification.permission === "granted"){
         checkForNewMessages();
-    } else{
+    } else {
         Notification.requestPermission().then((res) =>{
             if(res === "granted"){
                 checkForNewMessages();
