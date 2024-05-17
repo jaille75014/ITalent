@@ -1,9 +1,6 @@
 <?php 
-<<<<<<< HEAD
 session_start(); 
 include('includes/header_location.php');
-=======
->>>>>>> e8c9bb702a9eb53a1d74dcf01642660df30c7219
 
 if(!isset($_SESSION['captcha'])){
     redirectFailure('captcha', 'Chippeur arrête de chipper');

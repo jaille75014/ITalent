@@ -1,6 +1,7 @@
 <?php 
 session_start();
-if(!isset($_SESSION['captcha'])){
+include('includes/header_location.php');
+if(isset($_SESSION['statut']) && !isset($_SESSION['captcha'])){
     redirectFailure('captcha', 'Chippeur arrête de chipper');
 }
 
@@ -9,11 +10,10 @@ if(!isset($_SESSION['captcha'])){
 
 <!DOCTYPE html>
 <html>
-    <?php 
-    session_start();
-    
+    <?php     
     include('includes/bd.php');
     include('includes/fonctions_logs.php');
+    
 
     $title='Accueil';
     $url = 'index'; // Utilisé pour revenir sur cette page en cas d'erreurs dans les pages newsletter

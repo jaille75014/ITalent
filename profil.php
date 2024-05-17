@@ -8,8 +8,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 if(!isset($_SESSION['captcha'])){
-    header('location:captcha?error=Chipeur arrête de chipper !');
-    exit;
+    redirectFailure('captcha', 'Chippeur arrête de chipper');
 }
 
 $user_id = $_SESSION['user_id'];
