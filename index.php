@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <?php 
+    session_start();
+    
     include('includes/bd.php');
     include('includes/fonctions_logs.php');
 
