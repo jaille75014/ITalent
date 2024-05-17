@@ -120,15 +120,16 @@ if("Notification" in window){
     console.log("Notifications not supported");
 }
 
-function checkForNewMessages() {
-    fetch('back/is_new_messages.php?' + new Date().getTime())
-        .then(response => response.json())
-        .then(data => {
-            if (data > 0) {
-                notify();
-            }
-        })
-        .catch(error => console.error('Error:', error));
+async function checkForNewMessages() {
+    try {
+        const response = await fetch('back/is_new_messages.php?' + new Date().getTime());
+        const data = await response.json();
+        if (data > 0) {
+            notify();
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 
 function notify() {
