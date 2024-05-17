@@ -99,27 +99,27 @@ include('includes/header_location.php');
         </div>
 
         <div class="table-responsive">
-            <table class="table table-striped align-middle">
+            <table class="table table-striped align-middle text-center">
                 <thead>
                     <tr>
-                        <th class="text-center">Id</th>
-                        <th class="text-center">Nom</th>
-                        <th class="text-center">Prénom</th>
-                        <th class="text-center">Email</th>
-                        <th class="text-center">Statut</th>
-                        <th class="text-center">Supprimer publications</th>
-                        <th class="text-center">Supprimer story</th>
-                        <th class="text-center">Raison bannissement</th>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>Statut</th>
+                        <th>Supprimer publications</th>
+                        <th>Supprimer story</th>
+                        <th>Raison bannissement</th>
                     </tr>
                 </thead>
                 <tbody id="users">
                     <?php foreach ($users as $user): ?>
                     <tr>
-                        <td class="text-center"><?php echo $user['user_id']; ?></td>
-                        <td class="text-center"><?php echo $user['lastname']; ?></td>
-                        <td class="text-center"><?php echo $user['firstname']; ?></td>
-                        <td class="text-center"><?php echo $user['email']; ?></td>
-                        <td class="text-center">
+                        <td><?php echo $user['user_id']; ?></td>
+                        <td><?php echo $user['lastname']; ?></td>
+                        <td><?php echo $user['firstname']; ?></td>
+                        <td><?php echo $user['email']; ?></td>
+                        <td>
                         <?php 
                             switch ($user['statut']) {
                                 case '1':

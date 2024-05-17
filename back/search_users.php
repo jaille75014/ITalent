@@ -4,28 +4,28 @@ include('../includes/bd.php');
 
     
 if(isset($_GET['id'])) {
-    $id = $_GET['id'];
+    $id = htmlspecialchars($_GET['id']);
     $req = $bdd->prepare('SELECT user_id, firstname, lastname, email, statut FROM USERS WHERE user_id LIKE ?');
     $success = $req->execute([
         '%' . $id .'%'
     ]);
 
 } elseif(isset($_GET['email'])) {
-    $email = $_GET['email'];
+    $email = htmlspecialchars($_GET['email']);
     $req = $bdd->prepare('SELECT user_id, firstname, lastname, email, statut FROM USERS WHERE email LIKE ?');
     $success = $req->execute([
         '%' . $email .'%'
     ]);
 
 } elseif(isset($_GET['lastname'])) {
-    $lastname = $_GET['lastname'];
+    $lastname = htmlspecialchars($_GET['lastname']);
     $req = $bdd->prepare('SELECT user_id, firstname, lastname, email, statut FROM USERS WHERE lastname LIKE ?');
     $success = $req->execute([
         '%' . $lastname .'%'
     ]);
 
 } elseif(isset($_GET['firstname'])) {
-    $firstname = $_GET['firstname'];
+    $firstname = htmlspecialchars($_GET['firstname']);
     $req = $bdd->prepare('SELECT user_id, firstname, lastname, email, statut FROM USERS WHERE firstname LIKE ?');
     $success = $req->execute([
         '%' . $firstname .'%'
@@ -37,11 +37,11 @@ if($success){
 
     foreach($users as $user) {
         echo '<tr>';
-        echo '<td class="text-center">' . $user['user_id'] . '</td>';
-        echo '<td class="text-center">' . $user['lastname'] . '</td>';
-        echo '<td class="text-center">' . $user['firstname'] . '</td>';
-        echo '<td class="text-center">' . $user['email'] . '</td>';
-        echo '<td class="text-center">';
+        echo '<td>' . $user['user_id'] . '</td>';
+        echo '<td>' . $user['lastname'] . '</td>';
+        echo '<td>' . $user['firstname'] . '</td>';
+        echo '<td>' . $user['email'] . '</td>';
+        echo '<td>';
         switch ($user['statut']) {
             case '1':
                 echo "Etudiant";

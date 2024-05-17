@@ -32,8 +32,6 @@ include('includes/head.php');?>
                 <input type="text" name="zip"  pattern="[0-9]{5}" placeholder="Code postal, exemple : 77144">
                 <input type="file" name="image" accept="image/jpeg, image/png, image/gif">
                 <small id="emailHelp" class="form-text text-muted">Vous n'êtes pas obligé d'uploader une photo tout de suite</small>
-                <p>Ou bien prenez une photo</p>
-                <input type="file" name="image" accept="image/\*" capture="camera">
                 <button type="submit" class="btn btn-primary col-12 py-2 send" name="Student">S'inscrire</button>
 
             </form>
@@ -54,8 +52,6 @@ include('includes/head.php');?>
                 <input type="text" name="zip"  pattern="[0-9]{5}" placeholder="Code postal, exemple : 77144">
                 <input type="file" name="image" accept="image/jpeg, image/png, image/gif">
                 <small id="emailHelp" class="form-text text-muted">Vous n'êtes pas obligé d'uploader une photo tout de suite</small>
-                <p>Ou bien prenez une photo</p>
-                <input type="file" name="image" accept="image/\*" capture="camera">
                 <button type="submit" class="btn btn-primary col-12 py-2 send" name="Recruiter">S'inscrire</button>
             </form>
         </div>

@@ -68,10 +68,6 @@ function writeNavLine($name, $url){
 
     </nav>
         
-      
-    
-    
-    
 
   <script src="js/header.js"></script>
   <script src="js/darkMode.js"></script>

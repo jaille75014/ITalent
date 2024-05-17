@@ -10,8 +10,8 @@ if (!isset($_SESSION['user_id'])) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_id = $_SESSION['user_id'];
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
+    $firstname = htmlspecialchars($_POST['firstname']);
+    $lastname = htmlspecialchars($_POST['lastname']);
     $email = $_POST['email'];
     $password = $_POST['password'];
     $tel = $_POST['tel'];
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $passwordReset = isset($_POST['password']) && !empty($_POST['password']);
     if($passwordReset) {
         if (strlen($_POST['password']) < 8) {
-            header('location: ../profil?id=' . $_POST['user_id'] . '&message=Le mot de passe doit faire au moins 8 caractères !&type=danger');
+            header('location: ../profil?id=' . $_POST['user_id'] . '&messageFailure=Le mot de passe doit faire au moins 8 caractères !&type=danger');
             exit;
         } else {
             $salt = 'SANANESL3PLUSBEAUDUMONDEETDELESGIJEPENSEQUILA49ANS';
