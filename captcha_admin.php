@@ -1,14 +1,13 @@
 <?php 
+include('includes/header_location.php'); 
 session_start(); 
 if(!isset($_SESSION['captcha'])){
-    header('location:captcha?error=Chipeur arrête de chipper !');
-    exit;
+    redirectFailure('captcha', 'Chippeur arrête de chipper');
 }
     
 
 if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
-    header('location:index');
-    exit;
+    redirectFailure('index', 'Vous n\'avez pas les droits pour accéder à cette page');
 } 
 
 include('includes/bd.php'); // Connexion à la base de données

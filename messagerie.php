@@ -64,30 +64,7 @@ if (isset($_GET['user_id'])) {
     ?>
     <head>
         <?php include("includes/head.php"); ?>
-        <style>
-            .message-box {
-                border: 1px solid #ccc;
-                padding: 10px;
-                max-height: 400px;
-                overflow-y: auto;
-            }
-            .received-message {
-                background-color: #f0f0f0; 
-                margin-right: 50%;
-                padding: 10px;
-                border-radius: 8px;
-                margin-bottom: 10px;
-            }
-            .sent-message {
-                background-color: #007bff;
-                color: white;
-                margin-left: 50%;
-                padding: 10px;
-                border-radius: 8px;
-                margin-bottom: 10px;
-                text-align: right;
-            }
-        </style>
+    
     </head>
 
 

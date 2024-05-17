@@ -25,8 +25,9 @@ foreach ($users as $user) {
 
         $req = $bdd->prepare('DELETE FROM BAN WHERE user_id = :user_id');
         $req->execute([':user_id' => $user['user_id']]);
+
+        $bool = true;
     }
-    $bool = true;
 }
 if($bool){
     $body = '<p>Les utilisateurs bannis ont été supprimés</p>';

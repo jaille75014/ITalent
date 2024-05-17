@@ -1,5 +1,6 @@
 <?php 
 session_start(); 
+include('includes/header_location.php');
 
 if (!isset($_SESSION['statut'])) {
     header('location: index');
@@ -15,46 +16,28 @@ if(isset($_POST['answer'])&& !empty($_POST['answer'])){
             case 1 : 
                 header('location: etudiant');
                 exit;
-                break;
             case 2 : 
                 header('location: index_recruteur');
                 exit;
-                break;
             case 3 : 
                 header('location: admin');
                 exit;
-                break;
         }
         
     } else {
-        header('location: captcha?error=Veuillez réessayer !');
-        exit;
-    }
-}
-
-$q = 'SELECT COUNT(question_id) FROM CAPTCHA;';
-$req = $bdd->prepare($q);
-$req->execute();
-$result = $req->fetch(PDO::FETCH_ASSOC);
-foreach($result as $index => $value) $numberMax=$value;
-
-$numberQuestion=rand(1, $numberMax);
-
-$q = 'SELECT question, answer FROM CAPTCHA;';
-$req = $bdd->prepare($q);
-$req->execute();
-$result = $req->fetch(PDO::FETCH_ASSOC);
-
-for ($i=1;$i<=$numberQuestion;$i++){
-    if ($i==$numberQuestion){
-        $question=$result['question'];
-        $answer=$result['answer'];
-    } else {
-        $result = $req->fetch(PDO::FETCH_ASSOC);
+        redirectFailure('captcha', 'Erreur, veuillez réessayer');
     }
 }
 
 
+
+$q = 'SELECT question, answer FROM CAPTCHA ORDER BY RAND() LIMIT 1;';
+$req = $bdd->prepare($q);
+$req->execute();
+$result = $req->fetch(PDO::FETCH_ASSOC);
+
+$question=$result['question'];
+$answer=$result['answer'];
     
 
 ?>
@@ -83,8 +66,8 @@ for ($i=1;$i<=$numberQuestion;$i++){
                     if(isset($_GET['messageSuccess'])){
                         echo '<div class="alert alert-success" role="alert">'.htmlspecialchars($_GET['messageSuccess']).'</div>'; 
                     }
-                    if(isset($_GET['error'])){
-                        echo '<div class="alert alert-danger" role="alert">'.htmlspecialchars($_GET['error']).'</div>'; 
+                    if(isset($_GET['messageFailure'])){
+                        echo '<div class="alert alert-danger" role="alert">'.htmlspecialchars($_GET['messageFailure']).'</div>'; 
                         }
                     
                     

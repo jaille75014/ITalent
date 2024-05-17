@@ -1,17 +1,15 @@
 <?php  
+include('includes/fonctions_logs.php'); 
+include('includes/header_location.php');
 session_start(); 
 
 if (!isset($_SESSION['captcha'])) {
-    header('location:captcha?error=Chipeur arrête de chipper !');
-    exit;
+    redirectFailure('index', 'Chippeur arrête de chipper');
 }
 
 if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
-    header('location:index');
-    exit;
+    redirectFailure('index', 'Vous n\'avez pas les droits pour accéder à cette page');
 }
-
-include('includes/fonctions_logs.php'); 
 
 function readLogFile($log_file) {
     $log_content = '';

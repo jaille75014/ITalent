@@ -1,6 +1,7 @@
 <?php 
 
 session_start();
+if(isset($_SESSION['$statut']) == 3){
 include("../includes/bd.php");
 
 if (isset($_GET['competence']) && !empty($_GET['competence'])
@@ -37,5 +38,5 @@ if (isset($_GET['competence']) && !empty($_GET['competence'])
 } else {
     echo "0";
 }
-
+}
 ?>

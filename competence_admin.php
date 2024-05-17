@@ -1,16 +1,14 @@
 <?php 
 session_start(); 
-
+include('includes/header_location.php');
 
 if(!isset($_SESSION['captcha'])){
-    header('location:captcha?error=Chipeur arrête de chipper !');
-    exit;
+    redirectFailure('captcha', 'Chippeur arrête de chipper');
 }
     
 
 if (!isset($_SESSION['statut'])) {
-    header('location:index');
-    exit;
+    redirectFailure('index', 'Vous n\'avez pas les droits pour accéder à cette page');
 } 
 include('includes/fonctions_logs.php');
 writeVisitLog('competence_admin');

@@ -69,7 +69,7 @@ $firstUser = $user[0];
                                             ?>
                                             <div class="row">
                                                 <div class="col-4">
-                                                    <img src="uploads/publications/<?php echo $publication['publication_image']; ?>" alt="Photo de la publication" class="img-fluid">
+                                                    <img src="<?php echo $publication['publication_image']; ?>" alt="Photo de la publication" class="img-fluid">
                                                 </div>
                                                 <div class="col-8">
                                                     <p><?php echo $publication['description']; ?></p>

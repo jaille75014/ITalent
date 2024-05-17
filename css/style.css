@@ -46,8 +46,29 @@ header{
     display: none;
 }
 
-
-
+/* Messagerie */
+.message-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+.received-message {
+  background-color: #555; 
+  margin-right: 50%;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.sent-message {
+  background-color: #007bff;
+  color: white;
+  margin-left: 50%;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  text-align: right;
+}
 
 
 /* CSS index.php */

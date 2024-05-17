@@ -1,3 +1,12 @@
+<?php 
+session_start();
+if(!isset($_SESSION['captcha'])){
+    redirectFailure('captcha', 'Chippeur arrête de chipper');
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html>
     <?php 

@@ -1,14 +1,13 @@
 <?php  
+include('includes/header_location.php');
     session_start(); 
     if(!isset($_SESSION['captcha'])){
-        header('location:captcha?error=Chipeur arrête de chipper !');
-        exit;
+        redirectFailure('captcha', 'Chippeur arrête de chipper');
     }
     
 
     if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
-        header('location:index');
-        exit;
+        redirectFailure('index', 'Vous n\'avez pas les droits pour accéder à cette page');
     }
 
     $id = isset($_POST['user_id']) ? htmlspecialchars($_POST['user_id']) : null;
@@ -30,12 +29,14 @@
     if(isset($_POST['delete_user']) && $id) {
         
         $req_publications = $bdd->prepare('DELETE FROM PUBLICATIONS WHERE user_id = :id');
-        $req_publications->execute(array(':id' => $id));
+    $req_publications->execute([
+        ':id' => $id
+    ]);
         $req_storys = $bdd->prepare('DELETE FROM STORYS WHERE user_id = :id');
-        $req_storys->execute(array(':id' => $id));
+        $req_storys->execute([':id' => $id]);
 
         $req = $bdd->prepare('UPDATE USERS SET statut = 0 WHERE user_id = :id'); 
-        $req->execute(array(':id' => $id));
+        $req->execute([':id' => $id]);
 
         if(isset($_POST['raison_suppression'])) {
             $raison = $_POST['raison_suppression'];
@@ -43,14 +44,13 @@
             file_put_contents($log_file, "Utilisateur supprimé (ID: $id) - Raison: $raison\n", FILE_APPEND);
         }
         $req_ban = $bdd->prepare('INSERT INTO BAN (date_ban, reason, user_id) VALUES (:date_ban, :reason, :user_id)');
-        $req_ban->execute(array(
+        $req_ban->execute([
             ':date_ban' => date('Y-m-d H:i:s', strtotime("+30 days")),
             ':reason' => $raison,
             ':user_id'=>$id
-        ));  
+        ]);  
         
-        header('location: admin');
-        exit;
+        redirectSuccess('admin', 'Utilisateur banni avec succès');
     }
 ?>
 

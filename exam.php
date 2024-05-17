@@ -1,6 +1,8 @@
 <?php 
 session_start(); 
 include('includes/header_location.php');
+include('includes/bd.php'); // Connexion à la base de données
+
 if(!isset($_SESSION['captcha'])){
     redirectFailure('captcha', 'Chipeur arrête de chipper !');
 }
@@ -10,11 +12,11 @@ if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 1) {
     redirectFailure('index', 'Vous n\'avez pas les droits pour accéder à cette page.');
 } 
 
-if (!isset($_POST['competenceTest']) || $_SESSION['statut'] != 1) {
+if (!isset($_POST['competenceTest'])) {
     redirectFailure('index', 'Vous n\'avez pas les droits pour accéder à cette page.');
 } 
 
-include('includes/bd.php'); // Connexion à la base de données
+
 
 // Récupérer l'id de la compétencec choisi par l'utilisateur (sert pour la requête permettant de récupérer tte les questions)
 $q='SELECT competence_id FROM COMPETENCES WHERE name=:name;';
@@ -61,18 +63,6 @@ $req2->execute([
             <div class="container">
 
                 <h1 class="text-center">Examen de : <span class="text-primary"><?= $_POST['competenceTest']?></span></h1>
-                <!-- <div class="time">
-                <div class="circle">
-                <div class="dots min_dot"></div>
-                <svg>
-                    <circle cx="70" cy="70" r="70"></circle>
-                    <circle cx="70" cy="70" r="70" id="mm"></circle>
-                </svg>
-                <div class="minutes">00<span>Minutes</span></div>
-                </div>
-                </div>
-            
-                -->
 
                 <form method="post" action="back/verif_exam">
                 <?php 

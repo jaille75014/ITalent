@@ -15,7 +15,7 @@ if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==1) {
   ];
 } else if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==3) {
   $links = [
-      "Accueil" => "admin",
+      "Utilisateurs" => "admin",
       "Profil" => "profil",
       "Captcha" => "captcha_admin",
       "Newsletter" => "newsletter_admin",

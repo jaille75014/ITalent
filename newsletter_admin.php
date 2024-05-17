@@ -25,7 +25,6 @@
 <body class="bg-light">
 
     <?php include('includes/header.php');?>
-    <link type="text/css" rel="stylesheet" href="css/style.css">
 
     <main class="container newsletter_h1">
     <?php 

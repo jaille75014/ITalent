@@ -9,14 +9,12 @@ if (!isset($_SESSION['user_id'])) {
 
 
 if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 1) {
-    header('location:index');
-    exit;
+    redirectFailure('index', 'Vous n\'avez pas les droits pour accéder à cette page');
 } 
 
 
 if(!isset($_SESSION['captcha'])){
-    header('location:captcha?error=Chipeur arrête de chipper !');
-    exit;
+    redirectFailure('captcha', 'Chippeur arrête de chipper');
 }
 
 ?>

@@ -84,24 +84,24 @@ if(!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
                     $select = 'SELECT BAN.user_id,lastname,firstname, reason, date_ban FROM BAN INNER JOIN USERS ON BAN.user_id=USERS.user_id';
                     $res = $bdd->query($select);
                     if ($res->rowCount() > 0) {
-                        echo '<table class="table table-striped">';
+                        echo '<table class="table table-striped text-center">';
                         echo '<thead>';
                         echo '<tr>';
-                        echo '<th class="text-center">Id User</th>';
-                        echo '<th class="text-center">Lastname</th>';
-                        echo '<th class="text-center">Firstname</th>';
-                        echo '<th class="text-center">Raison</th>';
-                        echo '<th class="text-center">Date</th>';
+                        echo '<th>Id User</th>';
+                        echo '<th>Lastname</th>';
+                        echo '<th>Firstname</th>';
+                        echo '<th>Raison</th>';
+                        echo '<th>Date</th>';
                         echo '</tr>';
                         echo '</thead>';
                         echo '<tbody>';
                         while($row = $res->fetch(PDO::FETCH_ASSOC)) {
                             echo '<tr>';
-                            echo '<td class="text-center">' . $row['user_id'] . '</td>';
-                            echo '<td class="text-center">' . $row['lastname'] . '</td>';
-                            echo '<td class="text-center">' . $row['firstname'] . '</td>';
-                            echo '<td class="text-center">' . $row['reason'] . '</td>';
-                            echo '<td class="text-center">' . $row['date_ban'] . '</td>';
+                            echo '<td>' . $row['user_id'] . '</td>';
+                            echo '<td>' . $row['lastname'] . '</td>';
+                            echo '<td>' . $row['firstname'] . '</td>';
+                            echo '<td>' . $row['reason'] . '</td>';
+                            echo '<td>' . $row['date_ban'] . '</td>';
                             echo '</tr>';
                         }
                         echo '</tbody>';

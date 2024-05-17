@@ -2,6 +2,7 @@
     session_start(); 
     include('includes/header_location.php');
     include("includes/bd.php");
+
     if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 2) {
         redirectFailure('index', 'Vous n\'avez pas les droits pour accéder à cette page.');
     }
@@ -181,7 +182,7 @@
                 <div class="col-2">
                     <?php 
                     $filename = "uploads/pdf/cv_" . $user['user_id'] . ".pdf";
-                    $pdf_url = "http://italent.site/uploads/pdf/cv_" . $user['user_id'] . ".pdf";
+                    $pdf_url = "https://italent.site/uploads/pdf/cv_" . $user['user_id'] . ".pdf";
 
                     if (file_exists($filename)): ?>
                         <a href="<?php echo $pdf_url; ?>" class="btn btn-info">Voir le CV en PDF</a>
