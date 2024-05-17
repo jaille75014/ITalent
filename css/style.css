@@ -14,7 +14,7 @@ footer input::placeholder{
 /* CSS du header  */
 
 header{
-  opacity:80%;
+  opacity:0.8;
 } 
 
 .navbar1{
@@ -582,6 +582,7 @@ footer hr {
         top:0;
         left:0;
         background-color: rgba(255,255,255,0.20);
+        -webkit-backdrop-filter: blur(12px);
         backdrop-filter: blur(12px);
         width:100vw;
         height:100vh;

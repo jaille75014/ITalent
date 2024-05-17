@@ -3,8 +3,10 @@ const menuHamburger = document.querySelector(".burger-menu")
  
         menuHamburger.addEventListener('click',()=>{
         let exist = navLinks.classList.toggle('mobile-menu');
+        header=document.getElementsByTagName("header")[0];
         if(exist){
-                header=document.getElementsByTagName("header")[0];
                 header.style.opacity="1";
+        } else {
+                header.style.opacity="0.8";  
         }
 })
