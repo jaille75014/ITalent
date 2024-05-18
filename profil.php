@@ -177,23 +177,21 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
 
 
                     <div class="container mt-5">
-                        <h3 class="section-title">Storys</h3>
+                        <h3 class="section-title">Stories</h3>
                         <div class="story">
                             <div class="mb-3">
-                                <h4>Ajouter une Story</h4>
+                                <h4>Add a Story</h4>
                                 <form action="back/ajout_story" method="POST" enctype="multipart/form-data">
-                                    <input type="file" name="image_story" accept="image/\*" required>
-                                    <button type="submit" class="btn btn-primary">Publier</button>
+                                    <input type="file" name="image_story" accept="image/*" required class="form-control-file">
+                                    <button type="submit" class="btn btn-primary mt-2">Publish</button>
                                 </form>
                             </div>
                             <?php foreach ($storys as $story): ?>
                                 <div class="story-circle me-3 position-relative">
-                                    <img src="<?php echo htmlspecialchars('uploads/storys/' . $story['image']); ?>" alt="Image de story" style="width: 100px; height: 100px;"> 
-                                    <a href="back/supp_story?story_id=<?php echo $story['story_id']; ?>" class="btn btn-danger btn-sm position-absolute top-0 end-0" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette story ?');">X</a>
+                                    <img src="<?php echo htmlspecialchars('uploads/storys/' . $story['image']); ?>" alt="Story Image" style="width: 100px; height: 100px;" class="img-fluid rounded-circle"> 
+                                    <a href="back/supp_story?story_id=<?php echo $story['story_id']; ?>" class="btn btn-danger btn-sm position-absolute top-0 end-0" onclick="return confirm('Are you sure you want to delete this story?');">X</a>
                                 </div>
                             <?php endforeach; ?>
-
-
                         </div>
                     </div>
 
