@@ -136,6 +136,11 @@ header{
     padding: 5px 0;
 }
 
+.error{
+  font-size: 6rem;
+}
+
+
 
 /* CSS index_recruteur.php */
 .banner-recruiter {
@@ -962,3 +967,5 @@ footer hr {
 @media (prefers-color-scheme : dark){
   /* vide car on gère tout en js */
 }
+
+

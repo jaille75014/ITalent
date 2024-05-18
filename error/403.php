@@ -8,7 +8,7 @@ session_start();
 <!DOCTYPE html>
 <html>
     <?php 
-    $title='Error 500';
+    $title='Error 403';
     include('/var/www/html/includes/head.php');
     ?>
 
@@ -18,8 +18,8 @@ session_start();
 
         <main>
 
-            <h1 class="error text-center text-danger my-5">ERREUR 500</h1>
-            <p class="text-center">Désolé, vous avez rencontré une erreur... Nous essayons de résoudre ce problème.</p>
+            <h1 class="error text-center text-danger my-5">ERREUR 403</h1>
+            <p class="text-center">Vous n'êtes pas autorisé à accéder à cette page !</p>
 
 
         </main>

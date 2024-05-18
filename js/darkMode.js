@@ -32,12 +32,12 @@ function themeAppliquer(){
         document.documentElement.setAttribute('data-bs-theme','dark');
 
         
-        button.src="assets/iconeDarkModeBlanc.svg";
+        button.src="/assets/iconeDarkModeBlanc.svg";
 
     } else {
         document.body.classList.remove("bg-dark","text-white");
         document.body.classList.add("bg-light");
-        button.src="assets/iconeDarkModeNoir.svg";
+        button.src="/assets/iconeDarkModeNoir.svg";
 
 
         header=document.getElementsByTagName("header")[0];

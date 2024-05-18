@@ -1,34 +1,36 @@
-<?php 
-if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==1) {
+<?php
+session_start();
+
+if (isset($_SESSION['user_id']) && $_SESSION['statut'] == 1) {
     $links = [
-        "Accueil" => "etudiant",
-        "Profil" => "profil",
-        "Messages" => "messagerie",
-        "Déconnexion" => "deconnexion"
+        "Accueil" => "/etudiant",
+        "Profil" => "/profil",
+        "Messages" => "/messagerie",
+        "Déconnexion" => "/deconnexion"
     ];
-}  else if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==2) {
-  $links = [
-      "Accueil" => "index_recruteur",
-      "Profil" => "profil",
-      "Messages" => "messagerie",
-      "Déconnexion" => "deconnexion"
-  ];
-} else if (isset($_SESSION['user_id']) &&  $_SESSION['statut']==3) {
-  $links = [
-      "Utilisateurs" => "admin",
-      "Profil" => "profil",
-      "Captcha" => "captcha_admin",
-      "Newsletter" => "newsletter_admin",
-      "Compétence" => "competence_admin",
-      "Débannissement" => "demandes",
-      "Logs" => "admin_log",
-      "Déconnexion" => "deconnexion"
-  ];
+} else if (isset($_SESSION['user_id']) && $_SESSION['statut'] == 2) {
+    $links = [
+        "Accueil" => "/index_recruteur",
+        "Profil" => "/profil",
+        "Messages" => "/messagerie",
+        "Déconnexion" => "/deconnexion"
+    ];
+} else if (isset($_SESSION['user_id']) && $_SESSION['statut'] == 3) {
+    $links = [
+        "Utilisateurs" => "/admin",
+        "Profil" => "/profil",
+        "Captcha" => "/captcha_admin",
+        "Newsletter" => "/newsletter_admin",
+        "Compétence" => "/competence_admin",
+        "Débannissement" => "/demandes",
+        "Logs" => "/admin_log",
+        "Déconnexion" => "/deconnexion"
+    ];
 } else {
     $links = [
-        "Accueil" => "index", 
-        "Connexion" => "connexion",
-        "Inscription" => "inscription"
+        "Accueil" => "/index",
+        "Connexion" => "/connexion",
+        "Inscription" => "/inscription"
     ];
 }
 
@@ -45,7 +47,7 @@ function writeNavLine($name, $url){
     
 
     
-      <a href="index.php" class="logo"><img src="assets/LOGO_version_minimalisé.png" alt="Logo ITalent" height="70px" ></a>
+      <a href="/" class="logo"><img src="/assets/LOGO_version_minimalisé.png" alt="Logo ITalent" height="70px" ></a>
       
       <div class="nav-links">
 
@@ -55,13 +57,13 @@ function writeNavLine($name, $url){
               echo writeNavLine($name, $url);
             }
           ?>
-          <li><img src="assets/iconeDarkModeNoir.svg" alt="Bouton pour activer / désactiver le mode sombre" id="darkMode" width="20px"></li>
+          <li><img src="/assets/iconeDarkModeNoir.svg" alt="Bouton pour activer / désactiver le mode sombre" id="darkMode" width="20px"></li>
           
         </ul>
 
       </div>
 
-      <img src="assets/menu.png" alt="logo burger menu" class="burger-menu">
+      <img src="/assets/menu.png" alt="logo burger menu" class="burger-menu">
       
 
     
@@ -69,6 +71,6 @@ function writeNavLine($name, $url){
     </nav>
         
 
-  <script src="js/header.js"></script>
-  <script src="js/darkMode.js"></script>
+  <script src="/js/header.js"></script>
+  <script src="/js/darkMode.js"></script>
 </header>
