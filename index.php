@@ -43,7 +43,7 @@ if(isset($_SESSION['statut']) && !isset($_SESSION['captcha'])){
                 <div class="d-flex justify-content-center">
                     <div class="row align-items-center my-5 gy-4">
                         <div class="col-12 col-md-6 text-center text-md-start my-5">
-                            <h2>Prouves tes compétences,<br>Discutes,<br>Passes un entretien et...<br>Décroches un job !</h2>
+                            <h2>Prouve tes compétences,<br>Discute,<br>Passe un entretien et...<br>Décroche un job !</h2>
                             <h4 class="mt-3">Bienvenue chez <span class="text-primary">ITalent</span> !</h4>
                             <a href="inscription" class="btn btn-primary mt-3">Viens décrocher ton premier emploi !</a>
                         </div>
