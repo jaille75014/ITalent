@@ -108,6 +108,8 @@ if(isset($_SESSION['statut']) && !isset($_SESSION['captcha'])){
                 </div>
 
             </div>
+
+            <div></div>
             
         </main>
         <script>
