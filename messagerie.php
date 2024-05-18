@@ -100,7 +100,7 @@ if (isset($_GET['user_id'])) {
 
                 </div>
 
-                <div class="col-12 col-sm-8 col-lg-9 pb-3">
+                <div class="col-12 col-sm-8 col-lg-9 pb-6">
                     <div class="conversation">
 
                         <div class="message-box">
