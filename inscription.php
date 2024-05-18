@@ -3,6 +3,7 @@
 
 <?php 
 $title='Inscription';
+$url = 'inscription'; // Utilisé pour revenir sur cette page en cas d'erreurs dans les pages newsletter
 include('includes/head.php');?>
 
     <body class="bg-light">
