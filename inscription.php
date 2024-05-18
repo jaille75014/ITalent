@@ -77,13 +77,6 @@ include('includes/head.php');?>
         </div>
     </div>
         
-        <script>
-            document.addEventListener("contextmenu", function(event){
-                alert("He, he, bien tenté mais t'auras pas accès à notre code");
-                event.preventDefault();
-            })
-        </script>
-        
     <script src="js/script.js"></script>
 
     </main>

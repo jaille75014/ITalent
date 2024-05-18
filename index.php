@@ -113,6 +113,12 @@ if(isset($_SESSION['statut']) && !isset($_SESSION['captcha'])){
             </div>
             
         </main>
+        <script>
+            document.addEventListener("contextmenu", function(event){
+                alert("He, he, bien tenté mais t'auras pas accès à notre code");
+                event.preventDefault();
+            })
+        </script>
 
         <?php include('includes/footer.php');?>
 
