@@ -36,6 +36,7 @@ async function search(queryParam, inputId){
     const res = await fetch(`back/addQuestionsCompetence?competence=${competence.value}&question=${question.value}&answer1=${answer1.value}&answer2=${answer2.value}&answer3=${answer3.value}&answer4=${answer4.value}&answerCorrect=${answerCorrect.value}`);
     const txt = await res.text();
 
+
     competence.value="Sélectionner une compétence";
     question.value="";
     answer1.value="";

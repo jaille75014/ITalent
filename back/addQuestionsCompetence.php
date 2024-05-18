@@ -1,7 +1,7 @@
 <?php 
 
-session_start();
-if(isset($_SESSION['$statut']) == 3){
+
+
 include("../includes/bd.php");
 
 if (isset($_GET['competence']) && !empty($_GET['competence'])
@@ -15,7 +15,7 @@ if (isset($_GET['competence']) && !empty($_GET['competence'])
     $q='SELECT competence_id FROM COMPETENCES WHERE name=:name;';
     $req=$bdd->prepare($q);
     $req->execute([
-        'name'=>$_GET['competence']
+        'name'=>htmlspecialchars($_GET['competence'])
     ]); 
 
     $result=$req->fetch(PDO::FETCH_ASSOC);
@@ -38,5 +38,5 @@ if (isset($_GET['competence']) && !empty($_GET['competence'])
 } else {
     echo "0";
 }
-}
+
 ?>
