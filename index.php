@@ -62,7 +62,7 @@ if(isset($_SESSION['statut']) && !isset($_SESSION['captcha'])){
                 <div class="d-flex justify-content-center">
                     <div class="row">
 
-                        <div class="col-md-4 mb-4 pe-md-5">
+                        <div class="col-md-6 mb-4 pe-md-5">
                             <div class="flip-card">
                                 <div class="flip-card-inner">
                                     <div class="flip-card-front">
@@ -85,7 +85,7 @@ if(isset($_SESSION['statut']) && !isset($_SESSION['captcha'])){
                             </div>
                         </div>
 
-                        <div class="col-md-4 mb-4 ps-md-5">
+                        <div class="col-md-6 mb-4 ps-md-5">
                             <div class="flip-card">
                                 <div class="flip-card-inner">
                                     <div class="flip-card-front">
