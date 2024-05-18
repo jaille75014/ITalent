@@ -3,7 +3,7 @@ let theme= localStorage.getItem('theme') || 'light';
 
 const date = new Date() ;
 const hour = date.getHours();
-if(hour<7 || hour >21){
+if(hour<7 || (hour>21 && hour<=24)){
     theme='dark';
 }
 
