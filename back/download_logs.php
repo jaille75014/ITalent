@@ -13,10 +13,26 @@ if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
 $logs_directory = '../logs/';
 $absolute_path = realpath($logs_directory);
 
+// Vérifiez si le chemin absolu est valide
+if ($absolute_path === false) {
+    exit("Le chemin absolu du dossier logs est invalide.");
+}
 
-$logs_directory = $absolute_path; // Chemin vers le dossier contenant les logs
+echo "Chemin absolu du dossier logs: $absolute_path";
 
-$logs_files = glob($logs_directory . '*.txt'); // Vérifiez si un fichier de log existe dans le dossier
+$logs_directory = $absolute_path . '/';
+$logs_files = glob($logs_directory . '*.txt'); 
+
+// Affichez les fichiers trouvés pour le débogage
+if (!empty($logs_files)) {
+    echo "Fichiers de logs trouvés:<br>";
+    foreach ($logs_files as $file) {
+        echo basename($file) . "<br>";
+    }
+} else {
+    echo "Aucun fichier de log trouvé dans le dossier.";
+}
+
 if (!empty($logs_files)) {
     $zip = new ZipArchive(); // Créez une archive zip pour regrouper tous les fichiers de log
     $zip_name = 'logs.zip';
