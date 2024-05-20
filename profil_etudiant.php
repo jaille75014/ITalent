@@ -27,6 +27,14 @@ if (!$user) {
     redirectFailure('../index_recruteur', 'L\'utilisateur n\'a pas souhaité partager ses informations.');    
 }
 $firstUser = $user[0];
+
+$q="SELECT image FROM PUBLICATIONS WHERE user_id=?;";
+$resultat = $bdd->prepare($q);
+$resultat->execute([$user_id]);
+$publications=$res->fetchAll(PDO::FETCH_ASSOC);
+
+
+
 // Afficher les informations de l'utilisateur
 ?>
 
@@ -53,41 +61,78 @@ $firstUser = $user[0];
                                     <img src="<?php echo $firstUser['user_image']; ?>" alt="Photo de profil">
                                 </div>
                                 <div class="col-8">
-                                    <h2><?php echo $firstUser['firstname'] . ' ' . $firstUser['lastname']; ?></h2>
+                                    <h3><?php echo $firstUser['firstname'] . ' ' . $firstUser['lastname']; ?></h3>
                                     <p>Ville : <?php echo $firstUser['city']; ?></p>
                                     <p>Code postal : <?php echo $firstUser['zip']; ?></p>
-                                    <p>Compétence : <?php echo $firstUser['name']; ?></p>
-                                    <p>Niveau : <?php echo $firstUser['level']; ?></p>
                                     <p>Poste : <?php echo $firstUser['name_job']; ?></p>
                                 </div>
                             </div>
+                            <?php
+                            $q2 = 'SELECT name,level,validity FROM POSSESSES INNER JOIN COMPETENCES ON COMPETENCES.competence_id=POSSESSES.competence_id WHERE POSSESSES.user_id = ? ;';
+                        $req2=$bdd->prepare($q2);
+                        $req2->execute([
+                            $user_id
+                        ]);
+                        $competences = $req2->fetchAll(PDO::FETCH_ASSOC);
+
+                        if(!empty($competences)){
+                            echo '
+                            
+                            
+                            <h3 class="text-center mt-5" >Ses compétences : </h3>
+
+                            <div class="table-responsive">
+
+                            <table class="table table-striped my-5 text-center">
+                            <thead>
+                            <tr>
+                                <th>Compétence</th>
+                                <th>Note</th>
+                                <th>Date de passage</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            ';
+                            
+
+                            foreach ($competences as $competence) {
+                                echo '
+                                    <tr>
+                                        <td>'.$competence['name'].'</td>
+                                        <td>'.$competence['level'].'</td>
+                                        <td>'.$competence['validity'].'</td>
+                                    </tr>
+                                
+                                ';
+                            }
+
+                            echo '</tbody></table></div';
+
+                        }
+                        ?>
+
+                </table>
+
                             <div class="row">
                                 <div class="col-12">
-                                    <h2>Publications</h2>
+                                    <h3 class="text-center mb-5">Publications :</h3>
                                     <?php 
-                                    $hasPublication = false;
-                                    foreach($user as $userInfo){
-                                        if (!empty($userInfo['publication_image'])) {
-                                            $hasPublication = true;
-                                            ?>
-                                            <div class="row">
+                                        foreach($publications as $publication){
+                                            echo '<div class="row">
                                                 <div class="col-4">
-                                                    <img src="<?php echo $userInfo['publication_image']; ?>" alt="Photo de la publication" class="img-fluid">
+                                                    <img src="'.$publication['image'].'" alt="Photo de la publication" class="img-fluid">
                                                 </div>
                                                 <div class="col-8">
-                                                    <p><?php echo $userInfo['description']; ?></p>
+                                                    <p>'.$publication['description'].'</p>
                                                 </div>
-                                            </div>
-                                            <?php
+                                            </div>';
+
+                                            echo $publication['image'];
                                         }
-                                    }
-                                    if (!$hasPublication) {
-                                        echo "<p>Cet utilisateur n'a pas de publications.</p>";
-                                    }
                                     ?>
                                         </div>
                                     </div>
-                                    <h2>Storys</h2>
+                                    <h3 class="text-center">Storys : </h3>
                                     <?php 
                                     if (!empty($firstUser['storys'])) {
                                         foreach($firstUser['storys'] as $story){

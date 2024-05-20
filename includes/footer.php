@@ -43,7 +43,7 @@
               <a href="#!" class="text-white">Mentions légales</a>
             </li>
             <li class="mb-2">
-              <a href="#!" class="text-white">Conditions généraless</a>
+              <a href="#!" class="text-white">Conditions générales</a>
             </li>
             <li class="mb-2">
               <a href="confidentialite" class="text-white">Politique de confidentialité</a>
