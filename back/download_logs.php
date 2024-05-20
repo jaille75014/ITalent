@@ -25,12 +25,12 @@ $logs_files = glob($logs_directory . '*.txt');
 
 // Affichez les fichiers trouvés pour le débogage
 if (!empty($logs_files)) {
-    echo "Fichiers de logs trouvés:<br>";
+    echo "Fichiers de logs trouvés : ";
     foreach ($logs_files as $file) {
-        echo basename($file) . "<br>";
+        echo basename($file);
     }
 } else {
-    echo "Aucun fichier de log trouvé dans le dossier.";
+    echo "Aucun fichier de log trouvé dans le dossier";
 }
 
 if (!empty($logs_files)) {
