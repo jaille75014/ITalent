@@ -10,7 +10,11 @@ if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
     exit;
 }
 
-$logs_directory = 'logs/'; // Chemin vers le dossier contenant les logs
+$logs_directory = '../logs/';
+$absolute_path = realpath($logs_directory);
+
+
+$logs_directory = $absolute_path; // Chemin vers le dossier contenant les logs
 
 $logs_files = glob($logs_directory . '*.txt'); // Vérifiez si un fichier de log existe dans le dossier
 if (!empty($logs_files)) {
