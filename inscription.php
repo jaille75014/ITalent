@@ -45,9 +45,9 @@ include('includes/head.php');?>
                 <input type="text" name="firstname" placeholder="Prénom">
                 <input type="email" name="email_pro" placeholder="Votre email">
                 <input type="text" name="name_factory" placeholder="Nom de l'entreprise">
-                <div class="position-relative"">
-                <input type="password" name="password" class="pass" placeholder="Mot de passe">
-                <img src="assets/eye-slash.svg" alt="eye" class="eye position-absolute" style="right: 10px; top: 70%; transform: translateY(-50%);" onclick="togglePasswordVisibility(this)" />
+                <div class="password-container" style="position: relative; display: inline-block; width: 100%;">
+                <input type="password" name="password" class="pass" style="padding-right: 40px; width: 100%;" placeholder="Mot de passe">
+                <img src="assets/eye-slash.svg" alt="eye" class="eye position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%);" onclick="togglePasswordVisibility(this)" />
                 </div>
                 <input type="text" name="city" placeholder="Ville">
                 <input type="text" name="zip"  pattern="[0-9]{5}" placeholder="Code postal, exemple : 77144">
