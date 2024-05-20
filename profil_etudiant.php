@@ -132,30 +132,18 @@ $req_user_publications->execute([$user_id]);
                                     </div>
                                     <h3 class="text-center">Storys : </h3>
                                     <?php 
-                                    if (!empty($firstUser['storys'])) {
-                                        foreach($firstUser['storys'] as $story){
-                                            // Convertir la date d'expiration en timestamp
-                                            $expiration = strtotime($story['expiration']);
-                                            // Obtenir le timestamp actuel
-                                            $now = time();
-                                            // Vérifier si la date d'expiration est supérieure à la date actuelle
-                                            if ($expiration > $now) {
-                                                ?>
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <img src="uploads/storys/<?php echo $story['story_image']; ?>" alt="Photo de la story" class="img-fluid">
-                                                    </div>
-                                                    <div class="col-8">
-                                                        <p>Expiration : <?php echo $story['expiration']; ?></p>
-                                                    </div>
-                                                </div>
-                                                <?php
-                                            }
-                                        }
-                                    } else {
-                                        echo "<p>Cet utilisateur n'a pas de stories.</p>";
-                                    }
-                                    ?>
+                                    $queryStorys = "SELECT story_id, image, expiration FROM STORYS WHERE user_id = ? AND expiration > NOW() ORDER BY story_id DESC";
+                                    $stmtStorys = $bdd->prepare($queryStorys);
+                                    $stmtStorys->execute([$user_id]);
+                                    $storys = $stmtStorys->fetchAll();
+                                    
+                                    
+                                    foreach ($storys as $story): ?>
+                                        <div class="story-circle me-3 position-relative">
+                                            <img src="<?php echo htmlspecialchars('uploads/storys/' . $story['image']); ?>" alt="Story Image" style="width: 100px; height: 100px;" class="img-fluid rounded-circle"> 
+                                            <a href="back/supp_story?story_id=<?php echo $story['story_id']; ?>" class="btn btn-danger btn-sm position-absolute top-0 end-0" onclick="return confirm('Êtes vous sur de vouloir supprimer cette story ?');">X</a>
+                                        </div>
+                                    <?php endforeach; ?>
                                     </div>
                                 </div>
                             </div>
