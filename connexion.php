@@ -64,9 +64,10 @@ include('includes/head.php');?>
                         value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : (isset($_COOKIE['email_pro']) ? $_COOKIE['email_pro'] : '' )?>">
                     </div>
 
-                    <div class="form-outline mb-4">
-                        <label class="form-label" for="email">Mot de passe</label>
-                        <input type="password" name="password" class="form-control" placeholder="Mot de passe : ">
+                    <div class="form-outline mb-4 position-relative">
+                        <label class="form-label" for="password">Mot de passe</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe : ">
+                        <img src="assets/eye-slash.svg" alt="eye" class="eye position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%);" onclick="togglePasswordVisibility(this)" />
                     </div>
 
 
