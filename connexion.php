@@ -86,6 +86,7 @@ include('includes/head.php');?>
     </section>
     </main>
 
+    <script src="js/script.js"></script>
     <?php include('includes/footer.php');?>
 
 </body>
