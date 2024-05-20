@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+include("../includes/header_location.php");
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -30,7 +32,7 @@ if (!empty($logs_files)) {
         echo basename($file);
     }
 } else {
-    echo "Aucun fichier de log trouvé dans le dossier";
+    redirectFailure("../admin_log", "Aucun fichier de log trouvé dans le dossier.");
 }
 
 if (!empty($logs_files)) {
@@ -55,12 +57,12 @@ if (!empty($logs_files)) {
             unlink($zip_name); // Supprimez le fichier zip après le téléchargement
             exit;
         } else {
-            echo "Erreur lors de la création du fichier ZIP.";
+            redirectFailure("../admin_log", "Erreur lors de la création de l'archive ZIP.");
         }
     } else {
-        echo "Erreur lors de la création de l'archive ZIP.";
+        redirectFailure("../admin_log", "Erreur lors de la création de l'archive ZIP.");
     }
 } else {
-    echo "Aucun log disponible à télécharger.";
+    redirectFailure("../admin_log", "Aucun log disponible à télécharger.");
 }
 ?>
