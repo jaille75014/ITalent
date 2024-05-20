@@ -150,7 +150,7 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                     let a=document.getElementById("signature");
                                     let screenWidth = window.innerWidth;
                                     if(a.innerHTML=="Regénérer le CV en PDF"){
-                                        if(screenWidth>=426 && screenWidth<=768 ){
+                                        if(screenWidth>=426 && screenWidth<=1024 ){
                                         a.href="signature?reload=1";
                                         } else {
                                         a.href="back/genPDF?reload=1";
