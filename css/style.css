@@ -544,7 +544,7 @@ footer hr {
         object-position: top center;
 }
 
-.imgprofile {
+.imgprofile img{
   aspect-ratio: 1/1;
   border-radius: 20rem;
   width : 3.5rem;
