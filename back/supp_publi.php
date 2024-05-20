@@ -11,7 +11,7 @@ if (isset($_GET['publi_id'])) {
     $publi_id = $_GET['publi_id'];
     $user_id = $_SESSION['user_id'];
 
-    $res = $bdd->prepare("SELECT * FROM PUBLICATIONS WHERE publi_id = ? AND user_id = ?");
+    $res = $bdd->prepare("SELECT publi_id, image, description FROM PUBLICATIONS WHERE publi_id = ? AND user_id = ?");
     $res->execute([$publi_id, $user_id]);
     if ($res->rowCount() > 0) {
         $res = $bdd->prepare("DELETE FROM PUBLICATIONS WHERE publi_id = ?");

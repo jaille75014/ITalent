@@ -13,17 +13,17 @@ if(!isset($_SESSION['captcha'])){
 
 $user_id = $_SESSION['user_id'];
 
-$query = "SELECT * FROM USERS WHERE user_id = ?";
+$query = "SELECT SELECT lastname, firstname, email, password, tel, zip, city, statut, name_factory, image, student_job FROM USERS WHERE user_id = ?";
 $stmt = $bdd->prepare($query);
 $stmt->execute([$user_id]);
 $userInfo = $stmt->fetch();
 
-$queryPublications = "SELECT * FROM PUBLICATIONS WHERE user_id = ? ORDER BY publi_id DESC";
+$queryPublications = "SELECT publi_id, image, description FROM PUBLICATIONS WHERE user_id = ? ORDER BY publi_id DESC";
 $stmtPublications = $bdd->prepare($queryPublications);
 $stmtPublications->execute([$user_id]);
 $publications = $stmtPublications->fetchAll();
 
-$queryStorys = "SELECT * FROM STORYS WHERE user_id = ? AND expiration > NOW() ORDER BY story_id DESC";
+$queryStorys = "SELECT story_id, image, expiration FROM STORYS WHERE user_id = ? AND expiration > NOW() ORDER BY story_id DESC";
 $stmtStorys = $bdd->prepare($queryStorys);
 $stmtStorys->execute([$user_id]);
 $storys = $stmtStorys->fetchAll();
@@ -120,10 +120,6 @@ $url = 'profil'; //Permet de revenir sur cette page en cas d'erreurs dans les pa
                                 </form>
                                 <?php 
 
-                                
-
-                                
-                                
                                 if ($userInfo['statut'] == '1'){
                                     $q="SELECT nom FROM CV WHERE user_id=?;";
                                     $req=$bdd->prepare($q);

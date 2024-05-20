@@ -23,8 +23,9 @@ include('includes/header_location.php');
     }
     
     include('includes/bd.php');
-    $select_users = 'SELECT * FROM USERS WHERE 1';
+    $select_users = 'SELECT user_id, lastname, firstname, email, statut FROM USERS WHERE 1';
     $users = $bdd->query($select_users)->fetchAll();
+
 
     if(isset($_POST['delete_user']) && $id) {
         
