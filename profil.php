@@ -13,7 +13,7 @@ if(!isset($_SESSION['captcha'])){
 
 $user_id = $_SESSION['user_id'];
 
-$query = "SELECT SELECT lastname, firstname, email, password, tel, zip, city, statut, name_factory, image, student_job FROM USERS WHERE user_id = ?";
+$query = "SELECT lastname, firstname, email, password, tel, zip, city, statut, name_factory, image, student_job FROM USERS WHERE user_id = ?";
 $stmt = $bdd->prepare($query);
 $stmt->execute([$user_id]);
 $userInfo = $stmt->fetchAll(PDO::FETCH_ASSOC);
