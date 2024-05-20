@@ -28,10 +28,8 @@ if (!$user) {
 }
 $firstUser = $user[0];
 
-$q="SELECT image FROM PUBLICATIONS WHERE user_id=?;";
-$resultat = $bdd->prepare($q);
-$resultat->execute([$user_id]);
-$publications=$res->fetchAll(PDO::FETCH_ASSOC);
+$req_user_publications = $bdd->prepare("SELECT image, description FROM PUBLICATIONS WHERE user_id = ?");
+$req_user_publications->execute([$user_id]);
 
 
 
@@ -116,20 +114,20 @@ $publications=$res->fetchAll(PDO::FETCH_ASSOC);
                             <div class="row">
                                 <div class="col-12">
                                     <h3 class="text-center mb-5">Publications :</h3>
+                                    <div class="row" id="user_publications">
                                     <?php 
-                                        foreach($publications as $publication){
-                                            echo '<div class="row">
-                                                <div class="col-4">
-                                                    <img src="'.$publication['image'].'" alt="Photo de la publication" class="img-fluid">
-                                                </div>
-                                                <div class="col-8">
-                                                    <p>'.$publication['description'].'</p>
-                                                </div>
-                                            </div>';
-
-                                            echo $publication['image'];
-                                        }
+                                    while ($publication = $req_user_publications->fetch()) {
                                     ?>
+                                        <div class="col-md-4 mb-4">
+                                            <div class="card">
+                                                <img src="<?php echo $publication['image']; ?>" class="card-img-top" alt="Publication">
+                                                <div class="card-body">
+                                                    <p class="card-text"><?php echo $publication['description']; ?></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                </div>
                                         </div>
                                     </div>
                                     <h3 class="text-center">Storys : </h3>
