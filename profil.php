@@ -16,7 +16,7 @@ $user_id = $_SESSION['user_id'];
 $query = "SELECT SELECT lastname, firstname, email, password, tel, zip, city, statut, name_factory, image, student_job FROM USERS WHERE user_id = ?";
 $stmt = $bdd->prepare($query);
 $stmt->execute([$user_id]);
-$userInfo = $stmt->fetch();
+$userInfo = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $queryPublications = "SELECT publi_id, image, description FROM PUBLICATIONS WHERE user_id = ? ORDER BY publi_id DESC";
 $stmtPublications = $bdd->prepare($queryPublications);
