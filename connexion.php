@@ -67,7 +67,7 @@ include('includes/head.php');?>
                     <div class="form-outline mb-4 position-relative">
                         <label class="form-label" for="password">Mot de passe</label>
                         <input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe : ">
-                        <img src="assets/eye-slash.svg" alt="eye" class="eye position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%);" onclick="togglePasswordVisibility(this)" />
+                        <img src="assets/eye-slash.svg" alt="eye" class="eye position-absolute" style="right: 10px; top: 70%; transform: translateY(-50%);" onclick="togglePasswordVisibility(this)" />
                     </div>
 
 
