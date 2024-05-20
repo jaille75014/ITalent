@@ -1,14 +1,18 @@
 <?php
 session_start();
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 3) {
-    header('location:index');
+    header('Location: index');
     exit;
 }
 
 $logs_directory = '../logs/'; // Chemin vers le dossier contenant les logs
 
-$logs_files = glob($logs_directory . '/*.txt'); // Vérifiez si un fichier de log existe dans le dossier
+$logs_files = glob($logs_directory . '*.txt'); // Vérifiez si un fichier de log existe dans le dossier
 if (!empty($logs_files)) {
     $zip = new ZipArchive(); // Créez une archive zip pour regrouper tous les fichiers de log
     $zip_name = 'logs.zip';
@@ -18,16 +22,21 @@ if (!empty($logs_files)) {
         }
         $zip->close();
 
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="' . $zip_name . '"');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize($zip_name));
-        readfile($zip_name);
-        unlink($zip_name); // Supprimez le fichier zip après le téléchargement
-        exit;
+        if (file_exists($zip_name)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/zip');
+            header('Content-Disposition: attachment; filename="' . basename($zip_name) . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($zip_name));
+            flush(); // Vider le tampon de sortie du système
+            readfile($zip_name);
+            unlink($zip_name); // Supprimez le fichier zip après le téléchargement
+            exit;
+        } else {
+            echo "Erreur lors de la création du fichier ZIP.";
+        }
     } else {
         echo "Erreur lors de la création de l'archive ZIP.";
     }
