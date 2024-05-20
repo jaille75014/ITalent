@@ -5,7 +5,7 @@ function writeLogLine($success, $email){
     date_default_timezone_set('Europe/Paris');
 
     // Ouverture du flux log.txt
-    $log = fopen($success ? '../logs/log_reussies.txt' : '../logs/log_echouées.txt', 'a+');
+    $log = fopen($success ? '/var/www/html/logs/log_reussies.txt' : '/var/www/html/logs/log_echouées.txt', 'a+');
 
     // Création de la ligne à ajouter
     // AAAA/mm/jj - h/m/s - tentative de connexion échoué de email

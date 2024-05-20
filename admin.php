@@ -41,8 +41,8 @@ include('includes/header_location.php');
 
         if(isset($_POST['raison_suppression'])) {
             $raison = $_POST['raison_suppression'];
-            $log_file = 'delete_user_log.txt';
-            file_put_contents($log_file, "Utilisateur supprimé (ID: $id) - Raison: $raison\n", FILE_APPEND);
+            $log = fopen('/var/www/html/logs/delete_user_log.txt', 'a+');
+            fputs($log, "Utilisateur supprimé (ID: $id) - Raison: $raison\n");
         }
         $req_ban = $bdd->prepare('INSERT INTO BAN (date_ban, reason, user_id) VALUES (:date_ban, :reason, :user_id)');
         $req_ban->execute([
