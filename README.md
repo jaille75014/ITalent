@@ -7,7 +7,7 @@ Fonctionnalités principales :
 - Recherche et publication d'offres de stages, d'alternances, de CDD et CDI dans le domaine de l'informatique.
 - Tests de compétences dès l'inscription des étudiants.
 - Filtres avancés pour les recruteurs afin de trouver les profils correspondants à leurs besoins.
-- Gestion des candidatures et organisation des entretiens.
+- Génération de PDF attestants des compétences des étudiants. 
 
 Technologies utilisées :
 - HTML
@@ -23,14 +23,9 @@ Structure du projet :
 - /includes : Contient les fichiers PHP inclus dans plusieurs pages pour la réutilisabilité du code.
 - /bdd : Contient le fichier SQL de la base de données.
 - /logs : Contient les logs de connexions des utilisateurs.
-
-Comment utiliser :
-1. Assurez-vous d'avoir un serveur web configuré avec PHP et MySQL.
-2. Importez la base de données fournie dans le dossier "bdd".
-3. Placez tous les fichiers dans le répertoire racine de votre serveur web.
-4. Accédez au site via votre navigateur.
+- /back : les traitements back-end du site.
 
 Auteurs :
 - Alban CABADET-BOGDANSKI / Rafaël FRON / Jules SIMON
 
-Pour toute question ou assistance, veuillez nous contacter à l'email suivant : "italent@gmail.com".
+Pour toute question ou assistance, veuillez nous contacter à l'email suivant : "italent.contact.site@gmail.com".
