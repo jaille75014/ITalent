@@ -49,7 +49,7 @@ $log_visites = readLogFile($log_visites_file);
                     <?php if (!empty($log_echouees)): ?>
                         <pre><?php echo htmlspecialchars($log_echouees); ?></pre>
                     <?php else: ?>
-                        <p>Aucun log d'échecs de connexion disponible.</p>
+                        <pre>Aucun log d'échecs de connexion disponible.</pre>
                     <?php endif; ?>
                 </div>
             </div>
@@ -60,7 +60,7 @@ $log_visites = readLogFile($log_visites_file);
                     <?php if (!empty($log_reussies)): ?>
                         <pre><?php echo htmlspecialchars($log_reussies); ?></pre>
                     <?php else: ?>
-                        <p>Aucun log de connexion réussie disponible.</p>
+                        <pre>Aucun log de connexion réussie disponible.</pre>
                     <?php endif; ?>
                 </div>
             </div>
@@ -71,7 +71,7 @@ $log_visites = readLogFile($log_visites_file);
                     <?php if (!empty($log_visites)): ?>
                         <pre><?php echo htmlspecialchars($log_visites); ?></pre>
                     <?php else: ?>
-                        <p>Aucun log de visite de page disponible.</p>
+                        <pre>Aucun log de visite de page disponible.</pre>
                     <?php endif; ?>
                 </div>
             </div>
