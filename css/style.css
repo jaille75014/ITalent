@@ -543,6 +543,14 @@ footer hr {
         object-fit: cover;
         object-position: top center;
 }
+
+.imgprofile {
+  aspect-ratio: 1/1;
+  border-radius: 20rem;
+  width : 3.5rem;
+  object-fit: cover;
+  object-position: top center;
+}
 .user .details{
     margin-left: 1.5 rem;
     line-height: 1.3;

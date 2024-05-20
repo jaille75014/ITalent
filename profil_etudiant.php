@@ -48,7 +48,7 @@ $firstUser = $user[0];
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-4 imgprofile">
                                     <img src="<?php echo $firstUser['user_image']; ?>" alt="Photo de profil">
                                 </div>
                                 <div class="col-8">
