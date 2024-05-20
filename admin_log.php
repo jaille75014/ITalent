@@ -47,7 +47,7 @@ $log_visites = readLogFile($log_visites_file);
                 <div class="card-body">
                     <h5 class="card-title">Logs d'échecs de connexion :</h5>
                     <?php if (!empty($log_echouees)): ?>
-                        <pre><?php echo htmlspecialchars($log_echouees); ?></pre>
+                        <p><?php echo htmlspecialchars($log_echouees); ?></p>
                     <?php else: ?>
                         <p>Aucun log d'échecs de connexion disponible.</p>
                     <?php endif; ?>
@@ -58,7 +58,7 @@ $log_visites = readLogFile($log_visites_file);
                 <div class="card-body">
                     <h5 class="card-title">Logs de connexions réussies :</h5>
                     <?php if (!empty($log_reussies)): ?>
-                        <pre><?php echo htmlspecialchars($log_reussies); ?></pre>
+                        <p><?php echo htmlspecialchars($log_reussies); ?></p>
                     <?php else: ?>
                         <p>Aucun log de connexion réussie disponible.</p>
                     <?php endif; ?>
@@ -69,7 +69,7 @@ $log_visites = readLogFile($log_visites_file);
                 <div class="card-body">
                     <h5 class="card-title">Logs de visites de page :</h5>
                     <?php if (!empty($log_visites)): ?>
-                        <pre><?php echo htmlspecialchars($log_visites); ?></pre>
+                        <p><?php echo htmlspecialchars($log_visites); ?></p>
                     <?php else: ?>
                         <p>Aucun log de visite de page disponible.</p>
                     <?php endif; ?>
