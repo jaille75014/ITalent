@@ -49,7 +49,7 @@ $firstUser = $user[0];
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-4">
-                                    <img src="assets/<?php echo $firstUser['user_image']; ?>" alt="Photo de profil">
+                                    <img src="<?php echo $firstUser['user_image']; ?>" alt="Photo de profil">
                                 </div>
                                 <div class="col-8">
                                     <h2><?php echo $firstUser['firstname'] . ' ' . $firstUser['lastname']; ?></h2>
@@ -64,23 +64,28 @@ $firstUser = $user[0];
                                 <div class="col-12">
                                     <h2>Publications</h2>
                                     <?php 
-                                    if (!empty($firstUser['publications'])) {
-                                        foreach($firstUser['publications'] as $publication){
+                                    $hasPublication = false;
+                                    foreach($user as $userInfo){
+                                        if (!empty($userInfo['publication_image'])) {
+                                            $hasPublication = true;
                                             ?>
                                             <div class="row">
                                                 <div class="col-4">
-                                                    <img src="<?php echo $publication['publication_image']; ?>" alt="Photo de la publication" class="img-fluid">
+                                                    <img src="<?php echo $userInfo['publication_image']; ?>" alt="Photo de la publication" class="img-fluid">
                                                 </div>
                                                 <div class="col-8">
-                                                    <p><?php echo $publication['description']; ?></p>
+                                                    <p><?php echo $userInfo['description']; ?></p>
                                                 </div>
                                             </div>
                                             <?php
                                         }
-                                    } else {
+                                    }
+                                    if (!$hasPublication) {
                                         echo "<p>Cet utilisateur n'a pas de publications.</p>";
                                     }
                                     ?>
+                                        </div>
+                                    </div>
                                     <h2>Storys</h2>
                                     <?php 
                                     if (!empty($firstUser['storys'])) {
