@@ -41,11 +41,12 @@ $firstUser = $user[0];
     writeVisitLog($url);
     ?>
     <body>
-        <div class="container">
+        <?php include('includes/header.php');?>
+        <div class="container my-5">
             <div class="row">
                 <div class="col-12">
-                    <h1>Profil de l'étudiant</h1>
-                    <div class="card">
+                    <h1 class="text-center mb-5">Profil de l'étudiant</h1>
+                    <div class="card mb-5">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-4 imgprofile">
